@@ -2,79 +2,79 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on PSKim Blog</title>
-    <link>http://localhost/tags/</link>
+    <link>https://pskim-b.github.io/tags/</link>
     <description>Recent content in Tags on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="http://localhost/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>auth</title>
-      <link>http://localhost/tags/auth/</link>
+      <link>https://pskim-b.github.io/tags/auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>http://localhost/tags/auth/</guid>
+      <guid>https://pskim-b.github.io/tags/auth/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ed25519</title>
-      <link>http://localhost/tags/ed25519/</link>
+      <link>https://pskim-b.github.io/tags/ed25519/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>http://localhost/tags/ed25519/</guid>
+      <guid>https://pskim-b.github.io/tags/ed25519/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>http://localhost/tags/git/</link>
+      <link>https://pskim-b.github.io/tags/git/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>http://localhost/tags/git/</guid>
+      <guid>https://pskim-b.github.io/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>development</title>
-      <link>http://localhost/tags/development/</link>
+      <link>https://pskim-b.github.io/tags/development/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/tags/development/</guid>
+      <guid>https://pskim-b.github.io/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>http://localhost/tags/go/</link>
+      <link>https://pskim-b.github.io/tags/go/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/tags/go/</guid>
+      <guid>https://pskim-b.github.io/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>http://localhost/tags/golang/</link>
+      <link>https://pskim-b.github.io/tags/golang/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/tags/golang/</guid>
+      <guid>https://pskim-b.github.io/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>templates</title>
-      <link>http://localhost/tags/templates/</link>
+      <link>https://pskim-b.github.io/tags/templates/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/tags/templates/</guid>
+      <guid>https://pskim-b.github.io/tags/templates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>themes</title>
-      <link>http://localhost/tags/themes/</link>
+      <link>https://pskim-b.github.io/tags/themes/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/tags/themes/</guid>
+      <guid>https://pskim-b.github.io/tags/themes/</guid>
       <description></description>
     </item>
     

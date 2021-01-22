@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on PSKim Blog</title>
-    <link>http://localhost/posts/</link>
+    <link>https://pskim-b.github.io/posts/</link>
     <description>Recent content in Posts on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="http://localhost/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows10 Git &#39;OpenSSH Key is invalid&#39; 오류 </title>
-      <link>http://localhost/posts/20210122_git_win10_auth/</link>
+      <link>https://pskim-b.github.io/posts/20210122_git_win10_auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>http://localhost/posts/20210122_git_win10_auth/</guid>
+      <guid>https://pskim-b.github.io/posts/20210122_git_win10_auth/</guid>
       <description>Windows10 환경에서 생성한 rsa key가 Github account/repository에 SSH키를 등록이 안되는 경우가 있다.
 다른 블로그 및 stackoverflow에서도 아래와 같이 rsa key 생성을 가이드 하고 있다.
 PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없을 것 같은데 안되서 굉장히 당황스러웠다.
@@ -21,19 +21,19 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
     
     <item>
       <title>Hugo_test</title>
-      <link>http://localhost/posts/hugo_test/</link>
+      <link>https://pskim-b.github.io/posts/hugo_test/</link>
       <pubDate>Fri, 22 Jan 2021 00:57:15 +0900</pubDate>
       
-      <guid>http://localhost/posts/hugo_test/</guid>
+      <guid>https://pskim-b.github.io/posts/hugo_test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>(Hu)go Template Primer</title>
-      <link>http://localhost/posts/template/</link>
+      <link>https://pskim-b.github.io/posts/template/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/template/</guid>
+      <guid>https://pskim-b.github.io/posts/template/</guid>
       <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
 This document is a brief primer on using Go templates.</description>
     </item>

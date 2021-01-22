@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>auth on PSKim Blog</title>
-    <link>http://localhost/tags/auth/</link>
+    <link>https://pskim-b.github.io/tags/auth/</link>
     <description>Recent content in auth on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="http://localhost/tags/auth/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 22:42:30 +0900</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/auth/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows10 Git &#39;OpenSSH Key is invalid&#39; 오류 </title>
-      <link>http://localhost/posts/20210122_git_win10_auth/</link>
+      <link>https://pskim-b.github.io/posts/20210122_git_win10_auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>http://localhost/posts/20210122_git_win10_auth/</guid>
+      <guid>https://pskim-b.github.io/posts/20210122_git_win10_auth/</guid>
       <description>Windows10 환경에서 생성한 rsa key가 Github account/repository에 SSH키를 등록이 안되는 경우가 있다.
 다른 블로그 및 stackoverflow에서도 아래와 같이 rsa key 생성을 가이드 하고 있다.
 PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없을 것 같은데 안되서 굉장히 당황스러웠다.
