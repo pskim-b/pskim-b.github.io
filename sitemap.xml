@@ -3,26 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://pskim-b.github.io/</loc>
+    <loc>http://localhost/posts/hugo_test/</loc>
     <lastmod>2021-01-22T00:57:15+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pskim-b.github.io/posts/hugo_test/</loc>
+    <loc>http://localhost/posts/</loc>
     <lastmod>2021-01-22T00:57:15+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pskim-b.github.io/posts/</loc>
+    <loc>http://localhost/</loc>
     <lastmod>2021-01-22T00:57:15+09:00</lastmod>
   </url>
   
   <url>
-    <loc>http://pskim-b.github.io/categories/</loc>
+    <loc>http://localhost/categories/</loc>
   </url>
   
   <url>
-    <loc>http://pskim-b.github.io/tags/</loc>
+    <loc>http://localhost/tags/</loc>
   </url>
   
 </urlset>
