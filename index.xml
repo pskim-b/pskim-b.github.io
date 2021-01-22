@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PSKim blog</title>
-    <link>http://localhost/</link>
-    <description>Recent content on PSKim blog</description>
+    <title>PSKim Blog</title>
+    <link>http://pskim-b.github.io/</link>
+    <description>Recent content on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 22 Jan 2021 00:57:15 +0900</lastBuildDate><atom:link href="http://localhost/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 00:57:15 +0900</lastBuildDate><atom:link href="http://pskim-b.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo_test</title>
-      <link>http://localhost/posts/hugo_test/</link>
+      <link>http://pskim-b.github.io/posts/hugo_test/</link>
       <pubDate>Fri, 22 Jan 2021 00:57:15 +0900</pubDate>
       
-      <guid>http://localhost/posts/hugo_test/</guid>
+      <guid>http://pskim-b.github.io/posts/hugo_test/</guid>
       <description></description>
     </item>
     
