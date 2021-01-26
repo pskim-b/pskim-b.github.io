@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[ADsP]1.통계분석의 시작 // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.bd1f594f9570eb5b6461795e3689d325253f8ce28da515d736ac1275a1d10382.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ADsP]1.통계분석의 시작"/>
+<meta name="twitter:description" content="😃
+이상한 순서이지만, 3장의 &lsquo;데이터 분석&rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &lsquo;데이터의 이해&rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!
+ 내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다."/>
+
+    <meta property="og:title" content="[ADsP]1.통계분석의 시작" />
+<meta property="og:description" content="😃
+이상한 순서이지만, 3장의 &lsquo;데이터 분석&rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &lsquo;데이터의 이해&rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!
+ 내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/adsp/1_statistical_analysis/" />
+<meta property="article:published_time" content="2021-01-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-25T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>빅데이터 기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[ADsP]1.통계분석의 시작</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 25, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/adsp/">adsp</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>😃</p>
+<p>이상한 순서이지만, 3장의 &lsquo;데이터 분석&rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &lsquo;데이터의 이해&rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!</p>
+<hr>
+<h2 id="내용">내용</h2>
+<p>일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 <strong>ODS(Operational Data Store)</strong> 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다. 따라서 Legacy에서 ODS로 데이터를 적재하는데 이때 데이터 변환이 필요하다면 별도의 staging 영역을 활용한다. 일반적으로 비정형 데이터는 RDB에 임시 저장후 텍스트 마이닝을 거쳐 데이터 마트(DM)과 결합시킨다. 또 소셜데이터 같은 경우 RDB에 심시 저장 후 사회 신경망 분석을 통한 결과를 DM과 결합한다. 이렇게 [ legacy -&gt; staging -&gt; ODS -&gt; DW-&gt;DM]로 데이터가 적재되어사용된다.  분석은 각 단계에서 수행되어 각 단계의 데이터와 결합할 수 있다.</p>
+<p>많은 분석 작업들이 &lsquo;탐색적 자료 분석(EDA)&lsquo;를 통해 이루어지는데, 다양한 차원(dimension)과 값을 조합하여 특이점이나 규칙들 찾아낸다. 이때 시각화를 반드시 사용해야 하며 이를 통해 빠르게 특이점을 찾아낼 수 있다. 그 외에도 공간적 차원과 관련된 속성을 분석할 때에도 시각화 분석이 필요하다.</p>
+<p><img src="https://www.oreilly.com/content/wp-content/uploads/sites/2/2019/06/05.02-Introducing-Scikit-Learn_8_0-b11592b82c83c188d4e207516f06f7fe.png" alt="img" style="zoom:80%;" /></p>
+<p><strong>(ref.<a href="https://www.oreilly.com/content/intro-to-scikit-learn/">Introduction to scikit-learn – O’Reilly</a>)</strong></p>
+<p>일반적으로 데이터 분석은 통계분석을 의미한다. 통계분석은 <strong>기술통계(descriptive statistics)</strong> 와 <strong>추측통계(infererential statistics)</strong> 로 나뉜다. 기술통계는 모집단으로부터 샘플링 하여 정보를 쉽게 숫자/그래프로 나타낸 것을 의미하고, 추측통계는 기술통계의 결과인 샘플 특정 모수에 관해 통계적으로 추론하는 것이다. 다시 이야기 하면 기술통계는 &lsquo;각 연령 별 여당 후보의 지지율 분포&rsquo;와 같은 샘플 데이터 자체를 표현 하는 것이고, 추측통계는 기술통계로부터 얻은 샘플링 결과를 일반화 시키고 그것을 통해 &lsquo;여당 후보의 당선 가능성이 더 높다&rsquo;라고 하는 것이다. 실제로 추측의 근거는 오직 샘플링 결과에 의존한 것이기 때문에 잘못되었을 수도 있다. 따라서 기술 통계 시 올바른 샘플링이 중요하다.</p>
+<p><img src="https://miro.medium.com/max/1280/1*GkjmpGnnljpSi7JFZP6Fcg.gif" alt="The Guide to Rigorous Descriptive Statistics for Machine Learning and Data  Science : | by Himanshu S | Medium"></p>
+<p><strong>(ref.<a href="https://medium.com/@himanshuxd/the-guide-to-rigorous-descriptive-statistics-for-machine-learning-and-data-science-9209f88e4363">The Guide to Rigorous Descriptive Statistics for Machine Learning and Data Science : | by Himanshu S | Medium</a>)</strong></p>
+<p><strong>데이터 마이닝(Data Mining)</strong> 은 대용량 자료를 통해 관계,패턴,규칙을 찾고 모델로 만들어 기존에 알려지지 않은 유용한 지식을 추출하는 분석방법이다. 크게 기계학습(ML), 패턴인식(pattern recognition), DB내 지식탐색으로 나눌 수 있다. ML은 또 다시 인공신경망, 의사결정나무, 클러스터링, 베이지안 분류, SVM 등으로 세밀하게 나뉜다. 패턴인식은 사전지식과 패턴 데이터로 자료/패턴을 분류하는 방식이다. 가장 흔히 알고 있는 예가 기저귀 코너 옆 맥주진열과 같은 것이다.  DB내 지식탐색은 전통적인 DW에서 DM을 구축하여 데이터를 확인하는것 이다.</p>
+<p>또 복잡한 실제 상황을 단순화 시킨 컴퓨터 모델로 재현하는 것을 <strong>시뮬레이션</strong> 이라고 하고, 제약조건 하에서 목표값을 개선하는 방식을 <strong>최적화</strong> 라고 한다.</p>
+<hr>
+<h1 id="정리"><strong>정리</strong></h1>
+<ul>
+<li><strong>데이터 처리</strong> 는 [(legacy)-&gt;staging-&gt;ODS-&gt;DW-&gt;DM] 으로 이루어진다.</li>
+<li><strong>시각화</strong> 는 낮은 수준의 분석이지만, 매우 효과적이고 EDA, 공간분석에서 필수이다.</li>
+<li><strong>공간분석</strong> 은 <u>공간적 차원과 관련 속성을 시각화</u> 하는 분석이다.</li>
+<li><strong>EDA</strong> 는 탐색적 자료분석으로 <u>다양한 차원과 값을 조합해가며 특이점을 찾는 것</u>이다.</li>
+<li><strong>데이터마이닝</strong> 은 대용량자료로 부터 <u>관계, 패턴, 규칙</u>을 탐색하고 모형(모델)화 함으로써 유용한 지식을 추출하는 분석방법이다.</li>
+<li><strong>시뮬레이션</strong> 은 복잡한 <u>실제상황을 단순화해 컴퓨터 모델</u>로 만들어 재현하거나 변경하여 결과 예측하기 위한 방법이다.</li>
+<li><strong>최적화</strong> 는 <u>제약조건하에서 목표값을 개선</u>하는 방식으로 목적함수와 제약조건을 정의해 문제를 해결한다.</li>
+</ul>
+<hr>
+<h1 id="추가">추가</h1>
+<ul>
+<li>
+<p><strong>데이터 마이닝의 판단 기준</strong></p>
+<ul>
+<li>정확도, 정밀도, 디텍트 레이트, 리프트</li>
+</ul>
+</li>
+<li>
+<p><strong>시뮬레이션의 판단 기준</strong></p>
+<ul>
+<li>처리량, 평균 대기 시간, 평균 큐 길이, 시스템 시간 등</li>
+</ul>
+</li>
+<li>
+<p><strong>비즈니스 영향도 평가(경영자 관점)</strong></p>
+<ul>
+<li>총소유비용(TCO),투자대비효과(ROI),순현재가치(NPV)</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
