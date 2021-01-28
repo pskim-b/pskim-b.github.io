@@ -1,0 +1,26 @@
+table {
+	border-collapse: collapse
+}
+
+.content table {
+	display: block;
+	font-size: 1rem;
+	border-color: var(--color-secondary-text);
+	overflow: auto
+}
+
+.content th {
+	border-width: 1px;
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .75rem;
+	padding-right: .75rem
+}
+
+.content td {
+	border-width: 1px;
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .75rem;
+	padding-right: .75rem
+}

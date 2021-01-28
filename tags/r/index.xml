@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on PSKim Blog</title>
+    <link>https://pskim-b.github.io/tags/r/</link>
+    <description>Recent content in R on PSKim Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 26 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ADsP]2.R 프로그램 기초</title>
+      <link>https://pskim-b.github.io/posts/adsp/2_r_programming/</link>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/2_r_programming/</guid>
+      <description>😃
+요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!
+ R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다.</description>
+    </item>
+    
+  </channel>
+</rss>

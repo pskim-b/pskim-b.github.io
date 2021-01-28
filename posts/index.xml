@@ -14,8 +14,7 @@
       <guid>https://pskim-b.github.io/posts/adsp/2_r_programming/</guid>
       <description>😃
 요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!
-   변수선언 / 간단한 연산
-  &amp;gt; a &amp;lt;-3 &amp;gt; b &amp;lt;-4 &amp;gt; a+b [1] 7 &amp;gt; a=5 &amp;gt; a+b [1] 9 &amp;gt; a [1] 5 &amp;gt; print(a) [1] 5 &amp;gt; arr_a =c(1,2,3,4) &amp;gt; arr_b =c(&amp;#34;hello&amp;#34;,&amp;#34;it&amp;#34;,&amp;#34;is&amp;#34;,&amp;#34;me&amp;#34;) &amp;gt; arr_b[0] character(0) &amp;gt; arr_b[1] [1] &amp;#34;hello&amp;#34; &amp;gt; arr_b[2] [1] &amp;#34;it&amp;#34; &amp;gt; arr_b[-2] [1] &amp;#34;hello&amp;#34; &amp;#34;is&amp;#34; &amp;#34;me&amp;#34; &amp;gt; arr_c &amp;lt;-c(5,6,7,8) &amp;gt; arr_a+arr_c [1] 6 8 10 12 &amp;gt; arr_a+arr_b Error in arr_a + arr_b : 이항연산자에 수치가 아닌 인수입니다     수열</description>
+ R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다.</description>
     </item>
     
     <item>
@@ -42,25 +41,15 @@
     
     <item>
       <title>Windows10 Git &#39;OpenSSH Key is invalid&#39; 오류 </title>
-      <link>https://pskim-b.github.io/posts/20210122_git_win10_auth/</link>
+      <link>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/20210122_git_win10_auth/</guid>
+      <guid>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</guid>
       <description>Windows10 환경에서 생성한 rsa key가 Github account/repository에 SSH키를 등록이 안되는 경우가 있다.
 다른 블로그 및 stackoverflow에서도 아래와 같이 rsa key 생성을 가이드 하고 있다.
 PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없을 것 같은데 안되서 굉장히 당황스러웠다.
 위와 같은 명령어로 생성된 ~/.ssh/id_rsa.pub 파일의 내용을 github에 등록하면 &amp;lsquo;Key is invalid. You must supply a key in OpenSSH public key format&amp;rsquo; 와 같은 에러메세지가 나온다.
 왜 이상한 포맷으로 생성되는지 잘 모르겠으나, 이러한 경우 아래와 같이 rsa 대신 ed25519를 생성하여 id_25519.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>https://pskim-b.github.io/posts/template/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/posts/template/</guid>
-      <description>Hugo uses the excellent Go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in Go templates.
-This document is a brief primer on using Go templates.</description>
     </item>
     
   </channel>

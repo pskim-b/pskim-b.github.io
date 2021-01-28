@@ -16,6 +16,15 @@
     </item>
     
     <item>
+      <title>R</title>
+      <link>https://pskim-b.github.io/tags/r/</link>
+      <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>auth</title>
       <link>https://pskim-b.github.io/tags/auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
@@ -39,51 +48,6 @@
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
       <guid>https://pskim-b.github.io/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>development</title>
-      <link>https://pskim-b.github.io/tags/development/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/development/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>https://pskim-b.github.io/tags/go/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://pskim-b.github.io/tags/golang/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>templates</title>
-      <link>https://pskim-b.github.io/tags/templates/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/templates/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>themes</title>
-      <link>https://pskim-b.github.io/tags/themes/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/themes/</guid>
       <description></description>
     </item>
     

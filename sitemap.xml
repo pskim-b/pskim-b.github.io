@@ -23,6 +23,11 @@
   </url>
   
   <url>
+    <loc>https://pskim-b.github.io/tags/r/</loc>
+    <lastmod>2021-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pskim-b.github.io/tags/</loc>
     <lastmod>2021-01-26T00:00:00+00:00</lastmod>
   </url>
@@ -53,38 +58,8 @@
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/20210122_git_win10_auth/</loc>
+    <loc>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/posts/template/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/development/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/go/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/themes/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
