@@ -5,7 +5,18 @@
     <link>https://pskim-b.github.io/posts/</link>
     <description>Recent content in Posts on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 26 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ADsP]2.R 데이터 처리/분석</title>
+      <link>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</link>
+      <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</guid>
+      <description>😃
+지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
+ 데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다.</description>
+    </item>
+    
     <item>
       <title>[ADsP]2.R 프로그램 기초</title>
       <link>https://pskim-b.github.io/posts/adsp/2_r_programming/</link>

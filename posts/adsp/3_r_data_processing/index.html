@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[ADsP]2.R 데이터 처리/분석 // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.858f075bc53191ad5d29855c91851305942a00ab4a54d8819dddbec366d20942.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ADsP]2.R 데이터 처리/분석"/>
+<meta name="twitter:description" content="😃
+지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
+ 데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다."/>
+
+    <meta property="og:title" content="[ADsP]2.R 데이터 처리/분석" />
+<meta property="og:description" content="😃
+지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
+ 데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/adsp/3_r_data_processing/" />
+<meta property="article:published_time" content="2021-01-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-31T00:00:00+00:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[ADsP]2.R 데이터 처리/분석</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 31, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/adsp/">adsp</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/r/">R</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>😃</p>
+<p>지난 글에서 간단하게 R의 기본언어를 알아보았다.
+이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.</p>
+<hr>
+<h1 id="데이터-처리분석-과정">데이터 처리/분석 과정</h1>
+<p>모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에  맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다.</p>
+<h4 id="데이터-수집---데이터-전처리---데이터-분석---보고서-작성-"><strong>[데이터 수집 -&gt; 데이터 전처리 -&gt; 데이터 분석 -&gt; 보고서 작성 ]</strong></h4>
+<p>R 언어 자체는 분석을 위해 특화된 언어기 때문에 전문적인 데이터 전처리 작업은 python, perl, ruby 같은 스크립트 언어를 사용하게 된다. 데이터 전처리 작업도 분석 작업만큼이나 많은 공수가 들어가고 전문적인 분야이기 때문에,  이러한 작업들을 별도의 데이터 엔지니어가 처리한다. 동시에 간단한 데이터 전처리 작업은 데이터 분석가들이 직접 datalake에서 필요한 데이터를 탐색하여 python등을 처리해서 가져가도록 구성하기도 한다.  R도 다양한 데이터 소스에서 데이터를 가져올 수 있는 API가 제공되기 때문에 일반적이진 않지만 간단한 데이터 처리를 수행할 수 있다.</p>
+<hr>
+<h2 id="r에서-다룰-수-있는-파일-타입"><strong>R에서 다룰 수 있는 파일 타입</strong></h2>
+<ul>
+<li>Tab-delimited text</li>
+<li>Comma-seperated text</li>
+<li>Excel file</li>
+<li>JSON file</li>
+<li>HTML/XML file</li>
+<li>Database</li>
+<li>기타 통계 SW파일</li>
+</ul>
+<hr>
+<h1 id="데이터-입출력">데이터 입출력</h1>
+<ol>
+<li>
+<p><strong>데이터 입력</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e">#하위경로의 파일 목록 출력</span>
+<span style="color:#f92672">&gt;</span> list.files
+<span style="color:#a6e22e">function </span>(path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, pattern <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, all.files <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    full.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, recursive <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, ignore.case <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    include.dirs <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, no.. <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">list.files</span>(<span style="color:#e6db74">&#34;d:\\download&#34;</span>) 
+   
+<span style="color:#75715e">#고정폭 데이터 읽기</span>
+<span style="color:#f92672">&gt;</span> read.fwf
+<span style="color:#a6e22e">function </span>(file, widths, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0L</span>, 
+    row.names, col.names, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, buffersize <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, 
+    <span style="color:#66d9ef">...</span>)
+<span style="color:#f92672">&gt;</span> f1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.fwf</span>(<span style="color:#e6db74">&#34;d:\\download\\sample_fwf.txt&#34;</span>,header<span style="color:#f92672">=</span>T, widths<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
+    
+<span style="color:#75715e">#구분자로 데이터 구분해서 읽기 (기본 탭으로 구분)  </span>
+<span style="color:#75715e">#아래 read.table의 wrapper function. 내부적으로 read.table을 호출</span>
+<span style="color:#f92672">&gt;</span> read.delim
+<span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>, 
+    dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
+<span style="color:#f92672">&gt;</span> f2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.delim</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+   
+<span style="color:#75715e"># CSV파일 읽기 (구분자 )</span>
+<span style="color:#f92672">&gt;</span> read.csv 
+<span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>, 
+    dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>) 
+<span style="color:#f92672">&gt;</span> f3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>, header<span style="color:#f92672">=</span>T)
+<span style="color:#f92672">&gt;</span> <span style="color:#75715e"># as.is=T  -- 주소,이름,성 등의 형변환 없이 text로 데이터를 읽고 싶은 경우 </span>
+   
+<span style="color:#75715e"># table 형태로 읽기 (구분자를 설정가능)</span>
+<span style="color:#f92672">&gt;</span> read.table
+<span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#39;&#34;</span>, 
+    dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, numerals <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;allow.loss&#34;</span>, <span style="color:#e6db74">&#34;warn.loss&#34;</span>, 
+        <span style="color:#e6db74">&#34;no.loss&#34;</span>), row.names, col.names, as.is <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>stringsAsFactors, 
+    na.strings <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span>, colClasses <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>, nrows <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>, skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+    check.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, fill <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>blank.lines.skip, strip.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    blank.lines.skip <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#&#34;</span>, allowEscapes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, stringsAsFactors <span style="color:#f92672">=</span> <span style="color:#a6e22e">default.stringsAsFactors</span>(), 
+    fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, text, 
+    skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
+<span style="color:#f92672">&gt;</span> f4 <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>, header<span style="color:#f92672">=</span>T, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+   
+<span style="color:#75715e">#웹에서 데이터 읽어올 때 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/sample.csv&#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/sample.txt&#34;</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;|	&#34;</span>)
+   
+<span style="color:#75715e">#html 테이블 읽어오는 경우 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readHTMLTable</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/table.html&#34;</span>)
+   
+<span style="color:#75715e"># line 단위로 읽기 </span>
+<span style="color:#f92672">&gt;</span> readLines
+<span style="color:#a6e22e">function </span>(con <span style="color:#f92672">=</span> <span style="color:#a6e22e">stdin</span>(), n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, ok <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, warn <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, 
+    skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readLines</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+   
+<span style="color:#75715e">#토큰 기반 읽기 - 타입에 맞춰 데이터 읽기 </span>
+<span style="color:#f92672">&gt;</span> scan
+<span style="color:#a6e22e">function </span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, what <span style="color:#f92672">=</span> <span style="color:#a6e22e">double</span>(), nmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, 
+    sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#a6e22e">if </span>(<span style="color:#a6e22e">identical</span>(sep, <span style="color:#e6db74">&#34;\n&#34;</span>)) <span style="color:#e6db74">&#34;&#34;</span> else <span style="color:#e6db74">&#34;&#39;\&#34;&#34;</span>, 
+    dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0L</span>, nlines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0L</span>, na.strings <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span>, 
+    flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, strip.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, quiet <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    blank.lines.skip <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, multi.line <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, 
+    allowEscapes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, 
+    text, skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">scan</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,nlines <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, what<span style="color:#f92672">=</span><span style="color:#a6e22e">character</span>(<span style="color:#e6db74">&#39;0&#39;</span>))
+Read <span style="color:#ae81ff">1</span> item
+[1] <span style="color:#e6db74">&#34;Series_reference,Period,Data_value,Suppressed,STATUS,UNITS,Magnitude,Subject,Group,Series_title_1,Series_title_2,Series_title_3,Series_title_4,Series_title_5&#34;</span>
+       
+<span style="color:#75715e"># 예1. what=numeric(0)</span>
+<span style="color:#75715e"># 예2. what=interger(0)</span>
+<span style="color:#75715e"># 예3. what=list(v1=character(),v2=numberic(0))</span>
+</code></pre></div></li>
+<li>
+<p><strong>데이터 출력</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> cat
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">function </span>(<span style="color:#66d9ef">...</span>, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
+    labels <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
+<span style="color:#f92672">&gt;</span> cList<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>,<span style="color:#e6db74">&#34;e&#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cat</span>(cList,<span style="color:#e6db74">&#34;d:\\data.out&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
+   
+<span style="color:#f92672">&gt;</span> fval<span style="color:#f92672">=</span><span style="color:#ae81ff">1.524520</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">print</span>(fval,digits<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+<span style="color:#ae81ff">2</span>
+<span style="color:#a6e22e">cat</span>(<span style="color:#a6e22e">printformat</span>(fval,digits<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>),<span style="color:#e6db74">&#34;d:\\data2.out&#34;</span>)
+   
+</code></pre></div></li>
+</ol>
+<hr>
+<p>간단하게 데이터를 읽는 방법을 확인해 보았다. 제공되는 모든 function들을 확인해본 것은 아니지만 전체적으로 정형화된 데이터를 읽고, 출력하는 것을 확인할 수 있었다. 이처럼 R로 데이터를 읽어들이기 위해서는 반드시 csv나 table과 같이 정형화된 형태로 데이터가 제공되어야 함을 알 수가 있다. 따라서 효과적인 분석작업을 위해 전달되는 데이터의 전처리 과정이 매우 중요할 것으로 생각된다.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
