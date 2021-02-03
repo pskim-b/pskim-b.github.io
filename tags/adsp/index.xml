@@ -50,5 +50,17 @@
  내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다.</description>
     </item>
     
+    <item>
+      <title>[ADsP]2.R 데이터 구조 ( vector , list, dataframe )</title>
+      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
+      <description>😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
+&amp;gt; v1 = c(0,&amp;#34;a&amp;#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다.</description>
+    </item>
+    
   </channel>
 </rss>

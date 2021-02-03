@@ -28,5 +28,17 @@
  R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다.</description>
     </item>
     
+    <item>
+      <title>[ADsP]2.R 데이터 구조 ( vector , list, dataframe )</title>
+      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
+      <description>😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
+&amp;gt; v1 = c(0,&amp;#34;a&amp;#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다.</description>
+    </item>
+    
   </channel>
 </rss>

@@ -64,23 +64,25 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
     </item>
     
     <item>
-      <title></title>
-      <link>https://pskim-b.github.io/posts/hbase/hbase_commands/</link>
+      <title>[HIVE] 파티션 타입 및 종류</title>
+      <link>https://pskim-b.github.io/posts/hive/hive_partition_type/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/hive/hive_partition_type/</guid>
+      <description>😃
+Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[ADsP]2.R 데이터 구조 ( vector , list, dataframe )</title>
+      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hbase/hbase_commands/</guid>
-      <description>*** HBase Shell commands**
-- HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성함
-1) General HBase shell commands
-**- status ** : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
-&amp;gt; status &amp;gt; status &amp;lsquo;simple&amp;rsquo; &amp;gt; status &amp;lsquo;summary&amp;rsquo; &amp;gt; status &amp;lsquo;detailed&amp;rsquo;
-​
-**- version ** : 설치된 HBase의 버전정보를 확인
-&amp;gt; version
-**- whoami ** : 현재 hbase의 사용자를 확인
-&amp;gt; whoami
-​
-2) Table Management commands</description>
+      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
+      <description>😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
+&amp;gt; v1 = c(0,&amp;#34;a&amp;#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다.</description>
     </item>
     
   </channel>

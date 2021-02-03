@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[ADsP]2.R 데이터 구조 ( vector , list, dataframe ) // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.858f075bc53191ad5d29855c91851305942a00ab4a54d8819dddbec366d20942.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ADsP]2.R 데이터 구조 ( vector , list, dataframe )"/>
+<meta name="twitter:description" content="😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
+&gt; v1 = c(0,&#34;a&#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다."/>
+
+    <meta property="og:title" content="[ADsP]2.R 데이터 구조 ( vector , list, dataframe )" />
+<meta property="og:description" content="😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
+&gt; v1 = c(0,&#34;a&#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/adsp/4_r_data_structure/" />
+
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[ADsP]2.R 데이터 구조 ( vector , list, dataframe )</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jan 1, 0001
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/adsp/">adsp</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/r/">R</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>😃</p>
+<p>R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.</p>
+<hr>
+<h1 id="r-데이터-구조">R 데이터 구조</h1>
+<h2 id="1-벡터-vector">1. 벡터 (Vector)</h2>
+<p>벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다.   내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#e6db74">&#34;a&#34;</span>,T) <span style="color:#75715e">#다르게 입력해도 charactor값으로 맞춰버린다. </span>
+<span style="color:#f92672">&gt;</span> v1
+[1] <span style="color:#e6db74">&#34;0&#34;</span>    <span style="color:#e6db74">&#34;a&#34;</span>    <span style="color:#e6db74">&#34;TRUE&#34;</span>
+
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">typeof</span>(<span style="color:#ae81ff">3</span>)
+[1] <span style="color:#e6db74">&#34;double&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mode</span>(<span style="color:#ae81ff">3</span>)
+[1] <span style="color:#e6db74">&#34;numeric&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mode</span>(<span style="color:#e6db74">&#34;3&#34;</span>)
+[1] <span style="color:#e6db74">&#34;character&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">typeof</span>(<span style="color:#e6db74">&#34;3&#34;</span>)
+[1] <span style="color:#e6db74">&#34;character&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mode</span>(<span style="color:#ae81ff">3</span>)
+</code></pre></div><p>일반적인 프로그래밍 언어와 마찬가지로 벡터는 인덱스를 통해 접근할 수 있다. 약간 헷갈릴 수 있는 부분은 많은 언어들은 인덱스 0이 첫번째 값을 가리키는 반면에 R언어는 인덱스 1이 첫번째 값을 가리킨다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+<span style="color:#f92672">&gt;</span> v1[2]
+[1] <span style="color:#ae81ff">2</span>
+</code></pre></div><p>벡터는 인덱스를 통해 여러개의 원소로 구성된 하위 벡터를 부분적으로 반환할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> v1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)
+<span style="color:#f92672">&gt;</span> v1<span style="color:#a6e22e">[c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>)]
+[1] <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span>
+</code></pre></div><p>벡터는 테이블의 header와 유사하게 원소들의 이름을 부여할 수 있다.</p>
+<pre><code>&gt; pos=c(37.135,150.234)
+&gt; names(pos) = c(&quot;latitude&quot;, &quot;longitude&quot;)
+&gt; pos
+latitude longitude 
+  37.135  150.234 
+&gt; pos[&quot;latitude&quot;]
+latitude 
+  37.135 
+</code></pre><h2 id="2리스트-list">2.리스트 (List)</h2>
+<p>리스트는 벡터와 다르게 여러 타입의 데이터가 포함될 수 있다는 점만 다르고 나머지 특성은 동일하다</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> myList <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">1</span>,<span style="color:#e6db74">&#34;2&#34;</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;4&#34;</span>)
+<span style="color:#f92672">&gt;</span> myList <span style="color:#75715e">## 2차원 배열처럼 출력이된다. </span>
+[[1]]
+[1] <span style="color:#ae81ff">1</span>
+
+[[2]]
+[1] <span style="color:#e6db74">&#34;2&#34;</span>
+
+[[3]]
+[1] <span style="color:#ae81ff">3</span>
+
+[[4]]
+[1] <span style="color:#e6db74">&#34;4&#34;</span>
+
+<span style="color:#f92672">&gt;</span> myList[1]
+[[1]]
+[1] <span style="color:#ae81ff">1</span>
+
+<span style="color:#f92672">&gt;</span> myList[[1]]
+[1] <span style="color:#ae81ff">1</span> 
+</code></pre></div><h2 id="3-행렬-matrix">3. 행렬 (Matrix)</h2>
+<p>R에서 이야기 하는 행렬은 차원을 가진 벡터 값이다.  2차원 원소들의 배열이다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&gt;</span> arr1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">dim</span>(arr1) <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">3</span>)
+<span style="color:#f92672">&gt;</span> arr1
+     [,<span style="color:#ae81ff">1</span>] [,<span style="color:#ae81ff">2</span>] [,<span style="color:#ae81ff">3</span>]
+[1,]    <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">7</span>
+[2,]    <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">5</span>    <span style="color:#ae81ff">8</span>
+[3,]    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">6</span>    <span style="color:#ae81ff">9</span>
+</code></pre></div><h2 id="4배열-arrays">4.배열 (Arrays)</h2>
+<p>3차원 이상의 벡터를 배열이라고 한다.</p>
+<pre><code>&gt; arr2 = 1:12
+&gt; dim(arr2) = c(2,3,2)
+&gt; arr2
+, , 1
+
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2,]    8   10   12
+
+</code></pre><h2 id="5-요인-factors">5. 요인 (Factors)</h2>
+<p>R에서 벡터에 있는 고유값을 얻어낼 때 이 고유값들을 요인의 수준이라고 한다. 요인은 범주형 변수(enum), 집단 분류를 위해 사용된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> stype <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(<span style="color:#e6db74">&#34;M&#34;</span>, level<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;M&#34;</span>,<span style="color:#e6db74">&#34;F&#34;</span>))
+<span style="color:#f92672">&gt;</span> stype
+[1] M
+Levels<span style="color:#f92672">:</span> M F
+</code></pre></div><h2 id="6-데이터-프레임-dataframe">6. 데이터 프레임 (Dataframe)</h2>
+<p>SAS의 데이터셋을 모방하여 만든 자료구조로 데이터분석 시 매우 빈번하게 사용되는 타입이다.</p>
+<p>데이터 프레임의 리스트 원소는 벡터 또는 요인이고, 데이터 프레임의 열(column)에 해당한다.</p>
+<p>동일한 벡터와 요인들은 데이터프레임을 사각형으로 만들고 열에 이름을 부여한다.</p>
+<h2 id="7-스칼라-scala">7. 스칼라 (Scala)</h2>
+<p>단일 값을 갖는 자료구조로 프로그램 내에서 원소가 하나인 벡터처럼 인식된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">pi</span> 
+[1] <span style="color:#ae81ff">3.141593</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mode</span>(<span style="color:#66d9ef">pi</span>)
+[1] <span style="color:#e6db74">&#34;numaric&#34;</span>
+</code></pre></div>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
