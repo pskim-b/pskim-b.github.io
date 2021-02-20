@@ -5,20 +5,7 @@
     <link>https://pskim-b.github.io/tags/adsp/</link>
     <description>Recent content in adsp on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 20 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[ADsP]0.분석(준)전문가 자격증 공부해보자</title>
-      <link>https://pskim-b.github.io/working/20210220_data_challenges_in_bigdata/</link>
-      <pubDate>Sat, 20 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/working/20210220_data_challenges_in_bigdata/</guid>
-      <description>😃
-원본글 : https://luminousmen.com/post/data-challenges-in-big-data
-내 친구가 나에게 흥미로운 질문을 했다. 데이터 관리 전문가로 의미있는 기술이 무엇이며 그것을 발전시키는 방법은 무엇인지. 사실 이러한 질문은 나에게 많은 생각을 하게 했는데 아직 명확한 그림이 그려져있지 않기 때문이다. 따라서 데이터 관리에 대한 현재의 상태와 미래를 고민해보기로 했다.
- 아래 이야기 할 각 데이터 레이어들은 데이터 영역의 문제를 해결하기 위한 특정한 형태를 가진다. 빅데이터가 있는 곳에는 큰 문제들이 존재하기 때문이다(&amp;hellip;)
-특정 레이어에서 데이터를 처리할 때에는 그를 위한 특별한 스킬들이 필요로 한다.</description>
-    </item>
-    
+    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[ADsP]5.R 데이터 프레임 활용 </title>
       <link>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</link>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bigdata on PSKim Blog</title>
-    <link>https://pskim-b.github.io/tags/bigdata/</link>
+    <link>http://localhost/tags/bigdata/</link>
     <description>Recent content in Bigdata on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/bigdata/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/bigdata/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[HBase] 최적화 튜닝 가이드 (cloudera 가이드)</title>
-      <link>https://pskim-b.github.io/working/20210215_hbase_opt/</link>
+      <link>http://localhost/working/20210215_hbase_opt/</link>
       <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/working/20210215_hbase_opt/</guid>
+      <guid>http://localhost/working/20210215_hbase_opt/</guid>
       <description>😃
 HBase에 대한 최적화 설정을 찾아보던 중 Hortonworks시절에 HBase 최적화와 관련된 블로그가 있어서 정리하여보려고 한다. 넓은 부분에 대해서 이야기하고 있는 일반적인 가이드이기 때문에, 모든 환경에 적합한 설정은 아닐 수 있으나 이 내용은 참조한다면 해답을 찾을 수 있을 것이라 생각한다.
  1. HBase Master HeapSize  권장값 : 4GB - 8GB (region 개수에 따라) 설명 : HBase Master는 read/write 작업에 직접적으로 영향을 끼치지 않기 때문에 크게 할당할 필요가 없다. 대신 region/table의 상태를 계속해서 메모리에 올려놓고 있기 때문에 그 수가 늘어나는 것과 비례하여 증가시켜야 한다.</description>
