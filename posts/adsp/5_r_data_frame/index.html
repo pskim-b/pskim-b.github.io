@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[ADsP]5.R 데이터 프레임 활용  // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.858f075bc53191ad5d29855c91851305942a00ab4a54d8819dddbec366d20942.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ADsP]5.R 데이터 프레임 활용 "/>
+<meta name="twitter:description" content="😃
+데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.
+ 데이터 프레임 생성 # 벡터를 통한 생성  &gt; v1=c(1,2,3,4) &gt; v2=c(&#34;a&#34;,&#34;b&#34;,&#34;c&#34;,&#34;d&#34;) &gt; v3=c(T,F,F,T) &gt; data.frame(v1,v2,v3) v1 v2 v3 1 1 a TRUE 2 2 b FALSE 3 3 c FALSE 4 4 d TRUE # 행렬을 통한 생성  &gt; m1 = matrix(c(1,3,5,7,9,2,4,6,8,19,2,3,5,7,11),ncol=3) &gt; as."/>
+
+    <meta property="og:title" content="[ADsP]5.R 데이터 프레임 활용 " />
+<meta property="og:description" content="😃
+데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.
+ 데이터 프레임 생성 # 벡터를 통한 생성  &gt; v1=c(1,2,3,4) &gt; v2=c(&#34;a&#34;,&#34;b&#34;,&#34;c&#34;,&#34;d&#34;) &gt; v3=c(T,F,F,T) &gt; data.frame(v1,v2,v3) v1 v2 v3 1 1 a TRUE 2 2 b FALSE 3 3 c FALSE 4 4 d TRUE # 행렬을 통한 생성  &gt; m1 = matrix(c(1,3,5,7,9,2,4,6,8,19,2,3,5,7,11),ncol=3) &gt; as." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/adsp/5_r_data_frame/" />
+<meta property="article:published_time" content="2021-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-16T00:00:00+00:00" />
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	
+	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[ADsP]5.R 데이터 프레임 활용 </h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 16, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/adsp/">adsp</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/r/">R</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>😃</p>
+<p>데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.</p>
+<hr>
+<h3 id="데이터-프레임-생성">데이터 프레임 생성</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 벡터를 통한 생성 </span>
+<span style="color:#f92672">&gt;</span> v1<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+<span style="color:#f92672">&gt;</span> v2<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>)
+<span style="color:#f92672">&gt;</span> v3<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(T,F,F,T)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">data.frame</span>(v1,v2,v3)
+  v1 v2    v3
+<span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span>  a  <span style="color:#66d9ef">TRUE</span>
+<span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">2</span>  b <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">3</span>  c <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">4</span>  d  <span style="color:#66d9ef">TRUE</span>
+
+<span style="color:#75715e"># 행렬을 통한 생성 </span>
+<span style="color:#f92672">&gt;</span> m1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">9</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">19</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">11</span>),ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.data.frame</span>(m1)
+  V1 V2 V3
+<span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">2</span>
+<span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>
+<span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">5</span>
+<span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>
+<span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">19</span> <span style="color:#ae81ff">11</span>
+
+<span style="color:#75715e"># 벡터를 포함하는 리스트로 생성 </span>
+<span style="color:#f92672">&gt;</span> l1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(v1,v2,v3)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.data.frame</span>(l1)
+<span style="color:#f92672">&gt;</span> l1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(v1,v2,v3)
+<span style="color:#f92672">&gt;</span> df1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.data.frame</span>(l1)
+<span style="color:#f92672">&gt;</span> df1
+  c.1..2..3..4. c..a....b....c....d.. c.TRUE..FALSE..FALSE..TRUE.
+<span style="color:#ae81ff">1</span>             <span style="color:#ae81ff">1</span>                     a                        <span style="color:#66d9ef">TRUE</span>
+<span style="color:#ae81ff">2</span>             <span style="color:#ae81ff">2</span>                     b                       <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">3</span>             <span style="color:#ae81ff">3</span>                     c                       <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">4</span>             <span style="color:#ae81ff">4</span>                     d                        <span style="color:#66d9ef">TRUE</span>
+
+<span style="color:#75715e"># 데이터 프레임을 포함하는 리스트로 생성 </span>
+<span style="color:#f92672">&gt;</span> l1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">data.frame</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a01&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;jelly&#34;</span>),
+       <span style="color:#a6e22e">data.frame</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a02&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;candy&#34;</span>),
+       <span style="color:#a6e22e">data.frame</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a3&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;coke&#34;</span>))
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">do.call</span>(rbind,l1)
+   id  name
+<span style="color:#ae81ff">1</span> a01 jelly
+<span style="color:#ae81ff">2</span> a02 candy
+<span style="color:#ae81ff">3</span>  a3  coke
+
+<span style="color:#75715e"># 여러 리스트로부터 생성 </span>
+<span style="color:#f92672">&gt;</span> l2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">list</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a01&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;jelly&#34;</span>),
+     <span style="color:#a6e22e">list</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a02&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;candy&#34;</span>),
+     <span style="color:#a6e22e">list</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a3&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;coke&#34;</span>))
+<span style="color:#f92672">&gt;</span> df_list <span style="color:#f92672">=</span> <span style="color:#a6e22e">lapply</span>(l2,as.data.frame)  <span style="color:#75715e"># l2의 리스트 원소들에 대해 as.data.frame으로 변환 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">do.call</span>(rbind.df_list)              <span style="color:#75715e"># dataframe을 원소로 갖는 list를 rbind로 병합     </span>
+
+<span style="color:#75715e"># 칼럼 명 지정 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">colnames</span>(df1)<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;id&#34;</span>,<span style="color:#e6db74">&#34;name&#34;</span>,<span style="color:#e6db74">&#34;isTrue&#34;</span>)  
+<span style="color:#f92672">&gt;</span> df1
+  id name isTrue
+<span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">1</span>    a   <span style="color:#66d9ef">TRUE</span>
+<span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">2</span>    b  <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">3</span>    c  <span style="color:#66d9ef">FALSE</span>
+<span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">4</span>    d   <span style="color:#66d9ef">TRUE</span>
+
+<span style="color:#75715e"># 레코드를 통한 생성 및 추가 (rbind)</span>
+<span style="color:#f92672">&gt;</span> record <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a1234&#34;</span>,name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;paul&#34;</span>,gender<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;M&#34;</span>)
+     id name gender
+<span style="color:#ae81ff">1</span> a1234 paul      M
+<span style="color:#f92672">&gt;</span> df1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">rbind</span>(df1,record)
+<span style="color:#f92672">&gt;</span> df1
+     id name gender
+<span style="color:#ae81ff">1</span> a1111 annie     F
+<span style="color:#ae81ff">2</span> a1234 paul      M
+
+<span style="color:#75715e"># 열 추가 (cbind)</span>
+<span style="color:#f92672">&gt;</span> col1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(grade<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">2</span>))
+<span style="color:#f92672">&gt;</span> df1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">cbind</span>(df1,col1)
+     id name gender  grade
+<span style="color:#ae81ff">1</span> a1111 annie     F     <span style="color:#ae81ff">3</span>
+<span style="color:#ae81ff">2</span> a1234 paul      M     <span style="color:#ae81ff">2</span>  
+
+
+<span style="color:#75715e"># apply를 사용한 생성</span>
+</code></pre></div><h3 id="데이터프레임-조회-인덱싱">데이터프레임 조회 (인덱싱)</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 테스트 데이터 생성 </span>
+<span style="color:#f92672">&gt;</span> us.state <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(state.abb,state.name,state.region,state.area,stringsAsFactors<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
+<span style="color:#f92672">&gt;</span> us.state
+   state.abb     state.name  state.region state.area
+<span style="color:#ae81ff">1</span>         AL        Alabama         South      <span style="color:#ae81ff">51609</span>
+<span style="color:#ae81ff">2</span>         AK         Alaska          West     <span style="color:#ae81ff">589757</span>
+<span style="color:#ae81ff">3</span>         AZ        Arizona          West     <span style="color:#ae81ff">113909</span>
+<span style="color:#ae81ff">4</span>         AR       Arkansas         South      <span style="color:#ae81ff">53104</span>
+<span style="color:#75715e"># (생략)</span>
+
+<span style="color:#75715e"># 데이터프레임 정보 표시 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str</span>(us.state)
+<span style="color:#e6db74">&#39;data.frame&#39;</span><span style="color:#f92672">:</span>	<span style="color:#ae81ff">50</span> obs. of  <span style="color:#ae81ff">4</span> variables<span style="color:#f92672">:</span>
+ <span style="color:#f92672">$</span> state.abb   <span style="color:#f92672">:</span> chr  <span style="color:#e6db74">&#34;AL&#34;</span> <span style="color:#e6db74">&#34;AK&#34;</span> <span style="color:#e6db74">&#34;AZ&#34;</span> <span style="color:#e6db74">&#34;AR&#34;</span> <span style="color:#66d9ef">...</span>
+ <span style="color:#f92672">$</span> state.name  <span style="color:#f92672">:</span> chr  <span style="color:#e6db74">&#34;Alabama&#34;</span> <span style="color:#e6db74">&#34;Alaska&#34;</span> <span style="color:#e6db74">&#34;Arizona&#34;</span> <span style="color:#e6db74">&#34;Arkansas&#34;</span> <span style="color:#66d9ef">...</span>
+ <span style="color:#f92672">$</span> state.region<span style="color:#f92672">:</span> Factor w<span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span> levels <span style="color:#e6db74">&#34;Northeast&#34;</span>,<span style="color:#e6db74">&#34;South&#34;</span>,..<span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">...</span>
+ <span style="color:#f92672">$</span> state.area  <span style="color:#f92672">:</span> num  <span style="color:#ae81ff">51609</span> <span style="color:#ae81ff">589757</span> <span style="color:#ae81ff">113909</span> <span style="color:#ae81ff">53104</span> <span style="color:#ae81ff">158693</span> <span style="color:#66d9ef">...</span>
+
+<span style="color:#75715e"># 특정 열 조회 </span>
+<span style="color:#f92672">&gt;</span> us.state[2]
+       state.name
+<span style="color:#ae81ff">1</span>         Alabama
+<span style="color:#ae81ff">2</span>          Alaska
+<span style="color:#ae81ff">3</span>         Arizona
+<span style="color:#ae81ff">4</span>        Arkansas
+<span style="color:#75715e"># (생략)</span>
+
+<span style="color:#f92672">&gt;</span> us.state<span style="color:#a6e22e">[c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>)]
+       state.name
+<span style="color:#ae81ff">1</span>         Alabama
+<span style="color:#ae81ff">2</span>          Alaska
+<span style="color:#ae81ff">3</span>         Arizona
+<span style="color:#ae81ff">4</span>        Arkansas
+
+<span style="color:#f92672">&gt;</span> us.state[,<span style="color:#ae81ff">2</span>,drop<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>] <span style="color:#75715e">#drop을 설정하면 list 형태로 출력된다. </span>
+       state.name
+<span style="color:#ae81ff">1</span>         Alabama
+<span style="color:#ae81ff">2</span>          Alaska
+<span style="color:#ae81ff">3</span>         Arizona
+<span style="color:#ae81ff">4</span>        Arkansas
+
+<span style="color:#75715e"># 특정 행에 대한 정보 조회 </span>
+<span style="color:#f92672">&gt;</span> us.state[5,<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">4</span>)]
+  state.name state.area
+<span style="color:#ae81ff">5</span> California     <span style="color:#ae81ff">158693</span>
+
+<span style="color:#f92672">&gt;</span> us.state[state.name]
+<span style="color:#f92672">&gt;</span> us.state[<span style="color:#e6db74">&#34;state.name&#34;</span>]
+       state.name
+<span style="color:#ae81ff">1</span>         Alabama
+<span style="color:#ae81ff">2</span>          Alaska
+<span style="color:#ae81ff">3</span>         Arizona
+<span style="color:#ae81ff">4</span>        Arkansas
+<span style="color:#ae81ff">5</span>      California
+<span style="color:#75715e"># (생략)</span>
+
+<span style="color:#75715e">#조건을 통한 조회 </span>
+<span style="color:#f92672">&gt;</span> us.state[us.state<span style="color:#f92672">$</span>state.area<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">5000</span> , <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;state.name&#34;</span>, <span style="color:#e6db74">&#34;state.area&#34;</span>)]
+       state.name state.area
+<span style="color:#ae81ff">1</span>         Alabama      <span style="color:#ae81ff">51609</span>
+<span style="color:#ae81ff">2</span>          Alaska     <span style="color:#ae81ff">589757</span>
+<span style="color:#ae81ff">3</span>         Arizona     <span style="color:#ae81ff">113909</span>
+<span style="color:#ae81ff">4</span>        Arkansas      <span style="color:#ae81ff">53104</span>
+<span style="color:#ae81ff">5</span>      California     <span style="color:#ae81ff">158693</span>
+
+<span style="color:#75715e"># 복수 조건을 통한 조회 </span>
+<span style="color:#f92672">&gt;</span> us.state[us.state<span style="color:#f92672">$</span>state.area<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">5000</span> <span style="color:#f92672">&amp;</span> us.state<span style="color:#f92672">$</span>state.region <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;West&#34;</span>, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;state.name&#34;</span>, <span style="color:#e6db74">&#34;state.area&#34;</span>,<span style="color:#e6db74">&#34;state.region&#34;</span>)]
+   state.name state.area state.region
+<span style="color:#ae81ff">2</span>      Alaska     <span style="color:#ae81ff">589757</span>         West
+<span style="color:#ae81ff">3</span>     Arizona     <span style="color:#ae81ff">113909</span>         West
+<span style="color:#ae81ff">5</span>  California     <span style="color:#ae81ff">158693</span>         West
+<span style="color:#ae81ff">6</span>    Colorado     <span style="color:#ae81ff">104247</span>         West
+
+<span style="color:#75715e"># subset 을 이용한 조회 </span>
+<span style="color:#a6e22e">subset</span>(us.state, select<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;state.name&#34;</span>,<span style="color:#e6db74">&#34;state.area&#34;</span>, <span style="color:#e6db74">&#34;state.region&#34;</span>), subset<span style="color:#f92672">=</span>us.state<span style="color:#f92672">$</span>state.area<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">5000</span> <span style="color:#f92672">&amp;</span> us.state<span style="color:#f92672">$</span>state.region <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;West&#34;</span>)
+
+<span style="color:#75715e"># with 절 사용(아래 결과는 동일) </span>
+<span style="color:#f92672">&gt;</span> iris<span style="color:#f92672">$</span>Sepal.Length<span style="color:#f92672">/</span>iris<span style="color:#f92672">$</span>Sepal.Width
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">with</span>(iris, Sepal.Length <span style="color:#f92672">/</span> Sepal.Width)
+
+<span style="color:#75715e"># 여러 연산을 한번에 수행 {} 안에는 local namespace 사용 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">with</span>(iris, {
+<span style="color:#f92672">+</span> <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">summary</span>(Sepal.Length <span style="color:#f92672">/</span> Sepal.Width))
+<span style="color:#f92672">+</span> <span style="color:#a6e22e">plot</span>(Sepal.Length<span style="color:#f92672">/</span>Sepal.Width)
+<span style="color:#f92672">+</span> r1 <span style="color:#f92672">&lt;-</span> Sepal.Length <span style="color:#f92672">/</span> Sepal.Width
+<span style="color:#f92672">+</span> r2 <span style="color:#f92672">&lt;&lt;-</span> Sepal.Length <span style="color:#f92672">/</span> Sepal.Width  <span style="color:#75715e"># 외부에서 접근 가능 </span>
+<span style="color:#f92672">+</span> })
+
+<span style="color:#75715e"># within 사용 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">head</span>( <span style="color:#a6e22e">within</span>(iris, Sepal.ratio <span style="color:#f92672">&lt;-</span> Sepal.Length <span style="color:#f92672">/</span> Sepal.Width) )
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species Sepal.ratio
+<span style="color:#ae81ff">1</span>          <span style="color:#ae81ff">5.1</span>         <span style="color:#ae81ff">3.5</span>          <span style="color:#ae81ff">1.4</span>         <span style="color:#ae81ff">0.2</span>  setosa    <span style="color:#ae81ff">1.457143</span>
+<span style="color:#ae81ff">2</span>          <span style="color:#ae81ff">4.9</span>         <span style="color:#ae81ff">3.0</span>          <span style="color:#ae81ff">1.4</span>         <span style="color:#ae81ff">0.2</span>  setosa    <span style="color:#ae81ff">1.633333</span>
+<span style="color:#ae81ff">3</span>          <span style="color:#ae81ff">4.7</span>         <span style="color:#ae81ff">3.2</span>          <span style="color:#ae81ff">1.3</span>         <span style="color:#ae81ff">0.2</span>  setosa    <span style="color:#ae81ff">1.468750</span>
+<span style="color:#ae81ff">4</span>          <span style="color:#ae81ff">4.6</span>         <span style="color:#ae81ff">3.1</span>          <span style="color:#ae81ff">1.5</span>         <span style="color:#ae81ff">0.2</span>  setosa    <span style="color:#ae81ff">1.483871</span>
+<span style="color:#ae81ff">5</span>          <span style="color:#ae81ff">5.0</span>         <span style="color:#ae81ff">3.6</span>          <span style="color:#ae81ff">1.4</span>         <span style="color:#ae81ff">0.2</span>  setosa    <span style="color:#ae81ff">1.388889</span>
+<span style="color:#ae81ff">6</span>          <span style="color:#ae81ff">5.4</span>         <span style="color:#ae81ff">3.9</span>          <span style="color:#ae81ff">1.7</span>         <span style="color:#ae81ff">0.4</span>  setosa    <span style="color:#ae81ff">1.384615</span>
+
+
+</code></pre></div><h3 id="그-외-연산">그 외 연산</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 메모리로 데이터 프레임 attache/detach (복제본이 적재됨)</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">attach</span>(iris)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">search</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">detache</span>(iris)
+
+<span style="color:#75715e"># 데이터 프레임 병합 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">merge</span>(df1, df2, by<span style="color:#f92672">=</span>region, all<span style="color:#f92672">=</span>T)
+<span style="color:#75715e"># 열 제거 </span>
+<span style="color:#a6e22e">subset</span>(us.state, select<span style="color:#f92672">=-</span>Area)
+
+<span style="color:#75715e"># 데이터 구조 변경 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.data.frame</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.list</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.matrix</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.vector</span>()
+</code></pre></div><hr>
+<p>R 언어에 대해서 전반적인 내용을 모두 보려고 하니 내용이 너무 많다. 다행인 것은 유투브에 좋은 강의들이 많이 있다는 것이다. 시간이 허락된다면 유투브의 강의를 듣는 것이 큰 도움이 될 것으로 생각된다.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

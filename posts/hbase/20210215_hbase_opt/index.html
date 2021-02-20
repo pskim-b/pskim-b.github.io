@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[HBase] 최적화 튜닝 가이드 (cloudera 가이드) // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.858f075bc53191ad5d29855c91851305942a00ab4a54d8819dddbec366d20942.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[HBase] 최적화 튜닝 가이드 (cloudera 가이드)"/>
+<meta name="twitter:description" content="😃
+HBase에 대한 최적화 설정을 찾아보던 중 Hortonworks시절에 HBase 최적화와 관련된 블로그가 있어서 정리하여보려고 한다. 넓은 부분에 대해서 이야기하고 있는 일반적인 가이드이기 때문에, 모든 환경에 적합한 설정은 아닐 수 있으나 이 내용은 참조한다면 해답을 찾을 수 있을 것이라 생각한다.
+ 1. HBase Master HeapSize  권장값 : 4GB - 8GB (region 개수에 따라) 설명 : HBase Master는 read/write 작업에 직접적으로 영향을 끼치지 않기 때문에 크게 할당할 필요가 없다. 대신 region/table의 상태를 계속해서 메모리에 올려놓고 있기 때문에 그 수가 늘어나는 것과 비례하여 증가시켜야 한다."/>
+
+    <meta property="og:title" content="[HBase] 최적화 튜닝 가이드 (cloudera 가이드)" />
+<meta property="og:description" content="😃
+HBase에 대한 최적화 설정을 찾아보던 중 Hortonworks시절에 HBase 최적화와 관련된 블로그가 있어서 정리하여보려고 한다. 넓은 부분에 대해서 이야기하고 있는 일반적인 가이드이기 때문에, 모든 환경에 적합한 설정은 아닐 수 있으나 이 내용은 참조한다면 해답을 찾을 수 있을 것이라 생각한다.
+ 1. HBase Master HeapSize  권장값 : 4GB - 8GB (region 개수에 따라) 설명 : HBase Master는 read/write 작업에 직접적으로 영향을 끼치지 않기 때문에 크게 할당할 필요가 없다. 대신 region/table의 상태를 계속해서 메모리에 올려놓고 있기 때문에 그 수가 늘어나는 것과 비례하여 증가시켜야 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/hbase/20210215_hbase_opt/" />
+<meta property="article:published_time" content="2021-02-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-02-15T00:00:00+00:00" />
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	
+	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[HBase] 최적화 튜닝 가이드 (cloudera 가이드)</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 15, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/bigdata/">Bigdata</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/hbase/">HBase</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>😃</p>
+<p>HBase에 대한 최적화 설정을  찾아보던 중 Hortonworks시절에 HBase 최적화와 관련된 블로그가 있어서 정리하여보려고 한다. 넓은 부분에 대해서 이야기하고 있는 일반적인  가이드이기 때문에, 모든 환경에 적합한 설정은 아닐 수 있으나 이 내용은 참조한다면 해답을 찾을 수 있을 것이라 생각한다.</p>
+<hr>
+<h2 id="1-hbase-master-heapsize">1. HBase Master HeapSize</h2>
+<ul>
+<li>권장값 : 4GB - 8GB (region 개수에 따라)</li>
+<li>설명 : HBase Master는 read/write 작업에 직접적으로 영향을 끼치지 않기 때문에 크게 할당할 필요가 없다.  대신 region/table의 상태를 계속해서 메모리에 올려놓고 있기 때문에 그 수가 늘어나는 것과 비례하여 증가시켜야 한다. 부하가 높은 노드를 기준으로 아래와 같이 설정한다.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-mathematica" data-lang="mathematica">HBase Master Heap Size(GB) <span style="color:#f92672">=</span> max(<span style="color:#ae81ff">4</span>, region_counts<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span>)(GB)
+<span style="color:#960050;background-color:#1e0010">예</span>) <span style="color:#ae81ff">5000</span><span style="color:#960050;background-color:#1e0010">개의</span> region<span style="color:#960050;background-color:#1e0010">을</span> <span style="color:#960050;background-color:#1e0010">가진</span> <span style="color:#960050;background-color:#1e0010">경우</span> HBase Master Heap Size<span style="color:#960050;background-color:#1e0010">는</span> <span style="color:#ae81ff">5</span>GB <span style="color:#960050;background-color:#1e0010">로</span> <span style="color:#960050;background-color:#1e0010">설정.</span>  
+</code></pre></div><h2 id="2-hbase-regionserver-heapsize">2. HBase RegionServer HeapSize</h2>
+<ul>
+<li>권장값 : 16GB - 20GB (CMS GC기준), 16GB - 36 GB (G1GC기준)</li>
+<li>설명 : HBase의 설정 중에 가장 중요한 설정 중에 하나라고 해도 과언이 아니다. Java아키텍쳐 특성 상 메모리가 부족한 경우 GC가 발생할 것이고, 이 시간이 길어진다면(zookeeper session timeout 이상) GC가 발생한 RegionServer가 서비스 중지될 것이다. 그렇기 때문에 heapsize를 크게 설정하여 full GC가 발생하지 않게 하는 것도 중요하지만, full GC가 발생하더라도 너무 오랫동안 stop-the-world가 발생하지 않도록 해야한다. 이러한 설정에 대한 기준은 <u>가장 높은 부하 시간에 각 노드의 heapsize의 70% 미만으로 사용하도록 설정</u>해야 한다.</li>
+</ul>
+<h2 id="3-hbase-regionserver-heap-young-generation-size--xmn">3. HBase RegionServer Heap Young Generation size (-xmn)</h2>
+<ul>
+<li>권장값 : 4GB 미만으로 설정. RegionServer Heapsize의 1/8~1/10 수준으로 유지</li>
+<li>설명 : 이 값은 HBase RegionServer Java Heapsize의 young generation의 최대 값을 나타내는 값이다.</li>
+<li>사견 : CMS GC에서 이 값이 너무 큰 경우 young GC가 더 오래 걸리기 때문에 가이드 대로 설정하는 것이 좋으며,  G1GC의 경우 별도로 설정하지 않는 것을 권고한다.</li>
+</ul>
+<h2 id="4-regionserver-당-region-수">4. RegionServer 당 region 수</h2>
+<ul>
+<li>
+<p>권장값 : 200 - 400 (region server 당)</p>
+</li>
+<li>
+<p>설명 : HBase의 성능은 RegionServer가 얼마나 많은 region을 서비스 하냐에 따라서 성능의 차이가 커진다. 절대적이진 않지만 아래 공식을 통해서 region 개수의 최적 개수를 추정할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-mathematica" data-lang="mathematica">region_opt_count 
+<span style="color:#f92672">=</span> (regionserver_heapsize)<span style="color:#f92672">*</span>(memstore_fraction)<span style="color:#f92672">/</span>(memstore_size)<span style="color:#f92672">/</span>(CF_number) 
+</code></pre></div></li>
+</ul>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

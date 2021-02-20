@@ -5,9 +5,32 @@
     <link>https://pskim-b.github.io/posts/</link>
     <description>Recent content in Posts on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 31 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[ADsP]2.R 데이터 처리/분석</title>
+      <title>[ADsP]5.R 데이터 프레임 활용 </title>
+      <link>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</link>
+      <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</guid>
+      <description>😃
+데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.
+ 데이터 프레임 생성 # 벡터를 통한 생성  &amp;gt; v1=c(1,2,3,4) &amp;gt; v2=c(&amp;#34;a&amp;#34;,&amp;#34;b&amp;#34;,&amp;#34;c&amp;#34;,&amp;#34;d&amp;#34;) &amp;gt; v3=c(T,F,F,T) &amp;gt; data.frame(v1,v2,v3) v1 v2 v3 1 1 a TRUE 2 2 b FALSE 3 3 c FALSE 4 4 d TRUE # 행렬을 통한 생성  &amp;gt; m1 = matrix(c(1,3,5,7,9,2,4,6,8,19,2,3,5,7,11),ncol=3) &amp;gt; as.</description>
+    </item>
+    
+    <item>
+      <title>[ADsP]4.R 데이터 구조 ( vector , list, dataframe )</title>
+      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
+      <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
+      <description>😃
+R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
+ R 데이터 구조 1. 스칼라(scala) 단일 값을 갖는 자료구조로 프로그램 내에서 원소가 하나인 벡터처럼 인식된다. logical, integer, double, complex, character 와 같은 데이터 뿐만 아니라 NULL, NA(Not Available)도 포함한 모든 단일 값을 이야기한다.
+&amp;gt; pi [1] 3.141593 &amp;gt; mode(pi) [1] &amp;#34;numaric&amp;#34; 2.</description>
+    </item>
+    
+    <item>
+      <title>[ADsP]3.R 데이터 처리/분석</title>
       <link>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</link>
       <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
       
@@ -71,18 +94,6 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
       <guid>https://pskim-b.github.io/posts/hive/hive_partition_type/</guid>
       <description>😃
 Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
-    </item>
-    
-    <item>
-      <title>[ADsP]2.R 데이터 구조 ( vector , list, dataframe )</title>
-      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
-      <description>😃
-R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
- R 데이터 구조 1. 벡터 (Vector) 벡터는 같은 타입(type) 또는 같은 모드(mode)를 갖는 데이터 집합이다. 타입은 R의 primitive 자료형을 의미하고 모드는 R 객체에 대한 타입을 의미한다. 내부적으로 연산을 위해서 이를 구분해 놓은 것이 아닌가 생각된다.
-&amp;gt; v1 = c(0,&amp;#34;a&amp;#34;,T) #다르게 입력해도 charactor값으로 맞춰버린다.</description>
     </item>
     
   </channel>
