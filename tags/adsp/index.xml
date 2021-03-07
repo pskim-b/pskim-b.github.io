@@ -5,7 +5,22 @@
     <link>https://pskim-b.github.io/tags/adsp/</link>
     <description>Recent content in adsp on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ADsP] 데이터분석 주제 정리 </title>
+      <link>https://pskim-b.github.io/posts/adsp/99_adsp_subject_map/</link>
+      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/99_adsp_subject_map/</guid>
+      <description>😃
+데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
+   R 기초
+  통계분석
+  통계분석 개요 (모집단, 표본, 표본추출방법)
+ 표본추출방법  확률적추출 (단순 무작위 추출, 계통추출, 층화 추출, 군집 추출) 비확률적 추출 (판단추출, 할당추출, 편의추출)   자료의 종류 (명목척도, 서열척도, 등간척도, 비율척도)    통계분석 분류
+ 기술통계 / 추론통계 모수통계 / 비모수통계    확률 / 확률분포 (확률곱, 조건부 확률,</description>
+    </item>
+    
     <item>
       <title>[ADsP]5.R 데이터 프레임 활용 </title>
       <link>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</link>
