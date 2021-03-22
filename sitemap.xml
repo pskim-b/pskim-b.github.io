@@ -3,7 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pskim-b.github.io/posts/datalake/ebdl_01_datalake01/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/book/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/datalake/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/posts/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/</loc>
+    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pskim-b.github.io/posts/adsp/99_adsp_subject_map/</loc>
+    <lastmod>2021-03-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -13,17 +48,12 @@
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/</loc>
+    <loc>https://pskim-b.github.io/tags/hadoop/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/</loc>
-    <lastmod>2021-03-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/</loc>
+    <loc>https://pskim-b.github.io/tags/interview/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url>
   

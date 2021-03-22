@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on PSKim Blog</title>
+    <link>https://pskim-b.github.io/tags/interview/</link>
+    <description>Recent content in interview on PSKim Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[QnA-Hadoop] 01.Hadoop QnA </title>
+      <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
+      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
+      <description>😃
+데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
+  R 기초   </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[Enterprise Big DataLake] 01. Datalake 소개  // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.dbebd5a4a063b7af17592448ded578dc06a67f6585beb7f4c4f3845ce1b534c1.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Enterprise Big DataLake] 01. Datalake 소개 "/>
+<meta name="twitter:description" content="💾
+국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
+업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다."/>
+
+    <meta property="og:title" content="[Enterprise Big DataLake] 01. Datalake 소개 " />
+<meta property="og:description" content="💾
+국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
+업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/datalake/ebdl_01_datalake01/" />
+<meta property="article:published_time" content="2021-03-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-21T00:00:00+00:00" />
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	
+	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[Enterprise Big DataLake] 01. Datalake 소개 </h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Mar 21, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          4 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/datalake/">Datalake</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/book/">Book</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>💾</p>
+<p>국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.</p>
+<p>업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다.</p>
+<p>과연 데이터 레이크의 핵심 기능은 무엇이고 효율적으로 데이터를 관리하기 위해서 무슨 기능을 개발해야 할까? 이러한 관점으로 책을 펼쳐보았다.</p>
+<hr>
+<h1 id="데이터-레이크-소개"><strong>데이터 레이크 소개</strong></h1>
+<h2 id="현상의-문제점"><strong>현상의 문제점</strong></h2>
+<p>다양한 분야에서 데이터 중심으로 중요한 비즈니스의 의사결정이 수행된다는 것은 더 이상 놀랍지 않다. AI, 기계학습, 딥러닝과 같은 단어들은 더 이상 전공자들만 사용하는 언어들이 아니다. 예전에 가트너Gartner에서 이야기 했던 빅데이터의 3V + 1V 는 용량Volume, 다양성Variety, 속도Velocity 그리고 가치Value로 이야기 되었다. 가끔 데이터 관련 과목의 시험문제에도 빈번히 이야기 되는 내용이였다. 그런데 최근에는 <strong>진실성Veracity</strong>이 추가되었다. 왜 갑자기 데이터의 진실성에 대해서 운운하는 것일까?</p>
+<p>많은 분야에서 데이터 분석을 통해 경쟁 우위를 선점한 기업이 여럿이 있다(아마존, 넷플릭스, 쿠팡, 배민 등등..). 이렇다보니 경쟁사 또는 잠재적 경쟁사들은 일단 데이터를 모으기 시작했다. 일단 뭐 할지는 모르겠는데 우리도 일단 모아보자라는 생각이였다. 실제로 빅데이터 플랫폼을 도입한다고 솔루션이나 참조 아키텍쳐를 소개하기 위해 기업의 IT 부서 또는 현업 부서를 만나서 이야기를 해보면 실제로 뭘 할지는 아직 고민해보지 않은 경우가 대부분이었다. 심지어 어떤 데이터를 저장할 것인지 생각해보지 않은 경우도 부지기수였다&hellip; 😱</p>
+<p>이렇다보니 <strong>데이터 늪</strong>(swamp)이 생겨버린다.  처음에 구상했던 것은 데이터의 호수였는데 일단 다 때려넣고 보니 늪이 되어서, 마음껏 헤엄치기는 커녕 이 안에 뭐가 있는지도 잘 몰라 쓰던 데이터만 쓰거나 내가 넣은 데이터만 사용하게된다. GIGO(Garbage In Garbage out) 원리로 이런 데이터를 가지고 분석한 결과가 비즈니스 의사결정에 올바른 지표될리 없다.</p>
+<p>데이터 늪을 다시 데이터 레이크로 살리는 것을 새로 만드는 것 보다 어려운 작업이 될 수 있다. 그러면 순수한 데이터 레이크는 어떠한 모습이어야 할까?</p>
+<hr>
+<h2 id="데이터-레이크-규칙"><strong>데이터 레이크 규칙</strong></h2>
+<ol>
+<li>데이터는 원래 형태와 규칙을 유지할 것 (미가공 데이터, 자연 상태 그대로를 유지해라)</li>
+<li>다양한 사용자가 데이터를 공유하고 사용할 수 있도록 해야 한다. (자연은 모두의 것이다)</li>
+</ol>
+<p>여기서 말하는 사용자는 데이터 분석가 또는 현업 부서가 될 수 있을 것이다. 데이터를 원래 형태로 저장하는 이유는 다양한 사용자들이 원하는 데이터 형태가 모두 다르기 때문이다. 사용자는 데이터 레이크 내에 존재하는 <strong>데이터를 탐색</strong>하고 원하는 데이터를 처리/분석 할 수 있는 도구로  적재한다. 이 때 사용자 별로 원하는 스키마를 정의하여  사용하게 되는데 이러한 방식을 <strong>Schema-on-Read</strong> 라고 한다.</p>
+<p>데이터의 원본을 저장하고 다양한 사용자가 데이터를 공유하기 때문에 데이터 보안은 매우 중요한 요소이다.  데이터3법과 같이 개인정보를 가명처리하여 가명정보 주체 동이 없이 빅데이터 분석에 활용할 수 있도록 법이 개정되면서 분석할 수 있는 데이터가 더 많아 졌지만 <strong>가명처리</strong>에 대한 중요성이 더욱 강조되고 있다.  내/외부 규정을 어기지 않고 사용자에게 데이터를 전달하는 것 또한 데이터 레이크의 기능이다.</p>
+<h2 id="데이터-레이크-성숙도"><strong>데이터 레이크 성숙도</strong></h2>
+<p>데이터 레이크에 대한 규칙을 정리해봤지만 가장 분명히 이해하는 방법은 기존의 데이터 저장방법과의 비교하는 것이다.  책에서 이야기 하는 내용은 약간 자연 친화적(?)으로 웅덩이, 연못, 호수(레이크), 바다(오션)으로 묘사하면서 각 단계별 특징 및 차이를 이야기 한다.</p>
+<h3 id="데이터-웅덩이data-puddle">데이터 웅덩이(data puddle)</h3>
+<ul>
+<li>
+<p>단일목적/프로젝트용으로 구축한 데이터 마트, 단일 조직의 작업 공간이 될 수 있기 때문에 분석 sandbox로도 사용된다.</p>
+</li>
+<li>
+<p>일반적으로 빅데이터 기술을 도입하는 첫 단계 - 전통적인 데이터 웨어하우스에서 구성하던 데이터 마트를 구성할 때, 낮은 비용과 높은 성능을 위해 빅데이터 기술을 적용한 경우이다.</p>
+</li>
+<li>
+<p>ETL 오프로딩 - 기존에 DW가 구성되어 있는 조직에서 연산이 많이 필요하거나, 특수 목적에 의해 별도로 빅데이터 기술을 통해 별도의 저장소를 구성하게 된다. 비싼 상용 ETL에서 빅데이터 기술(Sqoop, Flink,  NiFi, Spark, Airflow 등) 기반의 ETL을 사용하기도 한다.</p>
+</li>
+</ul>
+<h3 id="데이터-연못data-pond">데이터 연못(data pond)</h3>
+<ul>
+<li>
+<p>데이터 웅덩이를 여러개 모아 놓은 것이 데이터 연못이다. 다수의 조직/프로젝트에서 사용하면서 빅데이터 기술을 사용하여 <strong>다수의 데이터 마트를 포함한 데이터 웨어하우스</strong>를  구성한 것이다.</p>
+</li>
+<li>
+<p>데이터 연못에서의 오프로딩은 DW 전체를 대체할 빅데이터 플랫폼을 만드는 것이다. 하지만 소규모 쿼리 지연, 엄격한 데이터 관리 방안의 부재 등으로 인해 완전히 DW를 대체하기는 현실적으로 어렵다. (데이터 분석가가 좋아하지 않는다.)</p>
+</li>
+</ul>
+<h3 id="데이터-레이크data-lake">데이터 레이크(data lake)</h3>
+<p>데이터 연못에서 다음과 같은 두 가지 특성이 추가된다.</p>
+<ul>
+<li>
+<p>셀프 서비스 지원 - 분석가가 직접 데이터를 탐색하고 정의하여 사용할 수 있어야 한다.</p>
+</li>
+<li>
+<p>데이터가 당장 사용되지 않더라도 저장한다.</p>
+</li>
+</ul>
+<h3 id="데이터-오션data-ocean">데이터 오션(data ocean)</h3>
+<p>데이터 레이크는 실제로 저장된 데이터를 탐색하고 사용하지만, 데이터 오션에서는 데이터 레이크에 데이터가 저장된 것과 관계 없이 기업의 모든 데이터들이 셀프 서비스가 될 수 있도록 지원되어야 한다.</p>
+<hr>
+<p>간단히 데이터 레이크에 대한 개요를 알아 보았다. 데이터 레이크의 성숙도를 보고 있자면 아직 많은 분야에서 갈 길이 많이 남은 것 같다. 이미 시장을 선두하고 있는 기업들은 데이터 오션을 기획하고 있는 반면에 대부분의 기업들은 이제 막 데이터 연못을 구성했거나 구성하고 있는 중이다. 성숙도 각 단계에서 필요한 핵심 기능들을 잘 이해해야 올바른 아키텍쳐와 솔루션을 도입할 수 있을 것이다. 다음에는 데이터 레이크의 구성 방법을 자세히 살펴봐야겠다.</p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
