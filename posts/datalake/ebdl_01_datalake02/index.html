@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="PS Kim" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.dbebd5a4a063b7af17592448ded578dc06a67f6585beb7f4c4f3845ce1b534c1.css" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.2874ca24d90ad9a5986f3e16d896a7c51c3a6236be9c73f8cb9f7fa04e8c0c82.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Enterprise Big DataLake] 02. Datalake 구축 절차"/>
@@ -103,7 +103,7 @@
 </ol>
 <h2 id="1-인프라-구축">1. 인프라 구축</h2>
 <p>이미 많은 기업에서 데이터 레이크를 가지고 있다. 그 모습은 매우 다양한데 오픈소스 또는 상용버전(Cloudera 등)의 하둡 클러스터를 구성하여나 클라우드 기반으로 데이터 레이크를 구축한다. 그 용도와 모습(아키텍쳐)가 매우 다양한데 무엇이 옳은 데이터 레이크고 어느 것이 옳지 않은 데이터 레이크라고 이야기 할 수 없다. 그렇기 때문에 최근에 이러한 것을 <strong>논리 데이터 레이크</strong> 라고 개념화 한다.</p>
-<p><img src="C:%5CUsers%5CDesmond%5CDocuments%5Chblog%5Ccontent%5Cposts%5Cdatalake%5C2_logical_DL.png" alt="2_logical_DL"></p>
+<p><img src="/posts/datalake/2_logical_DL.png" alt="2_logical_DL"></p>
 <ul>
 <li>논리 데이터 레이크 : 복수의 다차원 시스템에 구성된 가상 데이터 레이크 레이어를 통합하여 일컫는다.</li>
 <li>온프라미스 데이터 레이크 : Hadoop 또는 대량의 데이터 저장소를 기반으로 데이터 레이크를 구성한 경우. 데이터 레이크 저장소가 하둡으로 구성</li>
@@ -118,7 +118,7 @@
 <li>개발/작업Work 영역에서 데이터 과학자나 데이터 엔지니어가 작업할 수 있도록 한다. 이 영역은 사용자별, 프로젝트별, 내용별 등의 각 비즈니스에 맞추어 나눈다. 작업영역에서 분석 작업이 끝나고 나면 데이터는 다시 골드 영역으로 옮겨진다.</li>
 </ul>
 <p>(각 영역의 명칭은 책의 내용과 경험을 참고하여 설정하였다. 책에서는 진입,골드,민감,작업으로 구분한다)</p>
-<p><img src="C:%5CUsers%5CDesmond%5CDocuments%5Chblog%5Ccontent%5Cposts%5Cdatalake%5C2_DL_simple_arch.png" alt="2_DL_simple_arch"></p>
+<p><img src="/posts/datalake/2_DL_simple_arch.png" alt="2_DL_simple_arch"></p>
 <p>비즈니스 및 조직구조에 따라 다르겠지만 사용자 집단 별로 서로 다른 영역을 활용하게 된다.</p>
 <ul>
 <li>데이터 엔지니어는 주로 [ 진입영역 ➡️ 생산영역 ] 에서 데이터 가공처리 작업을 수행하게 된다. (일반적으로 ETL 도구 등을 통해 배치로 등록한다.)</li>
