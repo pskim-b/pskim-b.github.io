@@ -5,7 +5,43 @@
     <link>https://pskim-b.github.io/tags/</link>
     <description>Recent content in Tags on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 28 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>adsp</title>
+      <link>https://pskim-b.github.io/tags/adsp/</link>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/adsp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>데이터분석</title>
+      <link>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hadoop</title>
+      <link>https://pskim-b.github.io/tags/hadoop/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/hadoop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>interview</title>
+      <link>https://pskim-b.github.io/tags/interview/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/interview/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Book</title>
       <link>https://pskim-b.github.io/tags/book/</link>
@@ -21,42 +57,6 @@
       <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://pskim-b.github.io/tags/datalake/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>adsp</title>
-      <link>https://pskim-b.github.io/tags/adsp/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/adsp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hadoop</title>
-      <link>https://pskim-b.github.io/tags/hadoop/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/hadoop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>interview</title>
-      <link>https://pskim-b.github.io/tags/interview/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/interview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>데이터분석</title>
-      <link>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</guid>
       <description></description>
     </item>
     

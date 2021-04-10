@@ -5,16 +5,16 @@
     <link>https://pskim-b.github.io/tags/interview/</link>
     <description>Recent content in interview on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 07 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[QnA-Hadoop] 01.Hadoop QnA </title>
+      <title>[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
       <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
-      <description>😃
-데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
-  R 기초   </description>
+      <description>🐘 하아두우웁!!
+ Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
+HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
     </item>
     
   </channel>

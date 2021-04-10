@@ -5,7 +5,29 @@
     <link>https://pskim-b.github.io/posts/</link>
     <description>Recent content in Posts on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 28 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ADsP] 28회 데이터분석 준전문가 합격 후기 </title>
+      <link>https://pskim-b.github.io/posts/adsp/99_adsp_fin/</link>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/adsp/99_adsp_fin/</guid>
+      <description>😃
+데이터 관련 업무를 하면서 곁다리로 데이터 분석을 공부해보자고 결심하고 신청했던 데이터분석 준전문가 시험에 가까스로 합격을 했다. 원래의 목적은 데이터 분석 실무에 필요한 이론을 습득하고 활용할 수 있는 것에 초점을 두었지만, 공부를 하면서 시험문제를 풀어보니 이러한 방법은 올바르지 않다는 것을 깨달았다. 이번 시험에 느낀 짧은 팁을 정리해 보려고 한다.
+ 1. 시험 주제들에 대한 전체 Tree-Map을 구성하라  많은 사람들이 데이터 분석을 위해 가장 처음에 접하는 시험이다보니 너무 쉽게 생각하는 경향이 있는 것 같다.</description>
+    </item>
+    
+    <item>
+      <title>[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
+      <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
+      <description>🐘 하아두우웁!!
+ Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
+HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
+    </item>
+    
     <item>
       <title>[Enterprise Big DataLake] 02. Datalake 구축 절차</title>
       <link>https://pskim-b.github.io/posts/datalake/ebdl_01_datalake02/</link>
@@ -30,10 +52,10 @@
     
     <item>
       <title>[ADsP] 데이터분석 주제 정리 </title>
-      <link>https://pskim-b.github.io/posts/adsp/99_adsp_subject_map/</link>
+      <link>https://pskim-b.github.io/posts/adsp/90_adsp_subject_map/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/99_adsp_subject_map/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/90_adsp_subject_map/</guid>
       <description>😃
 데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
    R 기초
@@ -41,17 +63,6 @@
   통계분석 개요 (모집단, 표본, 표본추출방법)
  표본추출방법  확률적추출 (단순 무작위 추출, 계통추출, 층화 추출, 군집 추출) 비확률적 추출 (판단추출, 할당추출, 편의추출)   자료의 종류 (명목척도, 서열척도, 등간척도, 비율척도)    통계분석 분류
  기술통계 / 추론통계 모수통계 / 비모수통계    확률 / 확률분포 (확률곱, 조건부 확률,</description>
-    </item>
-    
-    <item>
-      <title>[QnA-Hadoop] 01.Hadoop QnA </title>
-      <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
-      <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
-      <description>😃
-데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
-  R 기초   </description>
     </item>
     
     <item>
