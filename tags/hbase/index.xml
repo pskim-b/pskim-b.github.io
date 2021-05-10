@@ -5,16 +5,17 @@
     <link>http://localhost/tags/hbase/</link>
     <description>Recent content in HBase on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/hbase/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/hbase/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[HBase] 최적화 튜닝 가이드 (cloudera 가이드)</title>
-      <link>http://localhost/working/20210215_hbase_opt/</link>
-      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <title>[HBase] hbase shell command, HBase 명령어</title>
+      <link>http://localhost/posts/hbase/20180110_hbase_shell_command/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/working/20210215_hbase_opt/</guid>
-      <description>😃
-HBase에 대한 최적화 설정을 찾아보던 중 Hortonworks시절에 HBase 최적화와 관련된 블로그가 있어서 정리하여보려고 한다. 넓은 부분에 대해서 이야기하고 있는 일반적인 가이드이기 때문에, 모든 환경에 적합한 설정은 아닐 수 있으나 이 내용은 참조한다면 해답을 찾을 수 있을 것이라 생각한다.
- 1. HBase Master HeapSize  권장값 : 4GB - 8GB (region 개수에 따라) 설명 : HBase Master는 read/write 작업에 직접적으로 영향을 끼치지 않기 때문에 크게 할당할 필요가 없다. 대신 region/table의 상태를 계속해서 메모리에 올려놓고 있기 때문에 그 수가 늘어나는 것과 비례하여 증가시켜야 한다.</description>
+      <guid>http://localhost/posts/hbase/20180110_hbase_shell_command/</guid>
+      <description>🐬 HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .
+ 2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
+&amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인
+&amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
     </item>
     
   </channel>

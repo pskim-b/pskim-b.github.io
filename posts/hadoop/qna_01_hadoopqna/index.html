@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en-us">
   <head>
-    <title>[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process)  // PSKim Blog</title>
+    <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process)  - 기술 학습 블로그 // PSKim Blog</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <meta charset="utf-8" />
     <meta name="generator" content="Hugo 0.80.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="PS Kim" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.76ef0cfb451f3c25445362cc7e20819b297ba10edb78fc2e99a50553a4ce62a1.css" />
+    <link rel="stylesheet" href="http://localhost/css/main.min.6ec48a05dbb027adf559c3f069b5dac49d370d31894e1093e7b312399dd875f7.css" />
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) "/>
+<meta name="twitter:title" content="[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) "/>
 <meta name="twitter:description" content="🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다."/>
 
-    <meta property="og:title" content="[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) " />
+    <meta property="og:title" content="[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) " />
 <meta property="og:description" content="🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/" />
+<meta property="og:url" content="http://localhost/posts/hadoop/qna_01_hadoopqna/" />
 <meta property="article:published_time" content="2021-04-01T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-04-01T00:00:00+00:00" />
 
@@ -42,7 +42,7 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
   </head>
   <body>
     <header class="app-header">
-      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <a href="http://localhost"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
       <h1>PSKim Blog</h1>
       <nav class="app-header-menu">
           <a class="app-header-menu-item" href="/">Home</a>
@@ -64,7 +64,7 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
       
   <article class="post">
     <header class="post-header">
-      <h1 class ="post-title">[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </h1>
+      <h1 class ="post-title">[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </h1>
       <div class="post-meta">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
@@ -85,8 +85,8 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
 </svg>
-              <a class="tag" href="https://pskim-b.github.io/tags/interview/">interview</a>
-              <a class="tag" href="https://pskim-b.github.io/tags/hadoop/">hadoop</a>
+              <a class="tag" href="http://localhost/tags/interview/">interview</a>
+              <a class="tag" href="http://localhost/tags/hadoop/">hadoop</a>
         </div>
       </div>
     </header>

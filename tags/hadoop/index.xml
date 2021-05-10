@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hadoop on PSKim Blog</title>
-    <link>https://pskim-b.github.io/tags/hadoop/</link>
+    <link>http://localhost/tags/hadoop/</link>
     <description>Recent content in hadoop on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[QnA-Hadoop] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
-      <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
+      <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
+      <link>http://localhost/posts/hadoop/qna_01_hadoopqna/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
+      <guid>http://localhost/posts/hadoop/qna_01_hadoopqna/</guid>
       <description>🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
