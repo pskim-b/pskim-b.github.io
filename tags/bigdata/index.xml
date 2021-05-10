@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bigdata on PSKim Blog</title>
-    <link>http://localhost/tags/bigdata/</link>
+    <link>https://pskim-b.github.io/tags/bigdata/</link>
     <description>Recent content in Bigdata on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/bigdata/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/bigdata/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Spark]  Apache Spark  클러스터 기본 아키텍쳐 </title>
-      <link>http://localhost/posts/spark/20210413_spark_architecture/</link>
+      <link>https://pskim-b.github.io/posts/spark/20210413_spark_architecture/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/spark/20210413_spark_architecture/</guid>
+      <guid>https://pskim-b.github.io/posts/spark/20210413_spark_architecture/</guid>
       <description>🌟 spark
 +++
 Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp;amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.</description>
@@ -19,10 +19,10 @@ Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그
     
     <item>
       <title>[HBase] hbase shell command, HBase 명령어</title>
-      <link>http://localhost/posts/hbase/20180110_hbase_shell_command/</link>
+      <link>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/hbase/20180110_hbase_shell_command/</guid>
+      <guid>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</guid>
       <description>🐬 HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .
  2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
 &amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>adsp on PSKim Blog</title>
-    <link>http://localhost/tags/adsp/</link>
+    <link>https://pskim-b.github.io/tags/adsp/</link>
     <description>Recent content in adsp on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/adsp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[ADsP] 28회 데이터분석 준전문가 합격 후기 </title>
-      <link>http://localhost/posts/adsp/7_adsp_fin/</link>
+      <link>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/7_adsp_fin/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</guid>
       <description>😃
 데이터 관련 업무를 하면서 곁다리로 데이터 분석을 공부해보자고 결심하고 신청했던 데이터분석 준전문가 시험에 가까스로 합격을 했다. 원래의 목적은 데이터 분석 실무에 필요한 이론을 습득하고 활용할 수 있는 것에 초점을 두었지만, 공부를 하면서 시험문제를 풀어보니 이러한 방법은 올바르지 않다는 것을 깨달았다. 이번 시험에 느낀 짧은 팁을 정리해 보려고 한다.
  1. 시험 주제들에 대한 전체 Tree-Map을 구성하라  많은 사람들이 데이터 분석을 위해 가장 처음에 접하는 시험이다보니 너무 쉽게 생각하는 경향이 있는 것 같다.</description>
@@ -19,10 +19,10 @@
     
     <item>
       <title>[ADsP] 데이터분석 주제 정리 </title>
-      <link>http://localhost/posts/adsp/6_adsp_subject_map/</link>
+      <link>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/6_adsp_subject_map/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</guid>
       <description>😃
 데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
    R 기초
@@ -34,10 +34,10 @@
     
     <item>
       <title>[ADsP]5.R 데이터 프레임 활용 </title>
-      <link>http://localhost/posts/adsp/5_r_data_frame/</link>
+      <link>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</link>
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/5_r_data_frame/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</guid>
       <description>😃
 데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.
  데이터 프레임 생성 # 벡터를 통한 생성  &amp;gt; v1=c(1,2,3,4) &amp;gt; v2=c(&amp;#34;a&amp;#34;,&amp;#34;b&amp;#34;,&amp;#34;c&amp;#34;,&amp;#34;d&amp;#34;) &amp;gt; v3=c(T,F,F,T) &amp;gt; data.frame(v1,v2,v3) v1 v2 v3 1 1 a TRUE 2 2 b FALSE 3 3 c FALSE 4 4 d TRUE # 행렬을 통한 생성  &amp;gt; m1 = matrix(c(1,3,5,7,9,2,4,6,8,19,2,3,5,7,11),ncol=3) &amp;gt; as.</description>
@@ -45,10 +45,10 @@
     
     <item>
       <title>[ADsP]4.R 데이터 구조 ( vector , list, dataframe )</title>
-      <link>http://localhost/posts/adsp/4_r_data_structure/</link>
+      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
       <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/4_r_data_structure/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
       <description>😃
 R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
  R 데이터 구조 1. 스칼라(scala) 단일 값을 갖는 자료구조로 프로그램 내에서 원소가 하나인 벡터처럼 인식된다. logical, integer, double, complex, character 와 같은 데이터 뿐만 아니라 NULL, NA(Not Available)도 포함한 모든 단일 값을 이야기한다.
@@ -57,10 +57,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]3.R 데이터 처리/분석</title>
-      <link>http://localhost/posts/adsp/3_r_data_processing/</link>
+      <link>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</link>
       <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/3_r_data_processing/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</guid>
       <description>😃
 지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
  데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다.</description>
@@ -68,10 +68,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]2.R 프로그램 기초</title>
-      <link>http://localhost/posts/adsp/2_r_programming/</link>
+      <link>https://pskim-b.github.io/posts/adsp/2_r_programming/</link>
       <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/2_r_programming/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/2_r_programming/</guid>
       <description>😃
 요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!
  R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다.</description>
@@ -79,10 +79,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]0.분석(준)전문가 자격증 공부해보자</title>
-      <link>http://localhost/posts/adsp/0_start/</link>
+      <link>https://pskim-b.github.io/posts/adsp/0_start/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/0_start/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/0_start/</guid>
       <description>😃
 빅데이터를 처리하는 솔루션을 개발하고 구축하는게 나의 주된 업무이지만, 기술에 대한 호기심이 많은터라 새로운 분야를 접할 때마다 조금조금씩 공부하고는 한다. AI/분석업무도 나에게는 그런 영역 중 하나인데, 대학교때 공통교양이였던 통계학을 멀리해서 벌을 받는 것인지 몰라도 기억속에 그리 오래 남지 않았다.
 그래서 알아두면 나쁘지 않을 생각을 하고 있는 중에 요즘 데이터 관련 직종으로 취업하는 대학생이라면 하나씩 다 가지고 있다던 데이터분석 준전문가(ADsP) 자격증을 따보기로 결심했다. 자격증 자체는 &amp;lsquo;정보처리기사&amp;rsquo; 같이 크게 의미없는 한줄이 될 수 있겠다만, 그냥 재미있을 것 같으니까 해보기로 한다.</description>
@@ -90,10 +90,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]1.통계분석의 시작</title>
-      <link>http://localhost/posts/adsp/1_statistical_analysis/</link>
+      <link>https://pskim-b.github.io/posts/adsp/1_statistical_analysis/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost/posts/adsp/1_statistical_analysis/</guid>
+      <guid>https://pskim-b.github.io/posts/adsp/1_statistical_analysis/</guid>
       <description>😃
 이상한 순서이지만, 3장의 &amp;lsquo;데이터 분석&amp;rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &amp;lsquo;데이터의 이해&amp;rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!
  내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다.</description>
