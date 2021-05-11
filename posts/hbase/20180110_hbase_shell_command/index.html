@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="PS Kim" />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.6ec48a05dbb027adf559c3f069b5dac49d370d31894e1093e7b312399dd875f7.css" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
 
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[HBase] hbase shell command, HBase 명령어"/>
@@ -55,9 +55,19 @@
       <p>기술 학습 블로그</p>
       <div class="app-header-social">
         
-          <a target="_blank" href="https://github.com/gohugoio" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
   <title>github</title>
   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
 </svg></a>
         
       </div>
@@ -127,27 +137,27 @@
 // <span style="color:#e6db74">&#39;table1&#39;</span>의 <span style="color:#e6db74">&#39;f1&#39;</span> column family를 삭제한다. 
 </code></pre></div><p>(3) region 설정을 변경한다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, MAX_FILESIZE <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;123217728&#39;</span> 
-// region의 최대 크기를 <span style="color:#ae81ff">128</span> MB로 변경한다.		
-</code></pre></div><p>​		
+// region의 최대 크기를 <span style="color:#ae81ff">128</span> MB로 변경한다.
+</code></pre></div><p>​
 (4) coprocessor를 설정한다. table에 대해서 coprocessor를 설정할 수 있으며 자동으로 시퀀스가 유니크하게 추가 된다.
 coprocessor attribute는 F/W이 coprocessor class를 인지할 수 있도록 다음과 같은 패턴에 맞아야 한다.
 - [coprocessor jar file location] | class name | [priority] | [arguments]</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;coprocessor&#39;</span><span style="color:#f92672">=</span>&gt;<span style="color:#e6db74">&#39;hdfs:///foo.jar|com.foo.FooRegionObserver|1001|arg1=1,ar...&#39;</span>
 // table coprocessor를 설정한다. 
 </code></pre></div><p>(5) colum family에 특정한 설정을 추가한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, CONFIGURATION <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;hbase.hregion.scan.loadColumnFamiliesOnDemand&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;true&#39;</span> <span style="color:#f92672">}</span> 
-	&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>NAME<span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf2&#39;</span>, CONFIGURATION <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;hbase.hstore.blockingStoreFiles&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;10&#39;</span><span style="color:#f92672">}}</span>	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, CONFIGURATION <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;hbase.hregion.scan.loadColumnFamiliesOnDemand&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;true&#39;</span> <span style="color:#f92672">}</span> 
+&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>NAME<span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf2&#39;</span>, CONFIGURATION <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;hbase.hstore.blockingStoreFiles&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;10&#39;</span><span style="color:#f92672">}}</span>
     // column family <span style="color:#e6db74">&#39;cf2&#39;</span>의 Hfile<span style="color:#f92672">(</span>storeFile<span style="color:#f92672">)</span> 갯수를 10개로 설정한다. 
 </code></pre></div><p>(6) table-scope 설정을 삭제할 수도 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;table_att_unset&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;MAX_FILESIZE&#39;</span> // region 최대 크기 설정을 해제한다.
-	&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;table_att_unset&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;coprocessor$1&#39;</span> // coprocessor 설정을 해제한다. 
-</code></pre></div><p>​	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;table_att_unset&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;MAX_FILESIZE&#39;</span> // region 최대 크기 설정을 해제한다.
+&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;table_att_unset&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;coprocessor$1&#39;</span> // coprocessor 설정을 해제한다. 
+</code></pre></div><p>​
 (7) 여러 설정을 동시에 수행하는 것도 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​    	&gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span> NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, VERSIONS <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">3</span> <span style="color:#f92672">}</span>, <span style="color:#f92672">{</span> MAX_FILESIZE <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;134217728&#39;</span> <span style="color:#f92672">}</span>, 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​    &gt; alter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span> NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, VERSIONS <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">3</span> <span style="color:#f92672">}</span>, <span style="color:#f92672">{</span> MAX_FILESIZE <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;134217728&#39;</span> <span style="color:#f92672">}</span>, 
 ​        <span style="color:#f92672">{</span> METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;delete&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf2&#39;</span><span style="color:#f92672">}</span>, OWNER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;johndoe&#39;</span>, METADATA <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">{</span> <span style="color:#e6db74">&#39;mykey&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;myvalue&#39;</span> <span style="color:#f92672">}</span>
 </code></pre></div><h4 id="create"><strong>create</strong></h4>
 <p>: 테이블을 생성하며 옵션을 추가한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; create <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, VERSIONS <span style="color:#f92672">=</span>&gt; 5<span style="color:#f92672">}</span>	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; create <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, VERSIONS <span style="color:#f92672">=</span>&gt; 5<span style="color:#f92672">}</span>
   // table1을 생성하면서 최신의 version을 5개까지 저장하는 column family cf1을 생성한다. 
 
 &gt; create <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf2&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf3&#39;</span><span style="color:#f92672">}</span>
@@ -162,8 +172,8 @@ coprocessor attribute는 F/W이 coprocessor class를 인지할 수 있도록 다
 </code></pre></div><p>​</p>
 <h4 id="enable-disable"><strong>enable /disable</strong></h4>
 <p>: table을 enable / disable 상태로 변경한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​		&gt; enable <span style="color:#e6db74">&#39;table1&#39;</span> 
-​		&gt; disable <span style="color:#e6db74">&#39;table1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​&gt; enable <span style="color:#e6db74">&#39;table1&#39;</span> 
+​&gt; disable <span style="color:#e6db74">&#39;table1&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="enable_all--disable_all"><strong>enable_all / disable_all</strong></h4>
 <p>: 다음과 같은 정규식 규칙에 맞는 테이블에 대해 모두 enable / disable 시킨다.</p>
@@ -171,29 +181,29 @@ coprocessor attribute는 F/W이 coprocessor class를 인지할 수 있도록 다
 &gt; disable_all <span style="color:#e6db74">&#39;table_*&#39;</span>
 </code></pre></div><h4 id="-is_enabled--is_disabled">** is_enabled / is_disabled**</h4>
 <p>: enabled / disabled 상태인지 확인한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; is_disabled <span style="color:#e6db74">&#39;table1&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; is_disabled <span style="color:#e6db74">&#39;table1&#39;</span> 
 </code></pre></div><h4 id="drop"><strong>drop</strong></h4>
 <p>: table을 drop 시킨다. 반드시 먼저 disable을 시켜야 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; drop <span style="color:#e6db74">&#39;table1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; drop <span style="color:#e6db74">&#39;table1&#39;</span>
 </code></pre></div><h4 id="drop_all"><strong>drop_all</strong></h4>
 <p>: 다음과 같은 정규식 규칙에 맞는 테이블을 모두 drop 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; drop_all <span style="color:#e6db74">&#39;table1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; drop_all <span style="color:#e6db74">&#39;table1&#39;</span>
 </code></pre></div><h4 id="exists"><strong>exists</strong></h4>
 <p>: table이 있는지 조회한다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">    &gt; exists <span style="color:#e6db74">&#39;table1&#39;</span>
 </code></pre></div><h4 id="list"><strong>list</strong></h4>
 <p>: hbase 의 모든 table 리스트를 출력한다. 추가적으로 정규식을 사용할 수도 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; list	
-	&gt; list <span style="color:#e6db74">&#39;abc.*&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; list
+&gt; list <span style="color:#e6db74">&#39;abc.*&#39;</span> 
 </code></pre></div><h4 id="show_filters"><strong>show_filters</strong></h4>
 <p>: hbase의 모든 filters 들을 보여준다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; show_filters 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; show_filters 
 </code></pre></div><h4 id="alter_status"><strong>alter_status</strong></h4>
 <p>: alter 명령어의 상태를 보여준다. schema가 변경되고 있는 table들의 이름과 region 수를 보여준다</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; alter_status <span style="color:#e6db74">&#39;table1&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter_status <span style="color:#e6db74">&#39;table1&#39;</span> 
 </code></pre></div><h4 id="alter_async"><strong>alter_async</strong></h4>
 <p>: 비동기적으로 alter 명령을 수행하여 schema 변경에 대한 결과를 기다리지 않는다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; alter_async <span style="color:#e6db74">&#39;t1&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;f1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;delete&#39;</span>or a shorter version:hbase&gt; alter_async <span style="color:#e6db74">&#39;t1&#39;</span>, <span style="color:#e6db74">&#39;delete&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;f1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; alter_async <span style="color:#e6db74">&#39;t1&#39;</span>, NAME <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;f1&#39;</span>, METHOD <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;delete&#39;</span>or a shorter version:hbase&gt; alter_async <span style="color:#e6db74">&#39;t1&#39;</span>, <span style="color:#e6db74">&#39;delete&#39;</span> <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;f1&#39;</span>
 </code></pre></div><br/>
 <br/>
 <h2 id="3-data-manipulation-commands"><strong>3) Data Manipulation commands</strong></h2>
@@ -201,88 +211,88 @@ coprocessor attribute는 F/W이 coprocessor class를 인지할 수 있도록 다
 <p>: table의 row 수를 출력한다. 이 명령어는 오랜 시간동안 수행되는데, mapreduce job을 통해서 수행되기 때문이다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">  : row의 수는 매 <span style="color:#ae81ff">1000</span> 번째 마다 출력되는데, 이러한 설정은 옵션을 통해 변경 가능하다.
     &gt; count <span style="color:#e6db74">&#39;table1&#39;</span>, INTERVAL <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">100000</span> 
-	&gt; count <span style="color:#e6db74">&#39;table2&#39;</span>, CACHE <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1000</span>
-	&gt; count <span style="color:#e6db74">&#39;table3&#39;</span>, INTERVAL &gt;<span style="color:#f92672">=</span> 10, CACHE <span style="color:#f92672">=</span>&gt;1000
-	&gt; scan <span style="color:#e6db74">&#39;t1&#39;</span>, <span style="color:#f92672">{</span>RAW <span style="color:#f92672">=</span>&gt; true, VERSIONS <span style="color:#f92672">=</span>&gt; 10<span style="color:#f92672">}</span>
+&gt; count <span style="color:#e6db74">&#39;table2&#39;</span>, CACHE <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1000</span>
+&gt; count <span style="color:#e6db74">&#39;table3&#39;</span>, INTERVAL &gt;<span style="color:#f92672">=</span> 10, CACHE <span style="color:#f92672">=</span>&gt;1000
+&gt; scan <span style="color:#e6db74">&#39;t1&#39;</span>, <span style="color:#f92672">{</span>RAW <span style="color:#f92672">=</span>&gt; true, VERSIONS <span style="color:#f92672">=</span>&gt; 10<span style="color:#f92672">}</span>
 </code></pre></div><p>: 똑같은 명령어를 table의 레퍼런스를 사용하여 실행할 수도 있다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">  &gt; table1.count INTERVAL <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">100000</span> 
   &gt; table1.count CACHE <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1000</span> 
   &gt; table1.count INTERVAL <span style="color:#f92672">=</span>&gt; 10, CACHE <span style="color:#f92672">=</span>&gt; <span style="color:#ae81ff">1000</span> 
 </code></pre></div><h4 id="delete"><strong>delete</strong></h4>
 <p>: 특정 셀의 값을 삭제한다. 반드시 cell의 값과 동일하게 옵션을 입력해야 삭제가 된다. 동일하게, table 레퍼런스로도 삭제가 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; delete <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
-	&gt; table1.delete <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; delete <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
+&gt; table1.delete <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
 </code></pre></div><h4 id="deleteall"><strong>deleteall</strong></h4>
 <p>: 주어진 row의 모든 cell의 값을 삭제한다. 동일하게, table 레퍼런스로도 삭제가 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; deleteall <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span> 
-	&gt; deleteall <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
-	&gt; table1.deleteall <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>
-	&gt; table1.deleteall <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; deleteall <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span> 
+&gt; deleteall <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
+&gt; table1.deleteall <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>
+&gt; table1.deleteall <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cellvalue1&#39;</span>, timestamp#
 </code></pre></div><h4 id="get"><strong>get</strong></h4>
 <p>: 특정 row나 cell의 값을 가져올 때 사용한다. table 명, row와 기타 옵션을 추가할 수 있다. table의 레퍼런스로도 동일하게 값을 가져올 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span> 
-	&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>TIMERANGE <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>start_timestamp, end_timestamp<span style="color:#f92672">]}</span>
-	&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, TIMESTAMP <span style="color:#f92672">=</span>&gt; ts1<span style="color:#f92672">}</span>
-	&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#e6db74">&#39;cf3&#39;</span><span style="color:#f92672">]</span> , VERSIONS <span style="color:#f92672">=</span>&gt;4 <span style="color:#f92672">}</span>
-	&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;ValueFilter (=, &#39;binary:abc&#39;)&#34;</span><span style="color:#f92672">}</span>
-	&gt; table1.get <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>
-	&gt; table1.get <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, TIMESTAMP <span style="color:#f92672">=</span>&gt; ts2, VERSIONS <span style="color:#f92672">=</span>&gt;4 <span style="color:#f92672">}</span>
-	&gt; table1.get <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;ValueFilter(=, &#39;binary:abc&#39;)&#34;</span><span style="color:#f92672">}</span>		
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span> 
+&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>TIMERANGE <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>start_timestamp, end_timestamp<span style="color:#f92672">]}</span>
+&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, TIMESTAMP <span style="color:#f92672">=</span>&gt; ts1<span style="color:#f92672">}</span>
+&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#e6db74">&#39;cf3&#39;</span><span style="color:#f92672">]</span> , VERSIONS <span style="color:#f92672">=</span>&gt;4 <span style="color:#f92672">}</span>
+&gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;ValueFilter (=, &#39;binary:abc&#39;)&#34;</span><span style="color:#f92672">}</span>
+&gt; table1.get <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>
+&gt; table1.get <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;cf1&#39;</span>, TIMESTAMP <span style="color:#f92672">=</span>&gt; ts2, VERSIONS <span style="color:#f92672">=</span>&gt;4 <span style="color:#f92672">}</span>
+&gt; table1.get <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;ValueFilter(=, &#39;binary:abc&#39;)&#34;</span><span style="color:#f92672">}</span>
 </code></pre></div><p>: 기본적으로 &lsquo;toStringBinary&rsquo; 포맷임으로 get은 커스텀 포맷을 지원한다. 사용자는 FORMATTER를 column name을 사용하여 정의할 수 있다. 하지만 모든 column family의 column에 대해서는 포맷을 정의할 수 없다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">  &gt; get <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1:qualifier1:tolInt&#39;</span>, <span style="color:#e6db74">&#39;cf2:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt&#39;</span><span style="color:#f92672">]}</span> 
 </code></pre></div><h4 id="get_counter"><strong>get_counter</strong></h4>
 <p>: table, row, column 에 대한 cell의 수를 리턴한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; get_counter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>
-	&gt; table1.get_counter <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; get_counter <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>
+&gt; table1.get_counter <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span> 
 </code></pre></div><h4 id="incr"><strong>incr</strong></h4>
 <p>: 특정한 cell의 값을 증가시킨다. table 레퍼런스로도 동일하게 값을 증가시킬 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> 
-	&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#ae81ff">1</span> 
-	&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey3&#39;</span>, <span style="color:#e6db74">&#39;cf3&#39;</span>, <span style="color:#ae81ff">10</span>
-	&gt; table1.incr <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#ae81ff">1</span> 
-	&gt; table2.incr <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#ae81ff">10</span> 	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> 
+&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#ae81ff">1</span> 
+&gt; incr <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey3&#39;</span>, <span style="color:#e6db74">&#39;cf3&#39;</span>, <span style="color:#ae81ff">10</span>
+&gt; table1.incr <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#ae81ff">1</span> 
+&gt; table2.incr <span style="color:#e6db74">&#39;rowkey2&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span>, <span style="color:#ae81ff">10</span> 
 </code></pre></div><h4 id="put"><strong>put</strong></h4>
 <p>: cell의 값을 입력한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; put <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>, ts1 
-	&gt; t.put <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>, ts1 	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; put <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>, ts1 
+&gt; t.put <span style="color:#e6db74">&#39;rowkey1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;value&#39;</span>, ts1 
 </code></pre></div><h4 id="scan"><strong>scan</strong></h4>
 <p>: 테이블의 값을 조회한다 (=select). Scanner는 TIMERANGE, FILTER, LIMIT, STARTROW, STOPROW, TIMESTAMP, MAXLENGTH 이나
 COLUMNS, CACHE 등의 옵션을 추가할 수 있다.기본적으로 &lsquo;toStringBinary&rsquo; 포맷이나 scan 명령어는 커스텀 포맷을 지원한다.
 column family의 모든 값들을 조회하고자 할때는 qualifier를 비워두면 된다(ex. &lsquo;cf1:'). 필터는 두 가지 방법으로 설정할 수 있다.</p>
-<p>​	1) fiterString 사용 (hbase-4176)</p>
-<p>​	2) filter의 전체 package 명 사용</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​		&gt; scan <span style="color:#e6db74">&#39;.META.&#39;</span> 
-​		&gt; scan <span style="color:#e6db74">&#39;.META.&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;info:regioninfo&#39;</span><span style="color:#f92672">}</span>
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span><span style="color:#f92672">]</span>, LIMIT <span style="color:#f92672">=</span>&gt;10, STARROW <span style="color:#f92672">=</span>&gt;<span style="color:#e6db74">&#39;xyz&#39;</span><span style="color:#f92672">}</span>
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;c1&#39;</span>, TIMERANGE <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>ts1, ts2<span style="color:#f92672">]}</span>
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;(PrefixFilter (&#39;row2&#39;) AND (QualifierFilter (&gt;=, &#39;binary:xyz&#39;)))&#34;</span> AND <span style="color:#f92672">(</span>TimestampsFilter <span style="color:#f92672">(</span>123, 456<span style="color:#f92672">))}</span>
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1:qualifier1:tolInt&#39;</span>, <span style="color:#e6db74">&#39;cf2:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt&#39;</span><span style="color:#f92672">]}</span> 
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; org.apache.hadoop.hbase.filter.ColumnPaginationFilter.new<span style="color:#f92672">(</span>1,0<span style="color:#f92672">)}</span> 
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span><span style="color:#f92672">]</span>, CACHE_BLOCKS &gt;<span style="color:#f92672">=</span>false<span style="color:#f92672">}</span>
-​		&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>RAW <span style="color:#f92672">=</span>&gt; true, VERSIONS <span style="color:#f92672">=</span>&gt;10<span style="color:#f92672">}</span>
+<p>​1) fiterString 사용 (hbase-4176)</p>
+<p>​2) filter의 전체 package 명 사용</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​&gt; scan <span style="color:#e6db74">&#39;.META.&#39;</span> 
+​&gt; scan <span style="color:#e6db74">&#39;.META.&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;info:regioninfo&#39;</span><span style="color:#f92672">}</span>
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span><span style="color:#f92672">]</span>, LIMIT <span style="color:#f92672">=</span>&gt;10, STARROW <span style="color:#f92672">=</span>&gt;<span style="color:#e6db74">&#39;xyz&#39;</span><span style="color:#f92672">}</span>
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#39;c1&#39;</span>, TIMERANGE <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span>ts1, ts2<span style="color:#f92672">]}</span>
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; <span style="color:#e6db74">&#34;(PrefixFilter (&#39;row2&#39;) AND (QualifierFilter (&gt;=, &#39;binary:xyz&#39;)))&#34;</span> AND <span style="color:#f92672">(</span>TimestampsFilter <span style="color:#f92672">(</span>123, 456<span style="color:#f92672">))}</span>
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMN <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1:qualifier1:tolInt&#39;</span>, <span style="color:#e6db74">&#39;cf2:qualifier2:c(org.apache.hadoop.hbase.util.Bytes).toInt&#39;</span><span style="color:#f92672">]}</span> 
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>FILTER <span style="color:#f92672">=</span>&gt; org.apache.hadoop.hbase.filter.ColumnPaginationFilter.new<span style="color:#f92672">(</span>1,0<span style="color:#f92672">)}</span> 
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>COLUMNS <span style="color:#f92672">=</span>&gt; <span style="color:#f92672">[</span><span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;cf2&#39;</span><span style="color:#f92672">]</span>, CACHE_BLOCKS &gt;<span style="color:#f92672">=</span>false<span style="color:#f92672">}</span>
+​&gt; scan <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#f92672">{</span>RAW <span style="color:#f92672">=</span>&gt; true, VERSIONS <span style="color:#f92672">=</span>&gt;10<span style="color:#f92672">}</span>
 ​        // RAW 명령어는 delete marker가 표시된 것, 삭제되었지만 집계되지 않은 것을 포함하여 모든 cell의 값들을 가져온다. 
 
-​		&gt; t <span style="color:#f92672">=</span> get_table <span style="color:#e6db74">&#39;table1&#39;</span>
-​		&gt; t.scan 
+​&gt; t <span style="color:#f92672">=</span> get_table <span style="color:#e6db74">&#39;table1&#39;</span>
+​&gt; t.scan 
 </code></pre></div><h4 id="truncate"><strong>truncate</strong></h4>
 <p>: table을 disable, drop 후 재 생성한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt;truncate <span style="color:#e6db74">&#39;table1&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt;truncate <span style="color:#e6db74">&#39;table1&#39;</span> 
 </code></pre></div><br/>
 <br/>
 <h2 id="4-hbase-surgery-tools"><strong>4) HBase surgery tools</strong></h2>
 <h4 id="assign"><strong>assign</strong></h4>
 <p>: region을 assign한다. 만약 region이 이미 할당되어 있다면 이 명령어를 통해서 강제로 재할당이 이루어진다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; assign <span style="color:#e6db74">&#39;REGION_NAME&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; assign <span style="color:#e6db74">&#39;REGION_NAME&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="balancer"><strong>balancer</strong></h4>
 <p>: 클러스터 balancer를 트리거 한다. balancer가 할당되지 않은 모든 region들을 밸런싱 할 수 있도록 전달되었으면
 true를 리턴하고, region 이동이 발생하지 않으면 false가 출력된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; balancer 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; balancer 
 </code></pre></div><p>​</p>
 <h4 id="balancer_switch-truefalse"><strong>balancer_switch true/false</strong></h4>
 <p>: balancer 를 활성화/비활성화 시킨다. 이전의 balancer 상태를 리턴한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; balance_switch true
-	&gt; balance_switch false
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; balance_switch true
+&gt; balance_switch false
 </code></pre></div><h4 id="close_region"><strong>close_region</strong></h4>
 <p>: 하나의 region을 닫는다. hmaster에게 region을 클러스터에서 닫을 것을 요청하거나 만약에 특정 서버명이 주어졌다면 해당 regionserver에서 region을 직접 제외하도록 요청한다. region을 닫으면서 hmaster는 region명을 확인한다. regionserver에 직접   region을 닫을 것을 요청하는 경우 region의 암호화된 코드만 입력하면 된다.</p>
 <p>region의 이름은 TestTable, 0094429456, 1289497600452.527db22f95c8a9e0116f0cc13c68&rsquo;과 같이 있는데 뒷부분인 527db22f95c8a9e0116f0cc13c68&rsquo; 만 입력해주면 된다. 암호화된 region명은 region이름의 해시값이다. 서버명과 같이 port와 startcode로 를 전달하는 경우는 해당 regionserver에서 region을 닫게 된다.</p>
@@ -291,85 +301,87 @@ true를 리턴하고, region 이동이 발생하지 않으면 false가 출력된
 </code></pre></div><p>​</p>
 <h4 id="compact"><strong>compact</strong></h4>
 <p>: 전달된 모든 table의 region들을 comaction을 수행한다. region 하나씩 comaction 수행 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; compact <span style="color:#e6db74">&#39;table1&#39;</span> // 해당 table의 모든 region을 comaction을 한다. 
-	&gt; compact <span style="color:#e6db74">&#39;region1&#39;</span> // 전체 region을 comaction을 수행한다. 
-	&gt; compact <span style="color:#e6db74">&#39;region1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> // 해당 region의 column family만 comaction을 수행 한다. 
-	&gt; compact <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> // 해당 테이블의 column family만 comaction을 수행한다. 	
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; compact <span style="color:#e6db74">&#39;table1&#39;</span> // 해당 table의 모든 region을 comaction을 한다. 
+&gt; compact <span style="color:#e6db74">&#39;region1&#39;</span> // 전체 region을 comaction을 수행한다. 
+&gt; compact <span style="color:#e6db74">&#39;region1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> // 해당 region의 column family만 comaction을 수행 한다. 
+&gt; compact <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span> // 해당 테이블의 column family만 comaction을 수행한다. 
 </code></pre></div><h4 id="flush"><strong>flush</strong></h4>
 <p>: table의 모든 region나, 하나의 region에 대해서 flush(memstore to storefile) 를 수행한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; flush <span style="color:#e6db74">&#39;table1&#39;</span>
-	&gt; flush <span style="color:#e6db74">&#39;region1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; flush <span style="color:#e6db74">&#39;table1&#39;</span>
+&gt; flush <span style="color:#e6db74">&#39;region1&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="major_compact"><strong>major_compact</strong></h4>
 <p>: 특정 table에 대해서 major comaction을 수행하거나 개별 region에 대해서 major compaction 수행한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; major_compact <span style="color:#e6db74">&#39;table1&#39;</span>
-	&gt; major_compact <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>
-	&gt; major_compact <span style="color:#e6db74">&#39;region1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; major_compact <span style="color:#e6db74">&#39;table1&#39;</span>
+&gt; major_compact <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>
+&gt; major_compact <span style="color:#e6db74">&#39;region1&#39;</span>
 </code></pre></div><h4 id="move"><strong>move</strong></h4>
 <p>: region을 이동시킨다. 옵션으로 타겟 regionserver를 설정할 수 있으며 따로 설정을 하지 않으면 랜덤으로 이동한다.
 encoded region name과 서버명으로 host,port, startcode를 같이 사용한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; move <span style="color:#e6db74">&#39;527db22f95c8a9e0116f0cc13c680396&#39;</span> 
-	&gt; move <span style="color:#e6db74">&#39;527db22f95c8a9e0116f0cc13c680396&#39;</span> <span style="color:#e6db74">&#39;host187.example.com,60020,1289493121758&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; move <span style="color:#e6db74">&#39;527db22f95c8a9e0116f0cc13c680396&#39;</span> 
+&gt; move <span style="color:#e6db74">&#39;527db22f95c8a9e0116f0cc13c680396&#39;</span> <span style="color:#e6db74">&#39;host187.example.com,60020,1289493121758&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="splite"><strong>splite</strong></h4>
 <p>: 전체 table을 split 하거나 하나의 region을 split 수행한다. 추가적인 파라미터를 설정할 수 있는데 region의 split key를 명시할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; split <span style="color:#e6db74">&#39;table1&#39;</span>
-	&gt; split <span style="color:#e6db74">&#39;region1&#39;</span>, 
-	&gt; split ‘regionName<span style="color:#e6db74">&#39; # format: ‘tableName,startKey,id&#39;</span>
-	&gt; split ‘tableName<span style="color:#e6db74">&#39;, ‘splitKey&#39;</span>
-	&gt; split ‘regionName<span style="color:#e6db74">&#39;, ‘splitKey&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; split <span style="color:#e6db74">&#39;table1&#39;</span>
+&gt; split <span style="color:#e6db74">&#39;region1&#39;</span>, 
+&gt; split ‘regionName<span style="color:#e6db74">&#39; # format: ‘tableName,startKey,id&#39;</span>
+&gt; split ‘tableName<span style="color:#e6db74">&#39;, ‘splitKey&#39;</span>
+&gt; split ‘regionName<span style="color:#e6db74">&#39;, ‘splitKey&#39;</span>
 </code></pre></div><h4 id="unassign"><strong>unassign</strong></h4>
 <p>: region을 할당 해제한다. 할당 해제된 region은 위치하고 있는 regionserver에서 close 상태로 변경되고 다시 open 상태로 변경된다.
 만약 true 옵션과 같이 수행하면 재할당 하기 전에 hmaster 안의 in-memory 상태를 제거한다. 만약 중복으로 assign 되어 있다면
 hbck -fix를 수행하여 해결해야 하며, 해당 작업은 신중하게 해야 한다. critical한 상황이 아니거든 사용하지 않는 것이 좋다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; unassign <span style="color:#e6db74">&#39;myregion1&#39;</span> 
-	&gt; unassign <span style="color:#e6db74">&#39;myregion1&#39;</span>, true
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; unassign <span style="color:#e6db74">&#39;myregion1&#39;</span> 
+&gt; unassign <span style="color:#e6db74">&#39;myregion1&#39;</span>, true
 </code></pre></div><p>​</p>
 <h4 id="hlog_roll"><strong>hlog_roll</strong></h4>
 <p>: log writer를 새로운 파일에 쓸수 있도록 롤링작업을 수행한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt;hlog_roll 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt;hlog_roll 
 </code></pre></div><p>​</p>
 <h4 id="zk_dump"><strong>zk_dump</strong></h4>
 <p>: zookeeper 가 바라보는 hbase 클러스터 상태를 확인한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt;zk_dump
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt;zk_dump
 </code></pre></div><br/>
-​<br/>	
+​<br/>
 <h2 id="5-cluster-replication-tools"><strong>5) Cluster replication tools</strong></h2>
 <h4 id="add_peer"><strong>add_peer</strong></h4>
 <p>: 복제replication를 위한 짝peer을 추가한다. id는 반드시 짧아야 하고 cluster key가 다음과 같이 구성되어야 한다.
 &lsquo;hbase.zookeeper.quorum:hbase.zookeeper.property.clientPort:zookeeper.znode.parent&rsquo;)</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">​   &gt; add_peer <span style="color:#e6db74">&#39;1&#39;</span>, <span style="color:#e6db74">&#34;server1.cie.com:2181:/hbase&#34;</span>
-​	&gt; add_peer <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#34;zk1,zk2,zk3:2182:/hbase-prod&#34;</span>
+​&gt; add_peer <span style="color:#e6db74">&#39;2&#39;</span>, <span style="color:#e6db74">&#34;zk1,zk2,zk3:2182:/hbase-prod&#34;</span>
 </code></pre></div><h4 id="remove_peer"><strong>remove_peer</strong></h4>
-<p>: replication stream을 중지하고 그것과 관련된 메타정보를 삭제한다.
-&gt; remove_peer &lsquo;1&rsquo;</p>
+<p>: replication stream을 중지하고 그것과 관련된 메타정보를 삭제한다.</p>
+<blockquote>
+<p>remove_peer &lsquo;1&rsquo;</p>
+</blockquote>
 <h4 id="list_peers"><strong>list_peers</strong></h4>
 <p>: cluster 상의 모든 replication peer를 확인한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; list_peers
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; list_peers
 </code></pre></div><p>​</p>
 <h4 id="enable_peerdisable_peer"><strong>enable_peer/disable_peer</strong></h4>
 <p>: 특정 peer로의 복제작업을 시작/중지시킨다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; enable_peer <span style="color:#e6db74">&#39;1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; enable_peer <span style="color:#e6db74">&#39;1&#39;</span>
     &gt; disable_peer <span style="color:#e6db74">&#39;1&#39;</span>
 </code></pre></div><h4 id="start_replicationstop_replication"><strong>start_replication/stop_replication</strong></h4>
 <p>**  : 등록된 모든 replication을 (재)시작 / 중지한다. 매우 긴급한 상황이 아니고서 쓰지 않는 명령이다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">    &gt; start_replication
-	&gt; stop_replication 
+&gt; stop_replication 
 </code></pre></div><br/>
 <br/>
 <h2 id="6-security-tools"><strong>6) Security tools</strong></h2>
 <h4 id="grant"><strong>grant</strong></h4>
 <p>: user들에게 특정 권한을 부여한다. &lsquo;RWXCA&rsquo;을 사용하여 권한부여 가능하다(READ(‘R’), WRITE(‘W’), EXEC(‘X’), CREATE(‘C’), ADMIN(‘A’)).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; grant <span style="color:#e6db74">&#39;paul&#39;</span>, <span style="color:#e6db74">&#39;RWXCA&#39;</span>
-	&gt; grant <span style="color:#e6db74">&#39;parker&#39;</span>, <span style="color:#e6db74">&#39;RW&#39;</span> <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;qualifier1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; grant <span style="color:#e6db74">&#39;paul&#39;</span>, <span style="color:#e6db74">&#39;RWXCA&#39;</span>
+&gt; grant <span style="color:#e6db74">&#39;parker&#39;</span>, <span style="color:#e6db74">&#39;RW&#39;</span> <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;qualifier1&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="revoke"><strong>revoke</strong></h4>
 <p>: 사용자의 접근 권한을 삭제한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; revoke <span style="color:#e6db74">&#39;parker&#39;</span>, <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;qualifier1&#39;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; revoke <span style="color:#e6db74">&#39;parker&#39;</span>, <span style="color:#e6db74">&#39;table1&#39;</span>, <span style="color:#e6db74">&#39;cf1&#39;</span>, <span style="color:#e6db74">&#39;qualifier1&#39;</span>
 </code></pre></div><p>​</p>
 <h4 id="user_permission"><strong>user_permission</strong></h4>
 <p>: 특정 테이블에 존재하는 모든 권한을 보여준다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">	&gt; user_permission <span style="color:#e6db74">&#39;table1&#39;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">&gt; user_permission <span style="color:#e6db74">&#39;table1&#39;</span> 
 </code></pre></div><p>​</p>
 
     </div>
