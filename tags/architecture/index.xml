@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>architecture on PSKim Blog</title>
+    <link>https://pskim-b.github.io/tags/architecture/</link>
+    <description>Recent content in architecture on PSKim Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 23 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SWA]  대규모 시스템 디자인</title>
+      <link>https://pskim-b.github.io/posts/swa/202106_system_design#1/</link>
+      <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/swa/202106_system_design#1/</guid>
+      <description>🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp;amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event</description>
+    </item>
+    
+  </channel>
+</rss>

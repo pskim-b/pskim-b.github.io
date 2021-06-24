@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pskim-b.github.io/posts/swa/202106_system_design#1/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/architecture/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/posts/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pskim-b.github.io/posts/datalake/20210427_datalake_limitations/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
@@ -14,21 +39,6 @@
   
   <url>
     <loc>https://pskim-b.github.io/tags/deltalake/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/posts/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/</loc>
-    <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://pskim-b.github.io/tags/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
   
