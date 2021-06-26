@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[SWA]  대규모 시스템 디자인 - 기술 학습 블로그 // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[SWA]  대규모 시스템 디자인"/>
+<meta name="twitter:description" content="🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event"/>
+
+    <meta property="og:title" content="[SWA]  대규모 시스템 디자인" />
+<meta property="og:description" content="🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/swa/202106_system_design_2/" />
+<meta property="article:published_time" content="2021-06-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-23T00:00:00+00:00" />
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	
+	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[SWA]  대규모 시스템 디자인</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 23, 2021
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          7 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/architecture/">architecture</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>🏛️</p>
+<p>대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다</p>
+<ul>
+<li>
+<p>CAP Theorem</p>
+</li>
+<li>
+<p>PACELC Theorem</p>
+</li>
+<li>
+<p>SQL vs NoSQL</p>
+</li>
+<li>
+<p>Load Balancing</p>
+</li>
+<li>
+<p>Caching</p>
+</li>
+<li>
+<p>Data Partitioning</p>
+</li>
+<li>
+<p>Redundancy &amp; Replication</p>
+</li>
+<li>
+<p>Indexing</p>
+</li>
+<li>
+<p>Proxies</p>
+</li>
+<li>
+<p>Long Polling vs WebSocket vs Server-Sent Event</p>
+</li>
+<li>
+<p>Leader &amp; Follower</p>
+</li>
+<li>
+<p>Quorum</p>
+</li>
+<li>
+<p>Heartbeat</p>
+</li>
+<li>
+<p>Bloom Filter</p>
+</li>
+<li>
+<p>Checksum</p>
+</li>
+<li>
+<p>Consistent Hashing</p>
+</li>
+</ul>
+<hr>
+<h1 id="6-data-partitioning-">**6. Data Partitioning **</h1>
+<p>데이터 파티셔닝은 큰 데이터베이스(DB)를 여러 작은 부분으로 나누는 기술로 우리가 흔히 사용하는  RDBMS뿐만 아니라 스키마와 같은 논리적인 구조를 가지는 데이터 저장소에서 사용 가능하다. Application의 관리성, 성능, 가용성 및 LB를 개선하기 위해 여러 서버에 걸쳐 DB / table을 분할한다. 데이터 파티셔닝을 수행하게 되면, 여러 서버에 나눠서 분포가 됨으로 scale-out을 통한 확장이 가능해 진다.</p>
+<h2 id="파티셔닝-방법"><strong>파티셔닝 방법</strong></h2>
+<p>데이터를 여러개의 작은 단위로 분할하는 다양한 방법이 있다. 다음은 가장 많이 사용되는 세가지 방법이다.</p>
+<ol>
+<li>수평분할 Horizontal Partitioning
+<ul>
+<li>행row 단위로 다른 서버에 적재한다. 예를들어 rowId가 0~100의 레코드는 A라는 데이블에 저장되고 101~200의 레코드는 B라는 테이블에 저장되는 구조이다. 이러한 방식을 범위 기반 분할 range based partitioning 또는 데이터 샤딩 Data sharding이라고 부르기도 한다.</li>
+<li>이 접근 방식의 주요 문제는 분할에 사용되는 범위 값을 신중하게 선택하지 않으면 서버간 불균형이 발생한다는 것이다.</li>
+</ul>
+</li>
+<li>수직분할 Vertical Partitioning
+<ul>
+<li>칼럼column 단위로 다른 서버에 적재한다. 예를들어 userId, userName, Address 와 같은 신상 정보는 A라는 테이블에 저장하고 friendsList는 B라는 테이블에, photos 는 C라는 테이블에 저장할 수 있다.</li>
+<li>이는 구현이 간단하고 application 영향도가 적다. 하지만 app이 증가하는 경우 기능별로 다시 파티셔닝을 해야할 수 있다는 점이다. (일반적으로 RDB는 100억건에 대한 데이터 쿼리를 할 수 없다.)</li>
+</ul>
+</li>
+<li>디렉토리 기반 분할 Directory Based Partitioning
+<ul>
+<li>수평분할과 수직분할의 문제점을 해결하고자 고안된 방법으로, 느슨한 결합으로 파티션 스키마를 찾는 서비스를 별도로 제공함으로써 DB 접근을 추상화 하는 것이다. 특정 데이터의 위치를 찾기 위해 튜플 키와 DB서버간 맵핑 정보를 가지고 있는 디렉토리 서버에 쿼리를 하게 된다.</li>
+<li>추가적인 데이터 탐색 레이어가 있기 때문에 구성하는 DB를 확장하더라도 서비스가 접근하는데 무리가 없다.</li>
+</ul>
+</li>
+</ol>
+<h2 id="데이터-분할-기준"><strong>데이터 분할 기준</strong></h2>
+<ol>
+<li>키Key 또는 해시Hash 기반 파티셔닝
+<ul>
+<li>저장하고 있는 일부 키 속성에 해시 함수를 적용하여 파티션 번호를 생성함.  이를 통해서 서버간 균일한 데이터 할당을 보장함.</li>
+<li>이 방식의 문제점은 맵핑되는 파티션의 번호가 서버 수에 의존됨으로(모듈러 연산을 통해 할당), 서버가 증가하거나 감소하면 데이터 재배포및 해시 맵핑 서비스를 바꿔야 한다는 것이다.</li>
+</ul>
+</li>
+<li>리스트List 파티셔닝
+<ul>
+<li>파티션에 할당 할 수 있는 값의 목록이 할당되어, 새 레코드를 삽입할 때 키 값에 따라 파티션을 확인하여 저장됨.</li>
+<li>이 방식도 데이터 불균형을 일으킬 수 있으며, 서버 수 변경에 따라서 목록 값을 갱신해주어야 함</li>
+</ul>
+</li>
+<li>라운드로빈Round Robin 파티셔닝
+<ul>
+<li>데이터를 균등하게 분배하는 가장 간단한 방법. 하지만 데이터 할당에 대한 규칙성이 모호함으로 데이터를 찾을 때 최적화가 이루어질 수 없다.</li>
+</ul>
+</li>
+<li>복합Composite 파티셔닝
+<ul>
+<li>위 파티셔닝 방법 중 다수를 결합하여 새로운 방법을 만듬. 예를들어 먼저 리스트 분할을 수행하고 해시 기반 분할을 적용하여 해시 값들의 범위로 서버에 값들을 할당함.</li>
+</ul>
+</li>
+</ol>
+<h2 id="데이터-파티셔닝의-문제점"><strong>데이터 파티셔닝의 문제점</strong></h2>
+<p>데이터 파티셔닝이 적용된 DB에는 데이터 처리에 대한 제약이 존재한다. 이러한 제약의 대부분은 여러 테이블/동일 테이블에 여러 행에 대한 작업이 단일 서버에서 이루어지지 않기 때문에 발생한다.</p>
+<ol>
+<li>조인 및 비정규화 : 한 서버에서 join 연산을 수행하는 것은 간단하지만 여러 서버에서 join 을 수행하는 것은 불가능한 경우가 많다. 따라서 이 경우 join 에 필요한 데이터에 대해 DB를 비정규화 처리하는 것이다. 하지만 또 이로 인해 데이터 불일치와 같은 부작용이 발생할 수 있다.</li>
+<li>참조 무결성 : 파티션 된 DB에서 외래키foreign key와 같은 데이터 무결성 제약조건을 적용하는 것은 매우 어렵다. 만약 이를 제공하기 위해서는 application 레벨에서 이를 제공해줘야 한다.</li>
+<li>리밸런싱 : 데이터 분포가 균등하지 않은 경우 데이터에 대한 리밸런싱을 수행해야 한다.</li>
+</ol>
+<hr>
+<h1 id="7-인덱스-index"><strong>7. 인덱스 Index</strong></h1>
+<p>DB의 성능을 향상시키기 위해서 인덱스는 가장 먼저 고려되야 하는 사항 중 하나이다. 특정 테이블에 대해 인덱스를 설정하는 것은 새로운 조건에 대한 임의접근Random access를 가능하게 하는 것이다. 인덱스를 설정하는 것은 하나 이상의 열column을 설정할 수 있으며, 내부적으로 설정한 열로 정렬되어 빠른 조회가 가능하다.</p>
+<h2 id="예시--도서관-데이터-베이스">예시 . 도서관 데이터 베이스</h2>
+<p>도서관의 도서 정보를 저장하는 DB를 설계한다고 가정하자. 도서에 대한 스키마 정보는 일반적으로 책 제목, 작가, 주제 및 발행일 등 4개의 열로 구성된다. 가장 일반적인 도서 검색은 책 제목으로 검색하는 것과 작가 이름으로 검색하는 것일 것이다. 이러한 액세스 패턴은 구성해야 하는 인덱스 설정과 동일하다.  테이블에 있는 도서 정보의 레코드를 책 제목으로 정렬된 인덱스와,  작가로 정렬된 인덱스를 생성하게 된다.</p>
+<p>인덱스의 개념은 대용량 저장소에서도 유사하게 고려된다. 인덱스를 사용한다는 것은 결국 더 적은 페이로드payload를 찾는 방식이다. 대용량 저장소는 일반적으로 데이터를 분산해 저장하고 있기 때문에, 데이터의 올바른 물리적 위치를 찾을 방법이 필요하게 된다. 인덱스는 이를 위해 필요하다.</p>
+<h2 id="인덱스로-인한-성능-저하">인덱스로 인한 성능 저하</h2>
+<p>인덱스는 데이터 검색 속도를 높일 수 있지만 추가 적으로 관리해야 하는 키가 존재하기 때문에 데이터 write/update 속도가 느려지게 된다. 사용하고 있는 인덱스에 테이블을 추가하거나 기존 행을 업데이트 할 때 원본 테이블에 데이터를 저장하는 것 뿐만 아니라, 해당 테이블에 설정된 모든 인덱스에도 write/update가 이루어져야 하기 때문이다.</p>
+<p>따라서 반드시 테이블에 불필요한 인덱스를 추가하는 것은 피해야 하며, 사용하지 않는 인덱스는 제거해야 한다.</p>
+<p>정리하면 인덱스를 생성하는 것은 빠른 read를 위해서 데이터를 중복으로 관리하는 것이기 때문에 write/update작업에 대한 추가적인 연산이 필요하게 된다. 그러므로 적절한 trade-off로 각 서비스에 최적화를 해야 한다.</p>
+<hr>
+<h1 id="8-proxy"><strong>8. Proxy</strong></h1>
+<p>프록시 서버는 client와 back-end 서버 사이의 중간 서버이다. client 는 웹 페이지, 파일, 연결 등과 같은 서비스를 요청하기 위해 proxy 서버를 사용한다. 간단히 말해서 proxy 서버는 다른 서버의 리소스를 요청하는 client 요청에 대한 중개자 역할을 하는 SW 또는 HW의 일부이다.</p>
+<p>일반적으로 proxy 서버는 다음과 같은 기능을 수행 한다.</p>
+<ul>
+<li>client 요청에 대한 필터링 (유효한 요청만 backend로 전달)</li>
+<li>client 요청에 대한 변환 (header 추가/제거, 리소스 암호화/복호화, 리소스 압축 등)</li>
+<li>backend 서버의 리소스 캐시로 부하 전파 방지</li>
+</ul>
+<h2 id="proxy-server-타입">Proxy Server 타입</h2>
+<ol>
+<li>Open Proxy (Forward Proxy)
+<ul>
+<li>Open Proxy는 인터넷 사용자가  접근가능한 프록시 서버</li>
+<li>일반적으로 같은 네트워크 그룹(ex. 폐쇄망)의 사용자에 대해서 인터넷 서비스를 수행하기 위해 사용된다.</li>
+<li>외부 접근에 대한 차단을 수행할 수 있음</li>
+<li>Open proxy는 다음과 같이 두 가지 종류로 나뉨
+<ul>
+<li>Anonymouse Proxy - 초기에 요청한 client에 대한 정보는 나타내지 않는다.</li>
+<li>Transparent Proxy - 프록시 서버 자체적으로 http 헤더를 지원하여 client IP를 확인할 수 있다. 이러한 방법의 장점은 서버들에 대해서 캐시를 저장할 수 있다는 것이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reverse Proxy
+<ul>
+<li>하나 이상의 서버에서 client를 대신하여 리소스를 검색한다. 그 다음 그 결과는 client로 반환되어 마치 proxy server 자체에서 발생한 것처럼 보여준다.</li>
+<li>내부망 접근에 대한 보안을 위해서 사용됨</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="9-redundancy-and-replication"><strong>9. Redundancy and Replication</strong></h1>
+<p>중복성Redundancy는 백업 형태로 시스템의 안정성을 높이거나 실제 시스템 성능을 향상 시키기 위해 시스템의 중요한 구성 요소/기능 요소를 복제하는 것. 중복성Redundancy는 SPoF를 제거하기 위해서 사용한다.</p>
+<p>복제Replication는 정보(데이터)를 공유하여 중복 리소스에 대한 일관성을 보장하는 것이다. 이러한 SW/HW레벨의 복제를 통해서 신뢰성, 내결함성, 접근성 등을 향상시킬 수 있다. 복제는 많은 DB에서 사용되며 일반적으로 primary-replica 관계를 통해서 사용한다.</p>
+<p>primary 서버는 모든 업데이트를 replica로 복제한다. 각 replica들은 업데이트가 성공적으로 반영되었는지 전달하고 primary는 계속해서 후속 업데이트를 전송할 수 있는 것이다.</p>
+<p><strong>정리</strong></p>
+<ul>
+<li>Redundancy (중복성) &mdash;&gt; 단순 백업, 일반적으로 데이터 일관성 보장 어려움</li>
+<li>Replication (복제) &mdash;&gt; replica 설정, 데이터가 동기화 되어 있음</li>
+</ul>
+<hr>
+<h1 id="10-quorum"><strong>10. Quorum</strong></h1>
+<p>분산 시스템에서 데이터는 내결함성 및 고가용성을 위해 여러 서버에 복제된다. 시스템이 데이터를 여러 사본으로 유지하기로 결정하면 모든 복제본에 대한 일관성을 유지하는 방법을 고민해야 한다. 분산 시스템에서의 쿼럼quorum은 성공적으로 분산 처리를 수행하기 위해서 필요한 최소 서버의 수를 의미한다.</p>
+<h2 id="예시">예시</h2>
+<p>분산 시스템에서 7대의 노드에 데이터가 복제되어 있다고 가정하자. 이 경우 쿼럼은 트랜잭션에 대해 동일 작업을 수행해야 한느 최소 시스템의 수를 의미한다. 7대의 서버 중 4대의 컴퓨터가 과반수 쿼럼을 구성하게 되고, 각 노드가 동의하는 경우 해당 작업을 반영commit한다. 쿼럼은 분산 작업에 필요한 일관성 요구사항을 적용한다.</p>
+<p>다수의 복제본이 있는 경우 사용자가 일관성 없는 데이터를 읽을 가능성이 있다. 예를들어 R1, R2, R3 세개의 복제본 중에  값 v1이 R1에 쓰여졌다고 가정하자. 이런 경우 R2, R3는 아직 데이터가 갱신되지 않았기 때문에 v1은 읽을 수 없게 된다.</p>
+<p>쿼럼에서 어떠한 값이 선택되어야 할까? 쿼럼의 과반수가 가지고 있는 값을 가져야 한다. 예를들어 7과 6의 과반수는 4가 되고, 5와 4의 과반수는 3이된다. 7노드가 견딜 수 있는 장애는 3대가 되고 4노드가 견딜 수 있는 노드는 1대가 된다.</p>
+<p>쿼럼은 R + W &gt; N 일때 달성된다. (R - 읽기 최소 노드, W-쓰기 최소 노드, N-쿼럼그룹노드)</p>
+<p>예를들어 N =3 이라고 할 때 각 설정 값에 따라서 다음과 같은 성격을 갖느다.</p>
+<ul>
+<li>(N = 3, W = 1, R = 3) : 빠른 쓰기, 느린 읽기, 내구성이 떨어짐</li>
+<li>(N = 3, W = 3, R = 1) : 느린 쓰기, 빠른 읽기, 내구성 &ndash; 쓰기가 완료 보장되어야 읽기가 가능함.</li>
+</ul>
+<p>대부분은 read가 write 보다 많이 발생하기 때문에 1 &lt; R &lt; W &lt; N 일 때 최고의 성능 (처리량 / 가용성) 이 나타난다.</p>
+<hr>
+<h1 id="11-leader--follower"><strong>11. Leader &amp; Follower</strong></h1>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

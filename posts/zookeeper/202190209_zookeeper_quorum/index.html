@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting) - 기술 학습 블로그 // PSKim Blog</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="PS Kim" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)"/>
+<meta name="twitter:description" content="👷‍♂️
+Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
+ Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다."/>
+
+    <meta property="og:title" content="[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)" />
+<meta property="og:description" content="👷‍♂️
+Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
+ Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/" />
+<meta property="article:published_time" content="2019-02-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-02-09T00:00:00+00:00" />
+
+	
+	
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+	
+	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-TEFH3VCWGN');
+	</script>
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
+      <h1>PSKim Blog</h1>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+      </nav>
+      <p>기술 학습 블로그</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
+  <title>linkedin</title>
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Feb 9, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
+</svg>
+              <a class="tag" href="https://pskim-b.github.io/tags/zookeeper/">zookeeper</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/bigdata/">Bigdata</a>
+              <a class="tag" href="https://pskim-b.github.io/tags/quorum/">quorum</a>
+        </div>
+      </div>
+    </header>
+    <div class="post-content">
+      <p>👷‍♂️</p>
+<p>Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.</p>
+<hr>
+<h2 id="zookeeper를-짝수로-구성하면-어떤-문제가-생길까">Zookeeper를 짝수로 구성하면 어떤 문제가 생길까?</h2>
+<p>결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다.  다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</p>
+<p>예를들어, zookeeper server 4대로 운영하던 중 leader역할을 수행하던 zookeeper 서버에 장애(N/W, machine issue, etc..)가 발생하여 3대가 남았다고 가정해보자. 이 경우 follower 역할을 수행하던 남은 zookeeper server 중 랜덤한  한대가 leader 역할을 수행하게 된다.
+이는 전체 앙상블을 이루던 4대 중 과반수인 3대가 정상적으로 서비스 되기 때문이다. 만약 추가적으로 1대의 zookeeper server가 문제가 발생해 2대의 zookeeper server만 남는 경우라면 과반수(&gt;=3)을 넘지 못함으로 문제가 없는 것으로 판단되었던 다른 2대의 zookeeper server도 서비스를 종료하게 된다.</p>
+<p>전체 4대의 zookeeper server로 구성했을 때 과반수는 3이기 때문에 1대의 zookeeper server 장애까지 내결함성fault-tolerance를 갖게 된다. 마찬가지로 전체 3대로 구성했을 때 과반수는 2가 되며, 동일하게 1대의 zookeeper server 장애까지 내결함성을 갖는다. 4대의 구성과 3대의 구성으로 인한 결함 허용 수준이 1대로 다르지 않기 때문에 홀수로 zookeeper 앙상블을 구성하라고 권고하는 것이다.</p>
+<p>결과적으로 결함 허용수준(F) 에 따라서 다음과 같이 앙상블을 구성하는 zookeeper server 수(N)을 결정하면 된다. 
+$$
+N = 2*F+1
+$$</p>
+<hr>
+<h2 id="zookeeper는-과반수-투표majority-voting-를-언제-사용하는-것인가">Zookeeper는 과반수 투표majority voting 를 언제 사용하는 것인가?</h2>
+<p>zookeeper의 주요 기능인 atomic broadcast를 수행하기 위해서 majority quorums을 사용한다. 이는 분산처리 환경에서 데이터 저장, 조회, 처리를 위해서 필요한 기능으로, 빠르게 대량의 데이터를 처리하기 위해서는 올바른 데이터를 가지고 있는 과반수의 node들이 필요하게 된다.</p>
+<p>예를들어 조회하는 데이터가 올바른지 확인하기 위해 quorum을 구성하고 있는 zookeeper server들의 데이터를 확인하게 되는데, 이때 과반수가 동일한 값을 가지고 있다고 한다면 그 값이 유효하다고 판단한다. 마찬가지로 데이터를 쓸 때에도 과반수의 zookeeper server에 해당 값이 write/update 되도록 보장해야 한다.</p>
+<p>또한 새로운 리더 선출 작업leader activation(election)을 수행할 때에도 atomic broadcast를 사용하여 majority voting을 수행하여 올바른 데이터(과반수와 동일한 데이터)를 갖는 zookeeper server를 leader로 선출하게 된다.</p>
+<hr>
+<h2 id="majority-voting을-수행하지-않는-경우-어떻게-될까">Majority voting을 수행하지 않는 경우 어떻게 될까?</h2>
+<p>zookeeper는 분산 환경으로 구성되는 서비스이기 때문에 서로 다른 랙rack 또는 데이터센터datacenter에 구성할 수도 있다. 만약 majority voting을 사용하지 않게 되면 분산 환경에서 장애가 발생하는 경우 데이터에 대한 일관성consistency가 깨질 수 있다.</p>
+<p>예를들어 2곳의 데이터 센터에 zookeeper 앙상블이 구성되어 있고 각각 3대의 zookeeper server를 가지고 있다고 가정해보자. (실제로 이렇게 짝수로 구성하진 않을 것이다. 그 이유는 위에 설명했다)</p>
+<p>HDFS나 Kafka와 같은 서비스와 연계하여 잘 운영하다가, 스위치 장애와 같은 N/W 문제로 인해 데이터센터 간 통신이 되지 않는 상태에서 데이터센터 내부의 통신은 정상적일 수 있다. 이때 만약 majority voting을 사용하지 않는다면 하나의 zookeeper 앙상블에서 각 센터에 하나씩 2개의 leader가 선출될 수 있다.</p>
+<p>이러한 상태에서 운영이 된다면 하나의 앙상블 이미지를 가지고 있어야 하는 zookeeper에서 두 개의 이미지(서로 다른 데이터 스냅샷)를 가지고 있는 것임으로 데이터간 정합성이 맞지 않게 된다. 이는 나중에 N/W 장애가 정상화 된다고 하더라도 데이터의 consistency가 맞지 않기 때문에 더 큰 서비스 문제가 발생할 수 있다.</p>
+<p>그렇기 때문에 과반수정책/majority voting을 사용하게 되면 zookeeper 앙상블을 나눴을 때 무조건 한쪽만 과반수를 넘거나, 아니면 둘 다 과반수를 넘지 않게 된다. 서비스에 대한 가용성은 좀 떨어질 수 있겠지만 zookeeper는 서비스의 특성상 데이터 정합성consistency가 훨씬 중요하기 때문에 이를 무시한다.</p>
+<hr>
+<p><strong>참고</strong>
+- <a href="https://youtu.be/XdTpygAO9SU">https://youtu.be/XdTpygAO9SU</a>
+- <a href="https://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html">https://zookeeper.apache.org/doc/r3.4.6/zookeeperInternals.html</a></p>
+
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>

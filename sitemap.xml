@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://pskim-b.github.io/posts/swa/202106_system_design_2/</loc>
+    <lastmod>2021-06-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pskim-b.github.io/tags/architecture/</loc>
     <lastmod>2021-06-23T00:00:00+00:00</lastmod>
   </url>
@@ -163,6 +168,21 @@
   </url>
   
   <url>
+    <loc>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</loc>
+    <lastmod>2019-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/quorum/</loc>
+    <lastmod>2019-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/tags/zookeeper/</loc>
+    <lastmod>2019-02-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pskim-b.github.io/posts/hive/hive_partition_type/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
   </url>
@@ -173,12 +193,17 @@
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</loc>
-    <lastmod>2018-01-10T00:00:00+00:00</lastmod>
+    <loc>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</loc>
+    <lastmod>2018-07-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://pskim-b.github.io/tags/hbase/</loc>
+    <lastmod>2018-07-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
   </url>
   

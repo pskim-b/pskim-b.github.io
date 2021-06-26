@@ -18,6 +18,27 @@ Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그
     </item>
     
     <item>
+      <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</title>
+      <link>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</guid>
+      <description>👷‍♂️
+Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
+ Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</description>
+    </item>
+    
+    <item>
+      <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구</title>
+      <link>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</link>
+      <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</guid>
+      <description>🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
+ Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다.</description>
+    </item>
+    
+    <item>
       <title>[HBase] hbase shell command, HBase 명령어</title>
       <link>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>

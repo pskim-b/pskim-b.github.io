@@ -133,6 +133,24 @@
     </item>
     
     <item>
+      <title>quorum</title>
+      <link>https://pskim-b.github.io/tags/quorum/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/quorum/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zookeeper</title>
+      <link>https://pskim-b.github.io/tags/zookeeper/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/tags/zookeeper/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>hive</title>
       <link>https://pskim-b.github.io/tags/hive/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
@@ -144,7 +162,7 @@
     <item>
       <title>HBase</title>
       <link>https://pskim-b.github.io/tags/hbase/</link>
-      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
       
       <guid>https://pskim-b.github.io/tags/hbase/</guid>
       <description></description>

@@ -27,6 +27,26 @@
     </item>
     
     <item>
+      <title>[SWA]  대규모 시스템 디자인</title>
+      <link>https://pskim-b.github.io/posts/swa/202106_system_design_2/</link>
+      <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/swa/202106_system_design_2/</guid>
+      <description>🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp;amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event</description>
+    </item>
+    
+    <item>
       <title>[Datalake] 20210427 - Datalake의 한계 및 극복 방안</title>
       <link>https://pskim-b.github.io/posts/datalake/20210427_datalake_limitations/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
@@ -188,6 +208,17 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
     </item>
     
     <item>
+      <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</title>
+      <link>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</guid>
+      <description>👷‍♂️
+Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
+ Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</description>
+    </item>
+    
+    <item>
       <title>[HIVE] 파티션 타입 및 종류</title>
       <link>https://pskim-b.github.io/posts/hive/hive_partition_type/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
@@ -195,6 +226,16 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
       <guid>https://pskim-b.github.io/posts/hive/hive_partition_type/</guid>
       <description>😃
 Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구</title>
+      <link>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</link>
+      <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</guid>
+      <description>🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
+ Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다.</description>
     </item>
     
     <item>
