@@ -5,7 +5,27 @@
     <link>https://pskim-b.github.io/tags/interview/</link>
     <description>Recent content in interview on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 01 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SWA]  System Design Warmup - 1</title>
+      <link>https://pskim-b.github.io/posts/swa/202106_system_design_1/</link>
+      <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/swa/202106_system_design_1/</guid>
+      <description>🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp;amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event</description>
+    </item>
+    
     <item>
       <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
       <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
