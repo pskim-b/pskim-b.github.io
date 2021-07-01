@@ -5,7 +5,19 @@
     <link>https://pskim-b.github.io/posts/</link>
     <description>Recent content in Posts on PSKim Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[kafka]  Apache Kafka 구경하기</title>
+      <link>https://pskim-b.github.io/posts/kafka/20210628_kafka_summary/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://pskim-b.github.io/posts/kafka/20210628_kafka_summary/</guid>
+      <description>📧📧📧📧📧📧📧📧
+분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
+  순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
+  서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?</description>
+    </item>
+    
     <item>
       <title>[SWA]  System Design Warmup - 2 (작성중)</title>
       <link>https://pskim-b.github.io/posts/swa/202106_system_design_2/</link>
