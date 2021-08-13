@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="" />
+<meta property="og:description" content="title = &ldquo;[MSA] SCS, Self-Contained System&rdquo; tags = [&ldquo;micro-service&rdquo;] date = &ldquo;2021-08-10&rdquo;
+&#43;&#43;&#43;
+정의 self-contained system (SCS) 는 도메인에 대한 전체 로직 로직, 데이터 및 UI 를 모두 포함하기 때문에 self-contained system이라고 부른다. SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.
+하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/msa/msa_20210810_self-contained-system/" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			
+		</header><div class="content post__content clearfix">
+			<p>title = &ldquo;[MSA] SCS, Self-Contained System&rdquo;
+tags = [&ldquo;micro-service&rdquo;]
+date = &ldquo;2021-08-10&rdquo;</p>
+<p>+++</p>
+<h1 id="정의"><strong>정의</strong></h1>
+<p><strong>self-contained system (SCS)</strong> 는 도메인에 대한 전체 로직  로직, 데이터 및 UI 를 모두 포함하기 때문에  self-contained system이라고 부른다.  SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.</p>
+<p>하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다. SCS 간에는 공통된 UI는 존재하지 않으며, UI는 하나 이상의 SCS로 구성된다.이는 SCS가 UI의 일부 부분을 생성하는 것을 의미한다. 모든 UI를 구성하는 마이크로 서비스가 각 부분의 로직을 담당하는 마이크로서비스와 통신하는 방식이 아니라, UI와 로직이 통합된 구성이다.</p>
+<p>SCS는 Optional API를 제공하는데, 외부에서 SCS의 로직을 사용해야 하는 경우 유용하게 사용될 수 있다.</p>
+<p>이러한 규칙들은 SCS가 완전히 도메인을 구현할 수 있게 해준다. 새로운 기능이 추가되어야 하는 경우, 그것이 로직/데이터/UI와 상관없이 오직 하나의 SCS에서 변경되면 된다. 이러한 변경사항은 단일 배포로 roll-out 될 수 있다.</p>
+<p>만약 여러 SCS가 하나의 UI를 공유하는 경우 SCS 뿐만 아니라 UI에도 많은 변경사항을 발생히킬 수 있다. 따라서 유관 SCS는 긴밀하게 연결되어 개발되고, 배포되어야 한다.</p>
+<h2 id="통신-규칙">통신 규칙</h2>
+<p>SCS 간 통신을 하기 위해서 다음과 같은 규칙을 지켜야 한다. 이러한 규칙들은 SCS 간에 느슨한 결합과 하나의 SCS의 실패로 연쇄적인 실패를 피하기 위해서 지켜야하는 규칙이다.</p>
+<ul>
+<li>
+<p>UI 레벨에서의 통합</p>
+<ul>
+<li>매우 느슨한 결합임으로 이상적이다. 다른 SCS는 그것의 UI만 필요할 때 보여주면된다. 만약 UI가 변경될 때는 다른 SCS는 영향을 받지 않게된다.</li>
+<li>만약 HTML 링크가 사용되는 경우, 결합된 SCS는 가용하지 않아도 되며 해당 SCS가 사용할 수 없는 경우에도 링크는 표시된다. 그리고 사용자가 해당 링크를 클릭하는 경우 오류가 발생한다. 이 경우 결합된 SCS가 다른  SCS에 영향을 끼치지 않아 복원력에 도움이 된다.</li>
+</ul>
+</li>
+<li>
+<p>비동기 통신</p>
+<ul>
+<li>이 방법의 장점은 결합된 SCS가 실패한 경우, 과거에 요청된 메세지들이 실패한 SCS가 복구된 뒤에 처리될 수 있다.</li>
+<li>그러나 결합된 SCS를 호출한 SCS 같은 경우 실패할 수도 있는데, 비동기 통신을 사용하지 않을 때 보다 더 오랜 시간을 처리해야 하기 때문이다.</li>
+</ul>
+</li>
+<li>
+<p>동기 통신 (선택적)</p>
+<ul>
+<li>결합된 SCS의 느린 응답 및 잠재적인 실패를 처리할 수 있도록 예비 조치가 필요하다. 추가로 모든 서비스들의 응답을 동기적으로 받는 경우, 시스템 전체의 응답시간이 늘어난다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="scs-데이터베이스">SCS 데이터베이스</h2>
+<p>SCS는 데이터를 복제해야 한다. SCS는 자체적인 DB를 가지고 있고, 다른 SCS와 비동기적으로 통신함으로 처리 중에 다른 SCS의 데이터를 사용하게 되면 문제가 발생할 수 있다. 만약요청이 처리되는 동안에 데이터가 요청되는 경우, 이러한 통신은 동기 방식이된다.</p>
+<p>비동기 통신을 위해서 데이터는 반드시 SCS에서 사용할 수 있도록 복제가 되어야 한다. 결과적으로 SCS는 항상 일관성을 유지할 수는 없다. 만약에 특정 데이터 셋이 변경되고, 해당 변경사항이 모든 SCS에 전달되지 않은 경우 SCS가 가용하지 않을 수 있다. 특히 높은 일관성 요규사항이 있는 경우 SCS는 동기 통신을 수행해야 한다.</p>
+<h2 id="조직을-위한-규칙">조직을 위한 규칙</h2>
+<h1 id="최소-공통-기능"><strong>최소 공통 기능</strong></h1>
+<h2 id="공통-비즈니스-로직은-피해라">공통 비즈니스 로직은 피해라</h2>
+<h2 id="공통-인프라-자원은-피해라">공통 인프라 자원은 피해라</h2>
+<p>macro architecture의 요소를 정의하는 microservice 타입이다. 하지만 SCS는 완전한 macro architecture를 나타내지는 않는데, 예를들어 운영적인 측면은 고려되지 않는다.</p>
+<p>SCS의 기본 컨셉은 self-contained, 스스로 컨테이너화된 마이크로 서비스를 제공하는 것으로 필요한 domain 로직을 구현하는데 필요한 모든 것(logic, data, UI 등) 을 제공하는 것이다. 하나의 변경사항이 모든 기술 영역에 영향을 미치는 경우, 하나의 SCS로 컨테이너화 될 수 있음으로 변경을 수행하고 운영환경에 적용하는데 더 쉽다.</p>
+<p>결제를 위한 microservice를 SCS로 구성하는 경우 결제를 위해 필요한 모든 정보를 저장해야 한다. 이것은 bounded context로 구성된다. 그리고 결제 이력 및 결제를 위한 UI도 있어야 하고, 고객이 결제한 데이터도 가지고 있어야 한다.</p>
+<p>microservice에 대한 정해진 정의가 존재하지 않는다. self-contained system 은 그러나 완전히 정의된다. (<a href="https://scs-architecture.org/">SCS: Self-Contained Systems (scs-architecture.org)</a>)</p>
+<p>SCS는 다양한 프로젝트에서 유용함이 증명되었다. SCS들은 주어진 패턴에서 명확한 규칙을 갖는다. 따라서 SCS는 microservice architecture의 설계에 대한 레퍼런스를 제공한다.</p>
+<hr>
+<h1 id="heading"></h1>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<p class="authorbox__warning">
+		<strong>WARNING:</strong> Authorbox is activated, but [Author] parameters are not specified.
+	</p>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/hbase/20180110_hbase_shell_command/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[HBase] hbase shell command, HBase 명령어</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

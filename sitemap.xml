@@ -3,222 +3,226 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://pskim-b.github.io/posts/kafka/20210628_kafka_summary/</loc>
+    <loc>/posts/kafka/20210628_kafka_summary/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/bigdata/</loc>
+    <loc>/tags/bigdata/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/kafka/</loc>
+    <loc>/tags/kafka/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/zookeeper/</loc>
+    <loc>/tags/zookeeper/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/swa/202106_system_design_2/</loc>
+    <loc>/posts/swa/202106_system_design_2/</loc>
     <lastmod>2021-06-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/architecture/</loc>
+    <loc>/tags/architecture/</loc>
     <lastmod>2021-06-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/swa/202106_system_design_1/</loc>
+    <loc>/posts/swa/202106_system_design_1/</loc>
     <lastmod>2021-06-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/interview/</loc>
+    <loc>/tags/interview/</loc>
     <lastmod>2021-06-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/datalake/20210427_datalake_limitations/</loc>
+    <loc>/posts/datalake/20210427_datalake_limitations/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/datalake/</loc>
+    <loc>/tags/datalake/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/deltalake/</loc>
+    <loc>/tags/deltalake/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</loc>
+    <loc>/posts/adsp/7_adsp_fin/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/spark/20210413_spark_architecture/</loc>
+    <loc>/posts/spark/20210413_spark_architecture/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/adsp/</loc>
+    <loc>/tags/adsp/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/spark/</loc>
+    <loc>/tags/spark/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</loc>
+    <loc>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</loc>
+    <loc>/posts/hadoop/qna_01_hadoopqna/</loc>
     <lastmod>2021-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/hadoop/</loc>
+    <loc>/tags/hadoop/</loc>
     <lastmod>2021-04-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/datalake/20210328_01_datalake02/</loc>
+    <loc>/posts/datalake/20210328_01_datalake02/</loc>
     <lastmod>2021-03-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/book/</loc>
+    <loc>/tags/book/</loc>
     <lastmod>2021-03-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/datalake/20210321_ebdl_01_datalake01/</loc>
+    <loc>/posts/datalake/20210321_ebdl_01_datalake01/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</loc>
+    <loc>/posts/adsp/6_adsp_subject_map/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</loc>
+    <loc>/posts/adsp/5_r_data_frame/</loc>
     <lastmod>2021-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/r/</loc>
+    <loc>/tags/r/</loc>
     <lastmod>2021-02-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</loc>
+    <loc>/posts/adsp/4_r_data_structure/</loc>
     <lastmod>2021-02-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</loc>
+    <loc>/posts/adsp/3_r_data_processing/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/2_r_programming/</loc>
+    <loc>/posts/adsp/2_r_programming/</loc>
     <lastmod>2021-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/0_start/</loc>
+    <loc>/posts/adsp/0_start/</loc>
     <lastmod>2021-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/adsp/1_statistical_analysis/</loc>
+    <loc>/posts/adsp/1_statistical_analysis/</loc>
     <lastmod>2021-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/auth/</loc>
+    <loc>/tags/auth/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/ed25519/</loc>
+    <loc>/tags/ed25519/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/git/</loc>
+    <loc>/tags/git/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</loc>
+    <loc>/posts/etc/20210122_git_win10_auth/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</loc>
+    <loc>/posts/zookeeper/202190209_zookeeper_quorum/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/quorum/</loc>
+    <loc>/tags/quorum/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/hive/hive_partition_type/</loc>
+    <loc>/posts/hive/hive_partition_type/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/hive/</loc>
+    <loc>/tags/hive/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</loc>
+    <loc>/posts/hbase/20180711_hbase_write_ahead_log/</loc>
     <lastmod>2018-07-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/tags/hbase/</loc>
+    <loc>/tags/hbase/</loc>
     <lastmod>2018-07-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</loc>
+    <loc>/posts/hbase/20180110_hbase_shell_command/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://pskim-b.github.io/categories/</loc>
+    <loc>/posts/msa/msa_20210810_self-contained-system/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
   </url>
   
 </urlset>

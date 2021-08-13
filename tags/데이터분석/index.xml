@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>데이터분석 on PSKim Blog</title>
-    <link>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
-    <description>Recent content in 데이터분석 on PSKim Blog</description>
+    <title>데이터분석 on PS Tech study</title>
+    <link>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
+    <description>Recent content in 데이터분석 on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[ADsP] 28회 데이터분석 준전문가 합격 후기 </title>
-      <link>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</link>
+      <link>/posts/adsp/7_adsp_fin/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</guid>
+      <guid>/posts/adsp/7_adsp_fin/</guid>
       <description>😃
 데이터 관련 업무를 하면서 곁다리로 데이터 분석을 공부해보자고 결심하고 신청했던 데이터분석 준전문가 시험에 가까스로 합격을 했다. 원래의 목적은 데이터 분석 실무에 필요한 이론을 습득하고 활용할 수 있는 것에 초점을 두었지만, 공부를 하면서 시험문제를 풀어보니 이러한 방법은 올바르지 않다는 것을 깨달았다. 이번 시험에 느낀 짧은 팁을 정리해 보려고 한다.
  1. 시험 주제들에 대한 전체 Tree-Map을 구성하라  많은 사람들이 데이터 분석을 위해 가장 처음에 접하는 시험이다보니 너무 쉽게 생각하는 경향이 있는 것 같다.</description>
@@ -19,10 +19,10 @@
     
     <item>
       <title>[ADsP] 데이터분석 주제 정리 </title>
-      <link>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</link>
+      <link>/posts/adsp/6_adsp_subject_map/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</guid>
+      <guid>/posts/adsp/6_adsp_subject_map/</guid>
       <description>😃
 데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
    R 기초

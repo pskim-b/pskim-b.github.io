@@ -1,105 +1,72 @@
-<!doctype html>
-<html lang="en-us">
-  <head>
-    <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구 - 기술 학습 블로그 // PSKim Blog</title>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.80.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="PS Kim" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[HBase] WAL(Write Ahead Log)를 이용한 region 복구"/>
-<meta name="twitter:description" content="🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
- Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다."/>
-
-    <meta property="og:title" content="[HBase] WAL(Write Ahead Log)를 이용한 region 복구" />
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구 - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[HBase] WAL(Write Ahead Log)를 이용한 region 복구" />
 <meta property="og:description" content="🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
  Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/" />
+<meta property="og:url" content="/posts/hbase/20180711_hbase_write_ahead_log/" />
 <meta property="article:published_time" content="2018-07-11T00:00:00+00:00" />
 <meta property="article:modified_time" content="2018-07-11T00:00:00+00:00" />
 
-	
-	
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
-	
-	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 
-	gtag('config', 'G-TEFH3VCWGN');
-	</script>
+	<link rel="stylesheet" href="/css/style.css">
+	
 
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
-      <h1>PSKim Blog</h1>
-      <nav class="app-header-menu">
-          <a class="app-header-menu-item" href="/">Home</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/tags/">Tags</a>
-      </nav>
-      <p>기술 학습 블로그</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
-  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
-  <title>linkedin</title>
-  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
-</svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">[HBase] WAL(Write Ahead Log)를 이용한 region 복구</h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Jul 11, 2018
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          13 min read
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-              <a class="tag" href="https://pskim-b.github.io/tags/bigdata/">Bigdata</a>
-              <a class="tag" href="https://pskim-b.github.io/tags/hbase/">HBase</a>
-        </div>
-      </div>
-    </header>
-    <div class="post-content">
-      <p>🐬   아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.</p>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[HBase] WAL(Write Ahead Log)를 이용한 region 복구</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-07-11T00:00:00Z">July 11, 2018</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>🐬   아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.</p>
 <hr>
 <h1 id="apache-hbase-write-path"><strong>Apache HBase Write Path</strong></h1>
 <p>Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다. 어떻게 HBase를 통해서 low-latency로 이런 read/write 를 제공할 수 있을까?</p>
@@ -167,7 +134,7 @@
 <p>WAL파일 rolling과 Memstore flush는 두 가지 분리된 동작이며 동시에 일어나지 않는다. 하지만 우리는 너무 많은 WAL파일이 region server마다 생성되기를 원지는 않는데, 그것은 region server가 문제가 있는 경우 복구작업이 너무 오래 걸리기 때문이다. 그럼으로 WAL 파일이 rolling될때, HBase는 너무 많은 WAL파일이 생성되지 않았는지 확인하고 region에 flush 되어야 할지 결정한다. 그 결과 몇 개의 WAL파일들을 아카이브 시킨다.</p>
 <p>지금까지 HBase의 write path에 대해서 설명했는데, HBase의 데이터가 어떻게 생성되고 변경되는지에 대한 것이다. 몇가지 중요한 부분은 아래와 같다.</p>
 <ul>
-<li>어떻게 client가 원하는 데이터(region)를 가지고 있는 region server를 찾는지에 대한 방법
+<li>어떻게 client가 원하는 데이터(region)를 가지고 있는 region server를 찾는지에 대한 방법 
 (zookeeper &ndash;&gt;  root region &ndash;&gt;  meta region  &ndash;&gt; data region)</li>
 <li>HBase가 어떻게 HDFS 상에서 빠르게 랜덤 write 를 지원하는지에 대한 방법 (Memstore 사용)</li>
 <li>Region server가 실패되었을 때 데이터 손실을 막을 수 있는지에 대한 방법 (WAL파일내 edit을 통한 복구)</li>
@@ -269,12 +236,59 @@ numChildren = 0</p>
 <li><a href="http://www.larsgeorge.com/2010/01/hbase-architecture-101-write-ahead-log.html">http://www.larsgeorge.com/2010/01/hbase-architecture-101-write-ahead-log.html</a></li>
 </ul>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/bigdata/" rel="tag">Bigdata</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hbase/" rel="tag">HBase</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
 
-    </main>
-  </body>
+<div class="authorbox clearfix">
+	<p class="authorbox__warning">
+		<strong>WARNING:</strong> Authorbox is activated, but [Author] parameters are not specified.
+	</p>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/hbase/20180110_hbase_shell_command/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[HBase] hbase shell command, HBase 명령어</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/hive/hive_partition_type/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[HIVE] 파티션 타입 및 종류</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
 </html>

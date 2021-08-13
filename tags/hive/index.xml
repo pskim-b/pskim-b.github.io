@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>hive on PSKim Blog</title>
-    <link>https://pskim-b.github.io/tags/hive/</link>
-    <description>Recent content in hive on PSKim Blog</description>
+    <title>hive on PS Tech study</title>
+    <link>/tags/hive/</link>
+    <description>Recent content in hive on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 28 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/hive/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Aug 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/hive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[HIVE] 파티션 타입 및 종류</title>
-      <link>https://pskim-b.github.io/posts/hive/hive_partition_type/</link>
+      <link>/posts/hive/hive_partition_type/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hive/hive_partition_type/</guid>
+      <guid>/posts/hive/hive_partition_type/</guid>
       <description>😃
 Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
     </item>

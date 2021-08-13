@@ -1,26 +1,13 @@
-<!doctype html>
-<html lang="en-us">
-  <head>
-    <title>[ADsP] 데이터분석 주제 정리  - 기술 학습 블로그 // PSKim Blog</title>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.80.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="PS Kim" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[ADsP] 데이터분석 주제 정리 "/>
-<meta name="twitter:description" content="😃
-데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
-   R 기초
-  통계분석
-  통계분석 개요 (모집단, 표본, 표본추출방법)
- 표본추출방법  확률적추출 (단순 무작위 추출, 계통추출, 층화 추출, 군집 추출) 비확률적 추출 (판단추출, 할당추출, 편의추출)   자료의 종류 (명목척도, 서열척도, 등간척도, 비율척도)    통계분석 분류
- 기술통계 / 추론통계 모수통계 / 비모수통계    확률 / 확률분포 (확률곱, 조건부 확률,"/>
-
-    <meta property="og:title" content="[ADsP] 데이터분석 주제 정리 " />
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[ADsP] 데이터분석 주제 정리  - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[ADsP] 데이터분석 주제 정리 " />
 <meta property="og:description" content="😃
 데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
    R 기초
@@ -29,87 +16,62 @@
  표본추출방법  확률적추출 (단순 무작위 추출, 계통추출, 층화 추출, 군집 추출) 비확률적 추출 (판단추출, 할당추출, 편의추출)   자료의 종류 (명목척도, 서열척도, 등간척도, 비율척도)    통계분석 분류
  기술통계 / 추론통계 모수통계 / 비모수통계    확률 / 확률분포 (확률곱, 조건부 확률," />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/" />
+<meta property="og:url" content="/posts/adsp/6_adsp_subject_map/" />
 <meta property="article:published_time" content="2021-03-07T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-03-07T00:00:00+00:00" />
 
-	
-	
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
-	
-	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 
-	gtag('config', 'G-TEFH3VCWGN');
-	</script>
+	<link rel="stylesheet" href="/css/style.css">
+	
 
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
-      <h1>PSKim Blog</h1>
-      <nav class="app-header-menu">
-          <a class="app-header-menu-item" href="/">Home</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/tags/">Tags</a>
-      </nav>
-      <p>기술 학습 블로그</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
-  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
-  <title>linkedin</title>
-  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
-</svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">[ADsP] 데이터분석 주제 정리 </h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Mar 7, 2021
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          3 min read
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-              <a class="tag" href="https://pskim-b.github.io/tags/adsp/">adsp</a>
-              <a class="tag" href="https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/">데이터분석</a>
-        </div>
-      </div>
-    </header>
-    <div class="post-content">
-      <p>😃</p>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[ADsP] 데이터분석 주제 정리 </h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-07T00:00:00Z">March 07, 2021</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>😃</p>
 <p>데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.</p>
 <hr>
 <ol>
@@ -426,12 +388,59 @@
 </ol>
 <hr>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/adsp/" rel="tag">adsp</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/" rel="tag">데이터분석</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
 
-    </main>
-  </body>
+<div class="authorbox clearfix">
+	<p class="authorbox__warning">
+		<strong>WARNING:</strong> Authorbox is activated, but [Author] parameters are not specified.
+	</p>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/adsp/5_r_data_frame/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[ADsP]5.R 데이터 프레임 활용 </p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/datalake/20210321_ebdl_01_datalake01/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[Enterprise Big DataLake] 01. Datalake 소개 </p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
 </html>

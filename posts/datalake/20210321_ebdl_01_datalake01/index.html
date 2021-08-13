@@ -1,107 +1,73 @@
-<!doctype html>
-<html lang="en-us">
-  <head>
-    <title>[Enterprise Big DataLake] 01. Datalake 소개  - 기술 학습 블로그 // PSKim Blog</title>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.80.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="PS Kim" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="https://pskim-b.github.io/css/main.min.0caa176ba3a708d9f2ab67b6058c4c6a6bbe294bd6bfe1dd3efb337c28c8bb70.css" />
-
-    <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Enterprise Big DataLake] 01. Datalake 소개 "/>
-<meta name="twitter:description" content="💾
-국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
-업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다."/>
-
-    <meta property="og:title" content="[Enterprise Big DataLake] 01. Datalake 소개 " />
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Enterprise Big DataLake] 01. Datalake 소개  - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[Enterprise Big DataLake] 01. Datalake 소개 " />
 <meta property="og:description" content="💾
 국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
 업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://pskim-b.github.io/posts/datalake/20210321_ebdl_01_datalake01/" />
+<meta property="og:url" content="/posts/datalake/20210321_ebdl_01_datalake01/" />
 <meta property="article:published_time" content="2021-03-21T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-03-21T00:00:00+00:00" />
 
-	
-	
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
-	
-	<meta name="google-site-verification" content="u0ltI-GL7Num3qJUw3i_trrBYxESJVJTjI-k4GPWimU" />
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
 
-	gtag('config', 'G-TEFH3VCWGN');
-	</script>
+	<link rel="stylesheet" href="/css/style.css">
+	
 
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="https://pskim-b.github.io"><img class="app-header-avatar" src="/avatar.jpg" alt="PS Kim" /></a>
-      <h1>PSKim Blog</h1>
-      <nav class="app-header-menu">
-          <a class="app-header-menu-item" href="/">Home</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/tags/">Tags</a>
-      </nav>
-      <p>기술 학습 블로그</p>
-      <div class="app-header-social">
-        
-          <a target="_blank" href="https://github.com/Misohub" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
-  <title>github</title>
-  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://paulsmooth.tistory.com/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
-  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-</svg></a>
-        
-          <a target="_blank" href="https://www.linkedin.com/in/pyung-seok-kim-24612a126/" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-linkedin">
-  <title>linkedin</title>
-  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
-</svg></a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class ="post-title">[Enterprise Big DataLake] 01. Datalake 소개 </h1>
-      <div class="post-meta">
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg>
-          Mar 21, 2021
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>
-          4 min read
-        </div>
-        <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
-  <title>tag</title>
-  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line>
-</svg>
-              <a class="tag" href="https://pskim-b.github.io/tags/datalake/">Datalake</a>
-              <a class="tag" href="https://pskim-b.github.io/tags/book/">Book</a>
-        </div>
-      </div>
-    </header>
-    <div class="post-content">
-      <p>💾</p>
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Enterprise Big DataLake] 01. Datalake 소개 </h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-21T00:00:00Z">March 21, 2021</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>💾</p>
 <p>국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.</p>
 <p>업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다.</p>
 <p>과연 데이터 레이크의 핵심 기능은 무엇이고 효율적으로 데이터를 관리하기 위해서 무슨 기능을 개발해야 할까? 이러한 관점으로 책을 펼쳐보았다.</p>
@@ -158,12 +124,59 @@
 <hr>
 <p>간단히 데이터 레이크에 대한 개요를 알아 보았다. 데이터 레이크의 성숙도를 보고 있자면 아직 많은 분야에서 갈 길이 많이 남은 것 같다. 이미 시장을 선두하고 있는 기업들은 데이터 오션을 기획하고 있는 반면에 대부분의 기업들은 이제 막 데이터 연못을 구성했거나 구성하고 있는 중이다. 성숙도 각 단계에서 필요한 핵심 기능들을 잘 이해해야 올바른 아키텍쳐와 솔루션을 도입할 수 있을 것이다. 다음에는 데이터 레이크의 구성 방법을 자세히 살펴봐야겠다.</p>
 
-    </div>
-    <div class="post-footer">
-      
-    </div>
-  </article>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/datalake/" rel="tag">Datalake</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/book/" rel="tag">Book</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
 
-    </main>
-  </body>
+<div class="authorbox clearfix">
+	<p class="authorbox__warning">
+		<strong>WARNING:</strong> Authorbox is activated, but [Author] parameters are not specified.
+	</p>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/adsp/6_adsp_subject_map/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[ADsP] 데이터분석 주제 정리 </p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/datalake/20210328_01_datalake02/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[Enterprise Big DataLake] 02. Datalake 구축 절차</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
 </html>

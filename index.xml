@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PSKim Blog</title>
-    <link>https://pskim-b.github.io/</link>
-    <description>Recent content on PSKim Blog</description>
+    <title>PS Tech study</title>
+    <link>/</link>
+    <description>Recent content on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[kafka]  Apache Kafka 구경하기</title>
-      <link>https://pskim-b.github.io/posts/kafka/20210628_kafka_summary/</link>
+      <link>/posts/kafka/20210628_kafka_summary/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/kafka/20210628_kafka_summary/</guid>
+      <guid>/posts/kafka/20210628_kafka_summary/</guid>
       <description>📧📧📧📧📧📧📧📧
 분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
   순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
@@ -20,10 +20,10 @@
     
     <item>
       <title>[SWA]  System Design Warmup - 2 (작성중)</title>
-      <link>https://pskim-b.github.io/posts/swa/202106_system_design_2/</link>
+      <link>/posts/swa/202106_system_design_2/</link>
       <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/swa/202106_system_design_2/</guid>
+      <guid>/posts/swa/202106_system_design_2/</guid>
       <description>🏛️
 대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
   CAP Theorem
@@ -40,10 +40,10 @@
     
     <item>
       <title>[SWA]  System Design Warmup - 1</title>
-      <link>https://pskim-b.github.io/posts/swa/202106_system_design_1/</link>
+      <link>/posts/swa/202106_system_design_1/</link>
       <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/swa/202106_system_design_1/</guid>
+      <guid>/posts/swa/202106_system_design_1/</guid>
       <description>🏛️
 대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
   CAP Theorem
@@ -60,10 +60,10 @@
     
     <item>
       <title>[Datalake] 20210427 - Datalake의 한계 및 극복 방안</title>
-      <link>https://pskim-b.github.io/posts/datalake/20210427_datalake_limitations/</link>
+      <link>/posts/datalake/20210427_datalake_limitations/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/datalake/20210427_datalake_limitations/</guid>
+      <guid>/posts/datalake/20210427_datalake_limitations/</guid>
       <description>:lake:
 앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
  데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!</description>
@@ -71,10 +71,10 @@
     
     <item>
       <title>[ADsP] 28회 데이터분석 준전문가 합격 후기 </title>
-      <link>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</link>
+      <link>/posts/adsp/7_adsp_fin/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/7_adsp_fin/</guid>
+      <guid>/posts/adsp/7_adsp_fin/</guid>
       <description>😃
 데이터 관련 업무를 하면서 곁다리로 데이터 분석을 공부해보자고 결심하고 신청했던 데이터분석 준전문가 시험에 가까스로 합격을 했다. 원래의 목적은 데이터 분석 실무에 필요한 이론을 습득하고 활용할 수 있는 것에 초점을 두었지만, 공부를 하면서 시험문제를 풀어보니 이러한 방법은 올바르지 않다는 것을 깨달았다. 이번 시험에 느낀 짧은 팁을 정리해 보려고 한다.
  1. 시험 주제들에 대한 전체 Tree-Map을 구성하라  많은 사람들이 데이터 분석을 위해 가장 처음에 접하는 시험이다보니 너무 쉽게 생각하는 경향이 있는 것 같다.</description>
@@ -82,10 +82,10 @@
     
     <item>
       <title>[Spark]  Apache Spark  클러스터 기본 아키텍쳐 </title>
-      <link>https://pskim-b.github.io/posts/spark/20210413_spark_architecture/</link>
+      <link>/posts/spark/20210413_spark_architecture/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/spark/20210413_spark_architecture/</guid>
+      <guid>/posts/spark/20210413_spark_architecture/</guid>
       <description>🌟 spark
 +++
 Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp;amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.</description>
@@ -93,10 +93,10 @@ Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그
     
     <item>
       <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
-      <link>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</link>
+      <link>/posts/hadoop/qna_01_hadoopqna/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hadoop/qna_01_hadoopqna/</guid>
+      <guid>/posts/hadoop/qna_01_hadoopqna/</guid>
       <description>🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
@@ -104,10 +104,10 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
     
     <item>
       <title>[Enterprise Big DataLake] 02. Datalake 구축 절차</title>
-      <link>https://pskim-b.github.io/posts/datalake/20210328_01_datalake02/</link>
+      <link>/posts/datalake/20210328_01_datalake02/</link>
       <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/datalake/20210328_01_datalake02/</guid>
+      <guid>/posts/datalake/20210328_01_datalake02/</guid>
       <description>💾
 앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
  데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!</description>
@@ -115,10 +115,10 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
     
     <item>
       <title>[Enterprise Big DataLake] 01. Datalake 소개 </title>
-      <link>https://pskim-b.github.io/posts/datalake/20210321_ebdl_01_datalake01/</link>
+      <link>/posts/datalake/20210321_ebdl_01_datalake01/</link>
       <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/datalake/20210321_ebdl_01_datalake01/</guid>
+      <guid>/posts/datalake/20210321_ebdl_01_datalake01/</guid>
       <description>💾
 국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
 업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&amp;rsquo;REILLY의 도서로 &amp;lsquo;The Enterprise Big Data Lake&amp;rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다.</description>
@@ -126,10 +126,10 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
     
     <item>
       <title>[ADsP] 데이터분석 주제 정리 </title>
-      <link>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</link>
+      <link>/posts/adsp/6_adsp_subject_map/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/6_adsp_subject_map/</guid>
+      <guid>/posts/adsp/6_adsp_subject_map/</guid>
       <description>😃
 데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
    R 기초
@@ -141,10 +141,10 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
     
     <item>
       <title>[ADsP]5.R 데이터 프레임 활용 </title>
-      <link>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</link>
+      <link>/posts/adsp/5_r_data_frame/</link>
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/5_r_data_frame/</guid>
+      <guid>/posts/adsp/5_r_data_frame/</guid>
       <description>😃
 데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.
  데이터 프레임 생성 # 벡터를 통한 생성  &amp;gt; v1=c(1,2,3,4) &amp;gt; v2=c(&amp;#34;a&amp;#34;,&amp;#34;b&amp;#34;,&amp;#34;c&amp;#34;,&amp;#34;d&amp;#34;) &amp;gt; v3=c(T,F,F,T) &amp;gt; data.frame(v1,v2,v3) v1 v2 v3 1 1 a TRUE 2 2 b FALSE 3 3 c FALSE 4 4 d TRUE # 행렬을 통한 생성  &amp;gt; m1 = matrix(c(1,3,5,7,9,2,4,6,8,19,2,3,5,7,11),ncol=3) &amp;gt; as.</description>
@@ -152,10 +152,10 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
     
     <item>
       <title>[ADsP]4.R 데이터 구조 ( vector , list, dataframe )</title>
-      <link>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</link>
+      <link>/posts/adsp/4_r_data_structure/</link>
       <pubDate>Tue, 02 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/4_r_data_structure/</guid>
+      <guid>/posts/adsp/4_r_data_structure/</guid>
       <description>😃
 R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 그 데이터를 가지고 분석하기 위해서 내부적으로 R의 데이터 구조로 저장해야 한다. R에는 크게 벡터(vector), 리스트(list), 행렬(matrix), 배열(Arrays), 요인(Factors), 데이터프레임(Dataframe), 스칼라(scala) 로 나눌 수 있다.
  R 데이터 구조 1. 스칼라(scala) 단일 값을 갖는 자료구조로 프로그램 내에서 원소가 하나인 벡터처럼 인식된다. logical, integer, double, complex, character 와 같은 데이터 뿐만 아니라 NULL, NA(Not Available)도 포함한 모든 단일 값을 이야기한다.
@@ -164,10 +164,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]3.R 데이터 처리/분석</title>
-      <link>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</link>
+      <link>/posts/adsp/3_r_data_processing/</link>
       <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/3_r_data_processing/</guid>
+      <guid>/posts/adsp/3_r_data_processing/</guid>
       <description>😃
 지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
  데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다.</description>
@@ -175,10 +175,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]2.R 프로그램 기초</title>
-      <link>https://pskim-b.github.io/posts/adsp/2_r_programming/</link>
+      <link>/posts/adsp/2_r_programming/</link>
       <pubDate>Tue, 26 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/2_r_programming/</guid>
+      <guid>/posts/adsp/2_r_programming/</guid>
       <description>😃
 요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!
  R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다.</description>
@@ -186,10 +186,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]0.분석(준)전문가 자격증 공부해보자</title>
-      <link>https://pskim-b.github.io/posts/adsp/0_start/</link>
+      <link>/posts/adsp/0_start/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/0_start/</guid>
+      <guid>/posts/adsp/0_start/</guid>
       <description>😃
 빅데이터를 처리하는 솔루션을 개발하고 구축하는게 나의 주된 업무이지만, 기술에 대한 호기심이 많은터라 새로운 분야를 접할 때마다 조금조금씩 공부하고는 한다. AI/분석업무도 나에게는 그런 영역 중 하나인데, 대학교때 공통교양이였던 통계학을 멀리해서 벌을 받는 것인지 몰라도 기억속에 그리 오래 남지 않았다.
 그래서 알아두면 나쁘지 않을 생각을 하고 있는 중에 요즘 데이터 관련 직종으로 취업하는 대학생이라면 하나씩 다 가지고 있다던 데이터분석 준전문가(ADsP) 자격증을 따보기로 결심했다. 자격증 자체는 &amp;lsquo;정보처리기사&amp;rsquo; 같이 크게 의미없는 한줄이 될 수 있겠다만, 그냥 재미있을 것 같으니까 해보기로 한다.</description>
@@ -197,10 +197,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>[ADsP]1.통계분석의 시작</title>
-      <link>https://pskim-b.github.io/posts/adsp/1_statistical_analysis/</link>
+      <link>/posts/adsp/1_statistical_analysis/</link>
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/adsp/1_statistical_analysis/</guid>
+      <guid>/posts/adsp/1_statistical_analysis/</guid>
       <description>😃
 이상한 순서이지만, 3장의 &amp;lsquo;데이터 분석&amp;rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &amp;lsquo;데이터의 이해&amp;rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!
  내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다.</description>
@@ -208,10 +208,10 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
     
     <item>
       <title>Windows10 Git &#39;OpenSSH Key is invalid&#39; 오류 </title>
-      <link>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</link>
+      <link>/posts/etc/20210122_git_win10_auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/etc/20210122_git_win10_auth/</guid>
+      <guid>/posts/etc/20210122_git_win10_auth/</guid>
       <description>Windows10 환경에서 생성한 rsa key가 Github account/repository에 SSH키를 등록이 안되는 경우가 있다.
 다른 블로그 및 stackoverflow에서도 아래와 같이 rsa key 생성을 가이드 하고 있다.
 PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없을 것 같은데 안되서 굉장히 당황스러웠다.
@@ -221,10 +221,10 @@ PS&amp;gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게
     
     <item>
       <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</title>
-      <link>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</link>
+      <link>/posts/zookeeper/202190209_zookeeper_quorum/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/zookeeper/202190209_zookeeper_quorum/</guid>
+      <guid>/posts/zookeeper/202190209_zookeeper_quorum/</guid>
       <description>👷‍♂️
 Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
  Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</description>
@@ -232,34 +232,46 @@ Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 �
     
     <item>
       <title>[HIVE] 파티션 타입 및 종류</title>
-      <link>https://pskim-b.github.io/posts/hive/hive_partition_type/</link>
+      <link>/posts/hive/hive_partition_type/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hive/hive_partition_type/</guid>
+      <guid>/posts/hive/hive_partition_type/</guid>
       <description>😃
 Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
     </item>
     
     <item>
       <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구</title>
-      <link>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</link>
+      <link>/posts/hbase/20180711_hbase_write_ahead_log/</link>
       <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hbase/20180711_hbase_write_ahead_log/</guid>
+      <guid>/posts/hbase/20180711_hbase_write_ahead_log/</guid>
       <description>🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
  Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다.</description>
     </item>
     
     <item>
       <title>[HBase] hbase shell command, HBase 명령어</title>
-      <link>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</link>
+      <link>/posts/hbase/20180110_hbase_shell_command/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/posts/hbase/20180110_hbase_shell_command/</guid>
+      <guid>/posts/hbase/20180110_hbase_shell_command/</guid>
       <description>🐬 HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .
  2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
 &amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인
 &amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/posts/msa/msa_20210810_self-contained-system/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/msa/msa_20210810_self-contained-system/</guid>
+      <description>title = &amp;ldquo;[MSA] SCS, Self-Contained System&amp;rdquo; tags = [&amp;ldquo;micro-service&amp;rdquo;] date = &amp;ldquo;2021-08-10&amp;rdquo;
++++
+정의 self-contained system (SCS) 는 도메인에 대한 전체 로직 로직, 데이터 및 UI 를 모두 포함하기 때문에 self-contained system이라고 부른다. SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.
+하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다.</description>
     </item>
     
   </channel>

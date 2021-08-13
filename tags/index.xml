@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on PSKim Blog</title>
-    <link>https://pskim-b.github.io/tags/</link>
-    <description>Recent content in Tags on PSKim Blog</description>
+    <title>Tags on PS Tech study</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://pskim-b.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bigdata</title>
-      <link>https://pskim-b.github.io/tags/bigdata/</link>
+      <link>/tags/bigdata/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/bigdata/</guid>
+      <guid>/tags/bigdata/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kafka</title>
-      <link>https://pskim-b.github.io/tags/kafka/</link>
+      <link>/tags/kafka/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/kafka/</guid>
+      <guid>/tags/kafka/</guid>
       <description></description>
     </item>
     
     <item>
       <title>zookeeper</title>
-      <link>https://pskim-b.github.io/tags/zookeeper/</link>
+      <link>/tags/zookeeper/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/zookeeper/</guid>
+      <guid>/tags/zookeeper/</guid>
       <description></description>
     </item>
     
     <item>
       <title>architecture</title>
-      <link>https://pskim-b.github.io/tags/architecture/</link>
+      <link>/tags/architecture/</link>
       <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/architecture/</guid>
+      <guid>/tags/architecture/</guid>
       <description></description>
     </item>
     
     <item>
       <title>interview</title>
-      <link>https://pskim-b.github.io/tags/interview/</link>
+      <link>/tags/interview/</link>
       <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/interview/</guid>
+      <guid>/tags/interview/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Datalake</title>
-      <link>https://pskim-b.github.io/tags/datalake/</link>
+      <link>/tags/datalake/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/datalake/</guid>
+      <guid>/tags/datalake/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DeltaLake</title>
-      <link>https://pskim-b.github.io/tags/deltalake/</link>
+      <link>/tags/deltalake/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/deltalake/</guid>
+      <guid>/tags/deltalake/</guid>
       <description></description>
     </item>
     
     <item>
       <title>adsp</title>
-      <link>https://pskim-b.github.io/tags/adsp/</link>
+      <link>/tags/adsp/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/adsp/</guid>
+      <guid>/tags/adsp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>spark</title>
-      <link>https://pskim-b.github.io/tags/spark/</link>
+      <link>/tags/spark/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/spark/</guid>
+      <guid>/tags/spark/</guid>
       <description></description>
     </item>
     
     <item>
       <title>데이터분석</title>
-      <link>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
+      <link>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</guid>
+      <guid>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hadoop</title>
-      <link>https://pskim-b.github.io/tags/hadoop/</link>
+      <link>/tags/hadoop/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/hadoop/</guid>
+      <guid>/tags/hadoop/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Book</title>
-      <link>https://pskim-b.github.io/tags/book/</link>
+      <link>/tags/book/</link>
       <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/book/</guid>
+      <guid>/tags/book/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://pskim-b.github.io/tags/r/</link>
+      <link>/tags/r/</link>
       <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>auth</title>
-      <link>https://pskim-b.github.io/tags/auth/</link>
+      <link>/tags/auth/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/auth/</guid>
+      <guid>/tags/auth/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ed25519</title>
-      <link>https://pskim-b.github.io/tags/ed25519/</link>
+      <link>/tags/ed25519/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/ed25519/</guid>
+      <guid>/tags/ed25519/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://pskim-b.github.io/tags/git/</link>
+      <link>/tags/git/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/git/</guid>
+      <guid>/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>quorum</title>
-      <link>https://pskim-b.github.io/tags/quorum/</link>
+      <link>/tags/quorum/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/quorum/</guid>
+      <guid>/tags/quorum/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hive</title>
-      <link>https://pskim-b.github.io/tags/hive/</link>
+      <link>/tags/hive/</link>
       <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/hive/</guid>
+      <guid>/tags/hive/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HBase</title>
-      <link>https://pskim-b.github.io/tags/hbase/</link>
+      <link>/tags/hbase/</link>
       <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://pskim-b.github.io/tags/hbase/</guid>
+      <guid>/tags/hbase/</guid>
       <description></description>
     </item>
     
