@@ -12,7 +12,7 @@
 <meta property="og:description" content="기술 학습 블로그" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2021-10-04T00:00:00+00:00" />
+<meta property="og:updated_time" content="2021-10-05T00:00:00+00:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -60,6 +60,24 @@ if (!doNotTrack) {
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/bigdata/spark/20210413_spark_architecture/" rel="bookmark">
+			[Spark]  Apache Spark  클러스터 기본 아키텍쳐 
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		🌟 spark
++++
+Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/bigdata/hadoop/qna_01_hadoopqna/" rel="bookmark">
@@ -226,24 +244,6 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
 빅데이터를 처리하는 솔루션을 개발하고 구축하는게 나의 주된 업무이지만, 기술에 대한 호기심이 많은터라 새로운 분야를 접할 때마다 조금조금씩 공부하고는 한다. AI/분석업무도 나에게는 그런 영역 중 하나인데, 대학교때 공통교양이였던 통계학을 멀리해서 벌을 받는 것인지 몰라도 기억속에 그리 오래 남지 않았다.
 그래서 알아두면 나쁘지 않을 생각을 하고 있는 중에 요즘 데이터 관련 직종으로 취업하는 대학생이라면 하나씩 다 가지고 있다던 데이터분석 준전문가(ADsP) 자격증을 따보기로 결심했다. 자격증 자체는 &lsquo;정보처리기사&rsquo; 같이 크게 의미없는 한줄이 될 수 있겠다만, 그냥 재미있을 것 같으니까 해보기로 한다.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/datascience/adsp/1_statistical_analysis/" rel="bookmark">
-			[ADsP]1.통계분석의 시작
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-01-25T00:00:00Z">January 25, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/datasicence/" rel="category">DataSicence</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		😃
-이상한 순서이지만, 3장의 &lsquo;데이터 분석&rsquo; 을 먼저 보려고 한다. 그 이유는 1장의 &lsquo;데이터의 이해&rsquo; 부터 보게된다면 뒤로 갈 수록 쳐질것 같은 기분이 들어서이다. 두렵고 어려울 것이라 생각되는 부분을 가장 먼저 부수고 들어가보자!!
- 내용 일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 ODS(Operational Data Store) 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다.
-	</div>
 </article>
 </main>
 
@@ -297,11 +297,11 @@ R에서 간단히 파일을 입출력하는 방법을 알아보았다. 이제 �
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/programming/java/202110_java_functional_programming/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_streaming/">[JAVA] 스트림 API (Stream API)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">Servlet에 대한 이해</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210813_front-integration/">[MSA] 마이크로서비스 Frontend 통합 방안</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[MSA] SCS, Self-Contained System</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/bigdata/kafka/20210628_kafka_summary/">[kafka]  Apache Kafka 구경하기</a></li>
 		</ul>
 	</div>
 </div>
