@@ -5,25 +5,13 @@
     <link>/tags/zookeeper/</link>
     <description>Recent content in zookeeper on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/zookeeper/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[kafka]  Apache Kafka 구경하기</title>
-      <link>/posts/kafka/20210628_kafka_summary/</link>
-      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/kafka/20210628_kafka_summary/</guid>
-      <description>📧📧📧📧📧📧📧📧
-분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
-  순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
-  서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?</description>
-    </item>
-    
+    <lastBuildDate>Sat, 09 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/zookeeper/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</title>
-      <link>/posts/zookeeper/202190209_zookeeper_quorum/</link>
+      <link>/posts/bigdata/zookeeper/202190209_zookeeper_quorum/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/posts/zookeeper/202190209_zookeeper_quorum/</guid>
+      <guid>/posts/bigdata/zookeeper/202190209_zookeeper_quorum/</guid>
       <description>👷‍♂️
 Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
  Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</description>

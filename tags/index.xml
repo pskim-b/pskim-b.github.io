@@ -5,13 +5,31 @@
     <link>/tags/</link>
     <description>Recent content in Tags on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Bigdata</title>
-      <link>/tags/bigdata/</link>
-      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      <title>Functional Programming</title>
+      <link>/tags/functional-programming/</link>
+      <pubDate>Mon, 04 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bigdata/</guid>
+      <guid>/tags/functional-programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>/tags/web/</link>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microservice</title>
+      <link>/tags/microservice/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/microservice/</guid>
       <description></description>
     </item>
     
@@ -25,47 +43,20 @@
     </item>
     
     <item>
-      <title>zookeeper</title>
-      <link>/tags/zookeeper/</link>
-      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/zookeeper/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>architecture</title>
-      <link>/tags/architecture/</link>
-      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/architecture/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>interview</title>
       <link>/tags/interview/</link>
-      <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/interview/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Datalake</title>
+      <title>datalake</title>
       <link>/tags/datalake/</link>
       <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/datalake/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DeltaLake</title>
-      <link>/tags/deltalake/</link>
-      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/deltalake/</guid>
       <description></description>
     </item>
     
@@ -88,29 +79,11 @@
     </item>
     
     <item>
-      <title>데이터분석</title>
-      <link>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</link>
-      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>hadoop</title>
       <link>/tags/hadoop/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/hadoop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Book</title>
-      <link>/tags/book/</link>
-      <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/book/</guid>
       <description></description>
     </item>
     
@@ -124,24 +97,6 @@
     </item>
     
     <item>
-      <title>auth</title>
-      <link>/tags/auth/</link>
-      <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
-      
-      <guid>/tags/auth/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ed25519</title>
-      <link>/tags/ed25519/</link>
-      <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
-      
-      <guid>/tags/ed25519/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>git</title>
       <link>/tags/git/</link>
       <pubDate>Fri, 22 Jan 2021 22:42:30 +0900</pubDate>
@@ -151,11 +106,11 @@
     </item>
     
     <item>
-      <title>quorum</title>
-      <link>/tags/quorum/</link>
+      <title>zookeeper</title>
+      <link>/tags/zookeeper/</link>
       <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/quorum/</guid>
+      <guid>/tags/zookeeper/</guid>
       <description></description>
     </item>
     
@@ -169,7 +124,7 @@
     </item>
     
     <item>
-      <title>HBase</title>
+      <title>hbase</title>
       <link>/tags/hbase/</link>
       <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
       

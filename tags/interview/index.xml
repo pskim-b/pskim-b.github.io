@@ -5,13 +5,33 @@
     <link>/tags/interview/</link>
     <description>Recent content in interview on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 23 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SWA]  System Design Warmup - 2 (작성중)</title>
+      <link>/posts/architecture/systems/202106_system_design_2/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/systems/202106_system_design_2/</guid>
+      <description>🏛️
+대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
+  CAP Theorem
+  PACELC Theorem
+  SQL vs NoSQL
+  Load Balancing
+  Caching
+  Data Partitioning
+  Redundancy &amp;amp; Replication
+  Indexing
+  Proxies
+  Long Polling vs WebSocket vs Server-Sent Event</description>
+    </item>
+    
     <item>
       <title>[SWA]  System Design Warmup - 1</title>
-      <link>/posts/swa/202106_system_design_1/</link>
+      <link>/posts/architecture/systems/202106_system_design_1/</link>
       <pubDate>Wed, 23 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/swa/202106_system_design_1/</guid>
+      <guid>/posts/architecture/systems/202106_system_design_1/</guid>
       <description>🏛️
 대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다
   CAP Theorem
@@ -28,10 +48,10 @@
     
     <item>
       <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
-      <link>/posts/hadoop/qna_01_hadoopqna/</link>
+      <link>/posts/bigdata/hadoop/qna_01_hadoopqna/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/hadoop/qna_01_hadoopqna/</guid>
+      <guid>/posts/bigdata/hadoop/qna_01_hadoopqna/</guid>
       <description>🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>

@@ -11,7 +11,7 @@
 <meta property="og:description" content="기술 학습 블로그" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/posts/" />
-<meta property="og:updated_time" content="2021-06-28T00:00:00+00:00" />
+<meta property="og:updated_time" content="2021-10-04T00:00:00+00:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -63,13 +63,87 @@ if (!doNotTrack) {
 	</header><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/kafka/20210628_kafka_summary/" rel="bookmark">
+			<a href="/posts/programming/java/202110_java_functional_programming/" rel="bookmark">
+			[JAVA] 함수형 프로그래밍(Functional Programming)
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-04T00:00:00Z">October 04, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/java/" rel="category">Java</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		전통적인 명령형 프로그래밍(imperative programming)은 데이터를 어떻게(how) 처리할 것인지를 단계별로 정의하는 방식이다.
+이 방식에서는 각 단계에서 데이터가 어떻게 처리되고 프로그램의 상태 또는 플래그를 계속해서 유지하게 된다.
+이와 비교되는 선언적 프로그래밍(declarative programming)은 무엇을(what) 처리해야 하는지를 표현함으로써 알고리즘 구현으로 인한 이슈를 최소화하거나 제거한다.
+어떻게(how)에 해당하는 구현 부분은 별도로 작성하여 사용하도록 한다.
+ 함수형 프로그래밍(Functional Programming) 개요  함수형 프로그래밍은 프로그래밍 패러다임으로 프로그램을 함수를 통해서 표현하는 방식이며, 함수를 통해서 선언적 프로그래밍을 구현한 것이다. 선언적 프로그래밍 방식을 통해 로직에 대해서 더 높은 수준의 추상화가 되어있다.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/" rel="bookmark">
+			Servlet에 대한 이해
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-08-28T00:00:00Z">August 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/spring/" rel="category">Spring</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		웹 어플리케이션의 기본이라고 할 수 있는 서블릿에 대해서 다시 정리해보았다. 오래된 개념이면서 아직 활발하게 사용되고 있는 기술이기 때문에 개발자들 마다 다른 방식으로 구현하고 있으나 크게 그 의미를 신경쓰지 않는다. 그래서 처음이라고 생각하고 다시 책을 뒤적이며 정리해보았다.
+ 서블릿Servlet에 대한 이해 서블릿의 기본은 브라우저에서 사용자 request을 받아 처리한 후, 동적 데이터가 채워진 결과를 response하기 위한 내기 위한 Java 프로그램이다. 이를 위해서 서블릿은 자신이 처리하고자 하는 URL을 정의하고, 요청 타입(GET, POST, DELETE 등)에 따른 동작을 정의하게 된다.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/architecture/msa/msa_20210813_front-integration/" rel="bookmark">
+			[MSA] 마이크로서비스 Frontend 통합 방안
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-08-13T00:00:00Z">August 13, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		마이크로서비스를 Web Frontend와 통합하는 방법을 알아보려고 한다.
+ 1. Frontend 구현 아키텍쳐 1.1 모놀리틱 Frontend + 모놀리틱 Backend 전통적인 웹 개발 방법으로 시스템이 너무 작거나 간단한 경우 모듈화는 하는 것 자체가 많은 노력이 필요하기 때문에, 이 경우 불피요한 모듈화 작업을 수행하지 않음으로써 이에 들어가는 에포트를 줄일 수 있다.
+1.2 모듈화된 모놀리틱 Frontend + 마이크로서비스 Backend 모놀리틱으로 배포되는 frontend도 모듈화되어서 개발될 수 있다. 이 경우 모듈 단위로 개발할 수 있지만 결국 배포는 전체 frontend 단위로 수행되기 때문에 microservice가 갖는 배포 관점의 장점을 가질 수 없다.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/" rel="bookmark">
+			[MSA] SCS, Self-Contained System
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-08-10T00:00:00Z">August 10, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		정의 self-contained system (SCS) 는 도메인에 대한 전체 로직 로직, 데이터 및 UI 를 모두 포함하기 때문에 self-contained system이라고 부른다. SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.
+하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다. SCS 간에는 공통된 UI는 존재하지 않으며, UI는 하나 이상의 SCS로 구성된다.이는 SCS가 UI의 일부 부분을 생성하는 것을 의미한다.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/bigdata/kafka/20210628_kafka_summary/" rel="bookmark">
 			[kafka]  Apache Kafka 구경하기
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-28T00:00:00Z">June 28, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-28T00:00:00Z">June 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		📧📧📧📧📧📧📧📧
@@ -80,13 +154,15 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/swa/202106_system_design_2/" rel="bookmark">
+			<a href="/posts/architecture/systems/202106_system_design_2/" rel="bookmark">
 			[SWA]  System Design Warmup - 2 (작성중)
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-27T00:00:00Z">June 27, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-27T00:00:00Z">June 27, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		🏛️
@@ -105,13 +181,15 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/swa/202106_system_design_1/" rel="bookmark">
+			<a href="/posts/architecture/systems/202106_system_design_1/" rel="bookmark">
 			[SWA]  System Design Warmup - 1
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-23T00:00:00Z">June 23, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-23T00:00:00Z">June 23, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		🏛️
@@ -130,13 +208,15 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/datalake/20210427_datalake_limitations/" rel="bookmark">
+			<a href="/posts/bigdata/datalake/20210427_datalake_limitations/" rel="bookmark">
 			[Datalake] 20210427 - Datalake의 한계 및 극복 방안
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-27T00:00:00Z">April 27, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-27T00:00:00Z">April 27, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		:lake:
@@ -146,13 +226,15 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/adsp/7_adsp_fin/" rel="bookmark">
+			<a href="/posts/datascience/adsp/7_adsp_fin/" rel="bookmark">
 			[ADsP] 28회 데이터분석 준전문가 합격 후기 
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/datasicence/" rel="category">DataSicence</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		😃
@@ -162,86 +244,20 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/spark/20210413_spark_architecture/" rel="bookmark">
+			<a href="/posts/bigdata/spark/20210413_spark_architecture/" rel="bookmark">
 			[Spark]  Apache Spark  클러스터 기본 아키텍쳐 
 			</a>
 		</h2>
 		<div class="list__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div></div>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		🌟 spark
 +++
 Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/hadoop/qna_01_hadoopqna/" rel="bookmark">
-			[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) 
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-01T00:00:00Z">April 01, 2021</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		🐘 하아두우웁!!
- Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
-HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/datalake/20210328_01_datalake02/" rel="bookmark">
-			[Enterprise Big DataLake] 02. Datalake 구축 절차
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-28T00:00:00Z">March 28, 2021</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		💾
-앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
- 데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/datalake/20210321_ebdl_01_datalake01/" rel="bookmark">
-			[Enterprise Big DataLake] 01. Datalake 소개 
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-21T00:00:00Z">March 21, 2021</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		💾
-국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.
-업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다.
-	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/adsp/6_adsp_subject_map/" rel="bookmark">
-			[ADsP] 데이터분석 주제 정리 
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-07T00:00:00Z">March 07, 2021</time></div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		😃
-데이터 분석 과목에서 다루는 주제들이 생각보다 넓다보니 한눈에 보기가 쉽지 않다. 각 기술들에 상세한 분석을 하기전에 전체적인 흐름을 정리하고자 한다.
-   R 기초
-  통계분석
-  통계분석 개요 (모집단, 표본, 표본추출방법)
- 표본추출방법  확률적추출 (단순 무작위 추출, 계통추출, 층화 추출, 군집 추출) 비확률적 추출 (판단추출, 할당추출, 편의추출)   자료의 종류 (명목척도, 서열척도, 등간척도, 비율척도)    통계분석 분류
- 기술통계 / 추론통계 모수통계 / 비모수통계    확률 / 확률분포 (확률곱, 조건부 확률,
 	</div>
 </article>
 </main>
@@ -254,39 +270,53 @@ HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한�
 			</div>
 			
 <aside class="sidebar">
+<div class="widget-categories widget">
+	<h4 class="widget__title">Categories</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/architecture/">Architecture</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/bigdata/">Bigdata</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/datasicence/">DataSicence</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/etc/">ETC</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/java/">Java</a></li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/spring/">Spring</a></li>
+		</ul>
+	</div>
+</div>
 <div class="widget-taglist widget">
 	<h4 class="widget__title">Tags</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/adsp/" title="adsp">adsp</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/architecture/" title="architecture">architecture</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/auth/" title="auth">auth</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/bigdata/" title="Bigdata">Bigdata</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/book/" title="Book">Book</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/datalake/" title="Datalake">Datalake</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/deltalake/" title="DeltaLake">DeltaLake</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/ed25519/" title="ed25519">ed25519</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/datalake/" title="datalake">datalake</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/functional-programming/" title="Functional Programming">Functional Programming</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/git/" title="git">git</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hadoop/" title="hadoop">hadoop</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hbase/" title="HBase">HBase</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/hbase/" title="hbase">hbase</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/hive/" title="hive">hive</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interview/" title="interview">interview</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/kafka/" title="kafka">kafka</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/quorum/" title="quorum">quorum</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/microservice/" title="microservice">microservice</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/r/" title="R">R</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/spark/" title="spark">spark</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/web/" title="web">web</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zookeeper/" title="zookeeper">zookeeper</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B6%84%EC%84%9D/" title="데이터분석">데이터분석</a>
 	</div>
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/kafka/20210628_kafka_summary/">[kafka]  Apache Kafka 구경하기</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/swa/202106_system_design_2/">[SWA]  System Design Warmup - 2 (작성중)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/swa/202106_system_design_1/">[SWA]  System Design Warmup - 1</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/datalake/20210427_datalake_limitations/">[Datalake] 20210427 - Datalake의 한계 및 극복 방안</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/adsp/7_adsp_fin/">[ADsP] 28회 데이터분석 준전문가 합격 후기 </a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/programming/java/202110_java_functional_programming/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">Servlet에 대한 이해</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210813_front-integration/">[MSA] 마이크로서비스 Frontend 통합 방안</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[MSA] SCS, Self-Contained System</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/bigdata/kafka/20210628_kafka_summary/">[kafka]  Apache Kafka 구경하기</a></li>
 		</ul>
 	</div>
 </div>

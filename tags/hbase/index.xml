@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>HBase on PS Tech study</title>
+    <title>hbase on PS Tech study</title>
     <link>/tags/hbase/</link>
-    <description>Recent content in HBase on PS Tech study</description>
+    <description>Recent content in hbase on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 11 Jul 2018 00:00:00 +0000</lastBuildDate><atom:link href="/tags/hbase/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구</title>
-      <link>/posts/hbase/20180711_hbase_write_ahead_log/</link>
+      <link>/posts/bigdata/hbase/20180711_hbase_write_ahead_log/</link>
       <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/posts/hbase/20180711_hbase_write_ahead_log/</guid>
+      <guid>/posts/bigdata/hbase/20180711_hbase_write_ahead_log/</guid>
       <description>🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
  Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다.</description>
     </item>
     
     <item>
       <title>[HBase] hbase shell command, HBase 명령어</title>
-      <link>/posts/hbase/20180110_hbase_shell_command/</link>
+      <link>/posts/bigdata/hbase/20180110_hbase_shell_command/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/posts/hbase/20180110_hbase_shell_command/</guid>
+      <guid>/posts/bigdata/hbase/20180110_hbase_shell_command/</guid>
       <description>🐬 HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .
  2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
 &amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인

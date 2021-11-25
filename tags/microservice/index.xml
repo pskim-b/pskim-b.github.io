@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>microservice on PS Tech study</title>
+    <link>/tags/microservice/</link>
+    <description>Recent content in microservice on PS Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/microservice/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[MSA] 마이크로서비스 Frontend 통합 방안</title>
+      <link>/posts/architecture/msa/msa_20210813_front-integration/</link>
+      <pubDate>Fri, 13 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/msa/msa_20210813_front-integration/</guid>
+      <description>마이크로서비스를 Web Frontend와 통합하는 방법을 알아보려고 한다.
+ 1. Frontend 구현 아키텍쳐 1.1 모놀리틱 Frontend + 모놀리틱 Backend 전통적인 웹 개발 방법으로 시스템이 너무 작거나 간단한 경우 모듈화는 하는 것 자체가 많은 노력이 필요하기 때문에, 이 경우 불피요한 모듈화 작업을 수행하지 않음으로써 이에 들어가는 에포트를 줄일 수 있다.
+1.2 모듈화된 모놀리틱 Frontend + 마이크로서비스 Backend 모놀리틱으로 배포되는 frontend도 모듈화되어서 개발될 수 있다. 이 경우 모듈 단위로 개발할 수 있지만 결국 배포는 전체 frontend 단위로 수행되기 때문에 microservice가 갖는 배포 관점의 장점을 가질 수 없다.</description>
+    </item>
+    
+    <item>
+      <title>[MSA] SCS, Self-Contained System</title>
+      <link>/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/</link>
+      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/</guid>
+      <description>정의 self-contained system (SCS) 는 도메인에 대한 전체 로직 로직, 데이터 및 UI 를 모두 포함하기 때문에 self-contained system이라고 부른다. SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.
+하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다. SCS 간에는 공통된 UI는 존재하지 않으며, UI는 하나 이상의 SCS로 구성된다.이는 SCS가 UI의 일부 부분을 생성하는 것을 의미한다.</description>
+    </item>
+    
+  </channel>
+</rss>

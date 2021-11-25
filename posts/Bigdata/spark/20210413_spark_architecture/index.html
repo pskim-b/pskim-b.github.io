@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Spark]  Apache Spark  클러스터 기본 아키텍쳐  - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[Spark]  Apache Spark  클러스터 기본 아키텍쳐 " />
+<meta property="og:description" content="🌟 spark
+&#43;&#43;&#43;
+Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/spark/20210413_spark_architecture/" />
+<meta property="article:published_time" content="2021-04-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-09T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Spark]  Apache Spark  클러스터 기본 아키텍쳐 </h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<p>🌟 spark</p>
+<p>+++</p>
+<h2 id="spark-특성">Spark 특성</h2>
+<ul>
+<li>In-memory 클러스터 컴퓨팅 엔진이다.</li>
+<li>별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.</li>
+</ul>
+<h2 id="spark--its-features"><strong>Spark &amp; its Features</strong></h2>
+<p>Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its <em><strong>in-memory cluster computing</strong></em> that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *<strong>data parallelism and fault tolerance*</strong>. It is designed to cover a wide range of workloads such as batch applications, iterative algorithms, interactive queries, and streaming.</p>
+<h3 id="features-of-apache-spark"><strong>Features of Apache Spark:</strong></h3>
+<p><img src="https://www.edureka.co/blog/wp-content/uploads/2018/09/Picture5-2.png" alt="Spark Features- Spark Architecture-Edureka">                              Fig: Features of Spark</p>
+<ol>
+<li><strong>Speed</strong>**
+**Spark runs up to 100 times faster than Hadoop MapReduce for large-scale data processing. It is also able to achieve this speed through controlled partitioning.</li>
+<li>**Powerful Caching
+**Simple programming layer provides powerful caching and disk persistence capabilities.</li>
+<li>**Deployment
+**It can be deployed through <em><strong>Mesos, Hadoop via YARN, or Spark’s own cluster manager.</strong></em></li>
+<li><strong>Real-Time</strong>
+It offers Real-time computation &amp; low latency because of <em><strong>in-memory computation.</strong></em></li>
+<li><strong>Polyglot</strong>
+Spark provides high-level APIs in Java, Scala, Python, and R. Spark code can be written in any of these four languages. It also provides a shell in Scala and Python.</li>
+</ol>
+<h2 id="spark-architecture-overview"><strong>Spark Architecture Overview</strong></h2>
+<p>Apache Spark has a well-defined layered architecture where all the spark components and layers are loosely coupled. This architecture is further integrated with various extensions and libraries. Apache Spark Architecture is based on two main abstractions:</p>
+<ul>
+<li><em>Resilient Distributed Dataset (RDD)</em></li>
+<li><em>Directed Acyclic Graph (DAG)</em></li>
+</ul>
+<p><img src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/09/2018-09-28-18_12_51-Apache-Spark-Architecture-_-Understanding-the-Spark-Components-_-Edureka.png" alt="Spark Architecture _ Edureka">                            Fig: Spark Architecture</p>
+<p>But before diving any deeper into the Spark architecture, let me explain few fundamental concepts of Spark like Spark Eco-system and RDD. This will help you in gaining better insights.</p>
+<p>Let me first explain what is Spark Eco-System.</p>
+<h2 id="spark-eco-system"><strong>Spark Eco-System</strong></h2>
+<p>As you can see from the below image, the spark ecosystem is composed of various components like Spark SQL, Spark Streaming, MLlib, GraphX, and the Core API component.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Spark Eco-system- Spark Architecture - edureka">                               Fig: Spark Eco-System</p>
+<ol>
+<li>**Spark Core
+**Spark Core is the base engine for large-scale parallel and distributed data processing. Further, additional libraries which are built on the top of the core allows diverse workloads for streaming, SQL, and machine learning. It is responsible for memory management and fault recovery, scheduling, distributing and monitoring jobs on a cluster &amp; interacting with storage systems.</li>
+<li>**Spark Streaming
+**Spark Streaming is the component of Spark which is used to process real-time streaming data. Thus, it is a useful addition to the core Spark API. It enables high-throughput and fault-tolerant stream processing of live data streams.</li>
+<li>**Spark SQL
+**Spark SQL is a new module in Spark which integrates relational processing with Spark’s functional programming API. It supports querying data either via SQL or via the Hive Query Language. For those of you familiar with RDBMS, Spark SQL will be an easy transition from your earlier tools where you can extend the boundaries of traditional relational data processing.</li>
+<li>**GraphX
+**GraphX is the Spark API for graphs and graph-parallel computation. Thus, it extends the Spark RDD with a Resilient Distributed Property Graph. At a high-level, GraphX extends the Spark RDD abstraction by introducing the Resilient Distributed Property Graph (a directed multigraph with properties attached to each vertex and edge).</li>
+<li><strong>MLlib (Machine Learning)</strong>
+MLlib stands for Machine Learning Library. Spark MLlib is used to perform machine learning in Apache Spark.</li>
+<li>***SparkR
+***It is an R package that provides a distributed data frame implementation. It also supports operations like selection, filtering, aggregation but on large data-sets.</li>
+</ol>
+<p>As you can see, Spark comes packed with high-level libraries, including support for R, SQL, Python, Scala, Java etc. These standard libraries increase the seamless integrations in a complex workflow. Over this, it also allows various sets of services to integrate with it like MLlib, GraphX, SQL + Data Frames, Streaming services etc. to increase its capabilities.</p>
+<p>Now, let’s discuss the fundamental Data Structure of Spark, i.e. RDD.</p>
+<h4 id="subscribe-to-our-youtube-channel-to-get-new-updates">Subscribe to our YouTube channel to get new updates&hellip;</h4>
+<iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" tabindex="0" vspace="0" width="100%" id="I0_1618323628000" name="I0_1618323628000" src="https://www.youtube.com/subscribe_embed?usegapi=1&amp;channelid=UCkw4JCwteGrDHIsyIIKo4tQ&amp;layout=full&amp;count=default&amp;origin=https%3A%2F%2Fwww.edureka.co&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.ko.47UJjQcsGLM.O%2Fam%3DAQ%2Fd%3D1%2Fct%3Dzgms%2Frs%3DAGLTcCNrQ1camlgvhO0NxcZ6L8-gYpjG0Q%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I0_1618323628000&amp;_gfid=I0_1618323628000&amp;parent=https%3A%2F%2Fwww.edureka.co&amp;pfname=&amp;rpctoken=32770960" data-gapiattached="true" style="box-sizing: border-box; display: list-item; height: 48px; margin: 0px; text-align: center; max-width: 100%; min-width: 1px !important; z-index: 0 !important; position: static; top: 0px; width: 180px; border-style: none; left: 0px; visibility: visible;"></iframe>
+<h2 id="resilient-distributed-datasetrdd"><strong>Resilient Distributed Dataset(RDD)</strong></h2>
+<p>RDDs are the building blocks of any Spark application. RDDs Stands for:</p>
+<ul>
+<li>*<strong>Resilient:*</strong> Fault tolerant and is capable of rebuilding data on failure</li>
+<li><em><strong>Distributed:</strong></em> Distributed data among the multiple nodes in a cluster</li>
+<li>*<strong>Dataset:*</strong> Collection of partitioned data with values</li>
+</ul>
+<p><img src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2018/07/Partitions.png" alt="Partitions - Spark Architecture - Edureka"></p>
+<p>It is a layer of abstracted data over the distributed collection. It is immutable in nature and follows <em><a href="https://www.edureka.co/blog/spark-tutorial/#Spark_Features">lazy transformations</a></em>.</p>
+<p>Now you might be wondering about its working. Well, the data in an RDD is split into chunks based on a key. RDDs are highly resilient, i.e, they are able to recover quickly from any issues as the same data chunks are replicated across multiple executor nodes. Thus, even if one executor node fails, another will still process the data. This allows you to perform your functional calculations against your dataset very quickly by harnessing the power of multiple nodes.</p>
+<p><a href="https://www.edureka.co/apache-spark-scala-certification-training"><img src="https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/themes/edu-new/img/course-curriculum.png" alt="Course Curriculum">Apache Spark and Scala Certification TrainingInstructor-led SessionsReal-life Case StudiesAssessmentsLifetime AccessExplore Curriculum</a></p>
+<p>Moreover, once you create an RDD it becomes *<strong>immutable*</strong>. By immutable I mean, an object whose state cannot be modified after it is created, but they can surely be transformed.</p>
+<p>Talking about the distributed environment, each dataset in RDD is divided into logical partitions, which may be computed on different nodes of the cluster. Due to this, you can perform transformations or actions on the complete data parallelly. Also, you don’t have to worry about the distribution, because Spark takes care of that.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Workflow- Spark Architecture - Edureka">                                  Workflow of RDD</p>
+<p>There are two ways to create RDDs − parallelizing an existing collection in your driver program, or by referencing a dataset in an external storage system, such as a shared file system, HDFS, HBase, etc.</p>
+<p>With RDDs, you can perform two types of operations:</p>
+<ol>
+<li><strong>Transformations:</strong> They are the operations that are applied to create a new RDD.</li>
+<li><strong>Actions:</strong> They are applied on an RDD to instruct Apache Spark to apply computation and pass the result back to the driver.</li>
+</ol>
+<p>I hope you got a thorough understanding of RDD concepts. Now let’s move further and see the working of Spark Architecture.</p>
+<h2 id="working-of-spark-architecture"><strong>Working of Spark Architecture</strong></h2>
+<p>As you have already seen the basic architectural overview of Apache Spark, now let’s dive deeper into its working.</p>
+<p>In your <strong>master node</strong>, you have the <em>driver program</em>, which drives your application. The code you are writing behaves as a driver program or if you are using the interactive shell, the shell acts as the driver program.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Spark Architecture - Edureka">                 Fig: Spark Architecture</p>
+<p>Inside the driver program, the first thing you do is, you <em>create</em> a <em><strong>Spark Context.</strong></em> Assume that the Spark context is a gateway to all the Spark functionalities. It is similar to your database connection. Any command you execute in your database goes through the database connection. Likewise, anything you do on Spark goes through Spark context.</p>
+<p>Now, this Spark context works with the *<strong>cluster manager*</strong> to manage various jobs. The driver program &amp; Spark context takes care of the job execution within the cluster. A job is split into multiple tasks which are distributed over the worker node. Anytime an RDD is created in Spark context, it can be distributed across various nodes and can be cached there.</p>
+<p><strong>W*orker nodes*</strong> are the slave nodes whose job is to basically execute the tasks. These tasks are then executed on the partitioned RDDs in the worker node and hence returns back the result to the Spark Context.</p>
+<p>Spark Context takes the job, breaks the job in tasks and distribute them to the worker nodes. These tasks work on the partitioned RDD, perform operations, collect the results and return to the main Spark Context.</p>
+<p>If you increase the number of workers, then you can divide jobs into more partitions and execute them parallelly over multiple systems. It will be a lot faster.</p>
+<p>With the increase in the number of workers, memory size will also increase &amp; you can cache the jobs to execute it faster.</p>
+<p>To know about the workflow of Spark Architecture, you can have a look at the <strong>infographic</strong> below:</p>
+<h3 id="big-data-training">Big Data Training</h3>
+<p><a href="https://www.edureka.co/big-data-hadoop-training-certification">BIG DATA HADOOP CERTIFICATION TRAININGBig Data Hadoop Certification Training<em>Reviews</em> 5(163009)</a></p>
+<p><a href="https://www.edureka.co/pyspark-certification-training">PYTHON SPARK CERTIFICATION TRAINING USING PYSPARKPython Spark Certification Training using PySpark<em>Reviews</em> 5(6221)</a></p>
+<p><a href="https://www.edureka.co/apache-spark-scala-certification-training">APACHE SPARK AND SCALA CERTIFICATION TRAININGApache Spark and Scala Certification Training<em>Reviews</em> 5(27411)</a></p>
+<p><a href="https://www.edureka.co/splunk-certification-training">SPLUNK TRAINING &amp; CERTIFICATION- POWER USER &amp; ADMINSplunk Training &amp; Certification- Power User &amp; Admin<em>Reviews</em> 5(7892)</a></p>
+<p><a href="https://www.edureka.co/kafka-certification-training">APACHE KAFKA CERTIFICATION TRAININGApache Kafka Certification Training<em>Reviews</em> 5(6549)</a></p>
+<p><a href="https://www.edureka.co/elk-stack-training-sp">ELK STACK TRAINING &amp; CERTIFICATIONELK Stack Training &amp; Certification<em>Reviews</em> 5(1622)</a></p>
+<p><a href="https://www.edureka.co/hadoop-administration-training-certification">HADOOP ADMINISTRATION CERTIFICATION TRAININGHadoop Administration Certification Training<em>Reviews</em> 5(25233)</a></p>
+<p><a href="https://www.edureka.co/apache-storm-certification-training">APACHE STORM CERTIFICATION TRAININGApache Storm Certification Training<em>Reviews</em> 5(5551)</a></p>
+<p><a href="https://www.edureka.co/comprehensive-hive">COMPREHENSIVE HIVE CERTIFICATION TRAININGComprehensive Hive Certification Training<em>Reviews</em> 5(2304)</a></p>
+<p>Next</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Spark Architecture - Edureka">                             Fig: Spark Architecture Infographic</p>
+<p><strong>STEP 1:</strong> The client submits spark user application code. When an application code is submitted, the driver implicitly converts user code that contains transformations and actions into a logically <em>directed acyclic graph</em> called <em><strong>DAG.</strong></em> At this stage, it also performs optimizations such as pipelining transformations.</p>
+<p><strong>STEP 2:</strong> After that, it converts the logical graph called DAG into physical execution plan with many stages. After converting into a physical execution plan, it creates physical execution units called tasks under each stage. Then the tasks are bundled and sent to the cluster.</p>
+<p><strong>STEP 3:</strong> Now the driver talks to the cluster manager and negotiates the resources. Cluster manager launches executors in worker nodes on behalf of the driver. At this point, the driver will send the tasks to the executors based on data placement. When executors start, they register themselves with drivers. So, the driver will have a complete view of executors that are executing the task.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Spark Architecture - Edureka"></p>
+<p><strong>STEP 4:</strong> During the course of execution of tasks, driver program will monitor the set of executors that runs. Driver node also schedules future tasks based on data placement.</p>
+<p>This was all about Spark Architecture. Now, let’s get a hand’s on the working of a Spark shell.</p>
+<h2 id="example-using-scala-in-spark-shell"><strong>Example using Scala in Spark shell</strong></h2>
+<p>At first, let’s start the Spark shell by assuming that Hadoop and Spark daemons are up and running. *<strong>Web UI*</strong> port for Spark is *<strong>localhost:4040.*</strong></p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Spark shell-Spark Architecture - Edureka">                                Fig: Spark-shell</p>
+<p>Once you have started the Spark shell, now let’s see how to execute a word count example:</p>
+<ol>
+<li>In this case, I have created a simple text file and stored it in the hdfs directory. You can also use other large data files as well.
+<img src="https://www.edureka.co/blog/wp-content/uploads/2018/09/2018-09-27-10_02_10-sample-file.PNG-%E2%80%8E-Photos.png" alt="img">                                         Fig: Input text file</li>
+<li>Once the spark shell has started, let’s create an RDD. For this, you have to specify the input file path and apply the transformation <strong>flatMap()</strong>. Below code illustrates the same:</li>
+</ol>
+<pre><code>scala&gt; var map = sc.textFile(&quot;hdfs://localhost:9000/Example/sample.txt&quot;).flatMap(line =&gt; line.split(&quot; &quot;)).map(word =&gt; (word,1)); 
+</code></pre><p>\3. On executing this code, an RDD will be created as shown in the figure.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="img">                                           Fig: RDD creation</p>
+<p>\4. After that, you need to apply the action <strong>reduceByKey()</strong> to the created RDD.</p>
+<pre><code>scala&gt; var counts = map.reduceByKey(_+_);
+</code></pre><p>After applying action, execution starts as shown below.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="img">                                       Fig: Spark execution in the shell</p>
+<p>\5. Next step is to save the output in a text file and specify the path to store the output.</p>
+<p><img src="data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="img">                        Fig: Specifying the Output path</p>
+<p>\6. After specifying the output path, go to the <em>hdfs web browser <strong>localhost:50040.</strong></em> Here you can see the output text in the ‘part’ file as shown below.</p>
+<p><img src="https://www.edureka.co/blog/wp-content/uploads/2018/09/2018-09-27-09_55_11-PART-FILE-11.PNG-%E2%80%8E-Photos.png" alt="img">                                     Fig: Output part file</p>
+<p>​    \7. Below figure shows the output text present in the ‘part’ file.</p>
+<p><img src="https://www.edureka.co/blog/wp-content/uploads/2018/09/2018-09-27-09_56_33-part-file.PNG-%E2%80%8E-Photos.png" alt="img">                 Fig: Output text</p>
+<p>I hope that you have understood how to create a Spark Application and arrive at the output.ur Newsletter, and get personalized recommendations.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/spark/" rel="tag">spark</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/bigdata/hadoop/qna_01_hadoopqna/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/datascience/adsp/7_adsp_fin/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[ADsP] 28회 데이터분석 준전문가 합격 후기 </p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

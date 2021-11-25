@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bigdata on PS Tech study</title>
+    <link>/categories/bigdata/</link>
+    <description>Recent content in Bigdata on PS Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/bigdata/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[kafka]  Apache Kafka 구경하기</title>
+      <link>/posts/bigdata/kafka/20210628_kafka_summary/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/kafka/20210628_kafka_summary/</guid>
+      <description>📧📧📧📧📧📧📧📧
+분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
+  순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
+  서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?</description>
+    </item>
+    
+    <item>
+      <title>[Datalake] 20210427 - Datalake의 한계 및 극복 방안</title>
+      <link>/posts/bigdata/datalake/20210427_datalake_limitations/</link>
+      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/datalake/20210427_datalake_limitations/</guid>
+      <description>:lake:
+앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
+ 데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!</description>
+    </item>
+    
+    <item>
+      <title>[Spark]  Apache Spark  클러스터 기본 아키텍쳐 </title>
+      <link>/posts/bigdata/spark/20210413_spark_architecture/</link>
+      <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/spark/20210413_spark_architecture/</guid>
+      <description>🌟 spark
++++
+Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp;amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.</description>
+    </item>
+    
+    <item>
+      <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
+      <link>/posts/bigdata/hadoop/qna_01_hadoopqna/</link>
+      <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/qna_01_hadoopqna/</guid>
+      <description>🐘 하아두우웁!!
+ Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
+HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
+    </item>
+    
+    <item>
+      <title>[Enterprise Big DataLake] 02. Datalake 구축 절차</title>
+      <link>/posts/bigdata/datalake/20210328_01_datalake02/</link>
+      <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/datalake/20210328_01_datalake02/</guid>
+      <description>💾
+앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
+ 데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!</description>
+    </item>
+    
+    <item>
+      <title>[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</title>
+      <link>/posts/bigdata/zookeeper/202190209_zookeeper_quorum/</link>
+      <pubDate>Sat, 09 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/zookeeper/202190209_zookeeper_quorum/</guid>
+      <description>👷‍♂️
+Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.
+ Zookeeper를 짝수로 구성하면 어떤 문제가 생길까? 결론적으로 말하면 그렇다고 해서 문제가 생기지는 않는다. 다만 4대로 구성하는 경우는 결함failure 에 대한 수준이 3대로 구성한 것과 다르지 않으며, 6대로 구성한 경우도 5대로 구성한 경우와 다르지 않다.</description>
+    </item>
+    
+    <item>
+      <title>[HIVE] 파티션 타입 및 종류</title>
+      <link>/posts/bigdata/hive/hive_partition_type/</link>
+      <pubDate>Tue, 28 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hive/hive_partition_type/</guid>
+      <description>😃
+Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다.</description>
+    </item>
+    
+    <item>
+      <title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구</title>
+      <link>/posts/bigdata/hbase/20180711_hbase_write_ahead_log/</link>
+      <pubDate>Wed, 11 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hbase/20180711_hbase_write_ahead_log/</guid>
+      <description>🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
+ Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다.</description>
+    </item>
+    
+    <item>
+      <title>[HBase] hbase shell command, HBase 명령어</title>
+      <link>/posts/bigdata/hbase/20180110_hbase_shell_command/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hbase/20180110_hbase_shell_command/</guid>
+      <description>🐬 HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .
+ 2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
+&amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인
+&amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[HIVE] 파티션 타입 및 종류 - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[HIVE] 파티션 타입 및 종류" />
+<meta property="og:description" content="😃
+Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다. 기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 Fact 테이블 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/hive/hive_partition_type/" />
+<meta property="article:published_time" content="2018-08-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-08-28T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[HIVE] 파티션 타입 및 종류</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-08-28T00:00:00Z">August 28, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<p>😃</p>
+<p>Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다.  기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 <a href="https://en.wikipedia.org/wiki/Fact_table">Fact 테이블</a> 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다. 그러면 간단히 Hive 파티션에 대해서 알아보자.</p>
+<hr>
+<h1 id="1-파티션-테이블-생성"><strong>1. 파티션 테이블</strong> <strong>생성</strong></h1>
+<p>일반적으로 hive의 non-partition 테이블은 아래와 같이 생성할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> salesdata_source(
+    salesperson_id int,  
+    product_id int,
+    date_of_sale string
+)
+</code></pre></div><p>위의 테이블에서 date_of_sale 칼럼을 partition key로 설정하기 위해서는 아래와 같이 partitioned by 를 사용하면 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">table</span> salesdata (
+    salesperson_id int,
+    product_id int
+)partitioned <span style="color:#66d9ef">by</span> (date_of_sale string)
+</code></pre></div><p>위와 같이 partition 테이블을 생성하면 &lsquo;desc salesdata&rsquo; 를 수행해도 date_of_sale 칼럼은 일반 칼럼으로 보여지는 것이 아닌 partition key로 보여지게 된다.</p>
+<hr>
+<h1 id="2-파티셔닝-방법"><strong>2. 파티셔닝 방법</strong></h1>
+<p>파티션 테이블에 데이터를 넣는 방법은 다양하다. 일단 파티셔닝 방법에 따라서 아래와 같이 나눌 수 있다.</p>
+<ul>
+<li>정적 파티션 (static partition)</li>
+<li>동적 파티션 (dynamic partition)</li>
+</ul>
+<p>다음으로 데이터 적재 방법에 따라 아래와 같이 나눌 수 있다.</p>
+<ul>
+<li>non-partition테이블/text 테이블에서 columnar partition 테이블로 insert overwrite 수행</li>
+<li>특정 일자와 같이 항상 새로운 partition key의 값으로 데이터가 추가(append)되는 경우 직접 hdfs에 데이터 업로드 후 msck repair로 메타 정보를 업데이트 ( 외부 파티션 테이블, external partitioned table)</li>
+</ul>
+<p>각각의 방법은 업무에 따라서 선택적으로 활용할 수 있다.</p>
+<h2 id="21-정적-파티션">2.1 정적 파티션</h2>
+<p>정적 파티션은 data 삽입을 위해서 partition의 값을 명시적으로 입력해야 한다. 예를들어 아래와 같이 salesdata_source 에서 &lsquo;10-27-2017&rsquo; , &lsquo;10-28-2017&rsquo; 두 값으로 가져온 데이터를  파티셔닝 된 salesdata 에 넣으면서 파티션 값을 설정할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">table</span> salesdata partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-27-2017&#39;</span>) <span style="color:#960050;background-color:#1e0010">\</span>
+<span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> salesdata_source <span style="color:#66d9ef">where</span> date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-27-2017&#39;</span>;
+
+<span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> <span style="color:#66d9ef">table</span> salesdata partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-28-2017&#39;</span>) <span style="color:#960050;background-color:#1e0010">\</span>
+<span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> salesdata_source <span style="color:#66d9ef">where</span> date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-28-2017&#39;</span>;
+</code></pre></div><p>결과적으로 아래와 같은 결과를 확인할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">show</span> partitions salesdata;	
+O<span style="color:#f92672">/</span>p:
+date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-27-2017&#39;</span>
+date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-28-2017&#39;</span>
+</code></pre></div><p>전체 데이터를 조회하면 값이나 출력 결과가 달라진 것은 없다. 하지만 내부적으로 데이터 들은 생성된 두 개의 파티션에 데이터가 별도로 저장되어 있고, 그곳으로부터 데이터를 읽어온다. 이것은 HDFS (or Object Storage) 에서  아래와 같이 값을 확인할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">hadoop fs -ls /apps/hive/warehouse/db_name.db/salesdata/
+O/p:
+/apps/hive/warehouse/db_name.db/salesdata/date_of_sale<span style="color:#f92672">=</span>10-27-2017
+/apps/hive/warehouse/db_name.db/salesdata/date_of_sale<span style="color:#f92672">=</span>10-28-2017	
+</code></pre></div><h2 id="22-동적-파티션">2.2 동적 파티션</h2>
+<p>다른 방식으로 insert 하는 데이터가 가지고 있는 파티션 칼럼의 값을 기반으로 동적으로 파티션닝 할 수도 있다. 이것을 사용하기 전에 동적 파티션을 위해 아래와 같이 parameter 설정이 필요하다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">set</span> hive.<span style="color:#66d9ef">exec</span>.<span style="color:#66d9ef">dynamic</span>.partition<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>;     
+ <span style="color:#75715e">--true: hive가 동적 파티션을 수행할 수 있도록 허용 
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">set</span> hive.<span style="color:#66d9ef">exec</span>.<span style="color:#66d9ef">dynamic</span>.partition.<span style="color:#66d9ef">mode</span><span style="color:#f92672">=</span>nonstrict;   
+ <span style="color:#75715e">-- strict: 최소 하나의 정적 파티션이 있어야 한다.(human error 방지) 
+</span><span style="color:#75715e"></span> <span style="color:#75715e">-- nonstrict: 모든 파티션 키가 동적으로 생성된다. 
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">set</span> hive.<span style="color:#66d9ef">exec</span>.<span style="color:#66d9ef">max</span>.<span style="color:#66d9ef">dynamic</span>.partitions<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>;    
+ <span style="color:#75715e">-- 동적으로 생성될 수 있는 파티션 최대 개수 (기본값:1000)
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">set</span> hive.<span style="color:#66d9ef">exec</span>.<span style="color:#66d9ef">max</span>.<span style="color:#66d9ef">dynamic</span>.partitions.pernode<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>; 
+ <span style="color:#75715e">-- mapper/reducer 노드별 생성될 수 있는 파티션 수 (기본값:100)
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">set</span> hive.optimize.sort.<span style="color:#66d9ef">dynamic</span>.partition<span style="color:#f92672">=</span><span style="color:#66d9ef">true</span>;
+ <span style="color:#75715e">-- 전역적으로 파티션 키에 대한 정렬 작업을 수행하여 하나의 파티션 키에 대한 reducer가 1개만 수행되도록 한다. 
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">set</span> hive.merge.tezfiles <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span> 
+ <span style="color:#75715e">-- tez작업결과 일정 크기 이하의 파일들을 합쳐준다. (기본값:false)
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">set</span> hive.merge.smallfiles.avgsize<span style="color:#f92672">=</span><span style="color:#ae81ff">32000000</span>;
+ <span style="color:#75715e">-- 설정한 사이즈 이하의 파일을 합친다. (기본값:약16MB)
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">set</span> hive.merge.<span style="color:#66d9ef">size</span>.per.task <span style="color:#f92672">=</span><span style="color:#ae81ff">256000000</span>;
+ <span style="color:#75715e">-- merge된 파일의 크기 (기본값:약256MB)
+</span><span style="color:#75715e"></span>
+</code></pre></div><p>동적 파티션의 경우 편리하게 파티셔닝을 할 수 있다는 장점과 함께 너무 작은 파일이 생길 수 있다는 단점이 있다. 작은 파일이 너무 많이 생기는 경우, 조회작업이 느려지는 현상이 발생할 수 있기 때문에 merge와 관련된 옵션을 같이 사용하는 것이 좋다.</p>
+<hr>
+<h1 id="3파티션의-필요성"><strong>3.파티션의 필요성</strong></h1>
+<p>위에서 생성한 테이블에 다음과 같은 쿼리를 수행해보자.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> salesdata_source <span style="color:#66d9ef">where</span> salesperson_id<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span> <span style="color:#66d9ef">and</span> date_of_sale <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-28-2017&#39;</span>
+</code></pre></div><p>salesdata_source 는 파티션이 되어 있지 않기 때문에 2017년 10월 28일 데이터를 읽기 위해서 full-scan 작업을 거쳐야 한다. 그러나 동일한 쿼리를 파티션이 된 salesdata 에 수행하는 경우, 10-28-2017 의 값을 갖는 파티션만 탐색하면 됨으로 훨씬 작은 자원과 시간으로 쿼리를 수행할 수 있다. 이러한 특성은 테이블이 커질 수록 점점 더 큰 성능 향상을 나타낸다.</p>
+<hr>
+<h1 id="4-외부-파티션-테이블-external-partitioned-table">4. <strong>외부 파티션 테이블 (external partitioned table)</strong></h1>
+<p>앞서 이야기한 것 처럼  파티션 구조에 맞도록 hdfs에 업로드 한 이후 hive 테이블의 파티션을 생성할 수도 있다. 만약 &lsquo;/user/hive/text1.dat&rsquo; 안에는 다음과 같이 파일 내용이 있다고 해보자</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-python" data-lang="python">salesperson_id<span style="color:#f92672">|</span>product_id<span style="color:#f92672">|</span>date_of_sale
+<span style="color:#ae81ff">12</span><span style="color:#f92672">|</span><span style="color:#ae81ff">101</span><span style="color:#f92672">|</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>
+<span style="color:#ae81ff">10</span><span style="color:#f92672">|</span><span style="color:#ae81ff">10010</span><span style="color:#f92672">|</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>	
+<span style="color:#ae81ff">111</span><span style="color:#f92672">|</span><span style="color:#ae81ff">2010</span><span style="color:#f92672">|</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>
+</code></pre></div><p>위의 파일을 이용해서 아래와 같이 파티션 테이블을 생성할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">table</span> salesdata_ext
+(salesperson_id int,
+product_id int)
+partitioned <span style="color:#66d9ef">by</span> (date_of_sale string)
+<span style="color:#66d9ef">location</span> <span style="color:#e6db74">&#39;/user/hive/salesdata_ext/&#39;</span>
+</code></pre></div><p>그리고 아래와 같이 수동으로 partition 경로를 생성 한 후 데이터 파일을 해당 경로에 넣어 주면 된다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">hadoop fs -mkdir /user/hive/salesdata_ext/date_of_sale<span style="color:#f92672">=</span>10-27-2017
+hadoop fs -cp /user/hive/text1.dat /user/hive/salesdata_ext/date_of_sale<span style="color:#f92672">=</span>10-27-2017/	
+</code></pre></div><p>데이터는 넣어 주었지만 hive에는 아직 파티션에 대한 메타정보는 생성이 되지 않았기 때문에 partition 정보가 조회가 되지 않는다. 따라서 msck repair 를 통해서 정보를 갱신해 줘야 한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">show</span> partitions salesdata_ext;
+ <span style="color:#75715e">-- 파티션 조회가 되지 않음 
+</span><span style="color:#75715e"></span>msck repair <span style="color:#66d9ef">table</span> salesdata_ext;   <span style="color:#75715e">-- msck repair로 테이블 메타 조정 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">show</span> partitions salesdata_ext;
+O<span style="color:#f92672">/</span>p: 
+date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>
+
+<span style="color:#75715e">-- 또는 명시적으로 partition을 추가 함 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> salesdata_ext <span style="color:#66d9ef">add</span> partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10-27-2017&#39;</span>);
+<span style="color:#66d9ef">show</span> partitions salesdata_ext;
+O<span style="color:#f92672">/</span>p:
+date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>
+</code></pre></div><hr>
+<h1 id="5파티션-수정">5.파티션 수정</h1>
+<p>Drop 파티션, rename 파티션을 위해서는 alter 명령어를 통해 수행할 수 있다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sql" data-lang="sql"><span style="color:#75715e">--파티션 이름 변경 
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> salesdata partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>) <span style="color:#66d9ef">rename</span> <span style="color:#66d9ef">to</span> partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2018</span>);
+
+<span style="color:#75715e">-- 파티션 삭제 (내부 테이블)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> salesdata <span style="color:#66d9ef">drop</span> partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>) ; 
+o<span style="color:#f92672">/</span>p: (internal <span style="color:#66d9ef">table</span>)
+
+<span style="color:#75715e">-- 파티션 삭제 (외부 테이블)
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">alter</span> <span style="color:#66d9ef">table</span> salesdata_ext <span style="color:#66d9ef">drop</span> partition (date_of_sale<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2017</span>) ; 
+o<span style="color:#f92672">/</span>p: (<span style="color:#66d9ef">external</span> <span style="color:#66d9ef">table</span>) 
+</code></pre></div><p>내부 테이블의 경우 파티션 삭제 시 warehouse 의 하위 경로의 데이터도 같이 삭제가 되지만, 외부 테이블의 경우 파티션 삭제 시 warehouse 의 하위 경로는 삭제되지 않는다.</p>
+<p>반대로 warehouse 의 하위 파일들을 삭제하고 파티션을 삭제하지 않는다면, hive 관리 테이블에서 drop partition 하지 않는 이상 해당 파티션의 정보가 보인다.</p>
+<hr>
+<p>Hive기반의 시스템을 운영하거나 개발하는 사람들을 만나보면 적지 않게, hive의 성능에 대해서 불만을 이야기 한다. 이야기를 나누다 보면 안타까움을 느끼게 되는데 첫번째는 hive에서 RDBMS의 성능을 기대한다는 점. 두번째는 별다른 최적화 없이 사용하고 있다는 점이다.</p>
+<p>파티션을 만들고 관리하는 것은 hive의 시작이라고 할 수 있다. RDBMS에는 트랜잭션 단위의 데이터 처리에 대한 응답성은 매우 빠르지만, 페타 단위의 큰 데이터가 적재되지도 않거니와 테라 단위의 데이터를 쿼리한다는 것은 매우 어려운 일이다. 하지만 Hive 같은 경우 대용량의 데이터를 높은 처리량(throughput)으로 처리할 수 있도록 설계되었기 때문에 작은 데이터를 처리하거나 응답성이 좋은것을 기대하는 건 무리이다.</p>
+<p>처리하는 데이터의 단위가 다르기 때문에 I/O에 더 민감하다. 그래서 RDBMS에서 인덱스설계를 고심하듯, Hive에서는 반드시 파티션에 대한 설계를 공들여야 한다. 그러고나면 Hive가 보장해 줄 수 있는 최소한의 성능을 제공받을 수 있을 것이다.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hive/" rel="tag">hive</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/bigdata/hbase/20180711_hbase_write_ahead_log/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[HBase] WAL(Write Ahead Log)를 이용한 region 복구</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/bigdata/zookeeper/202190209_zookeeper_quorum/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[zookeeper]  쿼럼과 과반수 투표 (quorums &amp; majority voting)</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

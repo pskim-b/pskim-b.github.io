@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[ADsP]2.R 프로그램 기초 - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[ADsP]2.R 프로그램 기초" />
+<meta property="og:description" content="😃
+요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!
+ R소개 R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/datascience/adsp/2_r_programming/" />
+<meta property="article:published_time" content="2021-01-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-26T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[ADsP]2.R 프로그램 기초</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-01-26T00:00:00Z">January 26, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/datasicence/" rel="category">DataSicence</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<p>😃</p>
+<p>요즘의 대세는 python이야!! 라고 많은 이들이 외치지만 전통적인 분석 언어 R도 많이 사용된다. 분석가에 따라서 R을 쓰기도하고 python을 쓰기도 해서, 많은 프로젝트들에서 R과 python 모두를 만족하는 환경을 제공하고 있다(일반적으로는 sparkR/pySpark로 분산환경에서 학습/분석작업을 수행하고 있다). 이번 장에는 간단히 R로 분석을 하기 위한 간단한 문법을 알아보자!!</p>
+<hr>
+<h1 id="r소개">R소개</h1>
+<p>R은 오픈소스 프로그램으로 통계 및 데이터마이닝과 그 결과를 그래프를 위한 언어이다. 오픈소스이기 때문에 지속적으로 최신의 통계분석과 데이터 마이닝 기술이 반영되어 발전되고 있다. 새로운 것을 이해하는데 가장 좋은 방법 중 하나는 기존에 친숙한 도구들과 비교하는 것이다. (물론 저와 같이 모든게 새로운 분들도 계시겠지만 😓 )</p>
+
+
+
+
+
+<table class="pure-table">
+<thead>
+<tr>
+<th>특징</th>
+<th>SAS</th>
+<th>SPSS(IBM)</th>
+<th>R</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>프로그램 비용</strong></td>
+<td>상용/고가</td>
+<td>상용/고가</td>
+<td>오픈소스/무상</td>
+</tr>
+<tr>
+<td><strong>설치용량</strong></td>
+<td>큼</td>
+<td>큼</td>
+<td>작음</td>
+</tr>
+<tr>
+<td><strong>모듈 지원 및 비용</strong></td>
+<td>별도구매</td>
+<td>별도구매</td>
+<td>오픈소스로 제공</td>
+</tr>
+<tr>
+<td><strong>최근 알고리즘 및 기술 반영</strong></td>
+<td>느림</td>
+<td>다소느림</td>
+<td>매우빠름</td>
+</tr>
+<tr>
+<td><strong>러닝커브</strong></td>
+<td>유료 문서</td>
+<td>유료 문서</td>
+<td>공개 논문/자료 많음</td>
+</tr>
+<tr>
+<td><strong>커뮤니티 활성도</strong></td>
+<td>낮음</td>
+<td>낮음</td>
+<td>높음</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="r특징">R특징</h1>
+<ol>
+<li>오픈소스이다.</li>
+<li>모든 OS에서 사용가능</li>
+<li>객체지향/함수형 언어로 사용가능하다</li>
+<li>S통계언어를 기반으로 업계 표준이다</li>
+<li>그래픽 요소가 강하고 성능이 좋다</li>
+<li>세션 사이마다 시스템이 데이터셋을 저장하여 데이터 적재시간을 줄인다.</li>
+</ol>
+<h1 id="문법">문법</h1>
+<ol>
+<li>
+<p><strong>변수선언 / 간단한 연산</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">3</span>
+<span style="color:#f92672">&gt;</span> b <span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">4</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">+</span>b
+[1] <span style="color:#ae81ff">7</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">+</span>b
+[1] <span style="color:#ae81ff">9</span>
+<span style="color:#f92672">&gt;</span> a
+[1] <span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">print</span>(a)
+[1] <span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> arr_a <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+<span style="color:#f92672">&gt;</span> arr_b <span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;hello&#34;</span>,<span style="color:#e6db74">&#34;it&#34;</span>,<span style="color:#e6db74">&#34;is&#34;</span>,<span style="color:#e6db74">&#34;me&#34;</span>)
+<span style="color:#f92672">&gt;</span> arr_b[0]
+<span style="color:#a6e22e">character</span>(<span style="color:#ae81ff">0</span>)
+<span style="color:#f92672">&gt;</span> arr_b[1]
+[1] <span style="color:#e6db74">&#34;hello&#34;</span>
+<span style="color:#f92672">&gt;</span> arr_b[2]
+[1] <span style="color:#e6db74">&#34;it&#34;</span>
+<span style="color:#f92672">&gt;</span> arr_b[<span style="color:#ae81ff">-2</span>]
+[1] <span style="color:#e6db74">&#34;hello&#34;</span> <span style="color:#e6db74">&#34;is&#34;</span> <span style="color:#e6db74">&#34;me&#34;</span>  
+<span style="color:#f92672">&gt;</span> arr_c <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>)
+<span style="color:#f92672">&gt;</span> arr_a<span style="color:#f92672">+</span>arr_c
+[1]  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">12</span>
+<span style="color:#f92672">&gt;</span> arr_a<span style="color:#f92672">+</span>arr_b
+Error in arr_a <span style="color:#f92672">+</span> arr_b <span style="color:#f92672">:</span> 이항연산자에 수치가 아닌 인수입니다
+</code></pre></div></li>
+<li>
+<p><strong>수열</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">9</span><span style="color:#f92672">:</span><span style="color:#ae81ff">-2</span>
+ [1]  <span style="color:#ae81ff">9</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">-1</span> <span style="color:#ae81ff">-2</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">seq</span>(from<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,to<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,by<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+ [1]  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">12</span> <span style="color:#ae81ff">14</span> <span style="color:#ae81ff">16</span> <span style="color:#ae81ff">18</span> <span style="color:#ae81ff">20</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">seq</span>(from<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>,to<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,length.out<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+[1]  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">10</span> <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">20</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sec</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">2</span>)
+</code></pre></div></li>
+<li>
+<p><strong>반복</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span>,time<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span>,each<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span>
+<span style="color:#f92672">&gt;</span> arr<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">rep</span>(arr,<span style="color:#ae81ff">3</span>)
+ [1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">rep</span>(arr,each<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">4</span>
+</code></pre></div></li>
+<li>
+<p><strong>문자열</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> str_a <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>,<span style="color:#e6db74">&#34;-&#34;</span>) 
+<span style="color:#f92672">&gt;</span> str_a
+[1] <span style="color:#e6db74">&#34;a b c d -&#34;</span>                  <span style="color:#75715e">#기본값은 space</span>
+<span style="color:#f92672">&gt;</span> str_a <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-&#34;</span>)
+<span style="color:#f92672">&gt;</span> str_a
+[1] <span style="color:#e6db74">&#34;a-b-c-d&#34;</span>
+<span style="color:#f92672">&gt;</span> str_i<span style="color:#f92672">=</span><span style="color:#a6e22e">paste</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-&#34;</span>)
+<span style="color:#f92672">&gt;</span> str_i
+[1] <span style="color:#e6db74">&#34;1-2-3-4&#34;</span>      <span style="color:#75715e">#숫자형도 문자로 변환되어 연결 </span>
+<span style="color:#f92672">&gt;</span> str_c<span style="color:#f92672">=</span><span style="color:#a6e22e">paste</span>(arr,<span style="color:#e6db74">&#34;a&#34;</span>)
+<span style="color:#f92672">&gt;</span> str_c
+[1] <span style="color:#e6db74">&#34;1 a&#34;</span> <span style="color:#e6db74">&#34;2 a&#34;</span> <span style="color:#e6db74">&#34;3 a&#34;</span> <span style="color:#e6db74">&#34;4 a&#34;</span>
+<span style="color:#f92672">&gt;</span> str_c<span style="color:#f92672">=</span><span style="color:#a6e22e">paste</span>(arr,<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>)       <span style="color:#75715e">#combine 타입도 사용가능</span>
+<span style="color:#f92672">&gt;</span> str_c
+[1] <span style="color:#e6db74">&#34;1 a b&#34;</span> <span style="color:#e6db74">&#34;2 a b&#34;</span> <span style="color:#e6db74">&#34;3 a b&#34;</span> <span style="color:#e6db74">&#34;4 a b&#34;</span>
+<span style="color:#f92672">&gt;</span> str_c<span style="color:#f92672">=</span><span style="color:#a6e22e">paste</span>(arr,<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-&#34;</span>)
+<span style="color:#f92672">&gt;</span> str_c
+[1] <span style="color:#e6db74">&#34;1-a-b&#34;</span> <span style="color:#e6db74">&#34;2-a-b&#34;</span> <span style="color:#e6db74">&#34;3-a-b&#34;</span> <span style="color:#e6db74">&#34;4-a-b&#34;</span>
+</code></pre></div></li>
+<li>
+<p><strong>논리연산</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>true
+에러<span style="color:#f92672">:</span> 객체 <span style="color:#e6db74">&#39;true&#39;</span>를 찾을 수 없습니다
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>True
+에러<span style="color:#f92672">:</span> 객체 <span style="color:#e6db74">&#39;True&#39;</span>를 찾을 수 없습니다
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>t           <span style="color:#75715e">#t라는 함수가 있나보다</span>
+<span style="color:#f92672">&gt;</span> a
+<span style="color:#a6e22e">function </span>(x) 
+<span style="color:#a6e22e">UseMethod</span>(<span style="color:#e6db74">&#34;t&#34;</span>)
+<span style="color:#f92672">&lt;</span>bytecode<span style="color:#f92672">:</span> <span style="color:#ae81ff">0x0000000004beb650</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> namespace<span style="color:#f92672">:</span>base<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>T
+<span style="color:#f92672">&gt;</span> a
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>true
+에러<span style="color:#f92672">:</span> 객체 <span style="color:#e6db74">&#39;true&#39;</span>를 찾을 수 없습니다
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>True
+에러<span style="color:#f92672">:</span> 객체 <span style="color:#e6db74">&#39;True&#39;</span>를 찾을 수 없습니다
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>t
+<span style="color:#f92672">&gt;</span> a
+<span style="color:#a6e22e">function </span>(x) 
+<span style="color:#a6e22e">UseMethod</span>(<span style="color:#e6db74">&#34;t&#34;</span>)
+<span style="color:#f92672">&lt;</span>bytecode<span style="color:#f92672">:</span> <span style="color:#ae81ff">0x0000000004beb650</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> namespace<span style="color:#f92672">:</span>base<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">=</span>T
+<span style="color:#f92672">&gt;</span> a
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> b<span style="color:#f92672">=</span>F
+<span style="color:#f92672">&gt;</span> b
+[1] <span style="color:#66d9ef">FALSE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&amp;</span>b
+[1] <span style="color:#66d9ef">FALSE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&amp;!</span>b
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&amp;&amp;</span>b
+[1] <span style="color:#66d9ef">FALSE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&amp;&amp;!</span>b
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">|</span>b         <span style="color:#75715e">#비트연산을 지원하지 않는다. </span>
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&gt;</span>b
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">&lt;</span>b
+[1] <span style="color:#66d9ef">FALSE</span>
+<span style="color:#f92672">&gt;</span> a<span style="color:#f92672">==</span>b
+[1] <span style="color:#66d9ef">FALSE</span>
+</code></pre></div></li>
+<li>
+<p><strong>벡터 기초 통계</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> v1<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">8</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sum</span>(v1) <span style="color:#75715e">#합</span>
+[1] <span style="color:#ae81ff">27</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mean</span>(v1) <span style="color:#75715e">#평균</span>
+[1] <span style="color:#ae81ff">5.4</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">median</span>(v1) <span style="color:#75715e">#중앙값</span>
+[1] <span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">len</span>(v1)
+Error in <span style="color:#a6e22e">len</span>(v1) <span style="color:#f92672">:</span> 함수 <span style="color:#e6db74">&#34;len&#34;</span>를 찾을 수 없습니다
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">length</span>(v1) <span style="color:#75715e">#길이</span>
+[1] <span style="color:#ae81ff">5</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">log</span>(v1) <span style="color:#75715e">#로그 </span>
+[1] <span style="color:#ae81ff">1.386294</span> <span style="color:#ae81ff">1.386294</span> <span style="color:#ae81ff">1.609438</span> <span style="color:#ae81ff">1.791759</span> <span style="color:#ae81ff">2.079442</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sd</span>(v1) <span style="color:#75715e">#표준편차</span>
+[1] <span style="color:#ae81ff">1.67332</span> 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">var</span>(v1) <span style="color:#75715e">#분산</span>
+[1] <span style="color:#ae81ff">2.8</span>
+<span style="color:#f92672">&gt;</span> v2<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cov</span>(v1,v2) <span style="color:#75715e">#공분산</span>
+[1] <span style="color:#ae81ff">-4</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cor</span>(v1,v2) <span style="color:#75715e">#상관계수 </span>
+[1] <span style="color:#ae81ff">-0.9376145</span>
+</code></pre></div></li>
+<li>
+<p>기타</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">getwd</span>() <span style="color:#75715e">#현재 작업공간 출력 </span>
+[1] <span style="color:#e6db74">&#34;C:/Users/Desmond/Documents&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">dir.create</span>(<span style="color:#e6db74">&#34;./Rmade&#34;</span>)    <span style="color:#75715e">#디렉토리 생성 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;./Rmade&#34;</span>) <span style="color:#75715e">#작업공간 변경 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getwd</span>() 
+[1] <span style="color:#e6db74">&#34;C:/Users/Desmond/Documents/Rmade&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">history</span>() <span style="color:#75715e">#명령어 이력 확인 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">savehistory</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./myhistory.log&#34;</span>) <span style="color:#75715e">#히스토리 저장 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">loadhistory</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./myhistory.log&#34;</span>) <span style="color:#75715e">#히스토리 로드</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(help<span style="color:#f92672">=</span>AID) <span style="color:#75715e">#다운로드 된 AID패키지의 help문서 확인 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">help</span>(package<span style="color:#f92672">=</span>AID) <span style="color:#75715e">#웹에서 AID패키지 문서 확인  </span>
+starting httpd help server <span style="color:#66d9ef">...</span> 완료
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">source</span>(<span style="color:#e6db74">&#34;myScript.r&#34;</span>)  <span style="color:#75715e"># 외부 스크립트 수행 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">sink</span>(<span style="color:#e6db74">&#34;result.out&#34;</span>)  <span style="color:#75715e"># 출력 결과를 외부 파일로 변경 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">pdf</span>(<span style="color:#e6db74">&#34;result.pdf&#34;</span>) <span style="color:#75715e"># 그래픽 출력 결과를 pdf파일로 지정 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">dev.off</span>() <span style="color:#75715e"># 파일 닫기 </span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;AID&#34;</span>)  <span style="color:#75715e"># R studio 기능 </span>
+<span style="color:#f92672">--</span>
+<span style="color:#75715e"># 배치 수행 w CLI </span>
+<span style="color:#f92672">$&gt;</span> R CMD BATCH ./script<span style="color:#f92672">/</span>myScript.r
+   
+</code></pre></div></li>
+<li>
+<p><strong>헷갈리는 문법</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> n<span style="color:#f92672">=</span><span style="color:#ae81ff">-4</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>n
+[1]  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">-1</span> <span style="color:#ae81ff">-2</span> <span style="color:#ae81ff">-3</span> <span style="color:#ae81ff">-4</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>(n<span style="color:#ae81ff">+1</span>)
+[1]  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">-1</span> <span style="color:#ae81ff">-2</span> <span style="color:#ae81ff">-3</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>n<span style="color:#ae81ff">+1</span>   <span style="color:#75715e">#결과에 +1을 함 </span>
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">-1</span> <span style="color:#ae81ff">-2</span> <span style="color:#ae81ff">-3</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> n
+[1] <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> n<span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">-1</span>    <span style="color:#75715e">#변수입력 시 붙여서 써야됨 </span>
+[1] <span style="color:#66d9ef">FALSE</span>
+</code></pre></div></li>
+</ol>
+<hr>
+<h1 id="정리">정리</h1>
+<ol>
+<li>R은 통계 계산과 그래픽을 위한 프로그래밍 언어이자 소프트웨어 환경이다.</li>
+<li>뉴질랜드 오클랜드 대학의 로스 이하카와 로버트 젠틀맨 😎 에 의해서 시작되어 현재는 R코어 팀이 개발하고 있다.</li>
+<li>R은 GPL(Gerneral Public License) 하에 배포되는 S 프로그래밍 언어 (통계를 위한 언어)로 구현되어 GNU S라고 한다. (GUN is not unix)</li>
+<li>S언어 기반 표준 플랫폼이다.</li>
+<li>모든 OS에서 사용가능하다</li>
+<li>메모리 저장방식이다.</li>
+<li>객체지향 언어이며 함수형 언어이다.</li>
+<li>오픈소스 프로그램으로 무료이다.</li>
+</ol>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/adsp/" rel="tag">adsp</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/r/" rel="tag">R</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/datascience/adsp/0_start/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[ADsP]0.분석(준)전문가 자격증 공부해보자</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/datascience/adsp/3_r_data_processing/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[ADsP]3.R 데이터 처리/분석</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

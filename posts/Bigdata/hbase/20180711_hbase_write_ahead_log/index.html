@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[HBase] WAL(Write Ahead Log)를 이용한 region 복구 - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[HBase] WAL(Write Ahead Log)를 이용한 region 복구" />
+<meta property="og:description" content="🐬 아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.
+ Apache HBase Write Path Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/hbase/20180711_hbase_write_ahead_log/" />
+<meta property="article:published_time" content="2018-07-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-07-11T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[HBase] WAL(Write Ahead Log)를 이용한 region 복구</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-07-11T00:00:00Z">July 11, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<p>🐬   아래는 HBase에 대한 주요 동작들(데이터 탐색 및 저장, 복구)에 대한 내용이다. 조금 내용이 길고 설명이 많아 복잡해 보일 수 있지만 나름대로의 사족을 붙여가며 차근차근 읽기 좋게 정리하기 위해 노력했다.</p>
+<hr>
+<h1 id="apache-hbase-write-path"><strong>Apache HBase Write Path</strong></h1>
+<p>Apache Hbase는 hadoop의 HDFS를 기반으로 하는 NoSQL database이다. HDFS 상의 파일은 생성 후에 오직 append 기능만을 제공하며 read 작업 수행 시 block 단위로 full-scan이 이루어지는데, HBase를 사용하면 HDFS 상의 데이터를 랜덤액세스random access 하거나 업데이트update 가능하도록 해준다. 어떻게 HBase를 통해서 low-latency로 이런 read/write 를 제공할 수 있을까?</p>
+<p>Hbase write path는 Hbase의 put/delete 연산이 어떻게 이루어지는지에 대한 방법을 나타낸 것으로 client에서  region server를 거쳐 결국에는 HFile이라고 불리는 HBase 데이터 파일을 통해 처리된다. write path의 디자인에는 region server에서 장애가 발생했을 때 어떻게 데이터 손실을 막을 수 있는지에 대한 특징이 나타나 있다. 그러므로 write path를 이해함으로써 HBase의 native 데이터 손실 방지 메커니즘에 대한 통찰을 얻을 수 있다.</p>
+<p>HBase table은 기본적으로 다음과 같은 프로세스에 의해서 관리된다.</p>
+<ul>
+<li>HBase Master server  (active/standby)</li>
+<li>HBase Region servers</li>
+</ul>
+<p>HBase Region server들은 실제로 hbase table을 저장/관리한다. <strong>hbase table은 매우 커질 수 있기 때문에 리젼region 이라고 불리는 파티션partition을 통해 나누어지는데, 각각 region server들은 하나 이상의 region들을 관리하게 된다.</strong> HBase Region server에서만Hbase table 데이터를 관리하기 때문에 Hbase master server에서 문제가 발생한다고 하더라도 데이터가 손실되지 않는다.</p>
+<p>Hbase 데이터는 sorted-map과 유사하게 구성되어 있는데, 정렬된 key 영역이 서로 다른 리전region에 저장되어 있다. Hbase client는 table을 put/delete를 호출함으로써 데이터를 갱신하는데 client에서 갱신요청을 하면, 해당 요청은 곧바로 Region server에 라우팅 된다. 하지만 프로그램적으로 auto-flush 설정을 off로 하면 client가 clinet-side에 변경사항에 대한 캐싱caching을 하게되고, Region server에 이러한 변경사항들을 배치로 한번에 처리flush하게 된다. 만약 auto-flush가 off되어 있다면, 변경사항들이 flush-commit 이 수행될 때까지 캐시cache로 가지고 있게 되거나, 프로그램적으로 또는 파라미터 설정 값에 따라서 buffer가 가득찰 때까지 변경사항들이 caching된다.</p>
+<blockquote>
+<p>hbase.client.write.buffer = 8 MB (2MB/default)</p>
+<ul>
+<li>크기가 클 수록 RPC 횟수가 줄어들게된다.</li>
+</ul>
+</blockquote>
+<p>앞서 말했듯 row key는 정렬되어 있기 때문에, 어떤 region server가 어떤 키를 가지고 있는지 구분할 수 있다. 따라서 update 요청은 특정한 row들을 대상으로 수행되는데, 해당 row의 각각의 row key들은 특정한 region에 포함되어 있고 region은 특정 region server에 의해서 제공된다. 그래서 put/delete 작업의 row key가 주어지면 hbase client는 해당 row key을 가지고 있는 region을 관리하고 있는 region server를 알 수 있다.</p>
+<p>&lt;그림1&gt;</p>
+<p>HBase client는 가장 먼저 zookeeper quorum에 접근하여 root region을 가리키는 region server를 찾을 수 있다. 해당 region server에서 client는 meta region을 가지고 있는 region server를 찾을 수 있고, meta region server로 부터 우리는 마침내 실제 요청된 region 을 가지고 있는 region server를 찾을 수 있다. 이렇게 적절한 region server를 찾는 작업은 3단계로 수행되는데, region 위치는 cache에 저장되어서 region을 찾기위해 수행되는 연산을 피할 수 있다. 만약 cache된 위치가 적절하지 않다면 region을 다시 배치하고, cache 업데이트를 수행한다.</p>
+<p>만약 올바른 region server에서 변경 요청을 받게되면, 요청된 변경사항들은 HFile에 바로 쓰지 못하는데 hfile에 쓸때는 반드시 row key를 통해 정렬되어야 하기 때문이다. 이러한 HFile의 특성(sorted-key)은 데이터를 읽을때 임의의 rows들을 효과적으로 찾도록 도와준다. 데이터는 HFile에 랜덤으로 삽입되지 않고 않고, 대신에 변경 사항들은 반드시 새로운 파일들에 쓰여진다. <strong>만약 각각의 update가 새로운 HFile에 파일을 생성하여 write 작업을 수행한다면, 수 많은 작은 파일들이 생성된다. 이러한 방법은 확장 가능하지도 않고, 나중에 읽기작업을 수행할때도 효과적이지 않다. 이러한 이유로 변경 사항들은 곧바로 HFile에 쓰여지지 않게 된다.</strong></p>
+<p>위에서 말한 방법 대신에 이러한 변경사항들은 Memstore라고 불리는 메모리 영역에 저장이 되는데, 이것을 통해 매우 빠르고 효과적으로 랜덤 write를 제공한다. Memstore는 HFile과 같은 방법으로 데이터를 정렬하고 있다. <strong>Memstore가 데이터를 충분히 쌓이고나면 전체 정렬된 집합은 HDFS에 새로운 HFile로 저장</strong>이 된다. 작은 파일을 여러번 write 하는 것 보다 하나의 대용량 write 작업이 더 효과적이라는 것은 HDFS의 강점을 이용한 것이다.</p>
+<p>&lt;그림2&gt;</p>
+<p>Memstore에 데이터를 쓰는것은 효과적이지만, 동시에 위험을 가지고 있다. Memstore는 메모리 영역임으로 그 안에 저장되는 데이터는 휘발성 이다. 그래서 만약 <strong>시스템이 실패한다면 모든 Memstore의 데이터가 손실된다. 이러한 위험을 완화하기 위해서 HBase는 update사항들을 write-ahead-log(WAL, HLog라고도 함)라는 곳에 Memstore에 데이터를 쓰기 전에 저장</strong>한다. 이러한 방식으로 region server가 오류가 발생하더라도 해당 서버의 Memstore는 WAL 파일을 통해서 복구할 수 있다.</p>
+<blockquote>
+<p>WAL에 변경사항edit을 남기는 것은 default로 enable 상태이다. 그러나 WAL 파일을 디스크에 쓰는것은 일부 자원을 소모하기때문에 WAL을 disable 시킬 수 있는데, 이것은 오직 데이터 손실로 인한 위험이 없는 경우에만 사용해야 한다. 만약 WAL을 비활성화 시키기로 선택했다면 다른 DR 솔루션이나 데이터 손실 가능성에 대한 대응방안을 준비해야 한다.</p>
+</blockquote>
+<blockquote>
+<p>WAL 파일에 edit을 쓰지 않거나, 쓰는 작업을 실패한다고 해도 memstore에 데이터를 쓰는 작업이 중지/실패 되지 않는다.</p>
+</blockquote>
+<p>WAL파일은 HFile과는 다르게 구성되어 있다. WAL파일은 변경사항edits들의 목록을 가지고 있는데, 하나의 edit이 하나의 put/delete 작업과 대응된다. 이러한 edit은 갱신정보 및 적용될 region정보를 가지고 있다. edit들은 시간순서대로 쓰여지는데 WAL 파일의 끝에서 append된다. WAL파일들은 시간순서대로 정렬되기 때문에 write작업을 위해 랜덤 액세스를 할 필요가 없다.</p>
+<p><strong>WAL파일이 일정크기 이상으로 커지게 되면, 기존의 WAL파일은 close되고, 새로운 WAL파일이 생성되어 추가적인 edit들을 기록한다. 이것을 WAL파일 rolling 이라고 부른다</strong>. 일단 WAL파일이 rolling되면 추가적으로 생성되는 edit들이 기존에 생성된 WAL 파일들에게 영향을 끼치지 않는다. 일반적으로 WAL파일은  HDFS block의 95%가 되었을때 roliing 된다. 다음 parameter를 이용해서 설정가능하다.</p>
+<blockquote>
+<p>hbase.regionserver.logroll.multiplier : 0.95 (0.95 / default)</p>
+<ul>
+<li>WAL파일이 Rolling되기 위한 HDFS 블록 크기에 대한 비율</li>
+</ul>
+<p>hbase.regionserver.hlog.blocksize : (HDFS block size 설정)</p>
+<ul>
+<li>HLOG(WAL)파일에 대한 block size. HDFS 크기와 동일하게 설정 하는 것이 좋다.</li>
+</ul>
+<p>hbase.regionserver.logroll.period : 3600000 ( 3600000 / default)</p>
+<ul>
+<li>시간에 따른 WAL파일 rolling 설정. 기본 1시간</li>
+</ul>
+</blockquote>
+<p>시간으로 WAL파일 rolling을 설정하게 되면 위에서 크기에 따른 설정 값 더 작은 WAL파일이 생길 수 있다. WAL파일 크기를 제한함으로써 복구가 필요할때 파일을 효과적으로 사용할 수 있다.</p>
+<p>이것은 특히 어떤 region의 WAL파일이 복구작업에 사용(replay)될 때 중요한데, WAL 파일이 replay 되는동안 해당 region은 사용할 수 없기 때문이다. 이 작업의 목적은 WAL파일로 부터 읽은 모든 edit들을 영구적인 디스크 공간인 HFile에 쓰는것이다. 이 작업이 수행되고 난 후에는 WAL파일은 아카이브 될 수 있고 결국에 LogCleaner 데몬 쓰레드에 의해서 삭제된다. WAL파일은 메모리 공간인 Memstore의 데이터가 손실되지 않도록 보호하기 위해 사용되고, <strong>오직 region server에 문제가 발생하여 Memstore 데이터가 손실되는 경우에만 기존에 수행된 edit들을 복구하기 위해 사용된다</strong>.</p>
+<p>하나의 region server는 많은 region들을 관리하는데, region server에 존재하는 WAL파일은 region마다 가지고 있지 않다.  대신에 하나의 활성화된 WAL파일이 샤딩sharding되어서 region server안에 있는 모든 region들 정보를 가지고 있다. WAL 파일은 주기적으로 rolling 되기 때문에 하나의 region server는 많은 WAL 파일을 가지고 있게 된다. 하지만 오직 하나의 활성화된 WAL 파일이 각 region server 마다 존재하게 된다.</p>
+<blockquote>
+<p>Region server와 active WAL파일은 1:1 관계이다.</p>
+</blockquote>
+<p>HBase의 각 region server가 가지고있는 WAL파일들은 같은 HDFS 경로상에 다음과 같이 저장된다.</p>
+<blockquote>
+<p>FORMAT : {ROOT_PATH}/.logs/{HOST},{PORT},{STARTCODE}</p>
+<p>예제 :  /hbase/.logs/srv.example.com,60020,1254173957298</p>
+</blockquote>
+<p>WAL파일 이름은 다음과 같다.</p>
+<blockquote>
+<p>FORMAT : {ROOT_PATH}/.logs/{HOST},{PORT},{STARTCODE}/{HOST},{PORT},{STARTCODE},{TIMESTAMP}</p>
+<p>예제 :  /hbase/.logs/srv.example.com,60020,1254173957298/srv.example.com,60020,1254173957298.600201254</p>
+</blockquote>
+<p><strong>WAL파일 안에있는 각 edit들은 유니크한 sequence_id를 갖는다. 이 값은 edit의 순서를 보장하기 위해서  계속 증가된다. WAL파일이 rolling될 때 마다, 다음 sequence_id와 기존 WAL파일 이름이 in-memory map에 쓰여진다.</strong> 이러한 정보는 각 WAL 파일의 최대 sequence_id를 추적하기 위해서 사용되는데, 이것을 통해 우리는 쉽게 Memstore에서 disk로 flush 수행 후 어떤 WAL 파일들이 아카이브 되어야 하는지 알 수 있다.</p>
+<p>Edit들과 그것들의 sequence_id는 region 안에서 유일하다. 언제라도 edit이 WAL파일에 쓰여질때 edit의 sequence_id는 마지막 sequence_id로 기록된다. Memstore가 disk(HFile)로 flush 될때 마지막 sequence_id는 초기화된다. 만약 마지막 sequence_id가 HFile에 쓰여진 sequence_id와 동일하다면, 이것은 그 WAL파일의 모든 edit들이 HFile에 쓰였다는걸 의미한다. 만약 해당 region의 WAL파일에 있는 모든 edit이 HFile에 쓰여졌다면 더 이상 splitting(뒤에 설명)이나 replaying이 요구되지 않을 것이기 때문에 WAL파일은 아카이브 될 수 있다.</p>
+<p>WAL파일 rolling과 Memstore flush는 두 가지 분리된 동작이며 동시에 일어나지 않는다. 하지만 우리는 너무 많은 WAL파일이 region server마다 생성되기를 원지는 않는데, 그것은 region server가 문제가 있는 경우 복구작업이 너무 오래 걸리기 때문이다. 그럼으로 WAL 파일이 rolling될때, HBase는 너무 많은 WAL파일이 생성되지 않았는지 확인하고 region에 flush 되어야 할지 결정한다. 그 결과 몇 개의 WAL파일들을 아카이브 시킨다.</p>
+<p>지금까지 HBase의 write path에 대해서 설명했는데, HBase의 데이터가 어떻게 생성되고 변경되는지에 대한 것이다. 몇가지 중요한 부분은 아래와 같다.</p>
+<ul>
+<li>어떻게 client가 원하는 데이터(region)를 가지고 있는 region server를 찾는지에 대한 방법 
+(zookeeper &ndash;&gt;  root region &ndash;&gt;  meta region  &ndash;&gt; data region)</li>
+<li>HBase가 어떻게 HDFS 상에서 빠르게 랜덤 write 를 지원하는지에 대한 방법 (Memstore 사용)</li>
+<li>Region server가 실패되었을 때 데이터 손실을 막을 수 있는지에 대한 방법 (WAL파일내 edit을 통한 복구)</li>
+</ul>
+<hr>
+<h1 id="hbase-log-splitting"><strong>HBase Log Splitting</strong></h1>
+<p>HBase에서 이루어지는 업데이트들은 memstore라고 불리는 메모리 영역에 저장되어 빠르게 write 작업을 수행할 수 있다. region server에 장애가 발생하면 Memstore 안의 데이터들은 손실될 수 있는데, 그것들은 아직 disk(HFile)에 쓰이지 않았기 때문이다. 이러한 데이터 손실 시나리오를 막기 위해서 memstore에 저장하기 이전에 WAL파일에 변경사항edits을 영구적으로 저장하고, region server가 장애가 발생하는 경우 손실된 내용은 memstore가 WAL파일에 있는 edit들을 replay하여 데이터를 복구 할 수 있다.</p>
+<p>&lt;그림3&gt;</p>
+<p>Region server는 많은 region을 가지고 있는데, 모든 region들은 동일한 active WAL파일을 공유한다. 각 edit들은 각 region에서 발생한 정보를 가지고 있다. region이 열릴때open, 각 region에 포함된 WAL파일 안의 edits을 사용하여 replay 수행한다. 특정 region의 데이터를 복구하기 위해서 WAL파일 안의 edits들은 반드시 region 단위로 그룹화 되어야한다. <strong>Region단위로 WAL 파일의 edit들을 그룹화 하는 것을 log splitting 이라고 한다.</strong> 이 작업은 region server가 실패한 경우 데이터를 복구하기 위한 중요한 프로세스이다.</p>
+<p>Log splitting은 HMaster에 의해서 cluster가 시작될 때 수행되거나, region server가 중지될때 수행된다. 일관성을 유지하는 것이 중요하기 때문에 영향받는 region들은 데이터가 복구될 때 까지 사용할 수 없다. 그리고 모든 WAL 파일의 edit들은 해당 region들이 다시 사용가능 상태가 되기전까지 replay되어 region을 복구하게된다. 결과적으로 log splitting에 영향받는 region들은 필요한 edits들이 모두 적용되고 프로세스가 종료되기 전까지 사용할 수 없다.</p>
+<p>Log splitting이 시작될 때 WAL 디렉토리는 다음과 같이 renamed 된다.</p>
+<blockquote>
+<p>FORMAT : {ROOT_PATH}/.logs/{HOST},{PORT},{STARTCODE}-splitting
+예시: /hbase/.logs/srv.example.com,60020,1254173957298-splitting</p>
+</blockquote>
+<p>HBase가 폴더를 rename 하는 것은 매우 중요하다. HMaster에서 region server가 내려갔다고 생각하더라도 region server는 아직 기동중일 수 있다. region server는 즉시 응답하지 않기 때문에 결과적으로 zookeeper session에게 hearbeat을 주지 않을 수 있다. HMaster는 이러한 상황에서 region server에 장애가 발생했다고 생각할 수 있는데, 만약 folder명이 변경된다면 유효한 WAL 파일들은 계속해서 사용이 될 수 있다. 하지만 region server가 부하가 많은 경우에는 write 작업이 제대로 수행되지 않을 수도 있다.</p>
+<p>각 로그 파일들은 한번에 하나씩 쪼개진다. log splitter가 한번에 WAL파일 안에 있는 하나의 edit entry를 읽고 해당 edit의 region과 상응하는 buffer에 edit 을 입력한다. 동시에, splitter는 여러개의 writer thread를 수행한다. writer thread는 적절한 buffer를 선택하여 buffer안에 있는 edits들을 임시 복구 edit file에 write 한다. 해당 파일의 경로 및 파일명은 아래와 같다.</p>
+<p>위에 있는 sequence_id는 file에 쓰여진 WAL파일 row entry의 첫번째 sequence_id 이다. 임시로 복구된 edit파일은 이 region을 위한 WAL파일 안에 있는 모든 edit들을 위해서 사용된다. 일단 log splitting이 완료되고 나면 임시 파일은 다음과 같이 이름이 변경된다.</p>
+<blockquote>
+<p>FORMAT : {ROOT_PATH}/{TABLE_NAME}/{REGION_ID}/recovered.edits/{SEQUENCE_ID}</p>
+</blockquote>
+<p>위에서 해당 edit파일에 있는 가장 높은(최신의) edit에 대한 sequence_id가 파일명에 사용된다. 결과적으로 edits을 사용하여 replay를 수행할때 해당 edits들이 이미 쓰여진 것인지 아닌지를 판단할 수 있다. 만약 마지막 edit이 HFile에 쓰여져서 file name안에 포함되어 있는 edit sequence_id보다 같거나 크다면 해당 edit 파일은 이미 처리됐음으로 삭제된다. Log splitting이 완료가 되었을때, 영향을 받고 있던 region은 다시 region server에 할당된다. region이 다시 open될때 &lsquo;recovered.edits&rsquo; 폴더는 복구된 edit file을 검사하는데 사용된다. 만약 반영되지 않은 파일들이 존재한다면 다시 edits을 읽어서 memstore에 반영시킨다. 모든 edit 파일들이 다시 replay 된 후에 memstore에 있는 내용들이 HFile에 쓰여지고 edit file들이 삭제된다.</p>
+<p>단일 thread로 된 log splitting 수행시간은 매우 오래걸릴 수 있다. 여러개의 region server들에서 문제가 발생한 경우에는 해당 프로세스가 몇 시간이 걸릴 수도 있다. 이러한 문제로 개발된 distribute log splitting은 HBase 0.92 부터 추가되었다. 이것은 처리시간을 극적으로 줄여주어 region과 table의 가용성을 향상시켜 주었다. 한 예로 한 cluter에서 장애가 발생하여 single threaded log splitting으로 9시간이 걸리던 것이 distributed log splitting을 사용하여 6분만에 복구가 되었다.</p>
+<h2 id="distributed-log-splitting"><strong>Distributed Log Splitting</strong></h2>
+<p>HBase 0.90 log splitting은 오직 HMaster에 의해서만 수행되었다. log splitting의 혁신을 통해 모든 log 파일들이 병렬적으로 처리될 수 있게 되었다. cluster가 장애로부터 다시 기동된 후에, 모든 region server들이 master가 log splitting을 끝나기를 기다리면서 idle 상태에 빠졌다. 이렇게 모든 region server들이 idle 상태에 빠지는 것 대신에, log splitting 프로세스를 위해 작업을 진행하는 것이 distributed log splitting의 본질이다. distributed log splitting을 사용하면 master는 boss가 된다. 이것은 split log manager가 되어 모든 log file들이 읽혀지고 split 되었는지 관리한다. split log manager는 모든 file 들을 zookeeper node (/hbase/splitlog)에 넣는다. zkcli 를 수행하여 &lsquo;ls /hbase/splitlog&rsquo;를 수행하면 다음을 리턴한다.</p>
+<blockquote>
+<p>zookeeper&gt; ls /hbase/splitlog</p>
+<p>[ hdfs://host2.sample.com:56020/hbase/.logs/host8.sample.com570201340474893275-splitting/host8.sample.com:57020.1340474893900, hdfs://host2.sample.com:56020/hbase/.logs/host3.sample.com570201340474893299-splitting/host3.sample.com:57020.1340474893931, hdfs://host2.sample.com:56020/hbase/.logs/host4.sample.com570201340474893287-splitting/host4.sample.com:57020.1340474893946 ]</p>
+</blockquote>
+<p>이것들은 scan되고 split 된 WAL 파일들의 목록으로 log splitting 작업의 목록들이다. 일단 split log manager가 모든 작업들을 splitlog znode에 제출한 후, 각 작업들이 수행되는 nodes를 모니터링하고 그것들이 처리될 때까지 기다린다.</p>
+<p>각 region server에는 split log worker라고 불리는 thread들이 존재한다. split log worker는 실제로 log들을 분리하는 작업을 수행한다. 이 worker들은 계속해서 znode에 있는 splitlog들을 감시한다. 만약 새로운 작업들이 존재한다면, split log worker들은 작업 경로를 다시 가져와서 루프를 돌면서 아직 다른 worker들이 잡고 있지 않는 작업을 가져온다. 일단 하나를 가져온 후 해당 작업에 대한 소유권을 요청하고 만약 소유권을 얻는데 성공하였다면 작업을 수행하고, splitting 결과에 따라 적절하게 작업 상태를 업데이트 한다. split worker가 현재 작업을 종료한 후에 남아있는 다른 task들을 가져오려고 시도한다.</p>
+<p>이러한 기능들은 설정값에 의해서 제어된다. &lsquo;<strong>hbase.master.distributed.log.splitting&rsquo;</strong> 프로퍼티는 기본적으로 &lsquo;true&rsquo;로 설정되어 enable 상태이다. HMaster가 기동되면서 split log manager 인스턴스가 생성되는데, 해당 파라미터가 fale값으로 명시적으로 설정되어 있으면 기동되지 않는다. split log manager는 작업들을 모니터링하기 위한 thread를 생성한다. monitor thread는 주기적으로 다음과 같은 기능들을 수행한다.</p>
+<ol>
+<li>
+<p>죽은 split log worker가 대기중인지 확인한다. 만약 존재한다면, 죽은 worker가 가지고 있는 작업을 다시 제출한다. 만약 zookeeper의 문제로 작업에 대한 제출이 실패난다면, 재실행을 위해 죽은 worker를 기다린다.</p>
+</li>
+<li>
+<p>할당되지 않은 작업이 있는지 확인한다. 만약 그렇다면 임시의 재검색 node를 생성해서 각각의 split log worker가 nodeChildrenChanged Zookeeper 이벤트를 통해 할당되지 않은 작업을 다시 스캔 할 수 있도록 한다.</p>
+</li>
+<li>
+<p>할당된 작업들이 만료되지 않았는지 확인한다. 만약 만료되었다면 해당 작업을 TASK_UNASSIGNED 상태로 변경하고 다시 수행될 수 있도록 한다. 이 작업들은 또 다시 느린 worker에게 할당될 수 있거나, 이미 끝난 상태일 수 있다. 하지만 split이 다시 수행되는 것이 log splitting 작업의 중복을 가져오진 않기 때문에 문제가 생기진 않는다. 이것은 log splitting 이 여러번 수행되더라도 문제가 생기지 않는 이유와 같다.</p>
+</li>
+</ol>
+<p>Split log manager는 HBase의 split log znode를 계속해서 감시하고 있다. 만약 어떠한 split log 작업 노드의 데이터가 변경되면 노드 데이터를 가져온다. 그 노드 데이터는 &lsquo;CURRENT&rsquo; 상태가 된다.</p>
+<blockquote>
+<p>zookeeper&gt; get /hbase/splitlog/hdfs://host2.sample.com:56020/hbase/.logs/host6.sample.com570201340474893287-splitting/host6.sample.com:57020.1340474893945</p>
+<p>unassigned host2.sample.com:57000
+cZxid = 0x7115
+ctime = Sat Jun 23 11:13:40 PDT 2012
+mZxid = 0x7115
+mtime = Sat Jun 23 11:13:40 PDT 2012
+pZxid = 0x7115
+cversion = 0
+dataVersion = 0
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 33
+numChildren = 0</p>
+</blockquote>
+<p>위의 작업은 아직 할당되지 않았음을 보여준다. 위 작업의 상태값이 변함에 따라서 split log manager는 다음중 하나를 수행한다.</p>
+<ul>
+<li>할당되지 않았다면 작업을 다시 제출함.</li>
+<li>작업이 할당되었다면 heart-beat을 확인함.</li>
+<li>작업이 사임?되면 다시 제출하거나 실패처리함.</li>
+<li>작업이 에러와 함께 종료되었다면 다시 제출하거나 실패처리함.</li>
+<li>작업이 에러로 인에 종료되지 않았다면 다시 제출하거나 실패처리함.</li>
+<li>작업이 성공적으로 수행되었거나 실패되었다면 삭제함</li>
+</ul>
+<p>작업이 실패하는 경우는 아래와 같다.</p>
+<ul>
+<li>작업이 삭제되는 경우</li>
+<li>해당 노드가 더이상 존재하지 않는 경우</li>
+<li>TASK_UNASSIGNED 로 작업을 이동시키지 못하는 경우</li>
+<li>다시 제출하는 작업의 수가 임계값을 넘은 경우</li>
+</ul>
+<p>Split log worker는 region server에 의해서 생성되고 시작된다. 그러므로 split log worker는 각 region server위에서 수행된다. split log worker가 수행될 때 HBase znode를 확인하기 위해서 자기 자신을 등록한다. 만약 어떠한 splitlog znode children 이라도 변경되면 sleeping 상태의 worker thread에게 깨어나서 더 많은 작업들을 수행할 것을 안내한다. 만약 current task 노드의 데이터가 변경되면 다른 worker에 의해서 task가 소유되었는지 확인하고 만약 그렇다면 해당 worker thread를 인터럽트interrupt 시켜 current task를 중지시킨다. split log worker thread는 계속해서 splitlog znode아래의 task node에서 node children에서 변화가 있는지 검사한다.</p>
+<p>각 작업을 위해서 아래와 같이 동작한다.</p>
+<ol>
+<li>Task 상태를 가져와서 TASK_UNASSIGNED 상태가 아니라면 아무것도 하지 않는다.</li>
+<li>만약 TASK_UNASSIGNED 상태라면 worker에 의해서 TASK_OWNED 상태로 설정한다. 만약 상태 변경에 실패한다면, 다른 worker가 그것을 잡으려고 시도하는 것 임으로 괜찮다. 만약 그 작업이 계속해서 unassigned로 남아있다면 split log manager는 모든 worker 들에게 다시 검색할 것을 요청한다.</li>
+<li>만약 worker들이 해당 작업을 가져왔다면, 다시한번 작업의 상태를 확인해서 비동기적으로 올바른 값을 가지고 있는지 확인한다.</li>
+</ol>
+<p>이와 동시에 실제 worker에서 split task executor가 작업을 수행한다.</p>
+<ol>
+<li>HBase root 폴더를 가져와서 temp 폴더를 root아래 생성하고 log file을 split 해서 temp folder에 넣는다.</li>
+<li>만약 모든 작업이 정상적으로 수행되고 있다면 taks executor가 TASK_DONE으로 상태를 변경한다.</li>
+<li>만약 의도치않은 IOException이 발생한다면, 상태를 TASK_ERR 로 설정한다.</li>
+<li>만약 작업이 종료되었다면, TASK_RESIGNED 로 상태를 설정한다.</li>
+<li>만약 또다른 worker에 의해서 작업이 선점되었다면, 단지 로그를 남기고 냅둔다.</li>
+</ol>
+<p>Split log manager는 모든 작업들이 성공적으로 완료되었을때 리턴된다. 만약 일부 작업들이 실패로 종료되었을 경우 예외를 던져서 log splitting 작업이 다시 수행될 수 있도록 한다. 비동기적으로 수행되는 작업이기 때문에, 매우 드물게, split log manager는 일부 완료된 작업들을 놓칠 수 있다. 그렇기 때문에 주기적으로 완료되지 않은 작업들이 task map 이나 zookeeper에 존재하는지 확인한다 만약 없다면 예외를 던져서 행이 걸려서 기다리는것 보다 log splitting 이 바로 재수행될 수 있도록 한다.</p>
+<p>우리는 log splitting 을 통해 region server가 문제가 생겼을때 데이터를 복구하는 방법에 대해서 알아봤다. log splitting 은 HMaster에 의해서 순차적으로 수행된다. 0.92부터 분산 로그 스플릿이 소개되었으며 실제로 region server에서 log splitting 을 수행하게되었다. 클러스터 안에 많은 region server들이 존재하기 때문에 극적으로 log splitting 의 시간을 줄이고 region의 가용성을 확보할 수 있게 되었다.</p>
+<hr>
+<p>참조</p>
+<ul>
+<li><a href="https://blog.cloudera.com/blog/2012/06/hbase-write-path/">https://blog.cloudera.com/blog/2012/06/hbase-write-path/</a></li>
+<li><a href="https://blog.cloudera.com/blog/2012/07/hbase-log-splitting/">https://blog.cloudera.com/blog/2012/07/hbase-log-splitting/</a></li>
+<li><a href="https://www.edureka.co/blog/hbase-architecture/">https://www.edureka.co/blog/hbase-architecture/</a></li>
+<li><a href="http://www.larsgeorge.com/2010/01/hbase-architecture-101-write-ahead-log.html">http://www.larsgeorge.com/2010/01/hbase-architecture-101-write-ahead-log.html</a></li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hbase/" rel="tag">hbase</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/bigdata/hbase/20180110_hbase_shell_command/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[HBase] hbase shell command, HBase 명령어</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/bigdata/hive/hive_partition_type/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[HIVE] 파티션 타입 및 종류</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

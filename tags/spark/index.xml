@@ -8,10 +8,10 @@
     <lastBuildDate>Fri, 09 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/spark/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[Spark]  Apache Spark  클러스터 기본 아키텍쳐 </title>
-      <link>/posts/spark/20210413_spark_architecture/</link>
+      <link>/posts/bigdata/spark/20210413_spark_architecture/</link>
       <pubDate>Fri, 09 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/spark/20210413_spark_architecture/</guid>
+      <guid>/posts/bigdata/spark/20210413_spark_architecture/</guid>
       <description>🌟 spark
 +++
 Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그램 작성 없이 데이터를 병렬처리할 수있게 되고, 가용성을 보장해준다.  Spark &amp;amp; its Features Apache Spark is an open source cluster computing framework for real-time data processing. The main feature of Apache Spark is its in-memory cluster computing that increases the processing speed of an application. Spark provides an interface for programming entire clusters with implicit *data parallelism and fault tolerance*.</description>
