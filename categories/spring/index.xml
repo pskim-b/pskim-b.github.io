@@ -5,7 +5,17 @@
     <link>/categories/spring/</link>
     <description>Recent content in Spring on PS Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 28 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RESTful API</title>
+      <link>/posts/spring/web/20211129_restful_api/</link>
+      <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/spring/web/20211129_restful_api/</guid>
+      <description>RESTful API 개요 RESTful 이란?  REST는 REpresentational State Trasfer의 약어로 웹을 이용할 때 제약 조건들을 정의하는 소프트웨어 아키텍처 스타일 REST 자체의 의미는 네트워크 아키텍쳐 원리(규칙)의 모음이고, 이를 따르는 시스템을 RESTful 이라고 함 REST를 따르는 옹호자들은 스스로를 &amp;lsquo;RESTafrians&amp;rsquo; 이라고 함.  Restful 구성요소 HTTP URI을 통해 리소스를 명시하고 HTTP Method를 통해서 리소스에 대한 CRUD를 제공.
+ 자원(Resource) : HTTP URI 자원에 대한 행위: HTTP Method 자원에 대한 표현 : Representations  HTTP Method HTTP Method는 다음과 같이 제공된다.</description>
+    </item>
+    
     <item>
       <title>Servlet에 대한 이해</title>
       <link>/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/</link>

@@ -12,7 +12,7 @@
 <meta property="og:description" content="기술 학습 블로그" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2021-10-05T00:00:00+00:00" />
+<meta property="og:updated_time" content="2021-11-28T00:00:00+00:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -60,6 +60,23 @@ if (!doNotTrack) {
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/spring/web/20211129_restful_api/" rel="bookmark">
+			RESTful API
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-11-28T00:00:00Z">November 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/spring/" rel="category">Spring</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		RESTful API 개요 RESTful 이란?  REST는 REpresentational State Trasfer의 약어로 웹을 이용할 때 제약 조건들을 정의하는 소프트웨어 아키텍처 스타일 REST 자체의 의미는 네트워크 아키텍쳐 원리(규칙)의 모음이고, 이를 따르는 시스템을 RESTful 이라고 함 REST를 따르는 옹호자들은 스스로를 &lsquo;RESTafrians&rsquo; 이라고 함.  Restful 구성요소 HTTP URI을 통해 리소스를 명시하고 HTTP Method를 통해서 리소스에 대한 CRUD를 제공.
+ 자원(Resource) : HTTP URI 자원에 대한 행위: HTTP Method 자원에 대한 표현 : Representations  HTTP Method HTTP Method는 다음과 같이 제공된다.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/java/202110_java_streaming/" rel="bookmark">
@@ -240,24 +257,6 @@ if (!doNotTrack) {
 앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
  데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/datascience/adsp/7_adsp_fin/" rel="bookmark">
-			[ADsP] 28회 데이터분석 준전문가 합격 후기 
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-09T00:00:00Z">April 09, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/datasicence/" rel="category">DataSicence</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		😃
-데이터 관련 업무를 하면서 곁다리로 데이터 분석을 공부해보자고 결심하고 신청했던 데이터분석 준전문가 시험에 가까스로 합격을 했다. 원래의 목적은 데이터 분석 실무에 필요한 이론을 습득하고 활용할 수 있는 것에 초점을 두었지만, 공부를 하면서 시험문제를 풀어보니 이러한 방법은 올바르지 않다는 것을 깨달았다. 이번 시험에 느낀 짧은 팁을 정리해 보려고 한다.
- 1. 시험 주제들에 대한 전체 Tree-Map을 구성하라  많은 사람들이 데이터 분석을 위해 가장 처음에 접하는 시험이다보니 너무 쉽게 생각하는 경향이 있는 것 같다.
-	</div>
 </article>
 </main>
 
@@ -302,6 +301,7 @@ if (!doNotTrack) {
 		<a class="widget-taglist__link widget__link btn" href="/tags/microservice/" title="microservice">microservice</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/r/" title="R">R</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/spark/" title="spark">spark</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/stream/" title="Stream">Stream</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/web/" title="web">web</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/zookeeper/" title="zookeeper">zookeeper</a>
 	</div>
@@ -310,11 +310,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20211129_restful_api/">RESTful API</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_streaming/">[JAVA] 스트림 API (Stream API)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">Servlet에 대한 이해</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210813_front-integration/">[MSA] 마이크로서비스 Frontend 통합 방안</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[MSA] SCS, Self-Contained System</a></li>
 		</ul>
 	</div>
 </div>

@@ -3,17 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/java/202110_java_streaming/</loc>
-    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
-    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/functional-programming/</loc>
+    <loc>/posts/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/spring/web/20211129_restful_api/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/spring/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web/</loc>
+    <lastmod>2021-11-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/java/202110_java_streaming/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -23,17 +48,7 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
-    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
+    <loc>/tags/stream/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
   </url>
   
@@ -43,17 +58,12 @@
   </url>
   
   <url>
+    <loc>/tags/functional-programming/</loc>
+    <lastmod>2021-10-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/</loc>
-    <lastmod>2021-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/spring/</loc>
-    <lastmod>2021-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/web/</loc>
     <lastmod>2021-08-28T00:00:00+00:00</lastmod>
   </url>
   
