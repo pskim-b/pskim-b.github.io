@@ -64,7 +64,7 @@ if (!doNotTrack) {
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/spring/web/20211129_restful_api/" rel="bookmark">
-			RESTful API
+			[WEB] RESTful API
 			</a>
 		</h2>
 		<div class="list__meta meta">
@@ -98,7 +98,24 @@ if (!doNotTrack) {
 </article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/posts/java/202110_java_functional_programming-%EB%B3%B5%EC%82%AC%EB%B3%B8/" rel="bookmark">
+			<a href="/posts/java/202110_java_optional/" rel="bookmark">
+			[JAVA] 옵셔널 (Optional) 
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-05T00:00:00Z">October 05, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/java/" rel="category">Java</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Java Optional 1. 개요  A container object which may or may not contain a non-null value
+  레퍼런스 객체를 가진 일종의 Wrapper Class 로써 해당 객체의 값이 null인지 아닌지 확인하고, null에 대한 처리를 별도의 로직 없이 처리하기 위한 것이다. 내부적으로 java.util.function 의 객체들을 사용하고 있어, Stream 객체와 유사하게 동작할 수 있다. (1개의 값을 갖는 Stream 이라고 할 수 있다)   Optional is primarily intended for use as a method return type where there is a clear need to represent “no result,” and where using null is likely to cause errors.
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/java/202110_java_functional_programming/" rel="bookmark">
 			[JAVA] 함수형 프로그래밍(Functional Programming)
 			</a>
 		</h2>
@@ -119,7 +136,7 @@ if (!doNotTrack) {
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/" rel="bookmark">
-			Servlet에 대한 이해
+			[WEB] Servlet에 대한 이해
 			</a>
 		</h2>
 		<div class="list__meta meta">
@@ -240,24 +257,6 @@ if (!doNotTrack) {
   Proxies
   Long Polling vs WebSocket vs Server-Sent Event
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/posts/bigdata/datalake/20210427_datalake_limitations/" rel="bookmark">
-			[Datalake] 20210427 - Datalake의 한계 및 극복 방안
-			</a>
-		</h2>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-04-27T00:00:00Z">April 27, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		:lake:
-앞서 데이터 레이크가 무엇이고 데이터 레이크가 가져야 하는 특성들을 매~우 간략하게 확인해 보았다. 책에는 상세하게 데이터 레이크가 가져야 할 특성들이 나열되어 있다. 이것을 그냥 옮기는 것은 크게 의미가 없을 것으로 생각되어 데이터 레이크의 구축 절차(로드맵)에서 그 항목들을 녹여볼까 한다.
- 데이터 레이크 구축절차  인프라 구축 (Hadoop 클러스터 / public, private 클라우드 기반 아키텍쳐 구성) 데이터 레이크 구조화 (다양한 조직/프로젝트를 위한 영역 설정과 데이터 적재) 셀프 서비스가 가능하도록 데이터 레이크 설정 (카탈로그, 권한, 데이터 보안, 데이터 탐색 등) 사용자에게 데이터 레이크 공개(오픈!
-	</div>
 </article>
 </main>
 
@@ -312,11 +311,11 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20211129_restful_api/">RESTful API</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20211129_restful_api/">[WEB] RESTful API</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_streaming/">[JAVA] 스트림 API (Stream API)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming-%EB%B3%B5%EC%82%AC%EB%B3%B8/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">Servlet에 대한 이해</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/architecture/msa/msa_20210813_front-integration/">[MSA] 마이크로서비스 Frontend 통합 방안</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_optional/">[JAVA] 옵셔널 (Optional) </a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">[WEB] Servlet에 대한 이해</a></li>
 		</ul>
 	</div>
 </div>

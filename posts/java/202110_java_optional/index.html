@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[JAVA] 옵셔널 (Optional)  - PS Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[JAVA] 옵셔널 (Optional) " />
+<meta property="og:description" content="Java Optional 1. 개요  A container object which may or may not contain a non-null value
+  레퍼런스 객체를 가진 일종의 Wrapper Class 로써 해당 객체의 값이 null인지 아닌지 확인하고, null에 대한 처리를 별도의 로직 없이 처리하기 위한 것이다. 내부적으로 java.util.function 의 객체들을 사용하고 있어, Stream 객체와 유사하게 동작할 수 있다. (1개의 값을 갖는 Stream 이라고 할 수 있다)   Optional is primarily intended for use as a method return type where there is a clear need to represent “no result,” and where using null is likely to cause errors." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/java/202110_java_optional/" />
+<meta property="article:published_time" content="2021-10-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-05T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[JAVA] 옵셔널 (Optional) </h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-05T00:00:00Z">October 05, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/java/" rel="category">Java</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<h1 id="java-optional"><strong>Java Optional</strong></h1>
+<h2 id="1-개요">1. 개요</h2>
+<blockquote>
+<p>A container object which may or may not contain a non-null value</p>
+</blockquote>
+<ul>
+<li>레퍼런스 객체를 가진 일종의 Wrapper Class 로써 해당 객체의 값이 null인지 아닌지 확인하고, null에 대한 처리를 별도의 로직 없이 처리하기 위한 것이다.</li>
+<li>내부적으로 java.util.function 의 객체들을 사용하고 있어, Stream 객체와 유사하게 동작할 수 있다. (1개의 값을 갖는 Stream 이라고 할 수 있다)</li>
+</ul>
+<blockquote>
+<p>Optional is primarily intended for use as a method return type where there is a clear need to represent “no result,” 
+and where using null is likely to cause errors. 
+A variable whose type is Optional should never itself be null; it should always point to an Optional instance.</p>
+</blockquote>
+<ul>
+<li>Optional은 주로 &ldquo;결과 없음&quot;을 나타내야하는 명확한 필요성이 있고 Null을 사용하면 오류가 발생할 가능성이있는 메서드 반환 유형으로 사용하기위한 것.</li>
+<li>Optional 타입의 변수는 자체적으로 null이 아니어야 하며, 항상 Optional 인스턴스를 가리켜야한다. ( Optional<String> optStr = null 이면 안됨)</li>
+</ul>
+<hr>
+<h2 id="2-optional-기본-활용">2. Optional 기본 활용</h2>
+<h3 id="1-값이-없는-optional-초기화-및-데이터-조회">1. 값이 없는 Optional 초기화 및 데이터 조회</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optNull1 <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>          <span style="color:#75715e">// NPE 발생  
+</span><span style="color:#75715e"></span>Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optNull2 <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">);</span>        <span style="color:#75715e">// Optional.empty 출력 
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">());</span>  <span style="color:#75715e">// NoSuchElementException 예외 발생 
+</span></code></pre></div><h3 id="2-값이-있는-optional-초기화-및-데이터-조회">2. 값이 있는 Optional 초기화 및 데이터 조회</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coupang&#34;</span><span style="color:#f92672">;</span>
+Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optStr <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>str<span style="color:#f92672">);</span>  
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">);</span>         <span style="color:#75715e">// Optional[Coupang] 출력 
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">());</span>   <span style="color:#75715e">// Coupang 출력 
+</span></code></pre></div><h3 id="3-기타-optional-메소드">3. 기타 Optional 메소드</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#75715e">// orElse - 값이 없는 경우 특정 값을 반환.
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;empty&#34;</span><span style="color:#f92672">));</span>  
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;empty&#34;</span><span style="color:#f92672">));</span>
+
+<span style="color:#75715e">// orElseGet - 값이 없는 경우 Supplier를 통해 값을 생성하여 반환. 
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">orElseGet</span><span style="color:#f92672">(</span>String<span style="color:#f92672">::</span><span style="color:#66d9ef">new</span><span style="color:#f92672">));</span>
+
+<span style="color:#75715e">// orElseThrow - 값이 없는 경우 Supplier를 통해 예외를 생성하여 던짐. 
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">(</span>NoSuchFieldError<span style="color:#f92672">::</span><span style="color:#66d9ef">new</span><span style="color:#f92672">));</span>
+
+<span style="color:#75715e">// isPresent - Optional의 값이 존재하는지(empty가 아닌지) 확인. 
+</span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">isPresent</span><span style="color:#f92672">());</span>
+System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">isPresent</span><span style="color:#f92672">());</span>
+
+<span style="color:#75715e">// ifPresent - Optional의 값이 존재하는 경우 Consumer를 통해 입력값을 처리.
+</span><span style="color:#75715e"></span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span> v <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>v<span style="color:#f92672">));</span>
+optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span>
+</code></pre></div><hr>
+<h2 id="3-optional-구현-소스">3. Optional 구현 소스</h2>
+<ul>
+<li>Optional 구현 소스를 보게되면 Stream 인터페이스와 유사하게 map, filter, flapMap 등을 제공하고 있는 것을 알 수 있다.</li>
+<li>이를 통해서 선언적으로 Optional 데이터를 처리할 수 있다.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
+<span style="color:#f92672">package</span> java.util<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> java.util.function.Consumer<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.function.Function<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.function.Predicate<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.function.Supplier<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Optional</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> Optional<span style="color:#f92672">&lt;?&gt;</span> EMPTY <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Optional<span style="color:#f92672">&lt;&gt;();</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> T value<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Optional</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">empty</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#a6e22e">@SuppressWarnings</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;unchecked&#34;</span><span style="color:#f92672">)</span>
+        Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> t <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span> EMPTY<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">return</span> t<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">Optional</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Optional<span style="color:#f92672">&lt;&gt;(</span>value<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>T value<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> empty<span style="color:#f92672">()</span> <span style="color:#f92672">:</span> of<span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NoSuchElementException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;No value present&#34;</span><span style="color:#f92672">);</span>
+        <span style="color:#f92672">}</span>
+        <span style="color:#66d9ef">return</span> value<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isPresent</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>Consumer<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> consumer<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+            consumer<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>Predicate<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> predicate<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>predicate<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>isPresent<span style="color:#f92672">())</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">else</span>
+            <span style="color:#66d9ef">return</span> predicate<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">(</span>value<span style="color:#f92672">)</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span> <span style="color:#f92672">:</span> empty<span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">,</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">extends</span> U<span style="color:#f92672">&gt;</span> mapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>mapper<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>isPresent<span style="color:#f92672">())</span>
+            <span style="color:#66d9ef">return</span> empty<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>mapper<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>value<span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span><span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">flatMap</span><span style="color:#f92672">(</span>Function<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">,</span> Optional<span style="color:#f92672">&lt;</span>U<span style="color:#f92672">&gt;&gt;</span> mapper<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>mapper<span style="color:#f92672">);</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>isPresent<span style="color:#f92672">())</span>
+            <span style="color:#66d9ef">return</span> empty<span style="color:#f92672">();</span>
+        <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> Objects<span style="color:#f92672">.</span><span style="color:#a6e22e">requireNonNull</span><span style="color:#f92672">(</span>mapper<span style="color:#f92672">.</span><span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>value<span style="color:#f92672">));</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span>T other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> value <span style="color:#f92672">:</span> other<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">orElseGet</span><span style="color:#f92672">(</span>Supplier<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> T<span style="color:#f92672">&gt;</span> other<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> value <span style="color:#f92672">:</span> other<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#f92672">&lt;</span>X <span style="color:#66d9ef">extends</span> Throwable<span style="color:#f92672">&gt;</span> T <span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">(</span>Supplier<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">extends</span> X<span style="color:#f92672">&gt;</span> exceptionSupplier<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> X <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> value<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">throw</span> exceptionSupplier<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><hr>
+<h2 id="4-optional-활용-예시">4. Optional 활용 예시</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
+<span style="color:#f92672">package</span> week1.selfstudy<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> week1.lec2.Movie<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.Optional<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptionalSelfStudy</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+
+        Movie movie1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Movie<span style="color:#f92672">(</span>1<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;No Time To Die&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+        Movie movie2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Movie<span style="color:#f92672">(</span>2<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Ever Since We Love&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">);</span>
+
+        <span style="color:#75715e">//TODO: 시나리오 - release된 영화인 경우에만 외부에 title명 제공해야 한다.
+</span><span style="color:#75715e"></span>        printOptString<span style="color:#f92672">(</span>getReleasedMovieTitle<span style="color:#f92672">(</span>movie1<span style="color:#f92672">));</span>
+        printOptString<span style="color:#f92672">(</span>getReleasedMovieTitle<span style="color:#f92672">(</span>movie2<span style="color:#f92672">));</span>
+        printOptString<span style="color:#f92672">(</span>Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">));</span>
+
+        Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>movie1<span style="color:#f92672">).</span><span style="color:#a6e22e">ifPresent</span><span style="color:#f92672">(</span>m <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>m<span style="color:#f92672">.</span><span style="color:#a6e22e">getTitle</span><span style="color:#f92672">()));</span>
+
+        printOptStringorThrow<span style="color:#f92672">(</span>Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">));</span>
+
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">static</span> Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getReleasedMovieTitle</span><span style="color:#f92672">(</span>Movie movie<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">return</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span>movie<span style="color:#f92672">).</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>m<span style="color:#f92672">-&gt;</span> m<span style="color:#f92672">.</span><span style="color:#a6e22e">getReleased</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>Movie<span style="color:#f92672">::</span>getTitle<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printOptString</span><span style="color:#f92672">(</span>Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> opt<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>opt <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">+</span>opt<span style="color:#f92672">.</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;not released&#34;</span><span style="color:#f92672">));</span>
+        <span style="color:#75715e">/**
+</span><span style="color:#75715e">        System.out.println(opt + &#34;:&#34; + opt.orElseGet( () -&gt; &#34;not released&#34;) );
+</span><span style="color:#75715e">        if(opt.isPresent()) {                 // 명시적으로 ifPresent로 대체하여 처리 가능.
+</span><span style="color:#75715e">            System.out.println(opt.get());
+</span><span style="color:#75715e">        }
+</span><span style="color:#75715e">        **/</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printOptStringorThrow</span><span style="color:#f92672">(</span>Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> opt<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>opt <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> opt<span style="color:#f92672">.</span><span style="color:#a6e22e">orElseThrow</span><span style="color:#f92672">(()</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> Exception<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;No such movie Exception&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><hr>
+<h2 id="5--참고사항">5.  참고사항</h2>
+<ul>
+<li>Collectors의 일부 메소드는 리턴타입으로 Optional<T> 를 리턴한다.</li>
+<li>Optional 로 리턴하지 않으나 Optional이 필요한 경우 Optional.of, Optional.ofNullable 로 생성하여 사용한다.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
+ <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?,</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>
+    <span style="color:#a6e22e">minBy</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> comparator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> reducing<span style="color:#f92672">(</span>BinaryOperator<span style="color:#f92672">.</span><span style="color:#a6e22e">minBy</span><span style="color:#f92672">(</span>comparator<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?,</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>
+    <span style="color:#a6e22e">maxBy</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> comparator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> reducing<span style="color:#f92672">(</span>BinaryOperator<span style="color:#f92672">.</span><span style="color:#a6e22e">maxBy</span><span style="color:#f92672">(</span>comparator<span style="color:#f92672">));</span>
+    <span style="color:#f92672">}</span>
+
+ <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?,</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>
+    <span style="color:#a6e22e">reducing</span><span style="color:#f92672">(</span>BinaryOperator<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> op<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#f92672">}</span>
+
+</code></pre></div><hr>
+
+		</div>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/java/202110_java_functional_programming/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[JAVA] 함수형 프로그래밍(Functional Programming)</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/java/202110_java_streaming/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[JAVA] 스트림 API (Stream API)</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

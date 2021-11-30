@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>RESTful API</title>
+      <title>[WEB] RESTful API</title>
       <link>/posts/spring/web/20211129_restful_api/</link>
       <pubDate>Sun, 28 Nov 2021 00:00:00 +0000</pubDate>
       
@@ -17,7 +17,7 @@
     </item>
     
     <item>
-      <title>Servlet에 대한 이해</title>
+      <title>[WEB] Servlet에 대한 이해</title>
       <link>/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/</link>
       <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
       
