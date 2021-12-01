@@ -1,4 +1,7 @@
-*,
+@font-face {
+	font-family:"Nanum Gothic";
+	src: url("font/NanumGothicCoding-Regular.ttf") format("truetype");
+}*,
 *::before,
 *::after {
 	box-sizing: border-box;
@@ -43,7 +46,7 @@ html {
 
 body {
 	margin: 0;
-	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+	font-family: NanumGothicCoding;
 	font-size: 14px;
 	font-size: .875rem;
 	line-height: 1.6;

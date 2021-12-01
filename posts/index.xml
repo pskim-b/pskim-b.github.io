@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects)</title>
+      <title>[GIT]  각 프로젝트 별도 SSH key 등록하기 (Multi-SSH key for different projects) </title>
       <link>/posts/etc/20211201_git_ssh_multikey/</link>
       <pubDate>Wed, 01 Dec 2021 00:00:00 +0900</pubDate>
       
