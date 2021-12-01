@@ -84,23 +84,23 @@ A variable whose type is Optional should never itself be null; it should always 
 </blockquote>
 <ul>
 <li>Optional은 주로 &ldquo;결과 없음&quot;을 나타내야하는 명확한 필요성이 있고 Null을 사용하면 오류가 발생할 가능성이있는 메서드 반환 유형으로 사용하기위한 것.</li>
-<li>Optional 타입의 변수는 자체적으로 null이 아니어야 하며, 항상 Optional 인스턴스를 가리켜야한다. ( Optional<!-- raw HTML omitted --> optStr = null 이면 안됨)</li>
+<li>Optional 타입의 변수는 자체적으로 null이 아니어야 하며, 항상 Optional 인스턴스를 가리켜야한다. ( Optional<String> optStr = null 이면 안됨)</li>
 </ul>
 <hr>
 <h2 id="2-optional-기본-활용">2. Optional 기본 활용</h2>
 <h3 id="1-값이-없는-optional-초기화-및-데이터-조회">1. 값이 없는 Optional 초기화 및 데이터 조회</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optNull1 <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>          <span style="color:#75715e">// NPE 발생  
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optNull1 <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>          <span style="color:#75715e">// NPE 발생  
 </span><span style="color:#75715e"></span>Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optNull2 <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">ofNullable</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
 
 System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">);</span>        <span style="color:#75715e">// Optional.empty 출력 
 </span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">());</span>  <span style="color:#75715e">// NoSuchElementException 예외 발생 
 </span></code></pre></div><h3 id="2-값이-있는-optional-초기화-및-데이터-조회">2. 값이 있는 Optional 초기화 및 데이터 조회</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coupang&#34;</span><span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Coupang&#34;</span><span style="color:#f92672">;</span>
 Optional<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> optStr <span style="color:#f92672">=</span> Optional<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>str<span style="color:#f92672">);</span>  
 System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">);</span>         <span style="color:#75715e">// Optional[Coupang] 출력 
 </span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">());</span>   <span style="color:#75715e">// Coupang 출력 
 </span></code></pre></div><h3 id="3-기타-optional-메소드">3. 기타 Optional 메소드</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// orElse - 값이 없는 경우 특정 값을 반환.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#75715e">// orElse - 값이 없는 경우 특정 값을 반환.
 </span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optNull2<span style="color:#f92672">.</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;empty&#34;</span><span style="color:#f92672">));</span>  
 System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">orElse</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;empty&#34;</span><span style="color:#f92672">));</span>
 
@@ -123,7 +123,7 @@ optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent<
 <li>Optional 구현 소스를 보게되면 Stream 인터페이스와 유사하게 map, filter, flapMap 등을 제공하고 있는 것을 알 수 있다.</li>
 <li>이를 통해서 선언적으로 Optional 데이터를 처리할 수 있다.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
 <span style="color:#f92672">package</span> java.util<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> java.util.function.Consumer<span style="color:#f92672">;</span>
@@ -218,7 +218,7 @@ optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent<
 <span style="color:#f92672">}</span>
 </code></pre></div><hr>
 <h2 id="4-optional-활용-예시">4. Optional 활용 예시</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
 <span style="color:#f92672">package</span> week1.selfstudy<span style="color:#f92672">;</span>
 
 <span style="color:#f92672">import</span> week1.lec2.Movie<span style="color:#f92672">;</span>
@@ -262,10 +262,10 @@ optStr<span style="color:#f92672">.</span><span style="color:#a6e22e">ifPresent<
 </code></pre></div><hr>
 <h2 id="5--참고사항">5.  참고사항</h2>
 <ul>
-<li>Collectors의 일부 메소드는 리턴타입으로 Optional<!-- raw HTML omitted --> 를 리턴한다.</li>
+<li>Collectors의 일부 메소드는 리턴타입으로 Optional<T> 를 리턴한다.</li>
 <li>Optional 로 리턴하지 않으나 Optional이 필요한 경우 Optional.of, Optional.ofNullable 로 생성하여 사용한다.</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> Collector<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">,</span> <span style="color:#f92672">?,</span> Optional<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;&gt;</span>
     <span style="color:#a6e22e">minBy</span><span style="color:#f92672">(</span>Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> comparator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         <span style="color:#66d9ef">return</span> reducing<span style="color:#f92672">(</span>BinaryOperator<span style="color:#f92672">.</span><span style="color:#a6e22e">minBy</span><span style="color:#f92672">(</span>comparator<span style="color:#f92672">));</span>

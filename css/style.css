@@ -1,6 +1,11 @@
 @font-face {
 	font-family:"Nanum Gothic";
-	src: url("font/NanumGothicCoding-Regular.ttf") format("truetype");
+	src: url("/assets/fonts/NanumGothicCoding-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-family:"EastSea Dokdo";
+	src: url("/assets/fonts/EastSeaDokdo-Regular.ttf") format("truetype");
 }*,
 *::before,
 *::after {
@@ -46,7 +51,7 @@ html {
 
 body {
 	margin: 0;
-	font-family: NanumGothicCoding;
+	font-family: "EastSea Dokdo", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	font-size: .875rem;
 	line-height: 1.6;

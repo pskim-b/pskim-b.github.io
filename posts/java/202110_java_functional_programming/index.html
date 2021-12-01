@@ -132,12 +132,12 @@ if (!doNotTrack) {
 <h3 id="functional-interface-구현">Functional Interface 구현</h3>
 <h4 id="1-object-객체-메소드-정의">1. Object 객체 메소드 정의</h4>
 <p>Functional Interface 없이 단순하게 Object 객체를 이용하여 임의의 함수를 정의하는 경우 다음과 같은 문제가 발생할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Object func <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">(){</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">){</span> <span style="color:#66d9ef">return</span> x<span style="color:#f92672">+</span>y<span style="color:#f92672">;};</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">Object func <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Object<span style="color:#f92672">(){</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">){</span> <span style="color:#66d9ef">return</span> x<span style="color:#f92672">+</span>y<span style="color:#f92672">;};</span>
 <span style="color:#66d9ef">int</span> result <span style="color:#f92672">=</span> func<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span>10<span style="color:#f92672">,</span>20<span style="color:#f92672">);</span> <span style="color:#75715e">// ERROR !! Object 클래스에 sum이 없음. 
 </span><span style="color:#75715e"></span>                              <span style="color:#75715e">// (인터페이스에 정의되어 있지 않음)   
 </span></code></pre></div><h4 id="2-custom-interface-정의">2. Custom Interface 정의</h4>
 <p>호출하고자 하는 함수를 인터페이스의 추상 메소드로 정의한 뒤, 익명 클래스를 정의하여 사용할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomFunction</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomFunction</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">);</span>
     <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">minus</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
@@ -156,7 +156,7 @@ CustomFunction func1 <span style="color:#f92672">=</span> <span style="color:#66
 CustomFunction func2 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>x<span style="color:#f92672">,</span>y<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">+</span>y<span style="color:#f92672">;</span>  <span style="color:#75715e">// ERROR !! 
 </span></code></pre></div><p>람다 표현식으로 제공하기 위해서는 1개의 추상메소드만 정의되어야 한다. 
 따라서 다음과 같이 수정되는 경우 lambda 표현식을 통해 Function객체를 생성할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomFunction</span> <span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CustomFunction</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">);</span>
 <span style="color:#f92672">}</span>
 CustomFunction func2 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>x<span style="color:#f92672">,</span>y<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> x<span style="color:#f92672">+</span>y<span style="color:#f92672">;</span>
@@ -164,7 +164,7 @@ CustomFunction func2 <span style="color:#f92672">=</span> <span style="color:#f9
 <span style="color:#f92672">**/</span>
 </code></pre></div><h4 id="3-functionalinterface-어노테이션-사용">3. @FunctionalInterface 어노테이션 사용</h4>
 <p>@FunctionalInterface를 위한 어노테이션을 사용하는 경우 컴파일 타임에 람다 표현식에 대한 검증작업을 수행해준다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@FunctionalInterface</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@FunctionalInterface</span> 
 <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">MyFunction</span><span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">sum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">);</span>
  <span style="color:#f92672">}</span>
@@ -191,17 +191,17 @@ MyFunction func <span style="color:#f92672">=</span> <span style="color:#f92672"
 <td>파라미터 O, 리턴값 O</td>
 </tr>
 <tr>
-<td>Predicate<!-- raw HTML omitted --></td>
+<td>Predicate<T></td>
 <td>boolean test(T t)</td>
 <td>파라미터 O, 리턴값 O (Boolean)</td>
 </tr>
 <tr>
-<td>Supplier<!-- raw HTML omitted --></td>
+<td>Supplier<T></td>
 <td>T get()</td>
 <td>파라미터 X, 리턴값 O</td>
 </tr>
 <tr>
-<td>Consumer<!-- raw HTML omitted --></td>
+<td>Consumer<T></td>
 <td>void accept(T t)</td>
 <td>파라미터 O, 리턴값 X</td>
 </tr>
@@ -213,7 +213,7 @@ MyFunction func <span style="color:#f92672">=</span> <span style="color:#f92672"
 </tbody>
 </table>
 <h3 id="functional-interface-api--예시">Functional Interface API  예시</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">// 1. 스태틱 메소드 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#75715e">// 1. 스태틱 메소드 
 </span><span style="color:#75715e"></span>Function<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;</span> f1 <span style="color:#f92672">=</span> x <span style="color:#f92672">-&gt;</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>x<span style="color:#f92672">);</span> 
 Function<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Integer<span style="color:#f92672">&gt;</span> f2 <span style="color:#f92672">=</span> Integer<span style="color:#f92672">::</span>parseInt<span style="color:#f92672">;</span> 
 
@@ -255,12 +255,12 @@ Supplier<span style="color:#f92672">&lt;</span>SomeClass<span style="color:#f926
 <td>2개의 파라미터를 받아 boolean 값을 리턴</td>
 </tr>
 <tr>
-<td>UnaryOperator<!-- raw HTML omitted --></td>
+<td>UnaryOperator<T></td>
 <td>T apply(T t)</td>
 <td>1개의 파라미터를 받아 리턴. 입력 타입과 출력타입이 동일</td>
 </tr>
 <tr>
-<td>BinaryOperator<!-- raw HTML omitted --></td>
+<td>BinaryOperator<T></td>
 <td>T apply(T t1, T t2)</td>
 <td>2개의 동일한 타입의 파라미터를 받아, 동일한 타입의 결과 리턴</td>
 </tr>

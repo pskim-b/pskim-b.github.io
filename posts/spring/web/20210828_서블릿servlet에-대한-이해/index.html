@@ -79,7 +79,7 @@ if (!doNotTrack) {
 </ul>
 <h2 id="webxml-을-사용한-서블릿-정의">Web.xml 을 사용한 서블릿 정의</h2>
 <p>가장 일반적이고 전통적인 방법으로 web.xml을 통해서 WAS가 서블릿에 대한 정보를 전달 받을 수 있다. web.xml은 웹 어플리케이션의 context root에 위치한 WEB-INF 폴더 아래에 존재하여, WAS가 시작될 때에 메모리에 로딩된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-XML" data-lang="XML"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-XML" data-lang="XML"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
     <span style="color:#f92672">&lt;servlet&gt;</span> 
         <span style="color:#f92672">&lt;servlet-name&gt;</span>hello-servlet<span style="color:#f92672">&lt;/servlet-name&gt;</span>
         <span style="color:#f92672">&lt;servlet-class&gt;</span>com.mypackage.HelloServlet<span style="color:#f92672">&lt;/servlet-class&gt;</span>
@@ -95,7 +95,7 @@ if (!doNotTrack) {
 <p>Spring MVC기반의 웹 어플리케이션을 만드는 경우 Spring framework에서 제공하는 DispatcherServlet을 사용할 수 있다. 이를 통해서 Spring IoC등의 기능을 활용할 수 있으며, 들어오는 URL에 대해서 자동으로 적절한 Controller에 요청을 전달해준다. 만약 Spring의 DispatcherServlet을 사용하지 않는다면 모든 요청 url에 대한 서블릿을 각각 만들어줘야 할 것이다.</p>
 <h4 id="webservlet-사용-예">WebServlet 사용 예</h4>
 <p>서블릿 구현</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@WebServlet</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@WebServlet</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServlet</span> <span style="color:#66d9ef">extends</span> HttpServlet <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L<span style="color:#f92672">;</span> 
     
@@ -120,7 +120,7 @@ if (!doNotTrack) {
 </span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>web.xml 설정</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
     <span style="color:#f92672">&lt;servlet&gt;</span> 
         <span style="color:#f92672">&lt;servlet-name&gt;</span>userServlet<span style="color:#f92672">&lt;/servlet-name&gt;</span>
         <span style="color:#f92672">&lt;servlet-class&gt;</span>com.mypackage.UserServlet<span style="color:#f92672">&lt;/servlet-class&gt;</span>
@@ -143,7 +143,7 @@ if (!doNotTrack) {
 <span style="color:#f92672">&lt;/WEB-APP&gt;</span>
 </code></pre></div><h4 id="dispatcherservlet--사용-예">DispatcherServlet  사용 예</h4>
 <p>서블릿(RequestMapping) 구현</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java">
 <span style="color:#a6e22e">@Contrller</span>
 <span style="color:#a6e22e">@RequestMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/user&#34;</span><span style="color:#f92672">)</span>
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> <span style="color:#f92672">{</span>
@@ -164,7 +164,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doPost</span><span style="color:#f92672">(){}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>web.xml 설정</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;WEB-APP&gt;</span> 
     <span style="color:#f92672">&lt;servlet&gt;</span> 
         <span style="color:#f92672">&lt;servlet-name&gt;</span>dispatcherServlet<span style="color:#f92672">&lt;/servlet-name&gt;</span>
         <span style="color:#f92672">&lt;servlet-class&gt;</span>org.springframework.web.servlet.DispatcherServlet<span style="color:#f92672">&lt;/servlet-class&gt;</span>
@@ -188,7 +188,7 @@ if (!doNotTrack) {
 </ol>
 <h2 id="webapplicationinitializer를-사용한-서블릿정의">WebApplicationInitializer를 사용한 서블릿정의</h2>
 <p>Servlet 3.0 부터 web.xml 파일을 사용하는 대신 java code를 사용하여 서블릿을 설정할 수 있게 되었다. 이에따라 Spring에서도 DispatcherServlet을 java code 기반으로 정의하였다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer<span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer<span style="color:#f92672">{</span>
     
     <span style="color:#a6e22e">@Override</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>ServletContext servletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throw</span> ServletException<span style="color:#f92672">{</span>
@@ -204,7 +204,7 @@ if (!doNotTrack) {
 </span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 </code></pre></div><h3 id="xml-기반의-설정">XML 기반의 설정</h3>
 <p>XML 기반으로 Spring context 을 설정하는 경우에는 아래와 같이 AbstractDispatcherServletInitializer 을 상속받아 구현한다</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">extends</span> AbstractDispatcherServletInitializer<span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">extends</span> AbstractDispatcherServletInitializer<span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@Override</span>    <span style="color:#66d9ef">protected</span> WebApplicationContext <span style="color:#a6e22e">createServletApplicationContext</span><span style="color:#f92672">(){</span><span style="color:#75715e">/* return servletAppContext; */</span><span style="color:#f92672">}</span>
     <span style="color:#a6e22e">@Override</span>    <span style="color:#66d9ef">protected</span> String <span style="color:#a6e22e">getServletName</span><span style="color:#f92672">(){</span><span style="color:#75715e">/* return servletName; */</span><span style="color:#f92672">}</span>
     <span style="color:#a6e22e">@Override</span>    <span style="color:#66d9ef">protected</span> String<span style="color:#f92672">[]</span> <span style="color:#a6e22e">getServletMappings</span><span style="color:#f92672">(){</span><span style="color:#75715e">/* return servletMappings; */</span><span style="color:#f92672">}</span>
@@ -226,7 +226,7 @@ if (!doNotTrack) {
 <span style="color:#f92672">}</span>
 </code></pre></div><h3 id="annotation-기반의-설정">Annotation 기반의 설정</h3>
 <p>Annotation 기반(@Configuration) 기반으로 자바 설정을 사용하고 싶은 경우 AbstractAnnotationConfigDispatcherServletInitializer 를 상속받아 구현하는 것이 더 간결하다</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">extends</span> AbstractAnnotationConfigDispatcherServletInitializer<span style="color:#f92672">{</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringServletConfig</span> <span style="color:#66d9ef">extends</span> AbstractAnnotationConfigDispatcherServletInitializer<span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@Override</span>	<span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;[]</span> getRootConfigClasses<span style="color:#f92672">(){</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">&lt;?&gt;[]</span> RootConfig<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">}</span>
     <span style="color:#a6e22e">@Override</span> 	<span style="color:#66d9ef">protected</span> Class<span style="color:#f92672">&lt;?&gt;[]</span> getSErvletConfigClasses<span style="color:#f92672">(){</span> <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Class<span style="color:#f92672">&lt;?&gt;[]</span> WebConfig<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">}</span>
     <span style="color:#a6e22e">@Override</span>   <span style="color:#66d9ef">protected</span> String <span style="color:#a6e22e">getServletName</span><span style="color:#f92672">(){</span><span style="color:#75715e">/* return servletName; */</span><span style="color:#f92672">}</span>
@@ -245,14 +245,14 @@ if (!doNotTrack) {
 <hr>
 <h2 id="추가---springboot-에서-서블릿은-어떻게-설정될까">추가 - SpringBoot 에서 서블릿은 어떻게 설정될까?</h2>
 <p>SpringBoot는 Spring Initializr을 사용하여 프로젝트를 생성하는 경우 tomncat, jetty, undertow 를 기본적인 embedded servlet container로 제공한다. 따라서 내장된 tomcat을 사용하는 경우에는 별도로 Servlet을 작성할 필요가 없다. (default servlet 으로 DispatcherServlet이 수행된다.)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@SpringBootApplication</span>  <span style="color:#75715e">// for auto-configuration of the application
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@SpringBootApplication</span>  <span style="color:#75715e">// for auto-configuration of the application
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebBoardApplication</span> <span style="color:#f92672">{</span>
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         SpringApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>WebBoardApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> args<span style="color:#f92672">);</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span>
 </code></pre></div><p>만약 embedded servlet container를 사용하는 것이 아닌 외부의 servlet container(ex. tomcat) 을 사용해야 하는 경우 war 형태로 웹 어플리케이션을 배포해야 한다. 이때는 서블릿 정보를 확인할 수 있도록 아래와 같이 추가 작성해야 한다</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> org.springframework.boot.builder.SpringApplicationBuilder<span style="color:#f92672">;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#f92672">import</span> org.springframework.boot.builder.SpringApplicationBuilder<span style="color:#f92672">;</span>
 <span style="color:#f92672">import</span> org.springframework.boot.web.servlet.support.SpringBootServletInitializer<span style="color:#f92672">;</span>
 
 <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ServletInitializer</span> <span style="color:#66d9ef">extends</span> SpringBootServletInitializer <span style="color:#f92672">{</span>

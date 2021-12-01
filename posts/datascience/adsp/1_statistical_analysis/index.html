@@ -75,7 +75,7 @@ if (!doNotTrack) {
 <h2 id="내용">내용</h2>
 <p>일반적으로 데이터를 처리할 때 legacy시스템에서 직접 데이터를 가져오기도 하지만 <strong>ODS(Operational Data Store)</strong> 에서 데이터를 가져오는 것을 권고한다. 그 이유는 운영 중에 legacy시스템에서 데이터를 직접 가져오는 것은 legacy시스템에 부하를 유발함으로 운영 서비스에 영향을 끼칠 수 있기 때문이다. 따라서 Legacy에서 ODS로 데이터를 적재하는데 이때 데이터 변환이 필요하다면 별도의 staging 영역을 활용한다. 일반적으로 비정형 데이터는 RDB에 임시 저장후 텍스트 마이닝을 거쳐 데이터 마트(DM)과 결합시킨다. 또 소셜데이터 같은 경우 RDB에 심시 저장 후 사회 신경망 분석을 통한 결과를 DM과 결합한다. 이렇게 [ legacy -&gt; staging -&gt; ODS -&gt; DW-&gt;DM]로 데이터가 적재되어사용된다.  분석은 각 단계에서 수행되어 각 단계의 데이터와 결합할 수 있다.</p>
 <p>많은 분석 작업들이 &lsquo;탐색적 자료 분석(EDA)&lsquo;를 통해 이루어지는데, 다양한 차원(dimension)과 값을 조합하여 특이점이나 규칙들 찾아낸다. 이때 시각화를 반드시 사용해야 하며 이를 통해 빠르게 특이점을 찾아낼 수 있다. 그 외에도 공간적 차원과 관련된 속성을 분석할 때에도 시각화 분석이 필요하다.</p>
-<p><!-- raw HTML omitted --></p>
+<p><img src="https://www.oreilly.com/content/wp-content/uploads/sites/2/2019/06/05.02-Introducing-Scikit-Learn_8_0-b11592b82c83c188d4e207516f06f7fe.png" alt="img" style="zoom:80%;" /></p>
 <p><strong>(ref.<a href="https://www.oreilly.com/content/intro-to-scikit-learn/">Introduction to scikit-learn – O’Reilly</a>)</strong></p>
 <p>일반적으로 데이터 분석은 통계분석을 의미한다. 통계분석은 <strong>기술통계(descriptive statistics)</strong> 와 <strong>추측통계(infererential statistics)</strong> 로 나뉜다. 기술통계는 모집단으로부터 샘플링 하여 정보를 쉽게 숫자/그래프로 나타낸 것을 의미하고, 추측통계는 기술통계의 결과인 샘플 특정 모수에 관해 통계적으로 추론하는 것이다. 다시 이야기 하면 기술통계는 &lsquo;각 연령 별 여당 후보의 지지율 분포&rsquo;와 같은 샘플 데이터 자체를 표현 하는 것이고, 추측통계는 기술통계로부터 얻은 샘플링 결과를 일반화 시키고 그것을 통해 &lsquo;여당 후보의 당선 가능성이 더 높다&rsquo;라고 하는 것이다. 실제로 추측의 근거는 오직 샘플링 결과에 의존한 것이기 때문에 잘못되었을 수도 있다. 따라서 기술 통계 시 올바른 샘플링이 중요하다.</p>
 <p><img src="https://miro.medium.com/max/1280/1*GkjmpGnnljpSi7JFZP6Fcg.gif" alt="The Guide to Rigorous Descriptive Statistics for Machine Learning and Data  Science : | by Himanshu S | Medium"></p>
@@ -87,11 +87,11 @@ if (!doNotTrack) {
 <ul>
 <li><strong>데이터 처리</strong> 는 [(legacy)-&gt;staging-&gt;ODS-&gt;DW-&gt;DM] 으로 이루어진다.</li>
 <li><strong>시각화</strong> 는 낮은 수준의 분석이지만, 매우 효과적이고 EDA, 공간분석에서 필수이다.</li>
-<li><strong>공간분석</strong> 은 <!-- raw HTML omitted -->공간적 차원과 관련 속성을 시각화<!-- raw HTML omitted --> 하는 분석이다.</li>
-<li><strong>EDA</strong> 는 탐색적 자료분석으로 <!-- raw HTML omitted -->다양한 차원과 값을 조합해가며 특이점을 찾는 것<!-- raw HTML omitted -->이다.</li>
-<li><strong>데이터마이닝</strong> 은 대용량자료로 부터 <!-- raw HTML omitted -->관계, 패턴, 규칙<!-- raw HTML omitted -->을 탐색하고 모형(모델)화 함으로써 유용한 지식을 추출하는 분석방법이다.</li>
-<li><strong>시뮬레이션</strong> 은 복잡한 <!-- raw HTML omitted -->실제상황을 단순화해 컴퓨터 모델<!-- raw HTML omitted -->로 만들어 재현하거나 변경하여 결과 예측하기 위한 방법이다.</li>
-<li><strong>최적화</strong> 는 <!-- raw HTML omitted -->제약조건하에서 목표값을 개선<!-- raw HTML omitted -->하는 방식으로 목적함수와 제약조건을 정의해 문제를 해결한다.</li>
+<li><strong>공간분석</strong> 은 <u>공간적 차원과 관련 속성을 시각화</u> 하는 분석이다.</li>
+<li><strong>EDA</strong> 는 탐색적 자료분석으로 <u>다양한 차원과 값을 조합해가며 특이점을 찾는 것</u>이다.</li>
+<li><strong>데이터마이닝</strong> 은 대용량자료로 부터 <u>관계, 패턴, 규칙</u>을 탐색하고 모형(모델)화 함으로써 유용한 지식을 추출하는 분석방법이다.</li>
+<li><strong>시뮬레이션</strong> 은 복잡한 <u>실제상황을 단순화해 컴퓨터 모델</u>로 만들어 재현하거나 변경하여 결과 예측하기 위한 방법이다.</li>
+<li><strong>최적화</strong> 는 <u>제약조건하에서 목표값을 개선</u>하는 방식으로 목적함수와 제약조건을 정의해 문제를 해결한다.</li>
 </ul>
 <hr>
 <h1 id="추가">추가</h1>

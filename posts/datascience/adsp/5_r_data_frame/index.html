@@ -73,7 +73,7 @@ if (!doNotTrack) {
 <p>데이터 프레임의 데이터를 행/열 단위로 추출/제거/수정 함으로써 데이터 분석을 위한 데이터 클랜징 작업을 수행할 수 있다. 많은 경우 미리 데이터가 클랜징되어 들어오지만, 만약 R을 통해서 데이터를 수정해야 하는 경우 데이터 프레임을 사용하면 좋다.</p>
 <hr>
 <h3 id="데이터-프레임-생성">데이터 프레임 생성</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 벡터를 통한 생성 </span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 벡터를 통한 생성 </span>
 <span style="color:#f92672">&gt;</span> v1<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
 <span style="color:#f92672">&gt;</span> v2<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>)
 <span style="color:#f92672">&gt;</span> v3<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(T,F,F,T)
@@ -152,7 +152,7 @@ if (!doNotTrack) {
 
 <span style="color:#75715e"># apply를 사용한 생성</span>
 </code></pre></div><h3 id="데이터프레임-조회-인덱싱">데이터프레임 조회 (인덱싱)</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 테스트 데이터 생성 </span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 테스트 데이터 생성 </span>
 <span style="color:#f92672">&gt;</span> us.state <span style="color:#f92672">=</span> <span style="color:#a6e22e">data.frame</span>(state.abb,state.name,state.region,state.area,stringsAsFactors<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
 <span style="color:#f92672">&gt;</span> us.state
    state.abb     state.name  state.region state.area
@@ -252,7 +252,7 @@ if (!doNotTrack) {
 
 
 </code></pre></div><h3 id="그-외-연산">그 외 연산</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 메모리로 데이터 프레임 attache/detach (복제본이 적재됨)</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e"># 메모리로 데이터 프레임 attache/detach (복제본이 적재됨)</span>
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">attach</span>(iris)
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">search</span>()
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">detache</span>(iris)

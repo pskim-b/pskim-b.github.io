@@ -318,7 +318,7 @@ if (!doNotTrack) {
 <hr>
 <h1 id="15-long-polling-vs-websockets-vs-server-sent-events"><strong>15. Long-Polling vs WebSockets vs Server-Sent Events</strong></h1>
 <p>Long-Polling, WebSocket 및 Server-Sent Events는 웹 브라우저와 같은 client와 web server간 널리 사용되는 프로토콜이다. 이것들에 대해서 비교하기 전에 먼저 표준 HTTP web request가 어떻게 생겼는지 이해하는 것 부터 시작해야 한다. 다음은 일반적인 HTTP 요청에 대한 일련의 이벤트이다.</p>
-<!-- raw HTML omitted -->
+<15-1>
 <ol>
 <li>client는 연결을 열고 server에서 데이터를 요청한다.</li>
 <li>server는 응답을 계산한다.</li>
@@ -326,7 +326,7 @@ if (!doNotTrack) {
 </ol>
 <h2 id="ajax-polling-의-문제점">Ajax Polling 의 문제점</h2>
 <p>Polling은 대부분의 AJAX 애플리케이션에서 사용하는 표준 기술이다. 기본 아이디어는 client가 데이터를 위해 서버를 반복적으로 polling(요청)한다는 것이다. client는 요청을 하고 서버가 데이터로 응답할 때까지 기다린다. 사용가능한 데이터가 없으면 빈 응답이 반환된다.</p>
-<!-- raw HTML omitted -->
+<15-2>
 <ol>
 <li>Client는 연결을 열고 일반 HTTP를 사용하여 서버에서 데이터를 요청한다.</li>
 <li>요청된 웹 페이지는 일정한 간격(e.g 0.5초)로 서버에 요청을 보낸다.</li>
@@ -336,7 +336,7 @@ if (!doNotTrack) {
 <h2 id="http-long-polling"><strong>HTTP Long-Polling</strong></h2>
 <p>이 방식은 데이터를 사용할 수 있을 때 마다 서버가 클라이언트에 정보를 push 할 수 있도록 변경한 polling 기술의 변형이다. Long-polling을 사용하면 client는 정상적인 polling에서와 똑같이 서버에서 정보를 요청하지만, 서버가 즉시 응답하지 않을 수 있다. 그렇기 때문에 이 기술을 Hanging GET이라고도 한다.</p>
 <p>서버에서 client에 전달할 데이터가 없는 경우, 데이터가 빈 응답을 보내는 대신 서버는 요청을 보류하고 보내줄 데이터가 있을 때까지 기다립니다. 그리고 데이터가 사용할 수 있게 되면 전체 응답이 client로 전송된다. client가 데이터를 받은 후에 client는 곧바로 서버에 다시 데이터를 요청함으로 서버는 거의 항상 데이터를 보내줄 수 있는 client의 요청을 가지고 있는 상태가 된다. 기본적인 HTTP Long-polling 애플리케이션의 수명주기는 다음과 같다.</p>
-<!-- raw HTML omitted -->
+<15-3> 
 <ol>
 <li>client는 일반 HTTP를 사용하여 초기 요청을 한 다음 응답을 기다린다.</li>
 <li>서버는 업데이트를 사용할 수 있거나 시간 초과가 발생할 때까지 응답을 지연한다.</li>
@@ -347,7 +347,7 @@ if (!doNotTrack) {
 <h2 id="websockets">WebSockets</h2>
 <p>웹 소켓은 단일 TCP연결을 통해 전 이중 통신(full-duplex communication)채널을 제공한다. client와 서버간 영구적인 연결을 제공하여 양측이 언제든지 데이터 전송을 시작할 수 있다.</p>
 <p>Client는 웹소켓 핸드쉐이크hand-shake라는 프로세스를 통해 웹소켓을 연결한다.  프로세스가 성공하면 언제든지 양방향으로 데이터를 교환할 수 있다. 웹소켓 프로토콜은 낮은 오버헤드로 클라이언트와 서버간 통신을 가능하게하여 서버와의 실시간 데이터 전송을 용이하게 한다. 이는 서버가 client의 요청없이 브라우저에 콘텐츠를 보낼 수 있는 표준화된 방법을 제공하고, 브라우저에 콘텐츠를 보낼 수 있는  표준화된 방법을 제공한다. 이러한 방식으로 client와 서버간 양방향 진행중인 대화가 발생할 수 있다.</p>
-<!-- raw HTML omitted -->
+<15-4> 
 <h2 id="server-sent-events-sses"><strong>Server-Sent Events (SSEs)</strong></h2>
 <p>이 방식에서는 client는 서버와 지속적이고 장기적인 연결을 설정한다. 서버는 이 연결을 이용해 데이터를 client에보낸다. client가 데이터를 서버로 보내려면 다른 기술/프로토콜을 사용해야 한다.</p>
 <ol>
@@ -356,7 +356,7 @@ if (!doNotTrack) {
 <li>서버는 새로운 정보가있을 때 마다 client에 데이터를 보낸다.</li>
 </ol>
 <p>SSE는 서버에서 client로의 실시간 트래픽이 필요하거나 서버가 루프에서 데이터를 생성하고 여러 이벤트를 Client로 보낼 때 가장 좋다. 이 방식에서는 client는 초기 서버 연결 후 서버에 데이터를 polling 하지 않는다</p>
-<!-- raw HTML omitted -->
+<15-5> 
 <hr>
 <h1 id="16-bloom-filter"><strong>16. Bloom Filter</strong></h1>
 <p>만약 구조화된 대용량의 구조화된 데이터(레코드 ID로 식별될 수 있는)가 여러개의 파일에 저장되어 있는 경우, 하나의 파일에 필요한 데이터를 가장 많이 효과적으로 저장하는 방법은 무엇인가?</p>
@@ -368,7 +368,7 @@ if (!doNotTrack) {
 <li>이 위치의 비트 중 하나가 0이면 요소는 확실히 세트에 없다. 모두 1이면 요소가 세트에있을 수 있다. (반드시 있는 것은 아니다)</li>
 </ul>
 <p>다음은 P, Q, R의 세 가지 요소가있는 Bloom 필터에 대한 예시이다. 20 비트로 구성되며 세 가지 해시 함수를 사용한다. 컬러 화살표는 집합의 요소가 매핑되는 비트를 가리킨다.</p>
-<!-- raw HTML omitted -->
+<16-1>
 <p>요소 X는 0을 포함하는 비트 위치로 해시되기 때문에 확실히 세트에 없다. 고정 오류율의 경우 새 요소 추가와 멤버십 테스트는 모두 일정한 시간 작업이며 &lsquo;n&rsquo;요소를위한 공간이있는 필터에는 O (n) 공간이 필요합니다.</p>
 
 		</div>
