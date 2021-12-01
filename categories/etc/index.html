@@ -4,14 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ETC - PS Tech study</title>
+	<title>ETC - PS Developer Tech study</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
 	<meta name="description" content="">
 		<meta property="og:title" content="ETC" />
-<meta property="og:description" content="기술 학습 블로그" />
+<meta property="og:description" content="개발자 기술 학습 블로그" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/categories/etc/" />
-<meta property="og:updated_time" content="2021-01-22T22:42:30+09:00" />
+<meta property="og:updated_time" content="2021-12-01T00:00:00+09:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -20,7 +20,7 @@
 
 	<link rel="stylesheet" href="/css/style.css">
 	
-	<link rel="alternate" type="application/rss+xml" href="/categories/etc/index.xml" title="PS Tech study">
+	<link rel="alternate" type="application/rss+xml" href="/categories/etc/index.xml" title="PS Developer Tech study">
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
@@ -61,6 +61,24 @@ if (!doNotTrack) {
 	<header class="main__header">
 		<h1 class="main__title">ETC</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/posts/etc/20211201_git_ssh_multikey/" rel="bookmark">
+			[GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects)
+			</a>
+		</h2>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-12-01T00:00:00&#43;09:00">December 01, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/etc/" rel="category">ETC</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		SSH Key 등록의 문제 기존에 windows 환경에서 SSH 키를 등록하는 방법을 간단하게 공유하였다. 이와 관련된 내용은 내 블로그가 아니더라도 github 페이지에 가이드되어 있는 내용이기 때문에 다들 알고 있는 내용일 것이다. (참고) Windows10 - SSH Key 등록
+하지만 SSH 키를 등록하더라도 제대로 연결이 되지 않는 경우가 존재할 수 있다.
+나의 경우는 개인적인 프로젝트나 업무와 관련된 계정이 하나 존재하고, 블로그를 작성하고 관리하기 위한 계정이 하나 존재한다. 관리의 편의성 및 보안을 위해서 각 프로젝트 마다 다른 github 계정을 사용해서 push 해야 한다.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/posts/etc/20210122_git_win10_auth/" rel="bookmark">
@@ -130,11 +148,11 @@ PS&gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/etc/20211201_git_ssh_multikey/">[GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20211129_restful_api/">[WEB] RESTful API</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_streaming/">[JAVA] 스트림 API (Stream API)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_optional/">[JAVA] 옵셔널 (Optional) </a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/">[WEB] Servlet에 대한 이해</a></li>
 		</ul>
 	</div>
 </div>
@@ -162,8 +180,8 @@ PS&gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없
 
 		
 		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="tistory" rel="noopener noreferrer" href="https://paulsmooth.tistory.com/" target="_blank">
-				<span>tistory</span>
+			<a class="widget-social__link widget__link btn" title="Tistory" rel="noopener noreferrer" href="https://paulsmooth.tistory.com/" target="_blank">
+				<span>Tistory</span>
 			</a>
 		</div>
 		
@@ -175,7 +193,7 @@ PS&gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Tech study.
+			&copy; 2021 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

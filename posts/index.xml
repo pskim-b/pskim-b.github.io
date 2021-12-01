@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on PS Tech study</title>
+    <title>Posts on PS Developer Tech study</title>
     <link>/posts/</link>
-    <description>Recent content in Posts on PS Tech study</description>
+    <description>Recent content in Posts on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 28 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0900</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects)</title>
+      <link>/posts/etc/20211201_git_ssh_multikey/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0900</pubDate>
+      
+      <guid>/posts/etc/20211201_git_ssh_multikey/</guid>
+      <description>SSH Key 등록의 문제 기존에 windows 환경에서 SSH 키를 등록하는 방법을 간단하게 공유하였다. 이와 관련된 내용은 내 블로그가 아니더라도 github 페이지에 가이드되어 있는 내용이기 때문에 다들 알고 있는 내용일 것이다. (참고) Windows10 - SSH Key 등록
+하지만 SSH 키를 등록하더라도 제대로 연결이 되지 않는 경우가 존재할 수 있다.
+나의 경우는 개인적인 프로젝트나 업무와 관련된 계정이 하나 존재하고, 블로그를 작성하고 관리하기 위한 계정이 하나 존재한다. 관리의 편의성 및 보안을 위해서 각 프로젝트 마다 다른 github 계정을 사용해서 push 해야 한다.</description>
+    </item>
+    
     <item>
       <title>[WEB] RESTful API</title>
       <link>/posts/spring/web/20211129_restful_api/</link>
