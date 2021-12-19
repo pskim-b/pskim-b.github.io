@@ -662,6 +662,45 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 	width: 100%;
 }
 
+.about__image {
+	float: left;
+	padding: 1px;
+	margin: 0 10px 0 0;
+	border-radius: 80%;
+	height: 320px;
+}
+
+.about__name {
+	display: inline-block;
+	margin-top: 10px;
+	font-size: 16px;
+	bold: true
+	font-size: .875rem;
+	font-weight: 600;
+	color: #505752;
+}
+
+.about__bio {
+	display: inline-block;
+	font-size: 12px;
+	font-size: .875rem;
+	font-weight: 300;
+	color: #e22d30;
+}
+
+.about__title {
+	position: relative;
+	padding-bottom: 5px;
+	font-size: 16px;
+	font-size: 1rem;
+	text-transform: uppercase;
+	border-bottom: 1px solid #ebebeb;
+}
+
+.about__footer {
+	border-bottom: 3px solid #e22d30;
+}
+
 .content a,
 .warning a,
 .authorbox__description a {
