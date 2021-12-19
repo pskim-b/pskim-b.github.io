@@ -63,7 +63,6 @@ body {
 .container {
 	position: relative;
 	width: 100%;
-	max-width: 1080px;
 	margin: 0 auto;
 }
 
@@ -96,6 +95,7 @@ body {
 	-webkit-order: 2;
 	order: 2;
 	min-width: 0;
+	max-width: 300px;
 	margin: 0 0 0 2.5%;
 }
 
@@ -391,6 +391,7 @@ select {
 
 .logo {
 	padding: 25px;
+	text-align: center;
 }
 
 .logo__link {
