@@ -5,7 +5,19 @@
     <link>/categories/java/</link>
     <description>Recent content in Java on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 05 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[JAVA] 어노테이션 (Annotation)</title>
+      <link>/posts/java/20211016_java_annotation/</link>
+      <pubDate>Sat, 16 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/java/20211016_java_annotation/</guid>
+      <description>Java Annotation은 Java 소스코드/프로그램에 대한 metadata를 표현하기 위해 사용되는 방법이다. 이것을 통해 설정한 metadata로 다른 프로그램 또는 스스로를 조작하는 프로그램으로 다양한 프레임워크에서 사용된다.
+컴파일 타임, 런타임에 코드가 동적으로 변경할 수 있게 한다. Java Annotation Java에서 프로그램 코드에 대한 Metadata를 제공하는 방식
+Meta data 종류 1.Pre Compilation Information
+ 컴파일 시 체크해야 하는 정보를 추가적으로 제공 (ex. @Override)  Compile time Information   코드 생성 및 Java 컴파일러와 연관된 툴에 대한 정보 (ex.</description>
+    </item>
+    
     <item>
       <title>[JAVA] 스트림 API (Stream API)</title>
       <link>/posts/java/202110_java_streaming/</link>

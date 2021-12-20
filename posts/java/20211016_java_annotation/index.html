@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[JAVA] 어노테이션 (Annotation) - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[JAVA] 어노테이션 (Annotation)" />
+<meta property="og:description" content="Java Annotation은 Java 소스코드/프로그램에 대한 metadata를 표현하기 위해 사용되는 방법이다. 이것을 통해 설정한 metadata로 다른 프로그램 또는 스스로를 조작하는 프로그램으로 다양한 프레임워크에서 사용된다.
+컴파일 타임, 런타임에 코드가 동적으로 변경할 수 있게 한다. Java Annotation Java에서 프로그램 코드에 대한 Metadata를 제공하는 방식
+Meta data 종류 1.Pre Compilation Information
+ 컴파일 시 체크해야 하는 정보를 추가적으로 제공 (ex. @Override)  Compile time Information   코드 생성 및 Java 컴파일러와 연관된 툴에 대한 정보 (ex." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/java/20211016_java_annotation/" />
+<meta property="article:published_time" content="2021-10-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-16T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[JAVA] 어노테이션 (Annotation)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-10-16T00:00:00Z">October 16, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/java/" rel="category">Java</a>
+	</span>
+</div></div>
+		</header><div class="content post__content clearfix">
+			<h2 id="컴파일-타임-런타임에-코드가-동적으로-변경할-수-있게-한다">Java Annotation은 Java 소스코드/프로그램에 대한 metadata를 표현하기 위해 사용되는 방법이다.
+이것을 통해 설정한 metadata로 다른 프로그램 또는 스스로를 조작하는 프로그램으로 다양한 프레임워크에서 사용된다.<br>
+컴파일 타임, 런타임에 코드가 동적으로 변경할 수 있게 한다.</h2>
+<h2 id="java-annotation">Java Annotation</h2>
+<p>Java에서 프로그램 코드에 대한 Metadata를 제공하는 방식</p>
+<h3 id="meta-data-종류">Meta data 종류</h3>
+<p>1.Pre Compilation Information</p>
+<ul>
+<li>컴파일 시 체크해야 하는 정보를 추가적으로 제공 (ex. @Override)</li>
+</ul>
+<ol start="2">
+<li>Compile time Information</li>
+</ol>
+<ul>
+<li>코드 생성 및 Java 컴파일러와 연관된 툴에 대한 정보 (ex. Lombok - @Getter, @Setter)</li>
+</ul>
+<ol start="3">
+<li>Reflection Information</li>
+</ol>
+<ul>
+<li>Reflection을 위해서 런타임에 획득될 수 있는 정보를 제공(ex. @Inject, @Autowired, @Value)</li>
+</ul>
+<h3 id="java-annotation-1">Java Annotation</h3>
+<ul>
+<li>Built-In Annotation</li>
+<li>Annotation Usage</li>
+<li>Custom Annotation</li>
+<li>Meta Annotation</li>
+</ul>
+<p>프로그램 코드에 대한 Metadata를 제공하는 방식</p>
+<ul>
+<li>Pre-Compilation Information (@Lombok)</li>
+<li>Compile time Information (@Override)</li>
+<li>Runtime Information (@Inject)</li>
+</ul>
+<h4 id="built-in-annotation">Built-In Annotation</h4>
+<p>미리 내장되어 있는 annotation</p>
+<ul>
+<li>@Override : 오버라이딩 메소드 (아닐 경우 에러 발생)</li>
+<li>@FunctionalInterface :  함수형 인터페이스</li>
+<li>@Deprecated : 향후 사용되지 않음</li>
+<li>@SuppressWarnings : 경고메세지를 나타내지 않음</li>
+<li>@SafeVarargs : 제네릭 가변인자 사용</li>
+<li>@Native : Native 메서드에서 참조되는 상수에 사용</li>
+</ul>
+<p>다양한 프레임워크 &amp; 라이브러리에서 활용</p>
+<ul>
+<li>Junit</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#75715e">// JUnit 
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@Test</span> 
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testIt</span><span style="color:#f92672">(){</span>
+  assertNotNull<span style="color:#f92672">(</span>someInstance<span style="color:#f92672">);</span>
+  assertEquals<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hi&#34;</span><span style="color:#f92672">,</span>some<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">());</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>Spring</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RequestMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">someController</span><span style="color:#f92672">{</span>
+  <span style="color:#a6e22e">@GetMapping</span> 
+  <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(){</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">;</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="custom-annotation">Custom Annotation</h4>
+<ol>
+<li>@Interface 키워드를 통해 정의하고 내부에 추상 메서드 정의 가능</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@interface</span> myAnnotation<span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">count</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> 1<span style="color:#f92672">;</span> 
+  String <span style="color:#a6e22e">test</span><span style="color:#f92672">();</span> 
+<span style="color:#f92672">}</span>
+</code></pre></div><ol start="2">
+<li>@Target, @Retention 등 Meta Annotation으로 Annotation에 대한 Meta정보 제공</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">SOURCE</span><span style="color:#f92672">)</span>
+<span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">TYPE</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Transfer<span style="color:#f92672">{</span>
+  Class<span style="color:#f92672">&lt;?&gt;</span>  target<span style="color:#f92672">;</span> 
+  String <span style="color:#a6e22e">set</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#34;set&#34;</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h4 id="meta-annotation">Meta Annotation</h4>
+<p>Annotation에 대한 정보를 제공하는 Annotation(메타의 메타를 제공하는 Annotation)</p>
+<ul>
+<li>@Target: Annotation이 지정 가능한 대상을 설정</li>
+<li>@Retention: Annotation이 유지되는 범위 설정</li>
+<li>@Documented: Annotation이 javadoc에 포함하도록 설정</li>
+<li>@Inherited: Annotation이 서브 클래스에 상속되도록 설정</li>
+<li>@Repeatable: Annotation이 반복되어서 적용될 수 있도록 설정</li>
+</ul>
+<p>@Retention (Policy)
+해당 Annotation을 언제까지 유지할 것인지
+Policy 종류</p>
+<ul>
+<li>SOURCE: 코드가 소스 파일에서만 유효. class파일에서는 적용되지 않음</li>
+<li>CLASS(default): 컴파일 후 class 파일까지만 유효. 실행시에는 사용 불가</li>
+<li>RUNTIME: 컴파일 후 class 및 실행시에도 유효. 실행시에 사용가능</li>
+</ul>
+<p>@Target({FIELD, METHOD, PARAMETER,&hellip; })</p>
+<ul>
+<li>ANNOTATION TYPE</li>
+<li>CONSTRUCTOR</li>
+<li>FIELD</li>
+<li>LOCAL_VARIABLE</li>
+<li>METHOD</li>
+<li>PACKAGE</li>
+<li>PARAMETER</li>
+<li>TYPE
+중괄호로 복수개 설정할 수 있음.</li>
+</ul>
+<hr>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/annotation/" rel="tag">Annotation</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/java/202110_java_streaming/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[JAVA] 스트림 API (Stream API)</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/spring/web/20211129_restful_api/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[WEB] RESTful API</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

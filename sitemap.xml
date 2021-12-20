@@ -53,17 +53,27 @@
   </url>
   
   <url>
+    <loc>/posts/java/20211016_java_annotation/</loc>
+    <lastmod>2021-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/annotation/</loc>
+    <lastmod>2021-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/java/</loc>
+    <lastmod>2021-10-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/java/202110_java_streaming/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/posts/java/202110_java_optional/</loc>
-    <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/java/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
   </url>
   
