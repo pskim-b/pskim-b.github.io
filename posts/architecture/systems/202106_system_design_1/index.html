@@ -50,8 +50,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -66,6 +72,38 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-분산-시스템의-필수-고려사항"><strong>1. 분산 시스템의 필수 고려사항</strong></a></li>
+    <li><a href="#2-cap-이론"><strong>2. CAP 이론</strong></a></li>
+    <li><a href="#3pacelc-이론"><strong>3.PACELC 이론</strong></a></li>
+    <li><a href="#4-sql-vs-nosql"><strong>4. SQL vs NoSQL</strong></a>
+      <ul>
+        <li><a href="#41-sql"><strong>4.1 SQL</strong></a></li>
+        <li><a href="#42--nosql"><strong>4.2  NoSQL</strong></a></li>
+        <li><a href="#43-sql과-nosql의-차이점"><strong>4.3 SQL과 NoSQL의 차이점</strong></a></li>
+        <li><a href="#44-적절한-dbms의-선택"><strong>4.4 적절한 DBMS의 선택</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-load-balancing"><strong>5. Load Balancing</strong></a></li>
+    <li><a href="#6-caching"><strong>6. Caching</strong></a>
+      <ul>
+        <li><a href="#app-서버-캐시">App 서버 캐시</a></li>
+        <li><a href="#cdn-content-delivery-network">CDN (Content Delivery Network)</a></li>
+        <li><a href="#캐시-무효화--cache-invalidation">캐시 무효화  Cache Invalidation</a></li>
+        <li><a href="#캐시-제거-정책-cache-eviction-policies"><strong>캐시 제거 정책 Cache eviction policies</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -77,7 +115,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-23T00:00:00Z">June 23, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>🏛️</p>
 <p>대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다</p>
 <ul>
@@ -412,7 +451,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

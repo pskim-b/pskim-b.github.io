@@ -3,12 +3,57 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/etc/20211201_git_ssh_multikey/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
+    <loc>/posts/book/202201_socratesexpress/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/book/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/insight/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/architecture/designpattern/202112_dp_strategy_pattern/</loc>
+    <lastmod>2021-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/architecture/</loc>
+    <lastmod>2021-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/designpattern/</loc>
+    <lastmod>2021-12-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/etc/20211201_git_ssh_multikey/</loc>
     <lastmod>2021-12-01T00:00:00+09:00</lastmod>
   </url>
   
@@ -19,21 +64,6 @@
   
   <url>
     <loc>/tags/git/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2021-12-01T00:00:00+09:00</lastmod>
   </url>
   
@@ -99,11 +129,6 @@
   
   <url>
     <loc>/posts/architecture/msa/msa_20210813_front-integration/</loc>
-    <lastmod>2021-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/architecture/</loc>
     <lastmod>2021-08-13T00:00:00+00:00</lastmod>
   </url>
   

@@ -5,7 +5,18 @@
     <link>/categories/architecture/</link>
     <description>Recent content in Architecture on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 13 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Design] 전략 패턴, Strategy Pattern</title>
+      <link>/posts/architecture/designpattern/202112_dp_strategy_pattern/</link>
+      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/designpattern/202112_dp_strategy_pattern/</guid>
+      <description>개요 Strategy pattern은 일련의 알고리즘을 정의하고 각각을 분리된 객체(class)에 넣어 필요에 따라 알고리즘을 교체할 수 있도록 만든 디자인 패턴이다.
+문제 상황 예시 네비게이션 앱을 만든다고 생각해보자. 주어진 지도 위에 최단 거리를 구하기 위한 알고리즘을 구현해야 한다. 이러한 알고리즘은 자차, 도보, 대중교통을 이용할 때 각각 구현되어야 하며 필요에 따라서 하나를 선택하여 사용해야 한다. 또한 각각은 효율적으로 개발 배포될 수 있도록 구현되어야 하며 각 알고리즘의 영향을 최소한으로 해야한다.
+설계 방안 classDiagramContext o-- StrategyStrategy Strategy pattern을 사용해서 필요한 알고리즘을 각각의 클래스로 구현한다.</description>
+    </item>
+    
     <item>
       <title>[MSA] 마이크로서비스 Frontend 통합 방안</title>
       <link>/posts/architecture/msa/msa_20210813_front-integration/</link>

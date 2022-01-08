@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Design] 전략 패턴, Strategy Pattern - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[Design] 전략 패턴, Strategy Pattern" />
+<meta property="og:description" content="개요 Strategy pattern은 일련의 알고리즘을 정의하고 각각을 분리된 객체(class)에 넣어 필요에 따라 알고리즘을 교체할 수 있도록 만든 디자인 패턴이다.
+문제 상황 예시 네비게이션 앱을 만든다고 생각해보자. 주어진 지도 위에 최단 거리를 구하기 위한 알고리즘을 구현해야 한다. 이러한 알고리즘은 자차, 도보, 대중교통을 이용할 때 각각 구현되어야 하며 필요에 따라서 하나를 선택하여 사용해야 한다. 또한 각각은 효율적으로 개발 배포될 수 있도록 구현되어야 하며 각 알고리즘의 영향을 최소한으로 해야한다.
+설계 방안 classDiagramContext o-- StrategyStrategy Strategy pattern을 사용해서 필요한 알고리즘을 각각의 클래스로 구현한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/architecture/designpattern/202112_dp_strategy_pattern/" />
+<meta property="article:published_time" content="2021-12-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-24T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#개요">개요</a></li>
+        <li><a href="#문제-상황-예시">문제 상황 예시</a></li>
+        <li><a href="#설계-방안">설계 방안</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Design] 전략 패턴, Strategy Pattern</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-12-24T00:00:00Z">December 24, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<h2 id="개요">개요</h2>
+<p>Strategy pattern은 일련의 알고리즘을 정의하고 각각을 분리된 객체(class)에 넣어 
+필요에 따라 알고리즘을 교체할 수 있도록 만든 디자인 패턴이다.</p>
+<h2 id="문제-상황-예시">문제 상황 예시</h2>
+<p>네비게이션 앱을 만든다고 생각해보자. 주어진 지도 위에 최단 거리를 구하기 위한 알고리즘을 구현해야 한다. 
+이러한 알고리즘은 자차, 도보, 대중교통을 이용할 때 각각 구현되어야 하며 필요에 따라서 하나를 선택하여 사용해야 한다. 
+또한 각각은 효율적으로 개발 배포될 수 있도록 구현되어야 하며 각 알고리즘의 영향을 최소한으로 해야한다.</p>
+<h2 id="설계-방안">설계 방안</h2>
+<div class="mermaid" align="center">
+classDiagram
+Context o-- Strategy
+Strategy <|.. Strategy_A : Realization
+Strategy <|.. Strategy_B : Realization
+Strategy <|.. Strategy_C : Realization
+Context <-- Client
+Strategy_A <.. Client : Generate
+Strategy_B <.. Client : Generate
+Strategy_C <.. Client : Generate
+class Context {
+-strategy
++doSomething()
++setStrategy()
+}
+class Strategy{
++execute()
+}
+Strategy_A: +execute()
+Strategy_B: +execute()
+Strategy_C: +execute()
+</div>
+<p>Strategy pattern을 사용해서 필요한 알고리즘을 각각의 클래스로 구현한다.
+이렇게 별도로 구현된 클래스를 strategies 라고 한다.
+모든 strategies는 하나의 interface로 부터 파생되고, 알고리즘 수행에 필요한 하나의 메소드를 노출시켜야 한다.</p>
+<p>strategies를 사용하는 클래스를 context라고 하는데, 
+이것은 하나의 strategies를 담을 수 있는 field 값을 가지고 있어야 한다.</p>
+<p>context는 어떠한 strategies를 사용할 것인지 직접 결정하지 않는다.
+대신에 client에서 context에게 적절한 strategies를 전달해준다. 그래서 사실 context는 어떠한 strategies를 사용하는지 잘 모른다.</p>
+<p>이러한 방식으로 context는 알고리즘에 독립적으로 strategies를 사용할 수 있고, 
+context의 변경 없이 새로운 strategies를 추가 함으로써 알고리즘을 추가하거나 수정하는데 용이하다.</p>
+<p>출처 : <a href="https://refactoring.guru/design-patterns/strategy">https://refactoring.guru/design-patterns/strategy</a></p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/designpattern/" rel="tag">DesignPattern</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/etc/20211201_git_ssh_multikey/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title"> [GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects) </p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/book/202201_socratesexpress/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[Review] 천천히 읽는 ... Socrates Express</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2022 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

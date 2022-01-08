@@ -41,8 +41,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -57,6 +63,29 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1-데이터의-이해">1. 데이터의 이해</a></li>
+            <li><a href="#2-데이터-분석-기획">2. 데이터 분석 기획</a></li>
+            <li><a href="#3-데이터-분석">3. 데이터 분석</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -68,7 +97,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-01-25T00:00:00Z">January 25, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/datasicence/" rel="category">DataSicence</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>😃</p>
 <p>빅데이터를 처리하는 솔루션을 개발하고 구축하는게 나의 주된 업무이지만, 기술에 대한 호기심이 많은터라  새로운 분야를 접할 때마다 조금조금씩 공부하고는 한다. AI/분석업무도 나에게는 그런 영역 중 하나인데, 대학교때 공통교양이였던 통계학을 멀리해서 벌을 받는 것인지 몰라도 기억속에 그리 오래 남지 않았다.</p>
 <p>그래서 알아두면 나쁘지 않을 생각을 하고 있는 중에 요즘 데이터 관련 직종으로 취업하는 대학생이라면 하나씩 다 가지고 있다던  데이터분석 준전문가(ADsP) 자격증을 따보기로 결심했다. 자격증 자체는 &lsquo;정보처리기사&rsquo; 같이 크게 의미없는 한줄이 될 수 있겠다만, 그냥 재미있을 것 같으니까 해보기로 한다.</p>
@@ -144,7 +174,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

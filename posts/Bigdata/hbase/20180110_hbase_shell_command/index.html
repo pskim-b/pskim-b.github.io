@@ -42,8 +42,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -58,6 +64,115 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-general-hbase-shell-commands"><strong>1) General HBase shell commands</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#status"><strong>status</strong></a></li>
+                <li><a href="#version"><strong>version</strong></a></li>
+                <li><a href="#whoami"><strong>whoami</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#2-table-management-commands"><strong>2) Table Management commands</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#alter"><strong>alter</strong></a></li>
+                <li><a href="#create"><strong>create</strong></a></li>
+                <li><a href="#describe"><strong>describe</strong></a></li>
+                <li><a href="#enable-disable"><strong>enable /disable</strong></a></li>
+                <li><a href="#enable_all--disable_all"><strong>enable_all / disable_all</strong></a></li>
+                <li><a href="#-is_enabled--is_disabled">** is_enabled / is_disabled**</a></li>
+                <li><a href="#drop"><strong>drop</strong></a></li>
+                <li><a href="#drop_all"><strong>drop_all</strong></a></li>
+                <li><a href="#exists"><strong>exists</strong></a></li>
+                <li><a href="#list"><strong>list</strong></a></li>
+                <li><a href="#show_filters"><strong>show_filters</strong></a></li>
+                <li><a href="#alter_status"><strong>alter_status</strong></a></li>
+                <li><a href="#alter_async"><strong>alter_async</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#3-data-manipulation-commands"><strong>3) Data Manipulation commands</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#count"><strong>count</strong></a></li>
+                <li><a href="#delete"><strong>delete</strong></a></li>
+                <li><a href="#deleteall"><strong>deleteall</strong></a></li>
+                <li><a href="#get"><strong>get</strong></a></li>
+                <li><a href="#get_counter"><strong>get_counter</strong></a></li>
+                <li><a href="#incr"><strong>incr</strong></a></li>
+                <li><a href="#put"><strong>put</strong></a></li>
+                <li><a href="#scan"><strong>scan</strong></a></li>
+                <li><a href="#truncate"><strong>truncate</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#4-hbase-surgery-tools"><strong>4) HBase surgery tools</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#assign"><strong>assign</strong></a></li>
+                <li><a href="#balancer"><strong>balancer</strong></a></li>
+                <li><a href="#balancer_switch-truefalse"><strong>balancer_switch true/false</strong></a></li>
+                <li><a href="#close_region"><strong>close_region</strong></a></li>
+                <li><a href="#compact"><strong>compact</strong></a></li>
+                <li><a href="#flush"><strong>flush</strong></a></li>
+                <li><a href="#major_compact"><strong>major_compact</strong></a></li>
+                <li><a href="#move"><strong>move</strong></a></li>
+                <li><a href="#splite"><strong>splite</strong></a></li>
+                <li><a href="#unassign"><strong>unassign</strong></a></li>
+                <li><a href="#hlog_roll"><strong>hlog_roll</strong></a></li>
+                <li><a href="#zk_dump"><strong>zk_dump</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#5-cluster-replication-tools"><strong>5) Cluster replication tools</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#add_peer"><strong>add_peer</strong></a></li>
+                <li><a href="#remove_peer"><strong>remove_peer</strong></a></li>
+                <li><a href="#list_peers"><strong>list_peers</strong></a></li>
+                <li><a href="#enable_peerdisable_peer"><strong>enable_peer/disable_peer</strong></a></li>
+                <li><a href="#start_replicationstop_replication"><strong>start_replication/stop_replication</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#6-security-tools"><strong>6) Security tools</strong></a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#grant"><strong>grant</strong></a></li>
+                <li><a href="#revoke"><strong>revoke</strong></a></li>
+                <li><a href="#user_permission"><strong>user_permission</strong></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -69,7 +184,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-01-10T00:00:00Z">January 10, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>🐬  HBase shell을 통해 수행되는 operation을 통해서 HBase에서 제공하는 기초적인 기능 및 사용목적을 이해하고자 작성하였다 .</p>
 <ul>
 <li>2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정</li>
@@ -392,7 +508,7 @@ hbck -fix를 수행하여 해결해야 하며, 해당 작업은 신중하게 해
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

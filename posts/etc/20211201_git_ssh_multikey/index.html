@@ -41,8 +41,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -57,6 +63,31 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ssh-key-등록의-문제">SSH Key 등록의 문제</a></li>
+            <li><a href="#추가적인-ssh-key-생성">추가적인 SSH Key 생성</a></li>
+            <li><a href="#ssh-key--git-authentication">SSH Key &amp; Git Authentication</a></li>
+            <li><a href="#git-config-coresshcommand--설정">Git config &lsquo;core.sshCommand&rsquo;  설정</a></li>
+            <li><a href="#참고">참고</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -68,7 +99,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-12-01T00:00:00&#43;09:00">December 01, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/etc/" rel="category">ETC</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<div>
 <br/>
 </div>
@@ -193,6 +225,12 @@ $ cat .git/config
 			<p class="pager__title">[WEB] RESTful API</p>
 		</a>
 	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/architecture/designpattern/202112_dp_strategy_pattern/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[Design] 전략 패턴, Strategy Pattern</p>
+		</a>
+	</div>
 </nav>
 <script src="https://utteranc.es/client.js"
         repo="pskim-b/pskim-b.github.io.utterances"
@@ -211,7 +249,7 @@ $ cat .git/config
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -41,8 +41,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -57,6 +63,25 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#zookeeper를-짝수로-구성하면-어떤-문제가-생길까">Zookeeper를 짝수로 구성하면 어떤 문제가 생길까?</a></li>
+        <li><a href="#zookeeper는-과반수-투표majority-voting-를-언제-사용하는-것인가">Zookeeper는 과반수 투표majority voting 를 언제 사용하는 것인가?</a></li>
+        <li><a href="#majority-voting을-수행하지-않는-경우-어떻게-될까">Majority voting을 수행하지 않는 경우 어떻게 될까?</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -68,7 +93,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-02-09T00:00:00Z">February 09, 2019</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>👷‍♂️</p>
 <p>Zookeeper를 구성하는 경우 과반수 선출(majority voting/quorums)을 위해 zookeeper server의 수를 홀수로 구성할 것을 권고한다. 개발/테스트 환경을 위해서 1대로 구성하는 경우가 아니라면, 보통 3대로 구성하며 더 failure에 대해 견고하게 구성하고자 한다면 5대로 앙상블ensemble을 구성하게 된다.</p>
 <hr>
@@ -145,7 +171,7 @@ $$</p>
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

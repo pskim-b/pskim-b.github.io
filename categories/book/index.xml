@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Book on PS Developer Tech study</title>
+    <link>/categories/book/</link>
+    <description>Recent content in Book on PS Developer Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/book/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Review] 천천히 읽는 ... Socrates Express</title>
+      <link>/posts/book/202201_socratesexpress/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/202201_socratesexpress/</guid>
+      <description> </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -40,8 +40,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -56,6 +62,28 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-파티션-테이블-생성"><strong>1. 파티션 테이블</strong> <strong>생성</strong></a></li>
+    <li><a href="#2-파티셔닝-방법"><strong>2. 파티셔닝 방법</strong></a>
+      <ul>
+        <li><a href="#21-정적-파티션">2.1 정적 파티션</a></li>
+        <li><a href="#22-동적-파티션">2.2 동적 파티션</a></li>
+      </ul>
+    </li>
+    <li><a href="#3파티션의-필요성"><strong>3.파티션의 필요성</strong></a></li>
+    <li><a href="#4-외부-파티션-테이블-external-partitioned-table">4. <strong>외부 파티션 테이블 (external partitioned table)</strong></a></li>
+    <li><a href="#5파티션-수정">5.파티션 수정</a></li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -67,7 +95,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-08-28T00:00:00Z">August 28, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>😃</p>
 <p>Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이블을 하나 이상의 키로 파티셔닝(partitioning) 할 수 있다.  기본적으로 테이블 생성 시 DDL문을 통해 파티션키 유무를 정할 수 있지만, row가 많은 <a href="https://en.wikipedia.org/wiki/Fact_table">Fact 테이블</a> 같은 경우는 선택이 아닌 필수이다. 데이터를 조회 할 때 파티션 키 값을 잘 구성해야 hive 내부적으로 skip-scan이 발생하여 불필요한 I/O를 최소화 할 수 있다. 또한 파티션 키의 순서에 따라 hdfs 상의 디렉토리 구조가 결정됨으로 워크로드에 따라 그 순서도 적절히 결정해야 한다. 그러면 간단히 Hive 파티션에 대해서 알아보자.</p>
 <hr>
@@ -243,7 +272,7 @@ o<span style="color:#f92672">/</span>p: (<span style="color:#66d9ef">external</s
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

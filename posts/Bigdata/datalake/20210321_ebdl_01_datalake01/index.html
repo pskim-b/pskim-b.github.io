@@ -41,8 +41,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -57,6 +63,32 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#데이터-레이크-소개"><strong>데이터 레이크 소개</strong></a>
+      <ul>
+        <li><a href="#현상의-문제점"><strong>현상의 문제점</strong></a></li>
+        <li><a href="#데이터-레이크-규칙"><strong>데이터 레이크 규칙</strong></a></li>
+        <li><a href="#데이터-레이크-성숙도"><strong>데이터 레이크 성숙도</strong></a>
+          <ul>
+            <li><a href="#데이터-웅덩이data-puddle">데이터 웅덩이(data puddle)</a></li>
+            <li><a href="#데이터-연못data-pond">데이터 연못(data pond)</a></li>
+            <li><a href="#데이터-레이크data-lake">데이터 레이크(data lake)</a></li>
+            <li><a href="#데이터-오션data-ocean">데이터 오션(data ocean)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -68,7 +100,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-03-21T00:00:00Z">March 21, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>💾</p>
 <p>국내에도 1~2년부터 데이터 레이크(Datalake)를 도입해야 한다고 하는 이야기가 우후죽순과도 같이 자라났다. 기존에 하둡도 있었고 Isilon 같은 스토리지도 있었지만, 데이터 레이크 도입에 대한 이야기는 AWS S3가 범용 스토리지로 사용되면서 더욱 활발해 지지 않았나 생각된다. 하지만 실제로 데이터 레이크를 이야기에 대한 이야기를 나누어보면 모두 생각 하는바가 달랐다. 단순히 더 큰 규모의 DW를 이야기하는가 하면, 또 다른 종류의 빅데이터 저장소(하둡과도 같은)를 이야기하기도 했다.</p>
 <p>업무적으로 데이터 레이크를 관리하기 위한 도구를 기획하고 개발하는 업무를 하고 있음에도 불구하고, 이해관계자들의 청사진과 요구사항이 모두 달라 중심을 잡고 목소리를 내기 힘들어지기 시작했을 무렵 IT도서의 바이블과도 같은 O&rsquo;REILLY의 도서로 &lsquo;The Enterprise Big Data Lake&rsquo;가 이미 번역되어 나온 것을 알게되어 일단 구매 후 읽어보기로 했다.</p>
@@ -173,7 +206,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -50,8 +50,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -66,6 +72,72 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#6-data-partitioning-">**6. Data Partitioning **</a>
+      <ul>
+        <li><a href="#파티셔닝-방법"><strong>파티셔닝 방법</strong></a></li>
+        <li><a href="#데이터-분할-기준"><strong>데이터 분할 기준</strong></a></li>
+        <li><a href="#데이터-파티셔닝의-문제점"><strong>데이터 파티셔닝의 문제점</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#7-인덱스-index"><strong>7. 인덱스 Index</strong></a>
+      <ul>
+        <li><a href="#예시--도서관-데이터-베이스">예시 . 도서관 데이터 베이스</a></li>
+        <li><a href="#인덱스로-인한-성능-저하">인덱스로 인한 성능 저하</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-proxy"><strong>8. Proxy</strong></a>
+      <ul>
+        <li><a href="#proxy-server-타입">Proxy Server 타입</a></li>
+      </ul>
+    </li>
+    <li><a href="#9-redundancy-and-replication"><strong>9. Redundancy and Replication</strong></a></li>
+    <li><a href="#10-quorum"><strong>10. Quorum</strong></a>
+      <ul>
+        <li><a href="#예시">예시</a></li>
+      </ul>
+    </li>
+    <li><a href="#11-leader--follower"><strong>11. Leader &amp; Follower</strong></a>
+      <ul>
+        <li><a href="#쿼럼quorum의-문제점"><strong>쿼럼Quorum의 문제점</strong></a></li>
+        <li><a href="#해결방안---leader--follower"><strong>해결방안 - Leader &amp; Follower</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#12-heartbeat"><strong>12. Heartbeat</strong></a></li>
+    <li><a href="#13-checksum"><strong>13. Checksum</strong></a></li>
+    <li><a href="#14-consistent-hashing"><strong>14. Consistent Hashing</strong></a>
+      <ul>
+        <li><a href="#데이터-분배의-문제점">데이터 분배의 문제점</a></li>
+        <li><a href="#consistent-hashing을-통한-해결방안"><strong>Consistent Hashing을 통한 해결방안</strong></a></li>
+        <li><a href="#virtual-node">Virtual Node</a>
+          <ul>
+            <li><a href="#virtual-node-장점">Virtual Node 장점</a></li>
+          </ul>
+        </li>
+        <li><a href="#데이터-복제에서의-consistent-hashing">데이터 복제에서의 Consistent Hashing</a></li>
+        <li><a href="#정리">정리</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-long-polling-vs-websockets-vs-server-sent-events"><strong>15. Long-Polling vs WebSockets vs Server-Sent Events</strong></a>
+      <ul>
+        <li><a href="#ajax-polling-의-문제점">Ajax Polling 의 문제점</a></li>
+        <li><a href="#http-long-polling"><strong>HTTP Long-Polling</strong></a></li>
+        <li><a href="#websockets">WebSockets</a></li>
+        <li><a href="#server-sent-events-sses"><strong>Server-Sent Events (SSEs)</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#16-bloom-filter"><strong>16. Bloom Filter</strong></a></li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -77,7 +149,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-27T00:00:00Z">June 27, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>🏛️</p>
 <p>대규모 데이터를 처리하기 위한 시스템을 설계할 때에 고려해야할 사항들이 존재한다. 효율적이고 경제적인 시스템을 구축하기 위해서 이러한 개념을 잘 알고 있어야 한다. 이러한 핵심 구성 요소는 아래와 같다</p>
 <ul>
@@ -418,7 +491,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -40,8 +40,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -56,6 +62,32 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#정의"><strong>정의</strong></a>
+      <ul>
+        <li><a href="#통신-규칙">통신 규칙</a></li>
+        <li><a href="#scs-데이터베이스">SCS 데이터베이스</a></li>
+        <li><a href="#조직을-위한-규칙">조직을 위한 규칙</a></li>
+      </ul>
+    </li>
+    <li><a href="#최소-공통-기능"><strong>최소 공통 기능</strong></a>
+      <ul>
+        <li><a href="#공통-비즈니스-로직은-피해라">공통 비즈니스 로직은 피해라</a></li>
+        <li><a href="#공통-인프라-자원은-피해라">공통 인프라 자원은 피해라</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading"></a></li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -67,7 +99,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-08-10T00:00:00Z">August 10, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<h1 id="정의"><strong>정의</strong></h1>
 <p><strong>self-contained system (SCS)</strong> 는 도메인에 대한 전체 로직  로직, 데이터 및 UI 를 모두 포함하기 때문에  self-contained system이라고 부른다.  SCS는 서로 다른 macro architecture에 대한 의사결정을 내릴 수 있는데, 이는 독립된 매크로 아키텍쳐를 정의한 시스템이 된다. SCS는 자율적인 웹 어플리케이션으로 WebUI가 포함되어 있다.</p>
 <p>하나의 SCS는 다른 SCS에 대한 HTML 링크가 있거나 다른 SCS의 UI에 통합될 수 있다. SCS 간에는 공통된 UI는 존재하지 않으며, UI는 하나 이상의 SCS로 구성된다.이는 SCS가 UI의 일부 부분을 생성하는 것을 의미한다. 모든 UI를 구성하는 마이크로 서비스가 각 부분의 로직을 담당하는 마이크로서비스와 통신하는 방식이 아니라, UI와 로직이 통합된 구성이다.</p>
@@ -160,7 +193,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

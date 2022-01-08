@@ -39,8 +39,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -55,6 +61,7 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
 			<div class="primary">
 			
 <main class="main list" role="main">
@@ -161,11 +168,15 @@ if (!doNotTrack) {
 		<ul class="widget__list">
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/architecture/">Architecture</a>&nbsp;
-				<span class="widget__counter widget__counter--bubble">5</span>
+				<span class="widget__counter widget__counter--bubble">6</span>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/bigdata/">Bigdata</a>&nbsp;
 				<span class="widget__counter widget__counter--bubble">9</span>
+				</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/book/">Book</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">1</span>
 				</li>
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/datasicence/">DataSicence</a>&nbsp;
@@ -190,12 +201,12 @@ if (!doNotTrack) {
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/posts/book/202201_socratesexpress/">[Review] 천천히 읽는 ... Socrates Express</a></li>
+			<li class="widget__item"><a class="widget__link" href="/posts/architecture/designpattern/202112_dp_strategy_pattern/">[Design] 전략 패턴, Strategy Pattern</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/etc/20211201_git_ssh_multikey/"> [GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects) </a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/spring/web/20211129_restful_api/">[WEB] RESTful API</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/20211016_java_annotation/">[JAVA] 어노테이션 (Annotation)</a></li>
 			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_streaming/">[JAVA] 스트림 API (Stream API)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_optional/">[JAVA] 옵셔널 (Optional) </a></li>
-			<li class="widget__item"><a class="widget__link" href="/posts/java/202110_java_functional_programming/">[JAVA] 함수형 프로그래밍(Functional Programming)</a></li>
 		</ul>
 	</div>
 </div>
@@ -205,7 +216,7 @@ if (!doNotTrack) {
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>

@@ -42,8 +42,14 @@ if (!doNotTrack) {
 
 </head>
 <body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
 	<div class="container container--outer">
-		<header class="header">
+		
+
+
+
+<header class="header">
 	<div class="container header__container">
 		
 	<div class="logo">
@@ -58,6 +64,102 @@ if (!doNotTrack) {
 	</div>
 </header>
 		<div class="wrapper flex">
+			
+<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
+	<aside >
+	<div class="toc__title">Page content</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#메세징-시스템">메세징 시스템</a>
+      <ul>
+        <li><a href="#queue">Queue</a></li>
+        <li><a href="#publish-subscribe">Publish-Subscribe</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka란">Kafka란?</a>
+      <ul>
+        <li><a href="#kafka-사용-사례">kafka 사용 사례</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka-아키텍쳐-개요"><strong>Kafka 아키텍쳐 개요</strong></a>
+      <ul>
+        <li><a href="#kafka-용어정리">Kafka 용어정리</a>
+          <ul>
+            <li><a href="#브로커-broker">브로커 Broker</a></li>
+            <li><a href="#레코드-records">레코드 Records</a></li>
+            <li><a href="#토픽topics">토픽Topics</a></li>
+            <li><a href="#생산자producer">생산자Producer</a></li>
+            <li><a href="#소비자consumer">소비자Consumer</a></li>
+          </ul>
+        </li>
+        <li><a href="#아키텍쳐-개요">아키텍쳐 개요</a>
+          <ul>
+            <li><a href="#kafka-클러스터">Kafka 클러스터</a></li>
+            <li><a href="#zookeeper">Zookeeper</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#kafka-상세-아키텍쳐"><strong>Kafka 상세 아키텍쳐</strong></a>
+      <ul>
+        <li><a href="#토픽-파티션topic-partition">토픽 파티션Topic Partition</a></li>
+        <li><a href="#leader">Leader</a></li>
+        <li><a href="#follwer">Follwer</a></li>
+        <li><a href="#in-sync-replica-isr">In-Sync Replica (ISR)</a></li>
+        <li><a href="#high-water-mark">High-water mark</a></li>
+        <li><a href="#segmented-log">Segmented log</a></li>
+      </ul>
+    </li>
+    <li><a href="#consumer-group"><strong>Consumer Group</strong></a>
+      <ul>
+        <li><a href="#consumer-group을-통한-분산-파티션-소비">Consumer Group을 통한 분산 파티션 소비</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka-workflow"><strong>Kafka Workflow</strong></a>
+      <ul>
+        <li><a href="#전체적인-pub-sub-메세지-처리-절차">전체적인 Pub-Sub 메세지 처리 절차</a></li>
+        <li><a href="#consumer-group에서-메세지-처리-절차">Consumer Group에서 메세지 처리 절차</a></li>
+      </ul>
+    </li>
+    <li><a href="#zookeeper의-역할"><strong>Zookeeper의 역할</strong></a></li>
+    <li><a href="#controller-broker"><strong>Controller Broker</strong></a>
+      <ul>
+        <li><a href="#generation-clock">Generation Clock</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka-메세지-전송-방법"><strong>Kafka 메세지 전송 방법</strong></a>
+      <ul>
+        <li><a href="#생산자-메세지-전송">생산자 메세지 전송</a>
+          <ul>
+            <li><a href="#비동기-async">비동기 Async</a></li>
+            <li><a href="#리더-commit">리더 Commit</a></li>
+            <li><a href="#리더-commit---쿼럼">리더 Commit &amp;  쿼럼</a></li>
+          </ul>
+        </li>
+        <li><a href="#소비자-메세지-전달">소비자 메세지 전달</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka-특징">Kafka 특징</a>
+      <ul>
+        <li><a href="#메세지를-disk에-저장">메세지를 disk에 저장</a></li>
+        <li><a href="#메세지의-retention-수행">메세지의 retention 수행</a></li>
+        <li><a href="#client-quota-적용">Client quota 적용</a></li>
+        <li><a href="#kafka-성능">Kafka 성능</a>
+          <ul>
+            <li><a href="#확장성">확장성</a></li>
+            <li><a href="#내결함성-및-안정성">내결함성 및 안정성</a></li>
+            <li><a href="#처리량">처리량</a></li>
+            <li><a href="#짧은-지연시간">짧은 지연시간</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	</aside>
+</div>
 			<div class="primary">
 			
 <main class="main" role="main">
@@ -69,7 +171,8 @@ if (!doNotTrack) {
 	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-28T00:00:00Z">June 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
 	</span>
 </div></div>
-		</header><div class="content post__content clearfix">
+		</header>
+		<div class="content post__content clearfix">
 			<p>📧📧📧📧📧📧📧📧</p>
 <p>분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다.  이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.</p>
 <ul>
@@ -331,7 +434,7 @@ product suggestion - 고객이 구매에 관심을 가질만한 유사 제품을
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2021 PS Developer Tech study.
+			&copy; 2022 PS Developer Tech study.
 			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
 		</div>
 	</div>
