@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[kafka]  Apache Kafka 구경하기 - (1) - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[kafka]  Apache Kafka 구경하기 - (1)" />
+<meta property="og:description" content="📧📧📧📧📧📧📧📧
+분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
+  순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
+  서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/kafka/20210628_kafka_summary-1/" />
+<meta property="article:published_time" content="2021-06-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-28T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l" style="border-left: dashed gray;">
+	<div class="toc__title">Page Index</div>
+	<div class="toc__menu ph3-l">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#메세징-시스템">메세징 시스템</a>
+      <ul>
+        <li><a href="#queue">Queue</a></li>
+        <li><a href="#publish-subscribe">Publish-Subscribe</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka란">Kafka란?</a>
+      <ul>
+        <li><a href="#kafka-사용-사례">kafka 사용 사례</a></li>
+      </ul>
+    </li>
+    <li><a href="#kafka-아키텍쳐-개요"><strong>Kafka 아키텍쳐 개요</strong></a>
+      <ul>
+        <li><a href="#kafka-용어정리">Kafka 용어정리</a>
+          <ul>
+            <li><a href="#브로커-broker">브로커 Broker</a></li>
+            <li><a href="#레코드-records">레코드 Records</a></li>
+            <li><a href="#토픽topics">토픽Topics</a></li>
+            <li><a href="#생산자producer">생산자Producer</a></li>
+            <li><a href="#소비자consumer">소비자Consumer</a></li>
+          </ul>
+        </li>
+        <li><a href="#아키텍쳐-개요">아키텍쳐 개요</a>
+          <ul>
+            <li><a href="#kafka-클러스터">Kafka 클러스터</a></li>
+            <li><a href="#zookeeper">Zookeeper</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</aside>
+			</div>
+			<div class="order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[kafka]  Apache Kafka 구경하기 - (1)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2021-06-28T00:00:00Z">June 28, 2021</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>📧📧📧📧📧📧📧📧</p>
+<p>분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다.  이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.</p>
+<ul>
+<li>
+<p>순간적으로 급증하는 메세지를 어떻게 처리할 것인가?</p>
+</li>
+<li>
+<p>서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?</p>
+</li>
+<li>
+<p>로그 집계 서비스가 여러 인스턴스를 가지는 경우 인스턴스간 작업의 분배는 어떻게 할 것인가?</p>
+</li>
+<li>
+<p>다양한 유형의 소스에서 메세지를 받으려면 어떻게 해야하는가?</p>
+</li>
+<li>
+<p>로그 집계 서비스가 잠시 중단되거나 응답하지 않는 경우, 로그 메세지는 어떻게 처리되는가?</p>
+</li>
+</ul>
+<p>이러한 로그 생성/소비(produce, consume)하는 소스는 로그 집계 서비스에 로그 메세지를 보내기위해 공통 프로토콜 및 데이터 형식을 지정해야 한다. 이것은 로그 메세지의 생산자와 소비자 사이에 강력하게 결합된 아키텍쳐로 구성된다.  위의 시나리오를 효율적으로 관리하기 위해 분산 시스템은 메세징 시스템에 의존하게 된다.</p>
+<hr>
+<h1 id="메세징-시스템">메세징 시스템</h1>
+<p>메세징 시스템은 서비스, 응용, 프로세스 또는 서버간 데이터를 전송하는 역할을 한다. 이러한 시스템은 발신자와 수신자에 메세징을 전송하는 비동기 방식을 제공하여 분산 시스템의 여러 부분을 분리하는데 도움이 된다. 
+따라서 모든 생성자와 소비자는 데이터를 공유하는데 사용하는 메커니즘에 대해 걱정하지 않고 메세지에 집중할 수 있게된다.</p>
+<p>메세지를 처리하기 위해서 두가지 일반적인 방법이 있다.</p>
+<h2 id="queue">Queue</h2>
+<p>큐잉 모델에서는 메세지는 큐에 순차적으로 저장된다. 생산자는 메세지를 대기열 뒤쪽으로 푸쉬하고 소비자는 대기열의 앞쪽에서 메세지를 추출한다. 
+특정 메세지는 최대 한명의 소비자만 사용할 수 있다. 소비자가 메세지를 가져오면 큐에서 제거되어 다음 소비자가 다음 메세지를 받게 된다. 이것은 여러 소비자에게 메세지 처리를 배포하기위한 훌류한 모델이다. 
+그러나 이것은 또한 여러 소비자가 대기열에서 동일한 메세지를 읽을 수 없기 때문에 시스템을 제한한다.</p>
+<h2 id="publish-subscribe">Publish-Subscribe</h2>
+<p>발행-구독 모델에서는 메세지는 주제topic으로 나뉜다. 생산자는 해당 topic에 대해 메세징 시스템에 저장되는 topic에 메세지를 보낸다. 소비자는 topic을 구독하여 해당 topic에 게시된 모든 메세지를 수신한다. 
+큐잉 모델과 달리 발행-구독 모델에서는 여러 소비자가 동일한 메세지를 받을 수 있다. 두 소비자가 동일한 주제를 구독하면 해당 주제에 게시된 모든 메세지를 받게된다.</p>
+<p>메세지를 저장하고 유지하는 메세징 시스템을 일반적으로 메세지 브로커라고 한다. 이것을 통해서 데이터 생산자와 소비자간 느슨한 결합을 제공한다.</p>
+<p>메세지 브로커는 게시된 메세지를 대기열에 저장하고 소비자는 대기열에서 메세지를 읽는다. 따라서 생산자와 소비자를 동기화할 필요가 없다. 이런 느슨한 결합을 통해 생산자와 소비자는 서로 다른 속도로 메세지를 읽고 쓸 수 있다. 
+메세징 시스템의 메세지 저장 기능은 내결함성을 제공함으로 생선된 시간과 소비된 시간 사이에 메세지가 손실되지 않는다.</p>
+<p>요약하자면 다음과 같은 이유로 메세지 시스템이 어플리케이션 스택에서 사용된다.</p>
+<blockquote>
+<p>메세지 버퍼링 - 메세지 처리 이전에 버퍼링 메카니즘을 제공한다. 이를 통해 시스템은 처리 준비가 될 때가지 일시적으로 데이터를 저장하여 워크로드 급증을 안전하게 처리할 수 있다. 
+메세지 전송 보장 - 생성자가 메세지를 게시할 때 소비하는 응용프로그램이 메세지를 받을 수 없는 경우 메세지가 결국 배달될 것이라는 확신을 가지고 메세지를 게시할 수 있다. 
+추상화 제공 - 메세징 시스템은 메세지 소비자와 메세지를 생성하는 응용 프로그램 간 구조적 분리를 제공한다. 
+확장성 제공 - 많은 생산자가 여러 소비자에게 메세지를 전달할 수 있도록 유연하고 고도로 구성 가능한 아키텍쳐를 제공</p>
+</blockquote>
+<h1 id="kafka란">Kafka란?</h1>
+<p>오픈소스 기반의 발행-구독 기반 메세징 시스템이다. 분산되고 내구성이 있으며 내결함성이 있어 설계 상 고도로 확장가능하다. 기본적으로 생산자라고 하는 애플리케이션에 대해서 메세지 스트림을 가져와 클러스터로 구성된 메세지 브로커로 저장하고 메세지를 처리하는 애플리케이션이 이러한 메세지를 수신할 수 있도록 하는 시스템이다.</p>
+<p>Kafka는 2010경 LinkedIn에서 다양한 이벤트를 추적하기 위해 만들어졌다. 나중에 오픈소스가 되었고 아래와 같은 용도로 포괄적으로 사용하게 된다.</p>
+<blockquote>
+<p>엄청난 양의 데이터를 안정적으로 저장 
+서로 다른 엔티티간 메세지 전송 처리량을 향상 
+실시간 데이터 스트리밍 
+높은 수준에서 kafka를 분산된 커밋로그라고 부를 수 있다. 커밋로그(WAL, 트랜잭션로그)는 일련의 레코드를 지속저긍로 저장할 수 있는 추가 전용 데이터 도구이다. 레코드는 항상 로그 끝에 추가되며 한번 추가되면 레코드를 삭제하거나 수정할 수 없다. 커밋 로그에서 읽기는 항상 왼족에서 오른쪽으로 발생한다. 
+카프카는 메세지를 디스크에 저장한다 모든 읽기 쓰기작업이 순차적으로 이루어지기 때문에, 디스크의 순차 읽기의 장점을 활용할 수 있다.</p>
+</blockquote>
+<h2 id="kafka-사용-사례">kafka 사용 사례</h2>
+<p>kafka는 빅데이터 수집 및 실시간 분석에 사용할 수 있다.</p>
+<blockquote>
+<p>metric - kafka를 사용하여 모니터링 정보를 수집하고 집계할 수 있다. 분산 서비스는 다양한 운영 메트릭을 kafka 서버에 푸시할 수 있다. 그런 다음 이러한 메트릭을 kafka에서 가져와 집계된 통계를 생성할 수 있다. 
+log aggregation - kafka를 사용하여 어러 소스에서 로그를 수집하고 여러 소비자가 표준 형식으로 사용할 수 있다. 
+stream processing - 수집된 데이터가 여러 단계에서 처리되는 스트림 처리에 유리하다. 예를들어 특정 topic에서 소비된 원시데이터는 변환/집계되어 새로운 소비를 위해 새로운 topic으로 생성된다. 
+commit log - kafka는 모든 분산시스템에 대한 외부 커밋로그로 사용할 수 있다. 분산 서비스는 트랜잭션을 kafka에 기록하여 무슨일이 일어나고 있는지 추적할 수 있다. 이 트랜잭션 데이터는 노드간 복제에 사용될 수 있으며 외부 시스템이 해당 분산 시스템이 장애가 발생한 경우 장애 복구에도 유용하다. 
+website activity tracking - kafka의 원래 사용중 하나는 사용자 활동 추적 파이프라인을 구축하는 것이다. click-stream, 키워드 검색 등과 같은 사용자 활동은 kafka의 별도의 topic으로 저장된다. 이러한 주제는 실시간 처리 실시간 모니터링, 오프라인 처리 및 보고를 위해 hadoop 또는 데이터 하우징 시스템에 로드하는 등 다양한 사용 사례에 대한 구독에 사용할 수 있다. 
+product suggestion - 고객이 구매에 관심을 가질만한 유사 제품을 제안하는 유사 상품 기능을 제공하는 amazon 같은 온라인 쇼핑 사이트는, 사용자 활동을 kafka에 기록할 수 있다. 
+그런다음 소비자 애플리케이션은 이러한 메세지를 읽고 실시간으로 고객에게 표시할 수 있는 관련 제품을 찾을 수 있다. 또는 모든 데이터가 kafka에 지속됨으로 시스템에서 수집한 유사 제품 정보에 대해 배치작업을 통해 고객을 위한 상품추천 메일을 전송할 수 있다.</p>
+</blockquote>
+<hr>
+<h1 id="kafka-아키텍쳐-개요"><strong>Kafka 아키텍쳐 개요</strong></h1>
+<h2 id="kafka-용어정리">Kafka 용어정리</h2>
+<h3 id="브로커-broker">브로커 Broker</h3>
+<p>Kafka서버는 브로커라고도 한다. 브로커는 생산자Publisher가 제공한 데이터를 안정적으로 저장하고 소비자Consumer에게 전달할 책임을 가지고 있다.</p>
+<h3 id="레코드-records">레코드 Records</h3>
+<p>Kafka의 레코드는 브로커에 저장되는 메세지/이벤트 이다. 본질적으로 Kafka를 통해 Producer에서 Consumer로 이동하는 데이터이다. 레코드는 다음과 같이 구성되어 있다.</p>
+<blockquote>
+<p>{key, value, timestamp, metadata headers}</p>
+</blockquote>
+<h3 id="토픽topics">토픽Topics</h3>
+<p>Kafka는 메세지를 Topic이라는 범주로 나눈다. 간단히 말해 Topic은 DB의 테이블과 같고 레코드는 해당 테이블의 행과 같다.</p>
+<p>Kafka가 Producer로 부터 받은 각 레코드는 토픽과 연결된다. Consumer는 해당 토픽에 대해 새 메세지가 추가될 때 알림을 받기 위해 Topic에 대해 구독할 수 있다. 토픽에는 메세지를 읽는 여러 Consumer가 있을 수 있다. Kafka 클러스터 안에서 Topic은 이름으로 식별되기 때문에 고유값을 가져야 한다. Topic 내의 메세지는 필요한 만큼 읽을 수 있다. 기존 메세지 시스템과 달리 메세지가 소비 후 삭제되지 않는다. 대신 <strong>Kafka는 메세지의 보관 기관 또는 설정한 스토리지 크기 만큼 메세지를 보관한다.</strong> Kafka의 성능은 데이터 크기와 관련하여 효과적으로 일정함으로 장기간 데이터를 완벽하게 관리한다.</p>
+<h3 id="생산자producer">생산자Producer</h3>
+<p>생산자는 Kafka에 레코드를 생산하는 어플리케이션을 의미한다.</p>
+<h3 id="소비자consumer">소비자Consumer</h3>
+<p>소비자는 kafka 토픽을 구독(읽기처리)하는 어플리케이션이다. 소비자는 하나 이상의 토픽을 구독하고 브로커에서 데이털르 가져와 게시된 메세지를 소비한다. Kafka에서 생산자와 소비자는 완전히 분리되고 서로 신경쓰지 않는다. 이는 Kafka가 높은 확장성을 달성하기 위한 핵심 디자인 요소이다.</p>
+<h2 id="아키텍쳐-개요">아키텍쳐 개요</h2>
+<p>높은 수준에서 생산자는 kafka 브로커에 메시지를 보내고 이러한 메세지는 소비자라고 하는 다른 애플리케이션에서 읽는다. 메세지는 주제에 저장되고 소비자는 주제를 구독하여 새 메세지를 받는다.</p>
+<h3 id="kafka-클러스터">Kafka 클러스터</h3>
+<p>Kafka는 하나 이상의 서버로 구성되며, 그 서버 각각은 Kafka 브로커를 수행한다.</p>
+<h3 id="zookeeper">Zookeeper</h3>
+<p>Zookeeper는 분산 key-value 저장소로 설정이나 코디네이션 정보를 저장하기 위해서 사용된다. 이것은 읽기 연산에 특화되어 있다. Kafka는 Zookeeper를 통해서 kafka broker 간의 코디네이션을 수행한다. Zookeeper는 Kafka cluster 내의 메타 정보를 관리한다.  상세한 내용은 뒤에서 더 자세히 알아보자.</p>
+<hr>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/kafka/" rel="tag">kafka</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/bigdata/kafka/20210628_kafka_summary-2/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[kafka]  Apache Kafka 구경하기 - (2)</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[MSA] SCS, Self-Contained System</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2022 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

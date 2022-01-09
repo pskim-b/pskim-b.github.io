@@ -7,15 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Mon, 28 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/categories/bigdata/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[kafka]  Apache Kafka 구경하기</title>
-      <link>/posts/bigdata/kafka/20210628_kafka_summary/</link>
+      <title>[kafka]  Apache Kafka 구경하기 - (1)</title>
+      <link>/posts/bigdata/kafka/20210628_kafka_summary-1/</link>
       <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/bigdata/kafka/20210628_kafka_summary/</guid>
+      <guid>/posts/bigdata/kafka/20210628_kafka_summary-1/</guid>
       <description>📧📧📧📧📧📧📧📧
 분산 시스템의 일반적인 문제중 하나는 여러 소스에서 지속적으로 유입되는 데이터를 처리하는 것이다. 서로 다른 소스에서 초당 수백개의 로그 항목을 수집해야 한다. 이 로그 집계 서비스의 기능은 이러한 로그를 공유 서버 스토리지에 저장하고 나중에 로그를 검색할 수 있도록 인덱스를 구축하는 것이다. 이 서비스의 몇가지 과제는 다음과 같다.
   순간적으로 급증하는 메세지를 어떻게 처리할 것인가?
   서비스가 초당 500개의 메세지를 처리할 수 있는 경우 초당 더 많은 수의 메세지를 수신하기 시작하면 어떻게 되는가?</description>
+    </item>
+    
+    <item>
+      <title>[kafka]  Apache Kafka 구경하기 - (2)</title>
+      <link>/posts/bigdata/kafka/20210628_kafka_summary-2/</link>
+      <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/kafka/20210628_kafka_summary-2/</guid>
+      <description>Kafka 상세 아키텍쳐 Kafka는 단순히 생각하면 토픽들의 모음이다. 이러한 토픽들은 매우 커질 수 있음으로 성능과 확장성을 위해 더 작은 크기의 파티션으로 분할해야 한다.
+토픽 파티션Topic Partition Kafka topic은 파티션되어 있다. 즉 하나의 topic이 여러 조각fragements로 나누어 저장된다. 각 파티션은 별도의 Kafka 브로커에 배치될 수 있다. 새 메세지가 토픽에 보내지면 해당 토픽의 파티션 중 하나에 추가되게 된다. 생산자는 데이터를 기반으로 메세지를 게시하는 파티션을 제어한다. 예를들어 생산자는 특정 &amp;lsquo;도시&amp;rsquo;와 관련하여 메세지를 동일한 파티션으로 전달할 수 있다.</description>
     </item>
     
     <item>
