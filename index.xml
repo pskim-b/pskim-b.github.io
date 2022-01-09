@@ -5,7 +5,17 @@
     <link>/</link>
     <description>Recent content on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing ... [데이터 중심 설계] 데이터 모델과 쿼리 </title>
+      <link>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</link>
+      <pubDate>Sun, 09 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</guid>
+      <description>2장. 데이터 모델과 쿼리 지극히 주관적인 요약 데이터 모델의 중요성 데이터 모델은 소프트웨어 개발에서 제일 중요한 부분 중 하나이다. 왜냐하면 데이터 모델은 소프트웨어가 어떻게 작성됐는지 뿐만 아니라 해결하려는 문제를 어떻게 생각하는지에 대해서도 지대한 영향을 미치기 때문이다.
+데이터 모델은 여러 계층을 이루며 구성되는데 각 계층의 핵심적인 고민거리는 다음 하위 계층(down stream)을 위해 데이터를 어떻게 전달해야 하는지이다. 이는 단순히 application과 persistence 사이 뿐만이 아니라 application 내에서 또는 application 간에도 고민이 되어야 한다.</description>
+    </item>
+    
     <item>
       <title>[Review] 천천히 읽는 ... Socrates Express</title>
       <link>/posts/book/202201_socratesexpress/</link>

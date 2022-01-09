@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Writing ... [데이터 중심 설계] 데이터 모델과 쿼리  - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="Writing ... [데이터 중심 설계] 데이터 모델과 쿼리 " />
+<meta property="og:description" content="2장. 데이터 모델과 쿼리 지극히 주관적인 요약 데이터 모델의 중요성 데이터 모델은 소프트웨어 개발에서 제일 중요한 부분 중 하나이다. 왜냐하면 데이터 모델은 소프트웨어가 어떻게 작성됐는지 뿐만 아니라 해결하려는 문제를 어떻게 생각하는지에 대해서도 지대한 영향을 미치기 때문이다.
+데이터 모델은 여러 계층을 이루며 구성되는데 각 계층의 핵심적인 고민거리는 다음 하위 계층(down stream)을 위해 데이터를 어떻게 전달해야 하는지이다. 이는 단순히 application과 persistence 사이 뿐만이 아니라 application 내에서 또는 application 간에도 고민이 되어야 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/book/data_intensive/20220109_02_data_modeling_and_query/" />
+<meta property="article:published_time" content="2022-01-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-09T00:00:00+00:00" />
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'G-TEFH3VCWGN', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l" style="border-left: dashed gray;">
+	<div class="toc__title">Page Index</div>
+	<div class="toc__menu ph3-l">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#2장-데이터-모델과-쿼리">2장. 데이터 모델과 쿼리</a>
+      <ul>
+        <li><a href="#지극히-주관적인-요약">지극히 주관적인 요약</a>
+          <ul>
+            <li><a href="#데이터-모델의-중요성">데이터 모델의 중요성</a></li>
+            <li><a href="#데이터-모델-별--특징">데이터 모델 별  특징</a>
+              <ul>
+                <li><a href="#relational-db-model">Relational DB Model</a></li>
+                <li><a href="#nosql">NoSQL</a></li>
+                <li><a href="#document-model">Document Model</a></li>
+                <li><a href="#graph-model">Graph model</a></li>
+                <li><a href="#정리">정리</a></li>
+              </ul>
+            </li>
+            <li><a href="#데이터를-위한-질의-언어">데이터를 위한 질의 언어</a>
+              <ul>
+                <li><a href="#imperative-language-query">Imperative Language Query</a></li>
+                <li><a href="#declarative-language-query">Declarative Language Query</a></li>
+                <li><a href="#mapreduce-query">MapReduce Query</a></li>
+                <li><a href="#graph-query">Graph query</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</aside>
+			</div>
+			<div class="order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Writing ... [데이터 중심 설계] 데이터 모델과 쿼리 </h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-01-09T00:00:00Z">January 09, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/book/" rel="category">Book</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<h1 id="2장-데이터-모델과-쿼리">2장. 데이터 모델과 쿼리</h1>
+<h2 id="지극히-주관적인-요약">지극히 주관적인 요약</h2>
+<h3 id="데이터-모델의-중요성">데이터 모델의 중요성</h3>
+<p>데이터 모델은 소프트웨어 개발에서 제일 중요한 부분 중 하나이다. 왜냐하면 데이터 모델은 소프트웨어가 어떻게 작성됐는지 뿐만 아니라 <strong>해결하려는 문제를 어떻게 생각하는지</strong>에 대해서도 지대한 영향을 미치기 때문이다.</p>
+<p>데이터 모델은 여러 계층을 이루며 구성되는데 각 계층의 핵심적인 고민거리는 다음 하위 계층(down stream)을 위해 데이터를 어떻게 전달해야 하는지이다.  이는 단순히 application과 persistence 사이 뿐만이 아니라 application 내에서 또는 application 간에도 고민이 되어야 한다.</p>
+<p>각 계층은 명확한 데이터 모델을 제공해 하위 계층에게 복잡성을 숨긴다. 이러한 추성화를 통해 다른 그룹의 사람들이 그들의 관점에서 데이터를 바라보게 하고 더 효율적으로 업무할 수 있도록 한다.</p>
+<h3 id="데이터-모델-별--특징">데이터 모델 별  특징</h3>
+<h4 id="relational-db-model">Relational DB Model</h4>
+<p>장점 - 조인, 다대일, 다대다 관계를 잘 지원함. 데이터 일관성을 잘 보장함.</p>
+<p>가장 범용적으로 사용되는 데이터 모델은 RDB 형태의 모델로 비즈니스 데이터 처리를 위한 transaction processing 및 batch processing에 자주 사용된다. 1990년에 이전에는 다양한 데이터 모델이 난립했지만 오랜 기간 발전해 오면서 다른 모델을 평정했다.</p>
+<p>Application의 데이터를 관계형 DB의 논리 스키마인 테이블에 저장하기 위해서는 소스코드와 RDB 모델 간의 전환 계층이 필요하다. 이러한 모델 사이의 분리를 **임피던스 불일치(Impedance mismatch)**라고 한다. ActiveRecord나 Hibernate같은 ORM,object relation mapping 프레임워크가 전환 게층에 필요한 소스코드의 양을 줄여주지만 두 모델간의 차이를 완전히 커버할 수는 없다.</p>
+<h4 id="nosql">NoSQL</h4>
+<p>Not only SQL의 준말로 SQL 외에 다양한 형태의 데이터 모델들을 일컫는 말이다.  주로 대규모 데이터셋을 높은 처리량through put으로 처리하거나 RDB에서 제공하지 않는 다양한 형태의 쿼리를 제공하기 위해서 사용된다. 현재 NoSQL은 대부분 SQL을 대체하기 위해서 사용되는 것이 아닌 SQL에서 제공하지 못하는 기능들을 추가적으로 제공하여 보완하는 역할로 사용된다.</p>
+<h4 id="document-model">Document Model</h4>
+<p>장점 - 스키마 유연성(schema on read), 지역성으로 인한 성능 향상, 임피던스 불일치 완화</p>
+<p>높은 수준의 정규화Normalization로 인해서 사용자가 특정 데이터를 얻기 위해서는 여러 테이블로부터 join을 통해 데이터를 구해야 한다. 이를 보완하기 위해서 XML이나 JSON형태의 문서를 통해 데이터 모델을 구성하기도 한다.  이를 사용하면 임피던스 불일치로 인한 불편함을 조금은 해소할 수 있다.  JSON으로 데이터를 저장하면 다중 테이블 스키마보다 데이터의 지역성locality가 더 나아진다.  하지만 문서 모델에서는 스키마의 유연성으로 인한 문제점도 존재한다.</p>
+<p>만약에 ManyToOne, ManyToMany 관계와 같이 데이터의 join이 필요한 경우는 모델에 적합하지 않다. 그리고 application 초기 버전에서 데이터 간에 관계가 형성되지 않아(join-free) 문서 모델이 적합해 보일지라도, 기능이 추가되면서 데이터는 점차 상호 연결되는 경향이 있다. 따라서 이를 고려한 모델링이 필요하다.</p>
+<p>문서 모델을 저장하기 위한 문서 데이터베이스는 상위 레코드 내에 중첩된 레코드를 저장함으로써 OneToMany 관계를 형성한다. 만약 위에서 이야기 한 것처럼 ManyToOne, ManyToMany 관계를 표현하기 위해서는 RDB와 마찬가지로 외래키와 유사한 문서참조(document reference)를 통해서 데이터를 참조한다.</p>
+<p>주의점</p>
+<ul>
+<li>문서 내 중첩 항목을 바로 참조할 수 없어서, 계층적으로 접근이 이루어져야 한다. 따라서 너무 많은 계층을 가지지 않도록 주의해야 한다.</li>
+<li>문서 내의 데이터를 application 레벨에서 join하여 처리할 수 있으나 DBMS를 사용하는 것 보다 성능이 떨어진다.</li>
+<li>문서가 너무 큰 경우, 문서의 일부를 조회하기 위해서 전체 문서를 다 읽어야 한다. 문서 크기를 작게 유지하고 문서의 크기가 커지는 것을 방지해야 한다.</li>
+</ul>
+<h4 id="graph-model">Graph model</h4>
+<p>데이터에서 대부분의 관계가 ManyToMany인 경우에 사용한다. 그래프는 두가지 유형의 객체로 이루어지는데 정점(vertex)와 간선(edge)이다. 많은 유형의 데이터를 그래프로 모델링 할 수 있는데 일반적인 유즈케이스는 다음과 같다.</p>
+<p>사용예</p>
+<ul>
+<li>소셜그래프 - vertex는 사람이고 edge는 사람들과의 관계 객체를 나타냄</li>
+<li>웹 그래프 - vertex는 웹 페이지고 edge는 다른 페이지에 대한 링크를 나타냄</li>
+<li>도로나 철도 네트워크 - vertex는 교차로이고 edge는 도로나 철로를 나타냄</li>
+</ul>
+<p>구조나 질의 방법에 따라서 크게 <strong>속성 그래프</strong>와 <strong>트리플 저장소 모델</strong>로 나뉜다.</p>
+<p><strong>속성 그래프 특징</strong></p>
+<ul>
+<li>vertex 구성 (vertextID, outgoing edges, incoming edges, key-value collection)</li>
+<li>edge 구성 (edgeId, head vertex, tail vertex, relation label, key-value collection)</li>
+<li>관계를 제한하는 스키마가 없으며, vertex가 주어지면 vertex 유입과 유출 간선을 효율적으로 찾을 수 있고 그래프를 순회할 수 있다.</li>
+<li>다른 유형 관계에서 서로 다른 레이블을 통해 단일 그래프에 다른 유형의 정보를 쉽게 부여할 수 있다.</li>
+<li>사이퍼 질의 언어로 속성 그래프를 질의한다.</li>
+</ul>
+<p><strong>트리플 저장소 모델</strong></p>
+<ul>
+<li>속성 그래프 모델과 유사하지만 같은 아이디어를 다른 용어를 통해 풀어낸다. 트리플 저장소 모델에서는 모든 정보를 주어-서술어-목적어 처럼 간단한 세 부분의 구문형식으로 저장한다.</li>
+</ul>
+<h4 id="정리">정리</h4>
+<p>RDBMS와 문서형 DBMS가 시간이 지남에 따라 점점 더 비슷해지고 있다. 각 데이터 모델이 서로 부족한 부분을 보완해 나가고 있기 때문이다.  이는 긍정적인 방향이며 application 개발자는 이를 적절히 조합하여 사용하면 된다.</p>
+<h3 id="데이터를-위한-질의-언어">데이터를 위한 질의 언어</h3>
+<p>관계형DB 모델을 위한 SQL은 선언형 질의 언어인 반면에, 계층형인 IMS와 네트워크 모델인 코다실은 명령형 코드를 사용하여 질의한다.</p>
+<h4 id="imperative-language-query">Imperative Language Query</h4>
+<p>명령형 언어는 우리가 많이 사용하는 프로그래밍 언어(C, Java, Kotlin 등)에서 데이터를 처리하는 방식으로 특정 순서로 특정 연산을 수행하도록 컴퓨터에게 지시한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-kotlin" data-lang="kotlin"><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">getSharks</span> : MutableList&lt;String&gt; {
+    <span style="color:#66d9ef">val</span> sharks = mutalbeListOf&lt;String&gt;();
+    animals.filter(<span style="color:#e6db74">&#34;Sharks&#34;</span>.equals(<span style="color:#66d9ef">it</span>.family))
+           .forEach(sharks<span style="color:#f92672">::</span>add)
+    <span style="color:#66d9ef">return</span> sharks
+}
+</code></pre></div><h4 id="declarative-language-query">Declarative Language Query</h4>
+<p>선언형 언어는 관계대수(relational algebra)와 유사한 방식으로 데이터를 얻기 위한 방법을 기술하는 것이 아니라 데이터의 패턴, 결과가 충족해야 하는 조건과 데이터를 어떻게 변환할지를 지정한다.</p>
+<p>장점</p>
+<ul>
+<li>명령형 언어에 비해서 쉽다.</li>
+<li>DB 엔진 상세 구현이 숨겨져 있어 쿼리 변경 없이 최적화 작업을 수행할 수 있다.</li>
+<li>쿼리에 대한 순서가 보장되어 있지 않음으로 내부적인 질의에 대한 순서가 바뀌어도 상관이 없다.</li>
+<li>종종 병렬 실행에 적합하다.</li>
+</ul>
+<p>이러한 장점은 프론트엔드 소스코드에서도 활용되어 javascript 대신 CSS selector , XSL 등을 통해 선언형 질의를 수행한다.</p>
+<h4 id="mapreduce-query">MapReduce Query</h4>
+<p>다수의 범용 컴퓨터로 대량의 데이터를 처리하기 위한 프로그래밍 모델로 google에 의해서 널리 알려졌다.  몽고DB, 카우치DB를 포함한 NoSQL 데이터 저장소에서 제한된 형태의 MR을 사용한다. 이 메커니즘은 많은 문서를 대상으로 read-only 질의를 수행할때 사용한다.   이들 저장소에서의 MR질의는 선언형 질의와 명령형 질의 중간에 위치한다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">observation</span>.<span style="color:#a6e22e">mapReduce</span>(
+	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">map</span>(){
+        <span style="color:#75715e">// process 
+</span><span style="color:#75715e"></span>    }, 
+	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">reduce</span>(<span style="color:#a6e22e">key</span>,<span style="color:#a6e22e">values</span>){
+        <span style="color:#75715e">// reduce 
+</span><span style="color:#75715e"></span>    }, 
+	{
+        <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {<span style="color:#a6e22e">family</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;sharks&#34;</span>} 
+        <span style="color:#a6e22e">out</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;monthlySharkReport&#34;</span> 
+    })
+</code></pre></div><p>맵리듀스에서 사용되는 함수는 pure function으로 입력으로 전달된 데이터만 사용하여 추가적인 부수효과(side effect)가 없어야 한다.</p>
+<h4 id="graph-query">Graph query</h4>
+<p>Cypher query - 속성 그래프를 위한 선언형 질의 언어</p>
+<p>Semantic Web -</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/system-design/" rel="tag">System Design</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/book/202201_socratesexpress/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[Review] 천천히 읽는 ... Socrates Express</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2022 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

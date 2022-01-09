@@ -3,37 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/book/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/system-design/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/posts/book/202201_socratesexpress/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/book/</loc>
-    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/insight/</loc>
-    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
   </url>
   
