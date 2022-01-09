@@ -43,7 +43,7 @@ if (!doNotTrack) {
 <body class="body">
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
-	<div class="container container--outer">
+	<div class="container content-with-sidebar container--outer">
 		
 
 
@@ -62,12 +62,12 @@ if (!doNotTrack) {
 		<div class="divider"></div>
 	</div>
 </header>
-		<div class="wrapper flex">
-			
-<div class="sidebar-toc bl-l b--moon-gray" style="position: sticky">
-	<aside >
-	<div class="toc__title">Page content</div>
-	<div class="toc__menu">
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l" style="border-left: dashed gray;">
+	<div class="toc__title">Page Index</div>
+	<div class="toc__menu ph3-l">
 		<nav id="TableOfContents">
   <ul>
     <li>
@@ -80,9 +80,10 @@ if (!doNotTrack) {
   </ul>
 </nav>
 	</div>
-	</aside>
-</div>
-			<div class="primary">
+</aside>
+			</div>
+			<div class="order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
 			
 <main class="main" role="main">
 	<article class="post">
@@ -103,7 +104,8 @@ if (!doNotTrack) {
 이러한 알고리즘은 자차, 도보, 대중교통을 이용할 때 각각 구현되어야 하며 필요에 따라서 하나를 선택하여 사용해야 한다. 
 또한 각각은 효율적으로 개발 배포될 수 있도록 구현되어야 하며 각 알고리즘의 영향을 최소한으로 해야한다.</p>
 <h2 id="설계-방안">설계 방안</h2>
-<div class="mermaid" align="center">
+<div class="mermaid tr" style="resize: both; overflow: auto;" align="center">
+
 classDiagram
 Context o-- Strategy
 Strategy <|.. Strategy_A : Realization
@@ -124,6 +126,7 @@ class Strategy{
 Strategy_A: +execute()
 Strategy_B: +execute()
 Strategy_C: +execute()
+
 </div>
 <p>Strategy pattern을 사용해서 필요한 알고리즘을 각각의 클래스로 구현한다.
 이렇게 별도로 구현된 클래스를 strategies 라고 한다.
