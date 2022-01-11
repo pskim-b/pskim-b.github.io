@@ -2,7 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/categories/book/</loc>
+    <loc>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</loc>
+    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/architecture/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
@@ -20,19 +23,16 @@
     <loc>/tags/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</loc>
-    <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>/posts/book/202201_socratesexpress/</loc>
+    <lastmod>2022-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/book/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/insight/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/posts/architecture/designpattern/202112_dp_strategy_pattern/</loc>
-    <lastmod>2021-12-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/categories/architecture/</loc>
     <lastmod>2021-12-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/designpattern/</loc>

@@ -7,20 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Book</title>
-      <link>/categories/book/</link>
+      <title>Architecture</title>
+      <link>/categories/architecture/</link>
       <pubDate>Sun, 09 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>/categories/book/</guid>
+      <guid>/categories/architecture/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Architecture</title>
-      <link>/categories/architecture/</link>
-      <pubDate>Fri, 24 Dec 2021 00:00:00 +0000</pubDate>
+      <title>Book</title>
+      <link>/categories/book/</link>
+      <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>/categories/architecture/</guid>
+      <guid>/categories/book/</guid>
       <description></description>
     </item>
     

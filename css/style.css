@@ -86,11 +86,11 @@ body {
 }
 
 .primary {
-	-webkit-flex: 1 0 65.83%;
+	/* -webkit-flex: 1 0 65.83%;
 	-webkit-box-ordinal-group: 1;
 	flex: 1 0 65.83%;
 	-webkit-order: 1;
-	order: 1;
+	order: 1;*/
 	min-width: 0;
 }
 
@@ -6478,7 +6478,7 @@ textarea {
 	.pl5-l {
 		padding-left: 4rem
 	}
-	.pl6-l {
+	.pl6-l.pl6-l {
 		padding-left: 8rem
 	}
 	.pl7-l {
@@ -9356,8 +9356,10 @@ pre code,
 
 @media (min-width:75em) {
 	.sticky {
-		position: fixed;
-		right: 0
+		position: sticky;
+		height: 200px;
+		top: 0;
+		right: 0;
 	}
 }
 
