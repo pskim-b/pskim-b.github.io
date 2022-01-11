@@ -39,7 +39,7 @@
     <item>
       <title> [GIT] 프로젝트 별 서로 다른 SSH Key 등록하기 (Multi-SSH key for different projects) </title>
       <link>/posts/etc/20211201_git_ssh_multikey/</link>
-      <pubDate>Wed, 01 Dec 2021 00:00:00 +0900</pubDate>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>/posts/etc/20211201_git_ssh_multikey/</guid>
       <description>SSH Key 등록의 문제 기존에 windows 환경에서 SSH 키를 등록하는 방법을 간단하게 공유하였다. 이와 관련된 내용은 내 블로그가 아니더라도 github 페이지에 가이드되어 있는 내용이기 때문에 다들 알고 있는 내용일 것이다. (참고) Windows10 - SSH Key 등록

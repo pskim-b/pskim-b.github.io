@@ -12,9 +12,10 @@
 지난 글에서 간단하게 R의 기본언어를 알아보았다. 이번 글에서는 실제로 R을 사용하여 데이터를 입출력하는 방법을 알아보려고 한다.
  데이터 처리/분석 과정 모든 일이 그러하듯이 데이터 분석을 시작할 때에도 그것의 목적을 명확히 하고 이에 맞는 분석 방법론을 선택해야 한다. 정확한 분석을 위해서는 분석가가 설계한대로 올바른 데이터가 입력되어야 한다. 따라서 데이터를 분석이 가능한 형태로 전처리하는 과정이 필요하며 이를 데이터 핸들링이라고도 한다. 그리고 데이터 분석 이후에 의사결정권자와 고객에 보고서 형태로 제공됨으로써 분석과제가 종료된다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/datascience/adsp/3_r_data_processing/" />
+<meta property="og:url" content="/posts/datascience/adsp/3_r_data_processing/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-31T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-01-31T00:00:00+00:00" />
+
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -26,16 +27,14 @@
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script type="application/javascript">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-TEFH3VCWGN', 'auto');
-	
-	ga('send', 'pageview');
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
 }
 </script>
 
@@ -128,34 +127,34 @@ if (!doNotTrack) {
 <ol>
 <li>
 <p><strong>데이터 입력</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e">#하위경로의 파일 목록 출력</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#75715e">#하위경로의 파일 목록 출력</span>
 <span style="color:#f92672">&gt;</span> list.files
 <span style="color:#a6e22e">function </span>(path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, pattern <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, all.files <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
     full.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, recursive <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, ignore.case <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
     include.dirs <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, no.. <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">list.files</span>(<span style="color:#e6db74">&#34;d:\\download&#34;</span>) 
-   
+
 <span style="color:#75715e">#고정폭 데이터 읽기</span>
 <span style="color:#f92672">&gt;</span> read.fwf
 <span style="color:#a6e22e">function </span>(file, widths, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0L</span>, 
     row.names, col.names, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, buffersize <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, 
     <span style="color:#66d9ef">...</span>)
 <span style="color:#f92672">&gt;</span> f1 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.fwf</span>(<span style="color:#e6db74">&#34;d:\\download\\sample_fwf.txt&#34;</span>,header<span style="color:#f92672">=</span>T, widths<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">11</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">7</span>))
-    
+
 <span style="color:#75715e">#구분자로 데이터 구분해서 읽기 (기본 탭으로 구분)  </span>
 <span style="color:#75715e">#아래 read.table의 wrapper function. 내부적으로 read.table을 호출</span>
 <span style="color:#f92672">&gt;</span> read.delim
 <span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>, 
     dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
 <span style="color:#f92672">&gt;</span> f2 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.delim</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
-   
+
 <span style="color:#75715e"># CSV파일 읽기 (구분자 )</span>
 <span style="color:#f92672">&gt;</span> read.csv 
 <span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>, 
     dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>) 
 <span style="color:#f92672">&gt;</span> f3 <span style="color:#f92672">=</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>, header<span style="color:#f92672">=</span>T)
 <span style="color:#f92672">&gt;</span> <span style="color:#75715e"># as.is=T  -- 주소,이름,성 등의 형변환 없이 text로 데이터를 읽고 싶은 경우 </span>
-   
+
 <span style="color:#75715e"># table 형태로 읽기 (구분자를 설정가능)</span>
 <span style="color:#f92672">&gt;</span> read.table
 <span style="color:#a6e22e">function </span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#39;&#34;</span>, 
@@ -168,20 +167,20 @@ if (!doNotTrack) {
     fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, text, 
     skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
 <span style="color:#f92672">&gt;</span> f4 <span style="color:#f92672">=</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>, header<span style="color:#f92672">=</span>T, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
-   
+
 <span style="color:#75715e">#웹에서 데이터 읽어올 때 </span>
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.csv</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/sample.csv&#34;</span>)
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/sample.txt&#34;</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;|	&#34;</span>)
-   
+
 <span style="color:#75715e">#html 테이블 읽어오는 경우 </span>
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readHTMLTable</span>(<span style="color:#e6db74">&#34;http://www.example.com/download/table.html&#34;</span>)
-   
+
 <span style="color:#75715e"># line 단위로 읽기 </span>
 <span style="color:#f92672">&gt;</span> readLines
 <span style="color:#a6e22e">function </span>(con <span style="color:#f92672">=</span> <span style="color:#a6e22e">stdin</span>(), n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, ok <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, warn <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, 
     skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">readLines</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
-   
+
 <span style="color:#75715e">#토큰 기반 읽기 - 타입에 맞춰 데이터 읽기 </span>
 <span style="color:#f92672">&gt;</span> scan
 <span style="color:#a6e22e">function </span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, what <span style="color:#f92672">=</span> <span style="color:#a6e22e">double</span>(), nmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, 
@@ -194,24 +193,24 @@ if (!doNotTrack) {
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">scan</span>(<span style="color:#e6db74">&#34;d:\\download\\sample.csv&#34;</span>,nlines <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, what<span style="color:#f92672">=</span><span style="color:#a6e22e">character</span>(<span style="color:#e6db74">&#39;0&#39;</span>))
 Read <span style="color:#ae81ff">1</span> item
 [1] <span style="color:#e6db74">&#34;Series_reference,Period,Data_value,Suppressed,STATUS,UNITS,Magnitude,Subject,Group,Series_title_1,Series_title_2,Series_title_3,Series_title_4,Series_title_5&#34;</span>
-       
+
 <span style="color:#75715e"># 예1. what=numeric(0)</span>
 <span style="color:#75715e"># 예2. what=interger(0)</span>
 <span style="color:#75715e"># 예3. what=list(v1=character(),v2=numberic(0))</span>
 </code></pre></div></li>
 <li>
 <p><strong>데이터 출력</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> cat
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> cat
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">function </span>(<span style="color:#66d9ef">...</span>, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, 
     labels <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>) 
 <span style="color:#f92672">&gt;</span> cList<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>,<span style="color:#e6db74">&#34;e&#34;</span>)
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cat</span>(cList,<span style="color:#e6db74">&#34;d:\\data.out&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;,&#34;</span>)
-   
+
 <span style="color:#f92672">&gt;</span> fval<span style="color:#f92672">=</span><span style="color:#ae81ff">1.524520</span>
 <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">print</span>(fval,digits<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 <span style="color:#ae81ff">2</span>
 <span style="color:#a6e22e">cat</span>(<span style="color:#a6e22e">printformat</span>(fval,digits<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>),<span style="color:#e6db74">&#34;d:\\data2.out&#34;</span>)
-   
+
 </code></pre></div></li>
 </ol>
 <hr>

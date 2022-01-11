@@ -14,9 +14,10 @@ PS&gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없
 위와 같은 명령어로 생성된 ~/.ssh/id_rsa.pub 파일의 내용을 github에 등록하면 &lsquo;Key is invalid. You must supply a key in OpenSSH public key format&rsquo; 와 같은 에러메세지가 나온다.
 왜 이상한 포맷으로 생성되는지 잘 모르겠으나, 이러한 경우 아래와 같이 rsa 대신 ed25519를 생성하여 id_25519." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/etc/20210122_git_win10_auth/" />
+<meta property="og:url" content="/posts/etc/20210122_git_win10_auth/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-22T22:42:30+09:00" />
 <meta property="article:modified_time" content="2021-01-22T22:42:30+09:00" />
+
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -28,16 +29,14 @@ PS&gt; ssh-keygen -b 2048 -t rsa 너무 간단한 작업이여서 다를 게 없
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
-<script type="application/javascript">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
 var doNotTrack = false;
 if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-TEFH3VCWGN', 'auto');
-	
-	ga('send', 'pageview');
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
 }
 </script>
 
@@ -84,13 +83,13 @@ if (!doNotTrack) {
 		<div class="content post__content clearfix">
 			<p>Windows10 환경에서 생성한 rsa key가 Github account/repository에 SSH키를 등록이 안되는 경우가 있다.</p>
 <p>다른 블로그 및 stackoverflow에서도 아래와 같이 rsa key 생성을 가이드 하고 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; ssh-keygen -b 2048 -t rsa 
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; ssh-keygen -b 2048 -t rsa 
 </code></pre></div><p>너무 간단한 작업이여서 다를 게 없을 것 같은데  안되서 굉장히 당황스러웠다.</p>
 <p>위와 같은 명령어로 생성된 ~/.ssh/id_rsa.pub 파일의 내용을 github에 등록하면 <strong>&lsquo;Key is invalid. You must supply a key in OpenSSH public key format&rsquo;</strong>  와 같은 에러메세지가 나온다.</p>
 <p>왜 이상한 포맷으로 생성되는지 잘 모르겠으나, 
 이러한 경우 아래와 같이 rsa 대신 ed25519를 생성하여  id_25519.pub의 내용을 등록하면 정상적으로 등록된다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; ssh-keygen -o -a 100 -t ed25519
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; get-service ssh-agent  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; ssh-keygen -o -a 100 -t ed25519
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-powershell" data-lang="powershell">PS&gt; get-service ssh-agent  
 PS&gt; ssh-add ~/.ssh/id_ed25519	
 </code></pre></div><p>ssh-agent가 만약에 stopped 상태인 경우 &lsquo;서비스&rsquo;에서 OpenSSH Auth Agent 기동한다. 
 그후에 위 명령어로 github에 등록된 ed25519키를 ssh-agent에 등록해주면 git 작업 수행 시 별다른 인증 없이 작업할 수 있다.</p>

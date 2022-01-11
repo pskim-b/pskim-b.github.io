@@ -1,325 +1,197 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>/categories/book/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/system-design/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</loc>
     <lastmod>2022-01-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/book/202201_socratesexpress/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/insight/</loc>
     <lastmod>2022-01-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/architecture/designpattern/202112_dp_strategy_pattern/</loc>
     <lastmod>2021-12-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/architecture/</loc>
     <lastmod>2021-12-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/designpattern/</loc>
     <lastmod>2021-12-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/etc/20211201_git_ssh_multikey/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/categories/etc/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/tags/git/</loc>
-    <lastmod>2021-12-01T00:00:00+09:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-12-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/posts/spring/web/20211129_restful_api/</loc>
     <lastmod>2021-11-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/spring/</loc>
     <lastmod>2021-11-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/web/</loc>
     <lastmod>2021-11-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/java/20211016_java_annotation/</loc>
     <lastmod>2021-10-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/annotation/</loc>
     <lastmod>2021-10-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/java/</loc>
     <lastmod>2021-10-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/java/202110_java_streaming/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/java/202110_java_optional/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/stream/</loc>
     <lastmod>2021-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/java/202110_java_functional_programming/</loc>
     <lastmod>2021-10-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/functional-programming/</loc>
     <lastmod>2021-10-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/spring/web/20210828_%EC%84%9C%EB%B8%94%EB%A6%BFservlet%EC%97%90-%EB%8C%80%ED%95%9C-%EC%9D%B4%ED%95%B4/</loc>
     <lastmod>2021-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/architecture/msa/msa_20210813_front-integration/</loc>
     <lastmod>2021-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/microservice/</loc>
     <lastmod>2021-08-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/architecture/msa/msa_20210810_self-contained-system-%EB%B3%B5%EC%82%AC%EB%B3%B8/</loc>
     <lastmod>2021-08-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/kafka/20210628_kafka_summary-1/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/kafka/20210628_kafka_summary-2/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/bigdata/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/kafka/</loc>
     <lastmod>2021-06-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/architecture/systems/202106_system_design_2/</loc>
     <lastmod>2021-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/interview/</loc>
     <lastmod>2021-06-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/architecture/systems/202106_system_design_1/</loc>
     <lastmod>2021-06-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/datalake/20210427_datalake_limitations/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/datalake/</loc>
     <lastmod>2021-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/7_adsp_fin/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/spark/20210413_spark_architecture/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/adsp/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/datasicence/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/spark/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/hadoop/qna_01_hadoopqna/</loc>
     <lastmod>2021-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/hadoop/</loc>
     <lastmod>2021-04-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/datalake/20210328_01_datalake02/</loc>
     <lastmod>2021-03-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/datalake/20210321_ebdl_01_datalake01/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/6_adsp_subject_map/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/5_r_data_frame/</loc>
     <lastmod>2021-02-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/r/</loc>
     <lastmod>2021-02-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/4_r_data_structure/</loc>
     <lastmod>2021-02-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/3_r_data_processing/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/2_r_programming/</loc>
     <lastmod>2021-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/0_start/</loc>
     <lastmod>2021-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/datascience/adsp/1_statistical_analysis/</loc>
     <lastmod>2021-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/etc/20210122_git_win10_auth/</loc>
     <lastmod>2021-01-22T22:42:30+09:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/zookeeper/202190209_zookeeper_quorum/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/zookeeper/</loc>
     <lastmod>2019-02-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/hive/hive_partition_type/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/hive/</loc>
     <lastmod>2018-08-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/hbase/20180711_hbase_write_ahead_log/</loc>
     <lastmod>2018-07-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/hbase/</loc>
     <lastmod>2018-07-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/posts/bigdata/hbase/20180110_hbase_shell_command/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
   </url>
-  
 </urlset>
