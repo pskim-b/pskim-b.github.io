@@ -5,7 +5,17 @@
     <link>/posts/</link>
     <description>Recent content in Posts on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Book] 완벽한 아이 (The Only Girl / Derrière la grille)</title>
+      <link>/posts/book/2022021_theonlygirl_intheworld/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/2022021_theonlygirl_intheworld/</guid>
+      <description>책을 읽으며 부끄럽지만 요즘 들어 구매 후 열어보지 못하고 쌓아둔 IT 도서가 늘어나고 있다. 더는 기술관련 도서를 사는 것은 무의미하다고 생각해서 편한 마음으로 읽을 수 있는 그렇지만 가볍지만은 않은 책들을 읽고 싶어졌다. 개인적으로 인터넷 서점의 베스트셀러는 열심히 일하시는 마켓터분들의 노력의 결과라고 생각해 그대로 믿지 않는다. 그러던 중 이번 달에는 소설가 김영하 님이 운영하시는 북클럽에서 추천해준 도서를 몇 권골라 주문하였다.
+완벽한 아이의 원제는 [Derrière la grille]로 영어로 번역하면 [behind the grid]이고, 미국에서 출간된 도서의 제목은 [The only girl in the world] 이다.</description>
+    </item>
+    
     <item>
       <title>[Design] 데이터 모델과 쿼리 </title>
       <link>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</link>
