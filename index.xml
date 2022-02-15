@@ -5,7 +5,17 @@
     <link>/</link>
     <description>Recent content on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Design] 분산 데이터 (1)</title>
+      <link>/posts/book/data_intensive/20220214_05_replication/</link>
+      <pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/data_intensive/20220214_05_replication/</guid>
+      <description>지극히 주관적인 요약 Part 2. 분산 데이터 분산 데이터베이스를 통한 이점
+ 확장성 : 데이터 볼륨, 일기/쓰기 부하를 여러 장비로 분배 내결함성/고가용성 : 장비 하나 또는 특정 단위(네트워크, 데이터센터 등)가 죽더라도 어플리케이션이 계속 동작할 수 있도록 서비스 제공 지연 시간 : 전세계에 사용자가 있다면 지리적으로 가까운 곳의 DC에서 서비스를 제공하기 위해 다양한 곳에 서버를 두고 서비스  공유 메모리 아키텍쳐 : 여러 개의 리소스들을 하나의 운영체제로 결합하여 관리한다. 모든 구성요소를 단일 장비처럼 관리할 수 있다.</description>
+    </item>
+    
     <item>
       <title>[Book] 완벽한 아이 (The Only Girl / Derrière la grille)</title>
       <link>/posts/book/2022021_theonlygirl_intheworld/</link>
@@ -14,6 +24,18 @@
       <guid>/posts/book/2022021_theonlygirl_intheworld/</guid>
       <description>책을 읽으며 부끄럽지만 요즘 들어 구매 후 열어보지 못하고 쌓아둔 IT 도서가 늘어나고 있다. 더는 기술관련 도서를 사는 것은 무의미하다고 생각해서 편한 마음으로 읽을 수 있는 그렇지만 가볍지만은 않은 책들을 읽고 싶어졌다. 개인적으로 인터넷 서점의 베스트셀러는 열심히 일하시는 마켓터분들의 노력의 결과라고 생각해 그대로 믿지 않는다. 그러던 중 이번 달에는 소설가 김영하 님이 운영하시는 북클럽에서 추천해준 도서를 몇 권골라 주문하였다.
 완벽한 아이의 원제는 [Derrière la grille]로 영어로 번역하면 [behind the grid]이고, 미국에서 출간된 도서의 제목은 [The only girl in the world] 이다.</description>
+    </item>
+    
+    <item>
+      <title>[Clean Code] 2. 의미있는 이름 </title>
+      <link>/posts/java/20220116_cleancode_1_meaningful_name/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/java/20220116_cleancode_1_meaningful_name/</guid>
+      <description>들어가며 책의 실질적인 도입부이면서 굉장히 중요한 내용이다. 당연한 이야기가 써있겠거니 했지만 실제로 읽어보니 굉장히 많은 부분에서 공감을 했으며 동시에 반성을 하게되었다.
+아래 정리된 부분은 나중에 빠르게 기억하기 위해 정리한 부분임으로 상세한 내용은 꼭 책을 통해서 읽어보길 바란다.
+ 의미있는 이름 의도를 분명히 하라 의도가 드러나는 이름을 사용하면 코드의 이해와 변경이 쉬워진다.
+잘못된 네이밍 예 public List&amp;lt;int[]&amp;gt; getThem(){ List&amp;lt;int[]&amp;gt; list1 = new ArrayList&amp;lt;int[]&amp;gt;(); for(int[] x: theList){ if(x[0]==4){ list1.add(x); } } return list1; } 코드가 하는일을 짐작하기 어렵다.</description>
     </item>
     
     <item>

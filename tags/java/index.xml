@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on PS Developer Tech study</title>
+    <link>/tags/java/</link>
+    <description>Recent content in Java on PS Developer Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Clean Code] 2. 의미있는 이름 </title>
+      <link>/posts/java/20220116_cleancode_1_meaningful_name/</link>
+      <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/java/20220116_cleancode_1_meaningful_name/</guid>
+      <description>들어가며 책의 실질적인 도입부이면서 굉장히 중요한 내용이다. 당연한 이야기가 써있겠거니 했지만 실제로 읽어보니 굉장히 많은 부분에서 공감을 했으며 동시에 반성을 하게되었다.
+아래 정리된 부분은 나중에 빠르게 기억하기 위해 정리한 부분임으로 상세한 내용은 꼭 책을 통해서 읽어보길 바란다.
+ 의미있는 이름 의도를 분명히 하라 의도가 드러나는 이름을 사용하면 코드의 이해와 변경이 쉬워진다.
+잘못된 네이밍 예 public List&amp;lt;int[]&amp;gt; getThem(){ List&amp;lt;int[]&amp;gt; list1 = new ArrayList&amp;lt;int[]&amp;gt;(); for(int[] x: theList){ if(x[0]==4){ list1.add(x); } } return list1; } 코드가 하는일을 짐작하기 어렵다.</description>
+    </item>
+    
+  </channel>
+</rss>

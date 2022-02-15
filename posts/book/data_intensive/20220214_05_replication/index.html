@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Design] 분산 데이터 (1) - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[Design] 분산 데이터 (1)" />
+<meta property="og:description" content="지극히 주관적인 요약 Part 2. 분산 데이터 분산 데이터베이스를 통한 이점
+ 확장성 : 데이터 볼륨, 일기/쓰기 부하를 여러 장비로 분배 내결함성/고가용성 : 장비 하나 또는 특정 단위(네트워크, 데이터센터 등)가 죽더라도 어플리케이션이 계속 동작할 수 있도록 서비스 제공 지연 시간 : 전세계에 사용자가 있다면 지리적으로 가까운 곳의 DC에서 서비스를 제공하기 위해 다양한 곳에 서버를 두고 서비스  공유 메모리 아키텍쳐 : 여러 개의 리소스들을 하나의 운영체제로 결합하여 관리한다. 모든 구성요소를 단일 장비처럼 관리할 수 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/book/data_intensive/20220214_05_replication/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-14T00:00:00+00:00" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l">
+	<div class="toc__title tl mb2">Page Index</div>
+	<div class="toc__menu ph3-l " style="border-left: dashed gray;">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#지극히-주관적인-요약"><strong>지극히 주관적인 요약</strong></a>
+      <ul>
+        <li><a href="#part-2-분산-데이터">Part 2. 분산 데이터</a></li>
+        <li><a href="#5장-복제">5장. 복제</a>
+          <ul>
+            <li><a href="#단일리더-single-leader">단일리더 (Single-Leader)</a></li>
+            <li><a href="#leader-and-follower">Leader and Follower</a>
+              <ul>
+                <li><a href="#sync-vs-async-replication">Sync vs Async Replication</a></li>
+                <li><a href="#새로운-follower-추가">새로운 follower 추가</a></li>
+              </ul>
+            </li>
+            <li><a href="#노드-중단-처리">노드 중단 처리</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#follower-장애--따라잡기catch-up-복구">Follower 장애 : 따라잡기catch-up 복구</a></li>
+                    <li><a href="#leader-장애--fail-over">Leader 장애 : Fail-over</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#복제-로그-구현">복제 로그 구현</a>
+              <ul>
+                <li><a href="#구문-기반-복제">구문 기반 복제</a></li>
+                <li><a href="#쓰기-전-로그-전송-wal-전달">쓰기 전 로그 전송 (WAL 전달)</a></li>
+                <li><a href="#논리적로우-기반-로그-복제">논리적(로우 기반) 로그 복제</a></li>
+                <li><a href="#트리거-기반-복제">트리거 기반 복제</a></li>
+              </ul>
+            </li>
+            <li><a href="#복제-지연-문제">복제 지연 문제</a>
+              <ul>
+                <li><a href="#자신이-쓴-내용-읽기">자신이 쓴 내용 읽기</a></li>
+                <li><a href="#단조-읽기">단조 읽기</a></li>
+                <li><a href="#일관된-순서로-읽기">일관된 순서로 읽기</a></li>
+                <li><a href="#복제-지연을-위한-해결책">복제 지연을 위한 해결책</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</aside>
+			</div>
+			<div class="primary order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Design] 분산 데이터 (1)</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-02-14T00:00:00Z">February 14, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/architecture/" rel="category">Architecture</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<h1 id="지극히-주관적인-요약"><strong>지극히 주관적인 요약</strong></h1>
+<h2 id="part-2-분산-데이터">Part 2. 분산 데이터</h2>
+<p>분산 데이터베이스를 통한 이점</p>
+<ul>
+<li>확장성 : 데이터 볼륨, 일기/쓰기 부하를 여러 장비로 분배</li>
+<li>내결함성/고가용성 : 장비 하나 또는 특정 단위(네트워크, 데이터센터 등)가 죽더라도 어플리케이션이 계속 동작할 수 있도록 서비스 제공</li>
+<li>지연 시간 : 전세계에 사용자가 있다면 지리적으로 가까운 곳의 DC에서 서비스를 제공하기 위해 다양한 곳에 서버를 두고 서비스</li>
+</ul>
+<p>공유 메모리 아키텍쳐 : 여러 개의 리소스들을 하나의 운영체제로 결합하여 관리한다. 모든 구성요소를 단일 장비처럼 관리할 수 있다.</p>
+<ul>
+<li>확장성 : 비용이 비선형적으로 증가한다. 병목현상이 발생한다. 두배 크기의 장비가 두 배 성능을 보장하지 못한다.</li>
+<li>제한적 내결함성 : 하이엔드 장비는 핫스왑이 가능한 구조이지만 지리적 위치의 제약이 있다.</li>
+</ul>
+<p>공유 디스크 아키텍쳐 : 독립적인 CPU/RAM을 가지는 독립적인 장비를 사용하며, 데이터 저장은 공유 디스크 배열을 사용한다. DW에서 이러한 아키텍쳐를 사용.</p>
+<ul>
+<li>제한된 확장성 :  잠금경합(race condition)과 오버헤드가 확장성을 제한</li>
+</ul>
+<p>비공유 아키텍쳐 (Scale Out)</p>
+<ul>
+<li>노드 : 데이터베이스 소프트웨어를 사용하는 각 장비나 가상 장비를 노드라고 함. 노드간 coordination은 일반적인 네트워크를 사용해 sw수준에서 한다.</li>
+</ul>
+<p>2장에서는 비공유 아키텍쳐에 대해서 자세히 알아본다.</p>
+<h2 id="5장-복제">5장. 복제</h2>
+<p>복제란 네트워크로 연결된 여러 장비에 동일한 데이터의 복사본을 유지한다는 의미. 그 목적은 다음과 같다.</p>
+<ul>
+<li>지리적으로 사용자와 가깝게 함으로써 지연시간으 줄인다. e.g. CDN</li>
+<li>시스템의 일부에 장애가 발생해도 동작을 할 수 있도록 가용성을 높인다. e.g. Kafka, ZK..</li>
+<li>읽기 질의 제공하는 장비 수를 확장해 읽기 처리량을 늘린다. e.g. Hadoop eco</li>
+</ul>
+<p>복제중인 데이터에 변경이 없다면 복제는 매우 쉬워지나, 데이터 변경으로 인한 처리가 어렵다. 노드간 변경으로 복제를 위한 세가지 알고리즘은 다음과 같으며, 이번장에는 이 내용을 이야기할 것이다.</p>
+<ul>
+<li>Single-Leader</li>
+<li>Multi-Leader</li>
+<li>Leaderless</li>
+</ul>
+<h3 id="단일리더-single-leader">단일리더 (Single-Leader)</h3>
+<h3 id="leader-and-follower">Leader and Follower</h3>
+<p>데이터베이스의 복사본을 저장하는 각 노드를 replica 라고 한다. 다중 replica를 사용할 때 모든 데이터의 일관성consistency를 위해 사용하는 가장 일반적인 방법은 리더기반 복제 (leader-based replication)이며, active-passive replication 또는 master-slave replication라고도 한다.</p>
+<p>5-1</p>
+<ol>
+<li>Replica server 중 하나를 leader(=primary, master)로 지정한다.</li>
+<li>Client(writer)는 데이터를 쓰기 요청을 leader에게 전달한다.</li>
+<li>Leader는 먼저 로컬 저장소에 새로운 데이터를 기록한다.</li>
+<li>Leader가 아닌 다른 replica 서버를 follower(=read replica, slave, secondary, hot stanby) Server라고 한다.</li>
+<li>Leader가 로컬 저장소에 새로운데이터를 기록할 때마다 데이터 변경을 replication log나 change stream의 일부로 follower에게 전송한다.</li>
+<li>Follower가 leader로 부터 복제 로그를 받으면 leader가 처리한 것과 동일한 순서로 모든 쓰기를 적용해 그에 맞게 DB의 로컬 복제본을 업데이트한다.</li>
+<li>Client는 DB로 부터 읽기를 할 때 leader 또는 임의의 follower에게 질의할 수 있다. 하지만 step2와 같이 쓰기 작업은 leader에게만 허용된다.</li>
+</ol>
+<p>위와 같은 방식은 다음과 같은 저장소에서 사용된다.</p>
+<ul>
+<li>RDBMS  : PostgreSQL(9.0+), MySQL, Oracle Data Guard, SQLServer ..</li>
+<li>NoSQL : MongoDB, ResyncDB, Espresso ..</li>
+<li>Message Queue : Kafka, RabbitMQ ..</li>
+</ul>
+<h4 id="sync-vs-async-replication">Sync vs Async Replication</h4>
+<p>5-2</p>
+<ol>
+<li>Client가 leader 서버에게 쓰기 요청을 한다.</li>
+<li>Leader는 client로 부터받은 데이터를 우선 로컬에 반영한다.</li>
+<li>두 개의 follower는 각각 동기/비동기 복제를 하도록 구성되어 있는데, leader는 동일하게 각 follower에게 복제 요청을 보낸다.</li>
+<li>동기식 복제를 수행하는 follower에 대해서는 완료 요청을 받을 때 까지 block되어 있으며, 완료 요청을 받은 뒤에 Client에 최종 응답을 전달한다.</li>
+<li>비동기식 복제를 수행하는 follower에 대해서는 완료 요청이 오지 않더라도 block 상태로 되지 않으며, 이후에 완료 처리를 수행한다. (실패가 발생하는 경우 일정한 횟수의 retry를 갖는다.)<br>
+(참고 : Kafka ISR,In-Sync-Replica)</li>
+</ol>
+<p>동기식 복제 특징</p>
+<ul>
+<li>장점 : Leader와 follower가 일관성 있게 최신 데이터 복사본을 가지는 것을 보장한다. 갑자기 leader 동작하지 않더라도 follower에서 데이터 유실 없이 서비스를 이어갈 수 있다.</li>
+<li>단점 : 어떠한 이유든 sync-follower가 동작하지 않으면 쓰기가 처리될 수 없다. Leader는 그 동안 모든 쓰기 작업을 차단하고 sync-follower가 다시 사용할 수 있을 때까지 기다려야 한다.</li>
+</ul>
+<p>비동기식 복제 특징</p>
+<ul>
+<li>장점 : 일부 follower가 장애가 발생하더라도 leader는 쓰기작업을 성공시킬 수 있으며, client에서 빠른 응답성을 갖게 된다.</li>
+<li>단점 : Leader가 잘못되고 복구할 수 없는 경우 follower에 아직 복제 되지 않은 모든 쓰기는 유실된다.</li>
+</ul>
+<p>모든 follower를 동기식으로 구성하는 것은 비현실적인데, 임의 한 노드의 장애는 전체 시스템을 멈추게 한다. 이러한 단점을 보완하기 위해서 반동기식(semi-synchronous) 설정을 통해 하나의 노드는 동기식으로 복제하고, 나머지 노드들은 비동기식으로 처리하기도 한다.</p>
+<p>보통 리더 기반 복제는 완전히 비동기식으로 구성한다.(??) 내구성이 약화되기 때문에 나쁜 trade-off 같지만 그럼에도 많은 follower가 있거나 지리적으로 분산됐다면 비동기식 복제를 많이 널리 사용한다.</p>
+<h4 id="새로운-follower-추가">새로운 follower 추가</h4>
+<p>Leader에 계속해서 새로운 데이터가 추가되고 있기 때문에 새로운 follower를 추가하는 경우 데이터의 일관성을 보장하는 것은 쉽지 않다.  하지만 다음과 같은 방식으로 중단 없이 추가할 수 있다.</p>
+<ol>
+<li>DB write를 중지하지 않고 리더의 일정 시점의 snapshot을 가져온다.</li>
+<li>snapshot을 새로운 follower 노드에 복사한다.</li>
+<li>follower는 리더에 연결해 snapshot 이후의 발생한 모든 replication log를 요청한다. 이는 복제된 snapshot이 leader의 replication log에 정확한 위치에 연관되어야 한다. 이러한 위치 정보는 다양하게 불린다. (e.g. postgreSQL : log sequence, MySQL : binlog coordinate, kafka : version/timestamp)</li>
+<li>Follower가 snapshot 이후 데이터 변경의 미처리분(backlog)를 모두 처리했을 때 따라잡았다(catch-up?)라고 이야기 되고, 이 이후부터 서비스가 가능하며 leader에서 발생한 변경데이터를 이어서 처리하게 된다.</li>
+</ol>
+<h3 id="노드-중단-처리">노드 중단 처리</h3>
+<h5 id="follower-장애--따라잡기catch-up-복구">Follower 장애 : 따라잡기catch-up 복구</h5>
+<p>Follower 노드에 장애가 발생거나, leader와의 네트워크 문제로 일시적인 sync-up이 이루어 지지 않는 경우.</p>
+<p>이 경우 각 follower는 결함이 발생하기 전 마지막 트랜잭션을 알아내고, 그 이후의 변경 로그를 leader에게 요청하여 처리한다. 이러한 요청이 다 처리되고 나면 leader를 다 따라잡게 되고 이전과 같이 정상적으로 서비스할 수 있게 된다.</p>
+<h5 id="leader-장애--fail-over">Leader 장애 : Fail-over</h5>
+<p>Leader 노드에서 장애가 발생하는 경우는 좀 더 복잡한데, 이러한 작업을 fail over라고 한다.</p>
+<ol>
+<li>Follower 중 하나를 새로운 리더로 승격해야 한다.</li>
+<li>Client는 새로운 leader로 쓰기를 전송하기 위해 leader에 대한 정보를 재설정해야 한다.</li>
+<li>Leader로 선출되지 못한 다른 follower들은 새로운 leader로부터 데이터 변경을 업데이트 해야한다.</li>
+</ol>
+<p>장애 복구는 수동/자동으로 진행할 수 있으며, 자동 장애 복구는 다음과 같은 단계로 구성된다.</p>
+<ol>
+<li>리더가 장애인지 판단한다. 
+장애의 원인을 모두 정확하게 판단할 수 없음으로 시스템은 타임아웃을 사용한다. 노드들은 서로 자주 메세지를 주고 받는데(heartbeat) 일정 시간동안(30sec) 응답하지 않으면 노드를 죽은 것으로 간주한다. 이러한 값은 유지보수를 위해 의도적으로 중단할 수 있다.</li>
+<li>새로운 리더를 선택한다. 이것은 선출(leader가 다른 follower의 투표로 결정됨)의 방식으로 결정되거나 이전에 선출된 controller node에 의해 새로운 leader가 임명될 수 있다. 이러한 노드는 반드시 기존 leader의 최신 변경사항을 모두 반영한 replica server여야 한다.</li>
+<li>새로운 리더 사용을 위해 시스템을 재설정한다. client는 새로운 leader에게 쓰기 요청을 보내야한다. (이 방법은 이후 &lsquo;요청라우팅&rsquo; 에서 설명&hellip; ZK와 같은 coordination 도구 사용)</li>
+</ol>
+<p>Failover 중 이슈가 발생할 수 있는 부분들이 많다.</p>
+<ul>
+<li>async 방식의 복제를 사용한다면 새로운 leader는 이전 leader의 쓰기 일부를 수신할지 못할 수 있다. 이때 이전 leader가 복구했다고 해서 그 변경사항을 반영할 수는 없음으로 일반적으로 이전 leader의 복제되지 않은 쓰기는 폐기해야 한다.</li>
+<li>쓰기를 폐기하는 방법은 외부 저장소 시스템과 연계한다면 특히 위험한데, 예를들어 MySQL의 follower가 leader의 최신 변경사항을 반영하지 못한 상태에서, 이전에 할당했던 auto-increased key를 다시 사용하는 경우, 이를 사용하는 redis에서는 데이터 정합성이 깨질 수 있다. 즉, 사용자에게 잘못된 정보(개인정보 포함)가 노출 될 수 있다.</li>
+<li>특정 시나리오(8장)에서 두 노드가 서로 자신이 리더라도 믿을 수 있다. 이런 상황을 split-brain이라고 하는데, 두 리더가 쓰기를 받으면서 충돌을 해소하는 과정을 거쳐야한다. 일부 시스템에서는 두 리더가 감지되면 한 노드를 종료하는 메커니즘이 있으며 이는 매우 조심히 처리해야지 않으러면 두 리더 노드 모두 종료될 수 있다.</li>
+<li>리더가 죽었다고 판단하는 타임아웃이 너무 길면 복구 시간이 오래걸리며, 너무 짧으면 불필요한 복구가 자주 일어날 수 있다. 이는 시스템의 상태에따라 적절히 선택해야한다(대부분 default 30초로 사용하는듯?)</li>
+</ul>
+<h3 id="복제-로그-구현">복제 로그 구현</h3>
+<p>리더 기반의 복제 방식은 내부적으로 다양한 복제 방법을 제공한다.</p>
+<h4 id="구문-기반-복제">구문 기반 복제</h4>
+<p>모든 쓰기 요청(구문,statement)를 기록하고 쓰기를 실행한 다음 구문 로그를 팔로워에게 전송한다. RDB 기준으로는 모든 INSERT, UPDATE, DELETE 구문을 팔로워에게 전달하고 각 팔로워는 클라이언트에게서 직접 받은 것 처럼 SQL 구문을 파싱하고 실행한다.</p>
+<p>하지만 이러한 방식에는 다음과 같은 문제가 발생할 수 있다.</p>
+<ul>
+<li>각 노드에 종속적인 비결정적 함수(NOW(), RAND() 등)를 호출하는 경우 서버마다 각기 다른 값을 생성한다.</li>
+<li>자동 증가 칼럼을 사용하는 구문이나 DB의 데이터를 의존하는 경우라면 반드시 동일한 값을 참조하여, 정확히 같은 순서로 수행됨을 보장해야 한다. 그렇지 않으면 결과가 달라진다. 그래서 이 방식은 트랜잭션의 동시성이 떨어질 수 있다.</li>
+<li>부수 효과를 가진 구문(ex. 트리거, 스토어드 프로시저, 사용자 정의 함수)는 부수적인 효과가 완벽하게 결정적이지 않으면 복제 서버에서 다른 부수효과가 발생할 수 있다.</li>
+</ul>
+<p>해결책</p>
+<ul>
+<li>리더가 비결정적 함수를 호출하는 경우 값을 결정하여 팔로워에게 전달한다. 하지만 여러 엣지 케이스가 있어서 다른 복제 방법을 선호한다.</li>
+</ul>
+<h4 id="쓰기-전-로그-전송-wal-전달">쓰기 전 로그 전송 (WAL 전달)</h4>
+<p>3장에서 보았던 것 처럼 일반적으로 모든 쓰기는 로그에 기록된다. 로그 구조화 엔진(SS테이블, LSM트리)의 경우 로그 자체가 저장소의 주요 부분으로 로그 세그먼트는 작게 유지되고 백그라운드로 가비지 컬렉션을 한다. 개별 디스크 블록에 덮어쓰는 B트리의 경우 모든 변경은 WAL에 쓰기 때문에 고장 이후 일관성있는 상태로 색인을 복원할 수 있다. 이 두 경우 모두 로그는 모든 쓰기를 포함하는 append-only 바이트열이다. 따라서 동일한 로그를 사용해 모든 노드에서 복제 서버를 구성할 수 있다.</p>
+<p>리더는 디스크에 로그를 기록하는 일 외에 팔로워에게 네트워크로 로그를 전송한다. 팔로워가 이 로그를 처리하면 리더에서 있는 것과 동일한 데이터 구조의 복제본이 만들어진다. 이러한 방식은 postgreSQL, Oracle에서 사용된다. 가장 큰 단점은 로그가 제일 저수준의 데이터를 기술한다는 점이다. WAL은 디스크 블록에서 바이트를 변경했는지 상세 정보를 나타내어 저장소 엔진과 밀접하게 엮이게 때문에 리더와 팔로워 사이의 DB s/w버전을 다르게 실행할 수 없다. 이 점은 운영 방법에 큰 영향을 미칠 수 있다.</p>
+<h4 id="논리적로우-기반-로그-복제">논리적(로우 기반) 로그 복제</h4>
+<p>복제를 저장소 엔진 내부와 분리하기 위한 대안으로 다른 로그 형식을 사용하는 것이다. 이를 저장소 엔진의 표현과 구별하기 위해 논리적로그logical log 라고 부른다. 관계형 DB용 논리적 로그는 대게 로우 단위로 DB 테이블에 쓰기를 기술한 레코드열이다.</p>
+<ul>
+<li>삽입된 로우의 로그는 모든 칼럼의 새로운 값을 포함한다.</li>
+<li>삭제된 로우의 로그는 로우를 고유하게 식별하는 데 필요한 정보를 포함한다. 이것은 기본키지만 테이블에 기본키가 없다면 모든 칼럼의 예전값을 로깅해야 한다.</li>
+<li>갱신된 로우의 로그는 로우를 고유하게 식별하는데 필요한 정보와 모든 칼럼의 새로운 값을 포함한다.</li>
+</ul>
+<p>여러 로우를 수정하는 트랜잭션은 여러 로그 레코드를 생성한다음 트랜잭션 커밋여부를 레코드에 표시한다. 
+논리적 저장소를 저장소 엔진 내부와 분리하여 호환성을 더 쉽게 유지할 수 있고 리더와 팔로워에서 다른 버전의 데이터베이스 sw나 다른 저장소 엔진을 사용할 수도 있다. 또한 외부 어플리케이션이 파싱하기 더 쉽다. 이러한 측면은 오프라인 분석이나 사용자 정의 색인과 캐시 구축을 위해 데이터 웨어하우스 같은 외부 시스템에 데이터베이스의 내용을 전송하고자 할 때 유용하다. 이 부분을 변경 데이터 캡처라고 한다(11장)</p>
+<h4 id="트리거-기반-복제">트리거 기반 복제</h4>
+<p>지금까지 설명한 복제 접근 방식은 어플리케이션 코드 사용없이 DB시스템에 의해 구현된다. 대부분 이 방식을 원하지만 더 유연성이 필요하다. 예를들어 데이터 서브셋만 복제하거나 데이터베이스를 다른 종류의 데이터베이스로 복제하거나 충돌 해소로직이 필요하다면 어플리케이션에서 처리해야 한다.</p>
+<p>오라클 골든 게이터와 같은 도구는 데이터 베이스 시스템에서 데이터가 변경되면 자동으로 실행된다. 트리거는 데이터 변경을 분리된 테이블에 로깅을 할 수 있는 기회를 가진다. 이 테이블로부터 데이터 변경을 외부 프로세스가 읽을 수 있다. 그러면 외부 프로세스는 필요한 애플리케이션 로직을 적용해 다른 시스템으로 데이터 변경을 복제한다. 
+일반적으로 트리거 기반 복제에는 다른 복제방식보다 더 많은 오버헤드가 있다. 그럼에도 유연성 때문에 많이 사용한다.</p>
+<h3 id="복제-지연-문제">복제 지연 문제</h3>
+<p>리더 팔로워 구조에서 쓰기는 반드시 리더를 통해서 이루어지지만 읽기는 모든 팔로워에서 처리될 수 있어 부하 분산에 매력적이다. 이런 read-scaling은 간단히 팔로워를 추가하여 읽기 작업을 위한 용량을 늘릴 수 있지만, 이 작업은 비동기식 복제에서만 동작한다. (동기식 복제 방식은 일부 시스템 장애가 전체 쓰기 장애로 발생할 수 있다.)</p>
+<p>비동기식 복제에서는 리더와 팔로워의 데이터 불일치가 발생할 수 있다. 하지만 이것은 일시적일 뿐 &lsquo;&lsquo;최종적 일관성'&lsquo;이 보장된다. 어플리케이션에서 지연이 매우 크면 불일치는 서비스에 큰 문제를 불러일으킬 수 있는데, 복제지연으로 발생할 수 있는  대표적인 세가지 사례가 있다.</p>
+<h4 id="자신이-쓴-내용-읽기">자신이 쓴 내용 읽기</h4>
+<p>사용자가 쓰기를 수행한 직후 데이터를 조회하면 새로운 데이터는 아직 복제 서버에 반영되지 않을 수 있다. 이것은 데이터가 유실된 것 처럼 보일 수도 있다. 이 상황에서는 쓰기 후 읽기 일관성(=자신의 쓰기 읽기 일관성)이 필요하다.  이를 구현하는 방법은 아래와 같다.</p>
+<ul>
+<li>사용자가 수정한 내용을 읽을때는 리더에서 읽는다. 이를 위해서는 실제로 쿼리 없이 무엇이 수정되었는지 알 수 있어야 한다. 예를들어 SNS에서 프로필 정보는 자신만 수정가능함으로 타인의 프로필 정보는 팔로워에서, 자신의 프로필 정보는 리더에서 읽는다.</li>
+<li>대부분의 사용자가 편집할 수 있는 컴포넌트 같은 경우 다른 기준이 필요하다. 마지막 갱신 시간을 기준으로 1분 동안은 리더에서 모든 읽기를 수행하는 방식으로 최신의 정보를 가져올 수 있다. 또한 1분 이상의 지연을 가지는 팔로워를 쿼리 금지할 수도 있다.</li>
+<li>Client는 가장 최근 쓰기 timestamp를 가질 수 있음으로 이 값을 가지고 팔로워에서 최신 정보를 읽을 수 있도록 기다리거나, 다른 팔로워로부터 쿼리한다. 이때 사용되는 timestamp는 논리적 값이거나, 실제 시간(각 노드간 동기화에 주의)일 수 있다.</li>
+<li>복제서버가 여러 DC에 분산되어 있다면 복잡도가 증가한다. 리더가 제공하는 모든 요청은 리더가 포함된 DC로 라우팅 되어야 한다.</li>
+<li>동일한 사용자가 여러 디바이스로 서비스를 접근하는 경우 디바이스간 쓰기 후 읽기 일관성이 제공되어야 한다. 이 경우 많은 어려움이 있음으로 1)메타데이터를 중앙집중식으로 관리하거나, 2)여러 DC에서 서비스하는 경우 사용자가 다른 디바이스를 사용하더라도 같은 DC로 전달하는 로직을 만들어야 한다.</li>
+</ul>
+<h4 id="단조-읽기">단조 읽기</h4>
+<p>사용자가 각기 다른 복제서버에서 여러 읽기를 수행할 때 시간이 거꾸로 흐르는 현상을 목격할 수도 있다. client가 동일한 쿼리를 빠르게 두번 호출할 때 처음에는 쓰기가 완료된 복제 서버에서 데이터를 가져오지만 두번째 쿼리의 복제 서버는 아직 쓰기가 완료되지 않을 수 있다.</p>
+<p>단조 읽기는 이러한 현상이 발생하지 않음을 보장한다. 강한 일관성 보다는 덜 하지만 최종 일관성보다 더 강한 보장이다. 이는 데이터를 읽을 때 이전 값을 볼 수 있지만 한번 사용자가 최신 데이터를 읽었으면 그 이후는 모두 최신의 데이터를 읽는 것을 보장한다.</p>
+<ul>
+<li>이를 달성하는 가장 쉬운 방법은 사용자의 읽기가 항상 동일한 복제 서버에서 수행되게끔 하는 것이다. (장애 이전까지)</li>
+</ul>
+<h4 id="일관된-순서로-읽기">일관된 순서로 읽기</h4>
+<p>세 번째 복제 지연 이상 현상은 인과성 위반에 대한 이슈로 순차적인 쓰기작업이 서로 다른 지연을 가짐으로써 이후 쓰기 작업이 먼저 복제 서버에 반영되어 읽기 순서가 뒤바뀌는 문제이다. 이러한 종류의 이상현상을 방지하려면 일관된 순서로 읽기, Consistent prefix read가 필요하다. (이는 파티셔닝(샤딩)된 DB에서 발생하는 특징적인 문제임으로 6장에서 추가적으로 알아볼 예정이다.)</p>
+<ul>
+<li>한가지 해결책은 인과성이 있는 쓰기는 동일한 파티션에 기록되게끔 하는 것이다. 이는 일부 어플리케이션에는 효율적이지 않다.</li>
+</ul>
+<h4 id="복제-지연을-위한-해결책">복제 지연을 위한 해결책</h4>
+<p>만약 복제 지연이 서비스에 큰 영향을 준다면 쓰기 후 읽기와 같은 강한 보장을 제공하게끔 시스템을 설계해야 한다. 사실 복제가 비동기로 동작하지만 동기식으로 동작하는 척 하는 것이 문제의 해결 방안이다.</p>
+<p>앞서 어플리케이션에서 이를 해결하는 방법들을 알아봤지만 코드에서 이 문제를 다루기에는 너무 복잡해서 잘못되기 쉽다.  어플리케이션 개발자가 이러한 미묘한 복제 문제를 걱정하지 않고 &lsquo;올바른 작업 수행&rsquo; 을 위해 항상 데이터베이스를 신뢰할 수 있다면 훨씬좋다. 이것이 &lsquo;트랜잭션&rsquo;이 있는 이유다.  오랫동안 단일 노드에서는 트랜잭션이 존재했지만 분산 데이터베이스 전환과정에서 많은 시스템들이 트랜잭션을 포기했다.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/system-design/" rel="tag">System Design</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/book/2022021_theonlygirl_intheworld/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[Book] 완벽한 아이 (The Only Girl / Derrière la grille)</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<div>
+			<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2022 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+		</div>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

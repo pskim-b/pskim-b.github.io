@@ -5,7 +5,17 @@
     <link>/categories/architecture/</link>
     <description>Recent content in Architecture on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 09 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Design] 분산 데이터 (1)</title>
+      <link>/posts/book/data_intensive/20220214_05_replication/</link>
+      <pubDate>Mon, 14 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/data_intensive/20220214_05_replication/</guid>
+      <description>지극히 주관적인 요약 Part 2. 분산 데이터 분산 데이터베이스를 통한 이점
+ 확장성 : 데이터 볼륨, 일기/쓰기 부하를 여러 장비로 분배 내결함성/고가용성 : 장비 하나 또는 특정 단위(네트워크, 데이터센터 등)가 죽더라도 어플리케이션이 계속 동작할 수 있도록 서비스 제공 지연 시간 : 전세계에 사용자가 있다면 지리적으로 가까운 곳의 DC에서 서비스를 제공하기 위해 다양한 곳에 서버를 두고 서비스  공유 메모리 아키텍쳐 : 여러 개의 리소스들을 하나의 운영체제로 결합하여 관리한다. 모든 구성요소를 단일 장비처럼 관리할 수 있다.</description>
+    </item>
+    
     <item>
       <title>[Design] 데이터 모델과 쿼리 </title>
       <link>/posts/book/data_intensive/20220109_02_data_modeling_and_query/</link>
