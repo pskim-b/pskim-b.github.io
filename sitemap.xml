@@ -2,25 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/posts/book/data_intensive/20220214_05_replication/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <loc>/posts/architecture/systems/20230108_instagram_system_archetecture/</loc>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/architecture/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/posts/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/system-design/</loc>
-    <lastmod>2022-02-14T00:00:00+00:00</lastmod>
+    <loc>/tags/system/</loc>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
+    <lastmod>2023-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/redis/20220929_redis_overview/</loc>
+    <lastmod>2022-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/redis/</loc>
+    <lastmod>2022-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/redis/</loc>
+    <lastmod>2022-09-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/invest/20220321_why_we_need_to_invest/</loc>
+    <lastmod>2022-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/money/</loc>
+    <lastmod>2022-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/money/</loc>
+    <lastmod>2022-03-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/book/data_intensive/20220214_05_replication_2/</loc>
+    <lastmod>2022-02-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/system-design/</loc>
+    <lastmod>2022-02-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/book/data_intensive/20220214_05_replication/</loc>
     <lastmod>2022-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/posts/book/2022021_theonlygirl_intheworld/</loc>
@@ -146,7 +173,7 @@
     <loc>/tags/spark/</loc>
     <lastmod>2021-04-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/posts/bigdata/hadoop/qna_01_hadoopqna/</loc>
+    <loc>/posts/bigdata/hadoop/20210401_qna_01_hadoopqna/</loc>
     <lastmod>2021-04-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/hadoop/</loc>
@@ -205,5 +232,20 @@
   </url><url>
     <loc>/posts/bigdata/hbase/20180110_hbase_shell_command/</loc>
     <lastmod>2018-01-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</loc>
+    <lastmod>2018-01-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</loc>
+    <lastmod>2017-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/ambari/</loc>
+    <lastmod>2017-08-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/</loc>
+    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/mapreduce/</loc>
+    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
   </url>
 </urlset>

@@ -52,10 +52,10 @@ Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그
     
     <item>
       <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
-      <link>/posts/bigdata/hadoop/qna_01_hadoopqna/</link>
+      <link>/posts/bigdata/hadoop/20210401_qna_01_hadoopqna/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/bigdata/hadoop/qna_01_hadoopqna/</guid>
+      <guid>/posts/bigdata/hadoop/20210401_qna_01_hadoopqna/</guid>
       <description>🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
@@ -113,6 +113,36 @@ Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이
  2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
 &amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인
 &amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
+    </item>
+    
+    <item>
+      <title>[HBase] Shard과 HBase Region의 구조</title>
+      <link>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</guid>
+      <description>Shard와 HBase Region의 구조 일반적으로 샤딩이란 논리적 테이블을 수평적으로 파티셔닝하여 레코드를 논리적으로 분할하는 것인데, 데이터를 분산저장하기 위해서 사용한다.
+각 데이터를 적절한 장소로 라우팅routing 하기위해서는 해시함수와 같은 규칙을 미리 정의해야 한다. 수평적 파티션에서 하나의 파티션 용량이 가득 찬 경우 리샤딩reshard 작업이 수행되는데 이는 경우에 따라 데이터의 저장구조가 변경 될(파티션 간 경계를 재설정, 데이터 수평적 재분배 등) 필요가 있음으로 리소스의 비용이 많이 든다. 이때는 I/O가 높아짐으로 데이터 update가 제대로 안 일어날 수도 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Ambari] Apache Ambari 튜토리얼</title>
+      <link>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</guid>
+      <description>1. Apache Ambari 소개 - Apache ambari 프로젝트는 하둡 관리를 보다 쉽게 만들기 위한 것을 목표로 한다. 이를 위해 하둡 cluster에 대한 provisioning, managing, monitoring 소프트웨어를 개발하였으며, 계속 발전시키고 있다. Ambari는 직관적이고 사용하기 쉽도록 RESTfull API들을 통하여 webUI를 제공하며, customizing을 쉽게 수행할 수 있다. Ambari를 통해 다음과 같은 시스템 관리를 수행할 수 있다.
+&amp;gt; Provision a Hadoop Cluster . 여러 host에 hadoop services를 설치하기 위한 wizard를 제공한다. . Cluster들에 대한 hadoop services들의 configuration을 제공한다.</description>
+    </item>
+    
+    <item>
+      <title>[MapReduce] Example of MapReduce</title>
+      <link>/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/</link>
+      <pubDate>Fri, 16 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/</guid>
+      <description>하둡을 공부하기 시작하면서, 하둡을 한다는 것이 무엇을 의미하는것인지 잘 와닿지 않았다. 처음에는 일차원적으로 M/W로써의 일반적인 특성 (아키텍쳐를 이해하고 그것의 설정값들을 최적화 함으로써 성능을 극대화 시키는 것)을 생각하였다. 하지만 그것은 하둡의 주된 부분이 아니다. 하둡 기반의 프로그램을 작성한다는 것은 데이터에 따라 MapReduce를 적절히 구현하는 것이며, 이를 위해서 사전에 미리 &amp;lsquo;처리하고자 하는 데이터에 대한 이해&amp;rsquo;, &amp;lsquo;분석을 위한 기획&amp;rsquo;이 정확하게 이루어져야 한다. 그렇다면 MapReduce를 적절히 구현하는 것은 무엇일까? 여러가지 상황들을 살펴보자
+1. 블로그 접속 수 집계 1) 문제상황 : 어떤 블로그 서비스에서 블로그 별 열람자 수를 확인하고자 한다.</description>
     </item>
     
   </channel>

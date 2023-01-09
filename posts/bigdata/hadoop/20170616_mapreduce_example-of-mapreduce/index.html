@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[MapReduce] Example of MapReduce - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[MapReduce] Example of MapReduce" />
+<meta property="og:description" content="하둡을 공부하기 시작하면서, 하둡을 한다는 것이 무엇을 의미하는것인지 잘 와닿지 않았다. 처음에는 일차원적으로 M/W로써의 일반적인 특성 (아키텍쳐를 이해하고 그것의 설정값들을 최적화 함으로써 성능을 극대화 시키는 것)을 생각하였다. 하지만 그것은 하둡의 주된 부분이 아니다. 하둡 기반의 프로그램을 작성한다는 것은 데이터에 따라 MapReduce를 적절히 구현하는 것이며, 이를 위해서 사전에 미리 &lsquo;처리하고자 하는 데이터에 대한 이해&rsquo;, &lsquo;분석을 위한 기획&rsquo;이 정확하게 이루어져야 한다. 그렇다면 MapReduce를 적절히 구현하는 것은 무엇일까? 여러가지 상황들을 살펴보자
+1. 블로그 접속 수 집계 1) 문제상황 : 어떤 블로그 서비스에서 블로그 별 열람자 수를 확인하고자 한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-06-16T00:00:00+00:00" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l">
+	<div class="toc__title tl mb2">Page Index</div>
+	<div class="toc__menu ph3-l " style="border-left: dashed gray;">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-블로그-접속-수-집계">1. 블로그 접속 수 집계</a></li>
+        <li><a href="#2-취미가-비슷한-사람들의-매칭">2. 취미가 비슷한 사람들의 매칭</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</aside>
+			</div>
+			<div class="primary order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[MapReduce] Example of MapReduce</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-06-16T00:00:00Z">June 16, 2017</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p><strong>하둡</strong>을 공부하기 시작하면서, 하둡을 한다는 것이 무엇을 의미하는것인지 잘 와닿지 않았다. 
+처음에는 일차원적으로 M/W로써의 일반적인 특성 (아키텍쳐를 이해하고 그것의 설정값들을 최적화 함으로써 성능을 극대화 시키는 것)을 생각하였다. 하지만 그것은 하둡의 주된 부분이 아니다. 하둡 기반의 프로그램을 작성한다는 것은 데이터에 따라 MapReduce를 적절히 구현하는 것이며, 이를 위해서 사전에 미리 &lsquo;처리하고자 하는 데이터에 대한 이해&rsquo;,  &lsquo;분석을 위한 기획&rsquo;이 정확하게 이루어져야 한다. 그렇다면 MapReduce를 적절히 구현하는 것은 무엇일까? 여러가지 상황들을 살펴보자</p>
+<h2 id="1-블로그-접속-수-집계">1. 블로그 접속 수 집계</h2>
+<p><strong>1) 문제상황 :</strong> 어떤 블로그 서비스에서 블로그 별 열람자 수를 확인하고자 한다.</p>
+<p>블로그의 열람 요구는 웹 서버에 일 단위 접속 로그로 기록되어 이것을 사용한다. 접속로그에는 [접속요청한 블로그ID, 접속하는사용자IP, 유효한접근여부](blog_ID, user_IP, is_Valid) 이 있다.</p>
+<p>블로그 접속 수 집계를 위해서는 다음과 같은 조건으로 <strong>filtering</strong> 을 수행하려고 한다.</p>
+<ul>
+<li>
+<p>조건1. 유효한 접근 만을 블로그 접속 수 집계에 포함한다.</p>
+</li>
+<li>
+<p>조건2. 같은 사용자가 특정 블로그 내의 몇가지 기사를 이동해 가며 읽은 경우, 블로그 별 열람자수를 확인하기 위해서 1회만 세도록 한다.</p>
+</li>
+</ul>
+<p><strong>2) 문제접근 :</strong> 우선 유효한 접근 만을 수집하기 위한 필터링이 필요할 것이며, 사용자가 같은 블로그를 여러번 방문하는 것을 막기위해 중복제거한다.</p>
+<p><strong>3) MapReduce구현:</strong> 일단 조건과 같이 2단계로 나눈다. 사실 병렬분산처리를 수행하지 않는다면 단계를 나눌 것 없이 순차적으로 하나씩 처리 가능하다.</p>
+<p>하지만 대량의 데이터 분석으로 인한 I/O 부하가 예상되기 때문에 병렬 분산 처리를 수행해야 하며, 작업을 적절한 연산의 단위로 나누는 것이 좋다.</p>
+<p>위와 같은 경우, 조건에 따라 첫 번째 잡에서는 유효한 접근을 고르도록하고, 두 번째 잡에서는 첫번째 연산의 결과를 이용하여 중복제거를 하자.</p>
+<p><strong>&laquo;JOB#1&raquo;</strong></p>
+<p>(a) Map : 유효한접근(is_Valid == true)이라면 blog_ID,User_IP의 [조합]을 key로 하고 value를 1로 설정한다. (이를 wordcount라고 한다) 
+(b) Shuffle : map의 결과를 입력받아 key(blog_ID, User_IP)가 같은 데이터들을 하나의 그룹으로 집계하여, 중복을 제거한다.
+(c) Reduce : 집계된 데이터를 대상으로 reduce 함수가 수행되면, shuffle의 결과 key를 [분해] 하여 blog_ID, User_Ip의 형태로 key-value로 나타낸다</p>
+<p><strong>&laquo;JOB#2&raquo;</strong></p>
+<p>(d) Map : 별도로 필터링 할 것이 없음으로 입력된 blog_ID, User_IP를 기존과 같이 key-value로 유지한다. 
+(e) Shuffle : 열람이 요구된 블로그 ID별로(key를 blog_ID로 하여) 접속한 사용자 IP 주소를 집약한다.
+(f) Reduce : 열람이 요구된 블로그 ID 별로 접속한 사용자 IP의 수를 세는 reduce 함수를 호출하여 이것을 key-value로 전달한다. (집합(set)에 기록된 User_IP를 count 한다..)</p>
+<p>**&quot; MapReduce 잡에서 필터링, 중복제거, Counter는 비교적 자주 사용되는 처리이다&quot; **</p>
+<h2 id="2-취미가-비슷한-사람들의-매칭">2. 취미가 비슷한 사람들의 매칭</h2>
+<p><strong>1) 문제상황</strong> : SNS 사이트에서 사용자 프로필이나 사이트 내 행동 이력 등, 사용자별 속성 정보를 기록하고 있다. 이 정보를 이용하여 같은 경향을 가진 사용자를 &lsquo;친구&rsquo;로 추천하여 친밀감을 높일 수 있는 시스템을 만들고자 한다.</p>
+<p><strong>2) 문제접근</strong> : 개별 사용자의 속성 정보에서 사용자 특성을 계산한다. 문제를 단순화 하기 위해 특성을 계산하는 알고리즘이 존재한다고 가정한다. 모든 사용자를 대상으로 특성을 계산 후 같은 특성을 가진 사용자들을 모아 그룹을 만든다. 같은 그룹 안에서 친구를 추천하면된다.</p>
+<p><strong>3) MapReduce구현</strong> : map 함수를 통해 개인별 특성을 계산한다. 사용자는 여러개의 특성을 가질 수 있으며, 갖지 않을 수도 있다. 결과 값으로 특성별 사용자(Attribute, User)를 key-value로 한다. map의 입력이 사용자 였음으로 각 map의 결과 값은 동일한 사용자에 대한 특성 값이 결과 값으로 나타나게 된다. 이를 특성 별 사용자로 집계하기 위해서 Shuffle 단계에서는 같은 특성을 가진 중간 데이터를 모아서 특성별로 사용자의 집합이 reduce 함수에 전달된다. Reduce에서는 특성별 사용자들을 집합으로 결합하는 작업이 이루어진다.</p>
+<p>a) map : 사용자 속성 정보로 부터 특성을 계산함. 결과로 각 사용자 별 특성값을 리턴함. 단 key 값은 특성값이고, value값이 사용자
+b) Shuffle : 동일한 특성 값을 갖는 사용자들을 reduce 함수에 전달함 
+c) Reduce : 입력받은 동일한 특성 값을 갖는 사용자들을 집합으로 묶어 특성-사용자 집합으로 key-value를 가짐</p>
+<p>** &ldquo;Map 단계에서 키를 부여하고, 
+Shuffle 단계에서 같은 키를 가진 데이터를 모으며, 
+Reduce 단계에서 같은 키를 가진 데이터에 대한 처리를 수행한다&rdquo; **</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/mapreduce/" rel="tag">MapReduce</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[Ambari] Apache Ambari 튜토리얼</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<div>
+			<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+		</div>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

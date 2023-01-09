@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[HBase] Shard과 HBase Region의 구조 - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[HBase] Shard과 HBase Region의 구조" />
+<meta property="og:description" content="Shard와 HBase Region의 구조 일반적으로 샤딩이란 논리적 테이블을 수평적으로 파티셔닝하여 레코드를 논리적으로 분할하는 것인데, 데이터를 분산저장하기 위해서 사용한다.
+각 데이터를 적절한 장소로 라우팅routing 하기위해서는 해시함수와 같은 규칙을 미리 정의해야 한다. 수평적 파티션에서 하나의 파티션 용량이 가득 찬 경우 리샤딩reshard 작업이 수행되는데 이는 경우에 따라 데이터의 저장구조가 변경 될(파티션 간 경계를 재설정, 데이터 수평적 재분배 등) 필요가 있음으로 리소스의 비용이 많이 든다. 이때는 I/O가 높아짐으로 데이터 update가 제대로 안 일어날 수도 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-01-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-01-08T00:00:00+00:00" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+<aside class="mw5-l right-0 f6 bl-l b--moon-gray pv4 pv0-ns ph4-l">
+	<div class="toc__title tl mb2">Page Index</div>
+	<div class="toc__menu ph3-l " style="border-left: dashed gray;">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#shard와-hbase-region의-구조">Shard와 HBase Region의 구조</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</aside>
+			</div>
+			<div class="primary order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[HBase] Shard과 HBase Region의 구조</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-01-08T00:00:00Z">January 08, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/bigdata/" rel="category">Bigdata</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<h2 id="shard와-hbase-region의-구조">Shard와 HBase Region의 구조</h2>
+<p><img src="https://docs.microsoft.com/en-us/azure/architecture/patterns/_images/index-table-figure-6.png" alt="img"></p>
+<p>일반적으로 샤딩이란 논리적 테이블을 수평적으로 파티셔닝하여 레코드를 논리적으로 분할하는 것인데, 데이터를 분산저장하기 위해서 사용한다.</p>
+<p>각 데이터를 적절한 장소로 라우팅routing 하기위해서는 해시함수와 같은 규칙을 미리 정의해야 한다. 수평적 파티션에서 하나의 파티션 용량이 가득 찬 경우 리샤딩reshard 작업이 수행되는데 이는 경우에 따라 데이터의 저장구조가 변경 될(파티션 간 경계를 재설정, 데이터 수평적 재분배 등) 필요가 있음으로 리소스의 비용이 많이 든다. 이때는 I/O가 높아짐으로 데이터 update가 제대로 안 일어날 수도 있다.</p>
+<p>Reshard 문제는 가상샤드(virtual shard)를 통해 어느정도 완화할 수 있다. 이것은 논리적 테이블을 매우 세부적으로 분할하고 실제 노드(서버) 수와 상관없이 virtual shard를 할당한다. 서버를 추가하는 경우 virtual shard를 재할당 하면 된다.</p>
+<p><img src="https://t1.daumcdn.net/cfile/tistory/99A274405A5240852D" alt="img"></p>
+<p>일반적으로 RDBMS에서 샤딩을 적용하였다면 DBA의 에포트가 많이 들어가게 된다.
+RDBMS에서는 확장성을 위한 이러한 작업이 비용이 많이 들기 때문에 DDI(Denormalization, Duplication, Intelligent key) 스키마를 특성으로 하는 NoSQL 솔루션(Hbase 등) 사용한다.</p>
+<p>HBase의 Region은 HBase의 확장성 및 로드밸런싱 기본단위이다(like virtual shard). 하나의 region은 기본적으로 함께 저장된 인접한 row들이 존재한다. region이 너무 커지면 시스템에 의해 동적으로 분할되며, 필요에 따라서 저장 파일 수를 줄이기 위해 offline으로 합쳐지기도 한다(별도의 tool을 사용해야 한다). 최초의 table은 region이 단 하나 존재하지만 데이터를 추가함에 따라서 시스템의 설정된 region의 최대 크기를 넘지 않도록 모니터링 한다. 한계가 넘으면 중간 rowkey에서 둘로 분리되어 대략적으로 동일한 크기를 가진 두개의 region을 생성한다. region server는 여러개의 region을 가진다.</p>
+<p><img src="https://t1.daumcdn.net/cfile/tistory/99C782375A523E982B" alt="img"></p>
+<p>&gt; 같은 region에는 연속된 rowkey의 값들을 가지고 있다.
+&gt; 칼럼패밀리ColumnFamily는 store 단위로 저장되는데, rowkey를 기준으로 region server의 region 안에 나뉘어 저장된다.</p>
+<p>- 빅데이터 논문에서는 region의 수를 서버당 10개에서 1000개 사이로 설정할 것을 권고하며각 region의 크기를 100MB에서 200MB 사이로 유지하는 것을 목표로 하라고 하였으나이는 2006년도의 H/W Spec임을 고려하면 10~1000개의 region을 각각 1GB ~ 2GB 정도로 설정하는 것이 적정할 것으로 보인다.</p>
+<p>- region을 분할하고 운용하는 것은 다른 플랫폼에서 제공하는 것과 같은 자동샤딩AutoShard이다. 서버에 장에가 발생하면 재빨리 복구해 주고, 부하 및 고장난 경우에도 region을 이동할 수 있다. region의 분할은 매우 빠른데 압축작업이 분할된 리전을 별도의 파일에 비동기적으로 재작성 할 때까지는 단순히 원래 저장하고 있는 파일에서 접근이 되기 때문이다.</p>
+<p>- Column family는 &lsquo;columnFamily:qualifier&rsquo; 조합으로 표현되는데 column family에는 수 제한이 있지만 column 자체에 대해서는 제한이 없다. 비어있는 qualifier도 사용이 가능하지만 그것 또한 unique 하게 취급됨으로 사용에 주의를 해야 하며 특별한 이유없이는 이를 사용하지 않는 것이 좋다. column family의 수가 많은 경우 플러쉬flush 되고 컴팩션compaction 되는 동안에 column family 단위로 addressing이 이루어 짐으로 비효율적으로 I/O가 과도하게 발생한다.</p>
+<p>* 출처
+<a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/_images/index-table-figure-6.png">https://docs.microsoft.com/en-us/azure/architecture/patterns/_images/index-table-figure-6.png</a>
+HBase: The Definitive Guide, Lars George</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/hbase/" rel="tag">hbase</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[Ambari] Apache Ambari 튜토리얼</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/posts/bigdata/hbase/20180110_hbase_shell_command/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">[HBase] hbase shell command, HBase 명령어</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<div>
+			<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+		</div>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

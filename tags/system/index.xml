@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>System on PS Developer Tech study</title>
+    <link>/tags/system/</link>
+    <description>Recent content in System on PS Developer Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 08 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/system/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[System Architecture] 인스타그램 시스템 아키텍쳐</title>
+      <link>/posts/architecture/systems/20230108_instagram_system_archetecture/</link>
+      <pubDate>Sun, 08 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/systems/20230108_instagram_system_archetecture/</guid>
+      <description>정말 오랜만의 기술 블로깅이다. 100% 자의에 의한 블로깅은 아니지만, 작년에 워낙 이런저런 일들로 바빴었는데 이렇게라도 블로깅을 할 수 있게되어 뿌듯하다. 이번 주제는 너무 무겁지도 않지만 그렇다고 너무 가볍지만은 않은 주제로 선정했다. 더불어 개인적으로도 도움이 될 수 있는 주제를 잡았다. 인스타그램은 설명이 더 필요 없는 서비스이다. 원래 서비스 목적과는 다르게 비공개 계정으로 개인 이미지 백업용으로 사용하고 있지만, 가끔 공개된 글들을 보고있으면 정말 많은 데이터들이 무한히 공급되는 것과 같이 보인다. 과연 이런 시스템은 어떻게 구성되고 있는 것일까?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ambari on PS Developer Tech study</title>
+    <link>/tags/ambari/</link>
+    <description>Recent content in Ambari on PS Developer Tech study</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 21 Aug 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ambari/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Ambari] Apache Ambari 튜토리얼</title>
+      <link>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</guid>
+      <description>1. Apache Ambari 소개 - Apache ambari 프로젝트는 하둡 관리를 보다 쉽게 만들기 위한 것을 목표로 한다. 이를 위해 하둡 cluster에 대한 provisioning, managing, monitoring 소프트웨어를 개발하였으며, 계속 발전시키고 있다. Ambari는 직관적이고 사용하기 쉽도록 RESTfull API들을 통하여 webUI를 제공하며, customizing을 쉽게 수행할 수 있다. Ambari를 통해 다음과 같은 시스템 관리를 수행할 수 있다.
+&amp;gt; Provision a Hadoop Cluster . 여러 host에 hadoop services를 설치하기 위한 wizard를 제공한다. . Cluster들에 대한 hadoop services들의 configuration을 제공한다.</description>
+    </item>
+    
+  </channel>
+</rss>

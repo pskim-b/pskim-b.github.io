@@ -5,7 +5,50 @@
     <link>/posts/</link>
     <description>Recent content in Posts on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[System Architecture] 인스타그램 시스템 아키텍쳐</title>
+      <link>/posts/architecture/systems/20230108_instagram_system_archetecture/</link>
+      <pubDate>Sun, 08 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/architecture/systems/20230108_instagram_system_archetecture/</guid>
+      <description>정말 오랜만의 기술 블로깅이다. 100% 자의에 의한 블로깅은 아니지만, 작년에 워낙 이런저런 일들로 바빴었는데 이렇게라도 블로깅을 할 수 있게되어 뿌듯하다. 이번 주제는 너무 무겁지도 않지만 그렇다고 너무 가볍지만은 않은 주제로 선정했다. 더불어 개인적으로도 도움이 될 수 있는 주제를 잡았다. 인스타그램은 설명이 더 필요 없는 서비스이다. 원래 서비스 목적과는 다르게 비공개 계정으로 개인 이미지 백업용으로 사용하고 있지만, 가끔 공개된 글들을 보고있으면 정말 많은 데이터들이 무한히 공급되는 것과 같이 보인다. 과연 이런 시스템은 어떻게 구성되고 있는 것일까?</description>
+    </item>
+    
+    <item>
+      <title>[Redis] Redis Overview</title>
+      <link>/posts/redis/20220929_redis_overview/</link>
+      <pubDate>Thu, 29 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/redis/20220929_redis_overview/</guid>
+      <description>Redis 는 cache 용도로 사용한다. 이는 파레토의 법칙으로 인해 20% 데이터가 80%의 확률로 조회되기 때문에 모든 데이터를 cache에 저장할 필요는 없으며 일부만 저장하더라도 굉장히 효율적일 수 있다는 것을 나타낸다.
+cache는 CPU와 DB간의 throughput 차이를 완화시키기 위한 방법으로 빠르게 읽거나, 빠르게 쓰기위해서 사용된다.
+(READ) Look Aside cache (lazy loading?)
+ check cache first if data exist in cache, get the data and return it. if no data in cache, fetch the data from database.</description>
+    </item>
+    
+    <item>
+      <title> [INVEST] 왜 투자해야 하는가?</title>
+      <link>/posts/invest/20220321_why_we_need_to_invest/</link>
+      <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/invest/20220321_why_we_need_to_invest/</guid>
+      <description>우리는 태어나서 10년정도의 정규 교육을 받은 후에 첫 직업을 구하게 된다. 대학교 학사 같은 경우경우 보통 24세에서 28세 정도에 첫 직장을 갖게 되고, 대학교를 진학하지 않는 경우 고등학교를 졸업하자마자 취업전선에 뛰어든다.
+약 25~35년의 노동을 한뒤에 약 60세가 되면 더 이상 노동을 할 수 없는 처지에 놓이게된다. 만약 임원으로 승진하거나 개인 사업을 하지 않는 이상은 말이다. 기업의 임원도 1~2년의 계약직임으로 앞으로 지속적인 경제활동을 할 수 있을 것이란 보장은 없다.
+그리고 우리는 약 80~90세까지 살 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Design] 분산 데이터 (2)</title>
+      <link>/posts/book/data_intensive/20220214_05_replication_2/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/data_intensive/20220214_05_replication_2/</guid>
+      <description>지극히 주관적인 요약 리더 없는 복제 초기 복제 데이터 시스템은 대부분 리더가 없었다. 리더 없는 복제는 아마존이 내부 Dynamo 시스템에서 사용한 후 다시 DB용 아키텍쳐로 유행했다. 리악, 카산드라, 볼드모트는 다이나모에서 영감을 얻은 리더 없는 복제 모델의 오픈소서 데이터 스토어로, 이런 종류의 데이터베이스를 다이나모 스타일이라 한다.
+리더 없는 복제 구현은 다음과 같은 방식으로 구성된다.
+ 클라이언트가 여러 복제 서버에 쓰기를 직접 전송 또는 코디네이터 노드가 내부적으로 복제 작업을 수행  이 두 경우 모두 리더가 있는 복제와 다르게 특정한 순서로 쓰기작업을 수행하지 않는다.</description>
+    </item>
+    
     <item>
       <title>[Design] 분산 데이터 (1)</title>
       <link>/posts/book/data_intensive/20220214_05_replication/</link>
@@ -265,10 +308,10 @@ Spark 특성  In-memory 클러스터 컴퓨팅 엔진이다. 별도의 프로그
     
     <item>
       <title>[QnA] 01.Hadoop 은 어떻게 이중화 되는가? (NameNode Failover process) </title>
-      <link>/posts/bigdata/hadoop/qna_01_hadoopqna/</link>
+      <link>/posts/bigdata/hadoop/20210401_qna_01_hadoopqna/</link>
       <pubDate>Thu, 01 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/posts/bigdata/hadoop/qna_01_hadoopqna/</guid>
+      <guid>/posts/bigdata/hadoop/20210401_qna_01_hadoopqna/</guid>
       <description>🐘 하아두우웁!!
  Hadoop 2.0 버전부터 별도의 HA 솔루션 없이 Hadoop 자체적으로 이중화를 수행할 수 있도록 변경되었다. 최신 Hadoop 3.3.0 에서는 Observer NameNode라는 읽기 전용 NameNode가 별도로 도입되었지만 이 글에서는 다루지 않겠다. 자세한 내용은 Apache Hadoop 3.3.0 – Consistent Reads from HDFS Observer NameNode 를 참고 하시도록!
 HDFS에서는 일반적으로 2개의 분리된 노드에 NameNode를 구성한다. 구성된 NameNode는 운영중에 하나는 Active 그리고 또 다른 한 대는 Standby 로 동작한다. Active NameNode는 HDFS에 대한 모든 client 요청을 담당한다.</description>
@@ -432,6 +475,36 @@ Hive 파티션(partition)의 개념은 RDBMS 와 크게 다르지 않다. 테이
  2021.05 // 버전에 따라 명령어가 상이할 수 있다. 최신 HBase 버전 2.x 의 shell command는 차후 추가할 예정   1) General HBase shell commands status : cluster 상태를 보여주며, 추가옵션을 통해 상세정보를 확인
 &amp;gt; status &amp;gt; status &amp;#39;simple&amp;#39; &amp;gt; status &amp;#39;summary&amp;#39; &amp;gt; status &amp;#39;detailed&amp;#39; version : 설치된 HBase의 버전정보를 확인
 &amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
+    </item>
+    
+    <item>
+      <title>[HBase] Shard과 HBase Region의 구조</title>
+      <link>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</guid>
+      <description>Shard와 HBase Region의 구조 일반적으로 샤딩이란 논리적 테이블을 수평적으로 파티셔닝하여 레코드를 논리적으로 분할하는 것인데, 데이터를 분산저장하기 위해서 사용한다.
+각 데이터를 적절한 장소로 라우팅routing 하기위해서는 해시함수와 같은 규칙을 미리 정의해야 한다. 수평적 파티션에서 하나의 파티션 용량이 가득 찬 경우 리샤딩reshard 작업이 수행되는데 이는 경우에 따라 데이터의 저장구조가 변경 될(파티션 간 경계를 재설정, 데이터 수평적 재분배 등) 필요가 있음으로 리소스의 비용이 많이 든다. 이때는 I/O가 높아짐으로 데이터 update가 제대로 안 일어날 수도 있다.</description>
+    </item>
+    
+    <item>
+      <title>[Ambari] Apache Ambari 튜토리얼</title>
+      <link>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</link>
+      <pubDate>Mon, 21 Aug 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/20170821_ambari_%EA%B0%9C%EC%9A%94/</guid>
+      <description>1. Apache Ambari 소개 - Apache ambari 프로젝트는 하둡 관리를 보다 쉽게 만들기 위한 것을 목표로 한다. 이를 위해 하둡 cluster에 대한 provisioning, managing, monitoring 소프트웨어를 개발하였으며, 계속 발전시키고 있다. Ambari는 직관적이고 사용하기 쉽도록 RESTfull API들을 통하여 webUI를 제공하며, customizing을 쉽게 수행할 수 있다. Ambari를 통해 다음과 같은 시스템 관리를 수행할 수 있다.
+&amp;gt; Provision a Hadoop Cluster . 여러 host에 hadoop services를 설치하기 위한 wizard를 제공한다. . Cluster들에 대한 hadoop services들의 configuration을 제공한다.</description>
+    </item>
+    
+    <item>
+      <title>[MapReduce] Example of MapReduce</title>
+      <link>/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/</link>
+      <pubDate>Fri, 16 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hadoop/20170616_mapreduce_example-of-mapreduce/</guid>
+      <description>하둡을 공부하기 시작하면서, 하둡을 한다는 것이 무엇을 의미하는것인지 잘 와닿지 않았다. 처음에는 일차원적으로 M/W로써의 일반적인 특성 (아키텍쳐를 이해하고 그것의 설정값들을 최적화 함으로써 성능을 극대화 시키는 것)을 생각하였다. 하지만 그것은 하둡의 주된 부분이 아니다. 하둡 기반의 프로그램을 작성한다는 것은 데이터에 따라 MapReduce를 적절히 구현하는 것이며, 이를 위해서 사전에 미리 &amp;lsquo;처리하고자 하는 데이터에 대한 이해&amp;rsquo;, &amp;lsquo;분석을 위한 기획&amp;rsquo;이 정확하게 이루어져야 한다. 그렇다면 MapReduce를 적절히 구현하는 것은 무엇일까? 여러가지 상황들을 살펴보자
+1. 블로그 접속 수 집계 1) 문제상황 : 어떤 블로그 서비스에서 블로그 별 열람자 수를 확인하고자 한다.</description>
     </item>
     
   </channel>

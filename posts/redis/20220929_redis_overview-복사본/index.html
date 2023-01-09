@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>[Redis] Redis Overview - PS Developer Tech study</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="[Redis] Redis Overview" />
+<meta property="og:description" content="Redis 는 cache 용도로 사용한다. 이는 파레토의 법칙으로 인해 20% 데이터가 80%의 확률로 조회되기 때문에 모든 데이터를 cache에 저장할 필요는 없으며 일부만 저장하더라도 굉장히 효율적일 수 있다는 것을 나타낸다.
+cache는 CPU와 DB간의 throughput 차이를 완화시키기 위한 방법으로 빠르게 읽거나, 빠르게 쓰기위해서 사용된다.
+(READ) Look Aside cache (lazy loading?)
+ check cache first if data exist in cache, get the data and return it. if no data in cache, fetch the data from database." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/redis/20220929_redis_overview-%EB%B3%B5%EC%82%AC%EB%B3%B8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-09-29T00:00:00+00:00" />
+
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEFH3VCWGN"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-TEFH3VCWGN', { 'anonymize_ip': false });
+}
+</script>
+
+</head>
+<body class="body">
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose'});</script>
+	<div class="container content-with-sidebar container--outer">
+		
+
+
+
+<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="PS KIM" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">PS KIM</div>
+					<div class="logo__tagline">개발자 기술 학습 블로그</div>
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex-l">
+			<div class="order-2 w-100 w-25-l mt2 mb5 ph5-m ph0-l mb4 sticky">
+				
+			</div>
+			<div class="primary order-1 w-80-l ph0 ph5-ns mid-gray nested-copy-line-height no-underline nested-links nested-img nested-copy-seperator nested-blockquote mt0-ns"
+				 style="flex-grow-0">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">[Redis] Redis Overview</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2022-09-29T00:00:00Z">September 29, 2022</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/redis/" rel="category">Redis</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<p>Redis 는 cache 용도로 사용한다. 이는 파레토의 법칙으로 인해 20% 데이터가 80%의 확률로 조회되기 때문에 모든 데이터를 cache에 저장할 필요는 없으며 일부만 저장하더라도 굉장히 효율적일 수 있다는 것을 나타낸다.</p>
+<p>cache는 CPU와 DB간의 throughput 차이를 완화시키기 위한 방법으로 빠르게 읽거나, 빠르게 쓰기위해서 사용된다.</p>
+<p><strong>(READ) Look Aside cache (lazy loading?)</strong></p>
+<ul>
+<li>check cache first</li>
+<li>if data exist in cache, get the data and return it.</li>
+<li>if no data in cache, fetch the data from database.</li>
+<li>put the data fetched from database to cache for further request</li>
+</ul>
+<p><strong>(WRITE) write back</strong></p>
+<ul>
+<li>put data without saving into database (super fast, but possible to lose the data when it shut-down)
+-if data exist in cache,  get data from cache</li>
+<li>periodically flush data bulkly into database and clear cache</li>
+</ul>
+<p><strong>Redis provide</strong></p>
+<ul>
+<li>Collections (List, Set, Hash, Sorted-set ..)</li>
+<li>operate with single thread which prevent <strong>race condition</strong>, run atomically</li>
+<li>provide persistece (redis can load data from static storage, after it started from shutdown)</li>
+</ul>
+<p><strong>Redis used for</strong></p>
+<ul>
+<li>shared data storage for remote multiple servers</li>
+<li>store authentication token / session</li>
+<li>implement ranking board using sorted set</li>
+<li>implement API request limitation per user</li>
+<li>Job queue</li>
+</ul>
+<p><strong>Redis commands</strong> 
+<string> 
+get {key} - get value from key<br>
+set {key} {value} - set value as key 
+del {key} - delete value from key</p>
+<list> 
+lpush {key} {value} - push value on left side with key (append value into index0)
+rpush {key} {value} - push value on right side with key (append value into last location)
+lrange {key} {start} {end} - get list between index start and end (start = start index, end = count to get)
+lpop {key} - pop value from left side 
+rpop {key} - pop value from right side 
+<set>
+sadd {key} {value} - append value with key 
+srem {key} {value} - remove value from key 
+smember {key} - get set with key 
+scard {key} - get lengh of key set 
+spop {key} - get a value from key randomly 
+<sorted-set>
+zadd {key} {score} {value} - add value with score into key , if there are values with same score, sort with value 
+zcard {key} - get length from key set 
+zrange {key} {start} {end} - get value from range 
+zrangebyscore {key} {min} {max} - get value with score range 
+<hash> 
+hset {key} {field} {value} - set filed/value map into key 
+hget {key} {field} - get value from field on input key 
+hdel {key} {field} - remove field from key 
+hlen {key} - get the number of fields 
+hgetAll key - get all fields and values from key 
+hkeys {key} - get all fields 
+hvals {key} - get all values
+<p>(fields / value count limits - 40 B)</p>
+<expire> 
+redis can set TTL for specific key , after set or getset, configuration for TTL will be reset 
+<p>expire {key} {seconds} - set TTL deleting after input seconds 
+ttl {key} - get secodns for deletion</p>
+<p>Redis integration with Java (spring)</p>
+<p>@EnableRedisRepositories - declare redis enable on configuration class 
+@RedhHash({value}) - set redis key with {value} + {@id}
+@Id - set id on specific fields in entity</p>
+<p>CrudRepository&lt;{entity}, {keytype}&gt;
+####RedisTemplate 
+- opsForValue
+- opsForList
+- opsForSet
+- opsForZSet
+- opsForHash</p>
+<p>AWS ElasticCash (Redis)</p>
+<p>Redis Client</p>
+<ul>
+<li>Jedis</li>
+<li>Lettuce</li>
+</ul>
+<p>Redis Operational Issue?</p>
+<ul>
+<li>performance issue?</li>
+<li>connection issue?</li>
+<li>fallback issue?</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/redis/" rel="tag">Redis</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/posts/redis/20220929_redis_overview/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">[Redis] Redis Overview</p>
+		</a>
+	</div>
+</nav>
+<script src="https://utteranc.es/client.js"
+        repo="pskim-b/pskim-b.github.io.utterances"
+        issue-term="pathname"
+        theme="boxy-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+
+			</div>
+			
+		</div>
+		<div>
+			<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 PS Developer Tech study.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+		</div>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

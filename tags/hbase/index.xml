@@ -28,5 +28,15 @@
 &amp;gt; version whoami : 현재 hbase의 사용자를 확인</description>
     </item>
     
+    <item>
+      <title>[HBase] Shard과 HBase Region의 구조</title>
+      <link>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</link>
+      <pubDate>Mon, 08 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/bigdata/hbase/20180108_resion%EA%B3%BC-shard%EC%9D%98-%EA%B5%AC%EC%A1%B0/</guid>
+      <description>Shard와 HBase Region의 구조 일반적으로 샤딩이란 논리적 테이블을 수평적으로 파티셔닝하여 레코드를 논리적으로 분할하는 것인데, 데이터를 분산저장하기 위해서 사용한다.
+각 데이터를 적절한 장소로 라우팅routing 하기위해서는 해시함수와 같은 규칙을 미리 정의해야 한다. 수평적 파티션에서 하나의 파티션 용량이 가득 찬 경우 리샤딩reshard 작업이 수행되는데 이는 경우에 따라 데이터의 저장구조가 변경 될(파티션 간 경계를 재설정, 데이터 수평적 재분배 등) 필요가 있음으로 리소스의 비용이 많이 든다. 이때는 I/O가 높아짐으로 데이터 update가 제대로 안 일어날 수도 있다.</description>
+    </item>
+    
   </channel>
 </rss>

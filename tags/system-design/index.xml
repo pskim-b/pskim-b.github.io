@@ -5,7 +5,18 @@
     <link>/tags/system-design/</link>
     <description>Recent content in System Design on PS Developer Tech study</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 14 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/system-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[Design] 분산 데이터 (2)</title>
+      <link>/posts/book/data_intensive/20220214_05_replication_2/</link>
+      <pubDate>Sun, 20 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/data_intensive/20220214_05_replication_2/</guid>
+      <description>지극히 주관적인 요약 리더 없는 복제 초기 복제 데이터 시스템은 대부분 리더가 없었다. 리더 없는 복제는 아마존이 내부 Dynamo 시스템에서 사용한 후 다시 DB용 아키텍쳐로 유행했다. 리악, 카산드라, 볼드모트는 다이나모에서 영감을 얻은 리더 없는 복제 모델의 오픈소서 데이터 스토어로, 이런 종류의 데이터베이스를 다이나모 스타일이라 한다.
+리더 없는 복제 구현은 다음과 같은 방식으로 구성된다.
+ 클라이언트가 여러 복제 서버에 쓰기를 직접 전송 또는 코디네이터 노드가 내부적으로 복제 작업을 수행  이 두 경우 모두 리더가 있는 복제와 다르게 특정한 순서로 쓰기작업을 수행하지 않는다.</description>
+    </item>
+    
     <item>
       <title>[Design] 분산 데이터 (1)</title>
       <link>/posts/book/data_intensive/20220214_05_replication/</link>
